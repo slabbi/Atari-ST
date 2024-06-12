@@ -1,0 +1,6 @@
+DESKCOPY.PRG
+; .C [ -Y -K -G -P ]
+; .L [ -L -Y ]
+.S [ -Y ]
+=
+DESKCOPY.S

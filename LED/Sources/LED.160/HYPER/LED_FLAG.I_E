@@ -1,0 +1,54 @@
+  List of all available MsgFlags
+
+      N = flag allowed in netmails
+      E = flag allowed in echomails
+      L = only allowed with local mails
+
+      Name           NEL  Description
+      ==================================================================
+      Private        ++   Msg is private.
+      Crash          +-+  Msg is to be sent "crash", i.e. directly to the
+                          recipient.
+      Received       ++   Msg was received by the recipient. This flag is
+                          being used by QBBS for BBS users.
+      Sent           +++  Msg was exported.
+      W/File         +-   A file is being sent along with the msg. The
+                          file's name is stated in the subject field.
+      InTransit      +-   The msg is not for this system and will be sent
+                          on.
+      Orphan         +-   The Tosser does not know where to route this mail
+                          to.
+      Kill/Sent      +-+  Msg will be deleted automatically from the msg
+                          base after export.
+      Local          ++   Msg was written on this system, either by the
+                          sysop or a BBS user.
+      Hold           +-+  Msg will be put "on hold", i.e. must be collected
+                          by the recipient.
+      FRequest       +-   Msg is a file request. The subject field contains
+                          the file names separated by spaces.
+      ReturnReceipt  +-   The recipient is to send a return receipt.
+      IsReceipt      +-   This msg is a return receipt.
+      AuditRequest   +-   Every routing system is to send a return receipt.
+      Deleted        ++   This msg was deleted.
+
+      Name           NEL  Description
+      ==================================================================
+      Read           ++   This msg has been displayed on the screen (and
+                          has maybe even been read ;-).
+      Archive/Sent   +++  After exporting the msg copy it into the archive
+                          area.
+      TruncFileSent  +-+  File will be truncated to length 0 when sent.
+      KillFileSent   +-+  File will be deleted when sent.
+      Direct         +-+  Send netmail directly to the recipient (the mail
+                          will not be routed).
+      ZoneGate       +-+  Send netmail via the ZoneGate.
+      HostRoute      +-+  Send netmail via the host/hub of the recipient.
+      Locked         ++   Msg is locked, i.e. no export, no crunch, no
+                          change.
+      Immediate      +-+  Send netmail to the recipient immediately. This is
+                          the "more severe" version of "Crash".
+      Gated          ++   Marks locally gated msgs.
+      CreateFlowFile +-   Creates a flowfile from the msg text.
+      Maus           +++  Msg is for the Mausnet.
+      Fixed address  +++  Tosser does not change the origin address.
+      MultipleCC     +-   "CarbonCopies" are created by the tosser.

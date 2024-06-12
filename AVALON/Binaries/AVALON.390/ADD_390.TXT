@@ -1,0 +1,1371 @@
+***************************************************************************
+
+              Deutsches Addendum fÅr AVALON V3.90
+
+            fÅr mehr Informationen: siehe Handbuch
+
+
+               English addendum for AVALON V3.90
+
+                 for more details: read manual
+
+***************************************************************************
+
+
+Addendum V3.90     (30.01.1998)
+================================
+
+AVALON ist ab sofort FREEWARE!
+
+AVALON is FREEWARE now!
+
+***************************************************************************
+
+Addendum V3.80     (17.11.1996)
+================================
+
+F'Request:
+----------
+Der Slider im Auswahldialog wurde bei Filelisten grîûer 2MB nicht mehr
+angezeigt. Nun kînnen aushc Filelisten mit 100MB und mehr problemlos
+benutzt werden.
+
+
+F'Request:
+----------
+The slider in the select-dialog was not shown when a filelist with a 
+filelength over 2mb was used. Now you can use filelists with 100mb or more 
+without problems.
+
+
+***************************************************************************
+V3.78, 3.79: Interne Versionen / Internal versions
+***************************************************************************
+
+
+Addendum V3.77     (23.07.1996)
+================================
+
+Special:
+--------
+"[ ] Base36 Outbound Style" schaltet das neue Format fÅr Outbound-Ordner
+  ein.
+
+Allgemein:
+----------
+Autostart-Wartezeit nur dann, wenn auch wirklich ein Autostart erfolgen
+  wird.
+AVALON unterstÅtzt jetzt weitere "FidoMsgs"; u.a. die Nachricht "Start
+  Exporter" die vom LED 1.44 versendet werden kann, damit nach Beendigung
+  des LED automatisch der Exporter gestartet wird.
+
+
+Special:
+--------
+"[ ] Base36 Outbound Style" switches on the new style for outbound
+  folders.
+
+Generally:
+----------
+Autostart-Delaytime only when an autostart is really performed.
+AVALON supports more "FidoMsgs" now; the message "Start Exporter" that
+  is sent by LED is supported so AVALON can start the exporter automatically
+  when LED is quitted.
+
+
+***************************************************************************
+
+
+Addendum V3.76     (28.07.1995)
+================================
+
+Allgemein:
+----------
+"!CONVERTTEARLINE" funktionierte nicht.
+
+
+Generally:
+----------
+"!CONVERTTEARLINE did not work.
+
+
+***************************************************************************
+
+
+Addendum V3.75     (02.05.1995)
+================================
+
+F'Hatch:
+--------
+Es wurde eine falsche Adresse in Mail&File eingesetzt (v3.74).
+
+
+F'Hatch:
+--------
+A wrong address was used in Mail&File in v3.74.
+
+
+***************************************************************************
+
+
+Addendum V3.74     (13.04.1995)
+================================
+
+F'Hatch:
+--------
+"Replaces" im TIC-File wird nur noch erzeugt, wenn es auch benîtigt wird.
+Origin-Adress im TIC wird jetzt nach dem "best match" Verfahren ermittelt.
+
+
+F'Hatch:
+--------
+"Replaces" in TIC will only be created when necessary.
+Origin address in TIC will be set using a "best match" algorithm.
+
+
+***************************************************************************
+
+
+Addendum V3.73     (31.12.1994, last Version for this year)
+===========================================================
+
+FileManager:
+------------
+Neuer Eintrag: "BsgBase" zeigt eine Statistik Åber die gespeicherten
+  Nachrichten an.
+
+Allgemein:
+----------
+AreafixManager wertet nun Adressen hinter Areanamen besser aus.
+AreafixManager verwaltet nun bis zu 7500 Areanamen (wird jetzt auch
+angezeigt).
+Zwei kleine Bugfixes.
+
+
+FileManager:
+------------
+New entry: "MsgBase" shows a small statistic about your message base.
+
+Generally:
+----------
+Better searching of addresses behind areanames in AreafixManager 
+implemented.
+AreafixManager allows up to 7500 areas now (the max.number will be 
+displayed)!
+Two small bugfixes!
+
+***************************************************************************
+
+
+Addendum V3.72     (20.11.1994)
+================================
+
+Verstecktes Feature:
+--------------------
+Unter MultiTOS und MagiX kann Avalon GEM-Programme auch parallel zu
+Avalon starten. Hierbei muû wÑhrend des Aufrufs (des zu startenden
+Programms) die ALTERNATE-Taste gedrÅckt gehalten werden. Dieses
+Feature ist Åbrigens schon seit einigen Versionen implementiert.
+
+Batchinterpreter:
+-----------------
+Neue Statements:
+
+EXTRACT <nodelist> <output> [<region1> [<region2> ...]]
+  Hiermit kann eine Nodelist verkleinert werden. Es kînnen bis zu
+  50 Regionen angegeben werden, aus denen die verkleinerte Nodeliste 
+  bestehen soll. Fehlt die Angabe einer Region, so wird eine Liste 
+  mit allen RCs erzeugt.
+
+!CONVERTTEARLINE=ON|OFF
+  Einige Exporter sehen Zeilen, die mit "---" anfangen, als Textende
+  an. Mit dieser Funktion kann Avalon veranlaût werden, das dritte
+  "-" in ein "!" zu konvertieren.
+
+Special:
+--------
+Neuer Schalter: "[ ] Buffer screen output".
+  Bisher war die Bildschirmausgabe ziemlich langsam, wenn TOS-Programme
+  im AVALON-Window abliefen. Mit dieser Option kann man das ganz nun
+  beschleunigen (ca.30% bis 300%). Avalon gibt dann nicht mehr Zeichen 
+  fÅr Zeichen aus, sondern immer gleich mehrere auf einmal.
+  Wichtig: Kompilierte GFA-BASIC Programme kommen damit nicht zurecht, 
+  wenn Befehle wie INPUT usw. benutzt werden. Auch andere Programme, die 
+  einen Text von der Tastatur einlesen wollen, laufen i.d.R. nicht 
+  korrekt. Binkley und JETmail laufen ohne Probleme mit dieser Funktion;
+  und zur Freude der TT-User: Wird Binkley nun im Fenster gestartet, so 
+  werden die gleichen cps Werte erreicht, wie ohne Window!
+
+Allgemein:
+----------
+Tastaturabfrage nochmals an MultiTOS angepasst.
+Bugfix: Sliderbug bei Filelisten grîûer 2.4MB entfernt.
+ICFS-Iconify implementiert. Mit Ctrl+SPACE kann jetzt jedes Fenster 
+ikonifiziert werden, sofern ICFS.PRG installiert ist (mehr dazu im Manual).
+Jetzt max. 5000 anstatt 2000 Areas im Areafix-Manager.
+Areafix-Manager Åberspringt fast alle einstelligen Symbole.
+
+
+
+Hidden egg:
+-----------
+When using MultiTOS or MagiX it is possible to start other GEM programs
+parallel to Avalon. Just hold down the ALTERNATE key when starting
+the other application. This feature has been implemented for some
+versions now.
+
+Batchinterpreter:
+-----------------
+New statements:
+
+EXTRACT <nodelist> <output> [<region1> [<region2> ...]]
+  This statement allows to convert a nodelist into a smaller one.
+  You can define up to 50 regions which are included into the smaller
+  list. When no region is defined a list of all RCs is created.
+
+!CONVERTTEARLINE=ON|OFF
+  Some exporter think that a text ended when "---" are found at the
+  beginning of a line. This function allows Avalon to convert the third
+  "-" into a "!" automatically.
+
+Special:
+--------
+New switch: "[ ] Buffer screen output".
+  The screen output was very slow so far when you have redirected
+  TOS-programs. Switching on this option speeds up screen output 
+  aprox.30% to 300%. Important: Compiled GFA-BASIC programs have
+  problems with this option when using statements like INPUT etc.
+  (other programs that are reading text from the keyboard, may have the
+  same problem). Binkley and JETmail are working fine and TT-User can be 
+  happy: When the screen output of Binkley is redirected (and buffered)
+  Binkley runs as fast as without redirecting screen output to the
+  window!
+
+Generally:
+----------
+Some more modifications for MultiTOS (keyboard functions).
+Bugfix: Sliderbug removed when using filelists greater 2.4mb.
+ICFS support implemented. Each window can be iconified by pressing
+Ctrl+SPACE when ICFS.PRG is installed (more about this feature you will
+wind in the manual).
+Now 5000 instead of 2000 areas in areafix manager.
+Areafix manager ignores nearly all one-character symbols.
+
+
+***************************************************************************
+
+
+Addendum V3.71     (10.08.1994)
+================================
+
+Avalon4Semper:
+--------------
+Man kann sich nun auch nur fÅr AVALON4SEMPER zu einem geringeren Preis 
+einzeln registrieren lassen.
+Der Key wird wie der "normale Key" ins Config oder in die Datei 
+AVALON.KEY eingetragen, allerdings mit einer kleinen Ausnahme:
+
+APPLICATION AVALONLIGHT <xxxxxxx>
+
+Wobei <xxxxxxx> wieder Ihr persînlicher Key ist!
+
+
+Avalon4Semper <-> Avalon:
+-------------------------
+Die Konfigurationsfiles sind jetzt voll zueinander kompatibel, d.h.
+beide Programme kînnen nun in einem Ordner stehen.
+       Avalon lieût: AVALON1.CFG und AVALON2.CFG
+Avalon4Semper lieût: AVALON2.CFG
+
+Wichtig! Damit das bestehende Configfile korrekt aufgesplittet wird,
+sollte zunÑchst AVALON (nicht Avalon4Semper) gestartet werden und
+die Konfiguration einmal mit "SAVE" gesichert werden.
+Avalon legt dann automatisch AVALON1.CFG und AVALON2.CFG an und lîscht
+anschlieûend AVALON.CFG!
+
+
+Batchinterpreter:
+-----------------
+Neue Statements:
+
+CONVERT [n [addr]]
+CONVERT4D [n [addr]]
+  Diese Befehle konvertieren eine Adresse in einen 3D- oder 4D-Filenamen
+  und speichern das Ergebnis in Parameter n.
+
+BatchCLI nun auch als externe Version mit Namen BATCHRUN.GTP.
+
+
+Edit areas:
+-----------
+Mit "Search" kann eine Area gesucht werden. Die Suche beginnt von der
+aktuellen Position an.
+
+
+Allgemein:
+----------
+BugFix: Environment wurde falsch gesetzt beim Aufruf von Utilities!
+BugFix: Batchfiles konnten nicht Åber einen Button in eine Session
+        eingebunden werden.
+BugFix: "FILESELECT" lieferte keinen Errorlevel.
+Neues Utility: CONVERT
+
+
+Avalon4Semper:
+--------------
+Now it is possible only to register for AVALON4SEMPER.
+The AVALON4SEMPER-Key must be installed in the Binkley-Config or the
+file AVALON.KEY (like the full version key) with:
+
+APPLICATION AVALONLIGHT <xxxxxxx>
+
+<xxxxxx> is your key.
+
+
+Avalon4Semper <-> Avalon:
+-------------------------
+The config files are full compatible now, that means that both programs
+can be put in the same folder.
+       Avalon reads: AVALON1.CFG and AVALON2.CFG
+Avalon4Semper reads: AVALON2.CFG
+
+Important! To split the config file in the correct way, you should start
+AVALON (not Avalon4Semper) once and then save the current config with 
+"SAVE". Avalon creates AVALON1.CFG and AVALON2.CFG automatically and 
+removes AVALON.CFG!
+
+
+Batchinterpreter:
+-----------------
+New statements:
+
+CONVERT [n [addr]]
+CONVERT4D [n [addr]]
+  These statements convert an address into a 3d- or 4d-filename and
+  store the result in parameter n.
+
+External version of batchcli with filename BATCHRUN.GTP.
+
+
+Edit areas:
+-----------
+"Search" searches an area from the actual position.
+
+
+Generally:
+----------
+BugFix: Environment was not set in the correct way when starting utilities!
+BugFix: Batchfiles could not be installed using a default button.
+BugFix: "FILESELECT" returns no errorlevel.
+New utility: CONVERT
+
+
+***************************************************************************
+
+
+Addendum V3.70     (25.07.1994)
+================================
+
+Batchinterpreter:
+-----------------
+Neue Statements:
+
+APPLYDIFF <nodelist> <diff> [clean]
+  HÑngt ein Diff-File an eine Node- oder Pointliste an.
+MAKEUSERLIST <listtype> <nodelist> <userlist> [<zone>]
+  Erstellt aus einer 3D- oder 4D-Pointliste/Nodeliste eine Userliste
+  fÅr den LED.
+SPLIT <file> <max.bytes> <max.lines>
+  Teilt eine Textdatei in Einzeldateien auf.
+INPUT [n [text]]
+  Liest einen Text von der Tastatur ein.
+PRESET [n [text]]
+  Belegt einen Parameterstring (%%n) mit <text>.
+TIME?
+  Erfragt die Uhrzeit. RÅckgabe als Dezimalzahl in Errorlevel (HHMMSS).
+DATE?
+  Erfragt das Datum. RÅckgabe als Dezimalzahl in Errorlevel (JJJJMMTT).
+MONTH?
+YEAR?
+  Erfragt den Monat bzw. das Jahr. RÅckgabe in Errorlevel.
+HOUR?
+MINUTE?
+  Ermittelt die Tageszeit als Stunde und Minute. RÅckgabe in Errorlevel.
+Parameter %%e
+  Liefert ERRORLEVEL als Dezimalzahl.
+WECHO <text>
+  Ausgabe des Textes OHNE Zeilenvorschub!
+ECHO=FULL
+  Ausgabe jeder Zeile!
+@command
+  '@' unterdrÅckt Echo-Ausgabe dieser Zeile (nur bei ECHO=FULL).
+
+APPLYDIFF, MAKEUSERLIST und SPLIT ersetzen die Programme "COMPDIFF.TTP", 
+"SPLIT_IT" und "PN24CONV.TTP", die aber weiterhin im Avalon-Paket 
+vorhanden sind. Bitte die geÑnderten Parameter bei "MAKEUSERLIST" 
+beachten!
+
+Labels dÅrfen jetzt nur noch maximal 20 Zeichen lang sein.
+
+Allgemein:
+-----------
+SystemInfo kann Åber RETURN verlassen werden.
+"TOSRUN" Environmentauswertung wieder entfernt.
+Bugfix: Im Programm-Manager wurde der "Redirect"-Objektstatus nicht 
+        zurÅckgesetzt.
+Bugfix: Default-Setup fÅr jede PollSession wieder wÑhlbar.
+Einige Optimierungen.
+Window-Positionen von Avalon werden in AVALON.WPX und von Avalon4Semper
+in AVALON.WPS gespeichert.
+
+
+
+Batchinterpreter:
+-----------------
+New statements:
+
+APPLYDIFF <nodelist> <diff> [clean]
+  Applies a diff-file to a node- or pointlist.
+MAKEUSERLIST <listtype> <nodelist> <userlist> [<zone>]
+  Compiles a 3D- or 4D-pointlist/nodelist to an userlist for the LED.
+SPLIT <file> <max.bytes> <max.lines>
+  Splits a file in smaller parts.
+INPUT [n [text]]
+  Reads a text from the keyboard.
+PRESET [n [text]]
+  Sets a parameter string (%%n) to <text>.
+TIME?
+  Returns time in errorlevel (HHMMSS).
+DATE?
+  Returns date in errorlevel (YYYYMMDD).
+MONTH?
+YEAR?
+  Returns month and year in errorlevel.
+HOUR?
+MINUTE?
+  Returns hour and minute in errorlevel.
+Parameter %%e
+  Returns ERRORLEVEL as number.
+WECHO <text>
+  Writes <text> on screen without linefeed.
+ECHO=FULL
+  Prints every line on the screen.
+@command
+  '@' supresses echo output (only for ECHO=FULL).
+
+APPLYDIFF, MAKEUSERLIST and SPLIT are replacing the programs 
+"COMPDIFF.TTP", "SPLIT_IT.TTP" and "PN24CONV.TTP". These programs have 
+not been removed from the Avalon package. Please notice the changed 
+parameters of the statement "MAKEUSERLIST".
+
+Maximum length for labels is 20 characters.
+
+Generally:
+-----------
+SystemInfo can be exited pressing RETURN.
+"TOSRUN" environment switch removed.
+Bugfix: In the program-manager the object status of "Redirect" was 
+        not reseted.
+Bugfix: Default setup for each poll-session choosable again.
+A little bit optimized.
+Windowpositions of Avalon will be saved in AVALON.WPX and of
+Avalon4Semper in AVALON.WPS.
+
+
+
+***************************************************************************
+
+Addendum V3.63     (18.05.1994)
+================================
+
+Allgemein:
+-----------
+Bugfix: Es wurde immer angezeigt, daû eine énderung im Programm-Manager
+        vorkam, wenn Avalon beendet wurde.
+Bugfix: Redirect im Programm-Manager war nicht anwÑhlbar.
+Bugfix: Dialogpositionen werden wieder gesichert (funktionerte nicht in
+        der 3.62).
+Bugfix: Slider im AreafixManager wird beim Suchen nun mitgefÅhrt.
+Bugfix: "-Originalecho" wird nicht mehr als "-Origin lecho"
+        interpretiert.
+Bugfix: DTE-Rate wird im Terminal korrekt angezeigt.
+Bugfix: Avalon verursachte einen "Function call error" unter WINX.
+Erstinstallation vereinfacht.
+Die Darstellung der Icons sollte jetzt in jeder Auflîsung korrekt sein.
+OutboundInfo zeigt Inhalt von Flowfiles mit an.
+
+
+
+Generally:
+-----------
+Bugfix: When exiting Avalon, "Change in program-manager" was always
+        selected.
+Bugfix: Redirect in program-manager was not selectable.
+Bugfix: Dialogpositions are saved now (didn't work in 3.62).
+Bugfix: Slider in areafix manager works correctly when searching areas.
+Bugfix: "-Originalecho" will not be longer recognized as "-Origin lecho".
+Bugfix: DTE rate is shown correctly in terminal.
+Bugfix: Avalon has created a "function call error" when using WINX.
+First installation easier now.
+The correct icons should be shown in all resolutions.
+OutboundInfo also shows contest of flowfiles.
+
+
+
+***************************************************************************
+
+Addendum V3.62     (20.04.1994)
+================================
+
+Neue Funktion: "Program-Manager"
+--------------------------------
+Hier kann jeder bis zu 15 weitere Programme installieren. Ein
+Doppelklick auf den entsprechenden Eintrag îffnet eine Box, in der
+Name, Filename und Kommandozeile eingetragen werden kînnen.
+
+Allgemein:
+-----------
+"N/P"-Bug beseitigt in "Edit areas".
+COMPDIFF: Nodelisterkennung verbessert.
+
+
+
+New function: "Program-Manager"
+-------------------------------
+It is possible to install up to 15 programs. Click twice to edit
+the entry.
+
+Generally:
+-----------
+"N/P"-bug fixed in "Edit areas".
+COMPDIFF: Recognization of Nodelist improved.
+
+
+
+***************************************************************************
+
+Addendum V3.61     (02.04.1994)
+================================
+
+F'Hatch:
+---------
+Es sind jetzt als Areaname 35 Zeichen (vorher 12) erlaubt.
+
+Terminal:
+----------
+Es werden jetzt alle 15 Baudraten unterstÅtzt.
+sF6 Ñndert jetzt die eingestellte Baudrate.
+
+Allgemein:
+-----------
+COMPDIFF gibt jetzt die benîtigte Zeit aus (speziell auf Wunsch von
+Florian ;-)).
+FILE2MSG beachtet jetzt die Sommerzeit.
+Wird im Hauptdialog der FULLER angewÑhlt, so wird der Hauptdialog von 
+Avalon verkleinert (ICONIFY) oder wieder geîffnet. Denselben Effekt hat 
+CNTRL+"*" (auf dem Zehnerblock).
+Es wird jetzt beim Speichern der Konfigurationsdatei ein BackupFile
+angelegt.
+
+
+
+F'Hatch:
+---------
+35 characters (instead of 12) allowed for areaname.
+
+Terminal:
+----------
+The terminal allows all 15 baudrates now.
+sF6 allows to change the baudrate.
+
+Generally:
+-----------
+COMPDIFF calculates used time (this was a special wish from Florian ;-)).
+FILE2MSG uses the summertime when necessary.
+When clicking ont he FULLER in the main dialog, the main dialog is
+iconified and vice versa. The same effect has CNTRL+"*" (on the numpad).
+When saving the configuration a backupfile is created now.
+
+
+***************************************************************************
+
+Addendum V3.60     (22.03.1994)  (UpDate-File AVALU360.LZH)
+============================================================
+
+BugFix in AVALON4SEMPER:
+-------------------------
+Windowpositionen werden jetzt gespeichert und Programm kann beendet
+werden.
+
+
+
+BugFix in AVALON4SEMPER:
+-------------------------
+Windowpositions are saved correctly now and program can be exited.
+
+
+***************************************************************************
+
+Addendum V3.60     (21.03.1994)
+================================
+
+SEMPER:
+--------
+Speziell fÅr Semper gibt es jetzt AVALON.APP (im Ordner "4_SEMPER\").
+Diese Version beinhaltet nur die wichtigsten Features von AVALON.
+
+Special:
+---------
+Wenn der Hauptdialog ausgeschaltet wird, zeigt Avalon normalerweise ein 
+Ikon im Window an. Dieses kann nun unterdrÅckt werden mit "no icon". So
+wird nur noch die Titelzeile angezeigt.
+
+AreaFix:
+---------
+Wird eine Area automatisch an die AREAS.BBS angehÑngt, so wird jetzt
+der Standardpfad (erster AREAS.BBS Eintrag) als Vorgabe benutzt.
+
+Allgemein:
+-----------
+Internes Terminal kann Åber ALT-X aufgerufen werden und ist in der 
+Bildschirmausgabe jetzt ca.150% schneller.
+Fehler in der Speicherverwaltung korrigiert. Wer zuviel(!) Speicher hatte,
+konnte ggf. nur das Minimum an Areas im Areafix benutzen...
+"Outbound-Info" bombte bei zuvielen EintrÑgen. Anzeige jetzt auch
+sortiert und erweitert.
+Windows wieder an SThigh angepasst.
+Wird in Avalon aus Semper heraus aufgerufen, so wird das Avalon-Window
+nun automatisch zum oberen Fenster.
+Es erscheint nun eine Meldung, wenn versucht wird Avalon ein zweites
+mal zu starten.
+HatchDialog muû jetzt Åber "EXIT" verlassen werden.
+UNDO hat jetzt die gleiche Funktion wie der CLOSER (auûer im
+Hauptdialog).
+BBS_INFO.TTP erlaubt nun unbegrenzt viele Areas.
+AVALONBG.GER: "Beginner's Guide" wurde Åberarbeitet!
+Installation jetzt noch einfacher!
+
+
+
+SEMPER:
+--------
+Especially for Semper it is possible to use AVALON.APP (folder "4_SEMPER").
+This version only offers the most important features of AVALON.
+
+Special:
+---------
+When you switch of the "Main-Dialogbox", Avalon shows an icon in the 
+small window normally. This icon can be hidden selecting "no icon". 
+Only the window title is shown when "no icon" is selected.
+
+AreaFix:
+---------
+When an area is added to AREAS.BBS automatically, the default path
+(first AREAS.BBS entry) is used as default.
+
+Generally:
+-----------
+Internal terminal can be called via ALT-X and the screenoutput is 
+more than 150% faster!
+Error in the memory-allocation routines fixed.
+"Outbound-Info" bombs when to many entries have been found. Output is 
+sorted and improved now.
+Windows adapted to SThigh (like V3.52 and earlier).
+When calling Avalon from Semper, the Avalon window will be the top 
+window automatically.
+A message will appear if you try to start Avalon twice.
+The HatchDialog must be left using EXIT.
+UNDO has the same function as the CLOSER (except the main-dialog).
+BBS_INFO.TTP unlimited number of areas now.
+AVALONBG.ENG: "Beginner's Guide" an introduction in Avalon!
+Easier installation!
+
+
+***************************************************************************
+
+Addendum V3.53     (12.02.1994)
+================================
+
+Edit areas:
+------------
+Wird "Days 0" angegeben, so wird "-DAYS 0" auch gespeichert; wird das Feld
+freigelassen, so wird keine "-DAYS" Zeile fÅr diese Area gespeichert.
+Bisher wurde immer "-DAYS 0" gespeichert, auch wenn das Feld frei war.
+
+Areafix:
+---------
+REM erlaubt jetzt 20 Zeichen (vorher 16).
+Es kînnen auch Befehle an den Areafix gesendet werden (siehe Ende von 
+AVALON.LST).
+Der Areafix kann auch als Filefix benutzt werden!!! Dieses Feature war
+schon immer vorhanden, nur relativ unbekannt.
+
+Filemanager:
+-------------
+Die neue Funktion "Outbound-Info" zeigt die Files an, die sich noch im
+Outboundverzeichnis befinden.
+
+Allgemein:
+-----------
+Windowroutinen sollten jetzt auch unter ST-Medium korrekt laufen.
+Avalon-Logo fÅr ST-Medium neu gezeichnet.
+"Save" im Hauptdialog wurde nicht immer neu gezeichnet.
+
+
+
+Edit areas:
+------------
+When "Days 0" is defined, "-DAYS 0" will be saved in AREAS.BBS; if the
+entry is free, no "-DAYS" line will be saved for this area. Older versions
+of Avalon always save "-DAYS 0".
+
+Areafix:
+---------
+REM allows 20 characters instead of 16.
+Commands can be sent to the Areafix (see end of AVALON.LST).
+You can use the Areafix as Filefix, too!!! This feature was implemented
+in all versions but was not known by many people.
+
+Filemanager:
+-------------
+New function "Outbound-Info" shows all files in the outbound folder.
+
+Generally:
+-----------
+Windowroutines should work correctly with ST-Medium now.
+Avalon-Logo for ST-Medium new designed.
+Redraw of "Save" button in the main dialogbox was buggy.
+
+
+***************************************************************************
+
+Addendum V3.52     (22.01.1994)
+================================
+
+Filemanager:
+-------------
+Neue Funktion "Systeminfo" in Filemanager. Hier werden die gelesenen
+Adressen und Domains angezeigt.
+
+Allgemein:
+-----------
+Slider bei groûen Boxen korrigiert.
+TheBox-Support entfernt, dafÅr wird jetzt SEMPER unterstÅtzt.
+NetworkRequest/-Hatch verbessert. Avalon erkennt jetzt das DefaultDomain.
+Redraw-Routinen wieder geÑndert.
+"Use window for terminal/batchinterpreter" entfernt. Avalon benutzt jetzt
+nur noch Windows.
+"AVALON.WPS" lautet nun "AVALON.WPX". Die Datei AVALON.WPS kann gelîscht
+werden.
+Terminal kann aus dem MenÅ aufgerufen werden.
+Avalon sendet nun Nachrichten an SEMPER (unter Magix/MultiTOS).
+Der Key kann ebenfalls in eine Datei "AVALON.KEY" geschrieben werden.
+Dieses ist notwendig, wenn z.B. mit SEMPER gearbeitet wird und deshalb 
+die Datei BINKLEY.[0-5] nicht vorhanden ist.
+
+
+Filemanager:
+-------------
+New function "Systeminfo" implemented. This function shows all read
+addresses and domains.
+
+Generally:
+-----------
+Slider corrected when using big dialog boxes.
+Instead of TheBox support, Avalon can read the ASCII config of SEMPER now.
+NetworkRequest/-Hatch improved. Avalon recognizes the defaultdomain now.
+Redraw functions changed.
+"Use window for terminal/batchinterpreter" removed. Avalon always uses 
+windows now.
+"AVALON.WPS" is renamed to "AVALON.WPX" now. The file AVALON.WPS should be
+deleted.
+Terminal can be called using the menu bar.
+Avalon sends messages to SEMPER now (Magix/MultiTOS).
+The key can be put in a file called "AVALON.KEY" This is necessary when 
+using SEMPER and BINKLEY.[0-5] does not exist.
+
+
+***************************************************************************
+
+Addendum V3.51     (28.12.1993)
+================================
+
+Special:
+---------
+Fontgrîûe jetzt unter "Fontsize" einstellbar.
+
+Allgemein:
+-----------
+User mit einem "Demokey" sehen jetzt nicht mehr die "Please register"-Box,
+wenn Avalon beendet wird.
+Eine bereits vorhandene AVALON.WPS-Datei sollte gelîscht werden, da
+die Dialoge Åberarbeitet worden sind.
+
+
+
+Special:
+---------
+Fontsize now choosable with "Fontsize".
+
+Generally:
+-----------
+User with demokey will not longer see the "Please register"-Box when
+exiting Avalon.
+An existing AVALON.WPS file should be deleted, because I have
+modified the dialogs.
+
+
+***************************************************************************
+
+Addendum V3.50     (13.12.1993)
+================================
+
+Systemordner:
+--------------
+Da zu Avalon doch einiges an Dateien gehîrt...
+AVALON.CFG    - Konfigurationsfile
+AVALON.LST    - Arealiste fÅr Areafix-Manager
+AVALON.HTC    - Kopfzeilen fÅr File-Hatch
+AVALON.WPS    - Windowpositionen
+AVALON.TNB    - Inhalt des Notizbuches
+AUTOEXEC.BAT  - automatische Batchdatei
+BINKLEY.[0-5] - Binkley-Setups
+TB.[0-5]      - TheBox-Setups
+...werden diese ab der V3.50 in einem Systemordner mit Namen AVALON
+erwartet. Dieser Ordner wird von Avalon AUTOMATISCH erzeugt und auch
+die entsprechenden Dateien (Auûnahme: *.[0-5]) dort hinein kopiert.
+
+FileRequest:
+-------------
+Files kînnen jetzt nicht nur aus einer Fileliste ausgewÑhlt werden,
+sondern auch aus einer Mail!
+Neuer Button "<123>". Dieser erlaubt es zur Fileliste 1-9,10-18,19-27
+umzuschalten.
+"FILES" lîscht jetzt nicht mehr alle EintrÑge (ich fand es zwar vorher
+praktischer, aber was soll's).
+
+Special:
+---------
+Neuer Button "Big windows (vert.>=672 points)". Wenn die vertikale
+Auflîsung min.672 Punkte betrÑgt, so kann hierÅber die FileRequestBox und
+der AreafixManager derart vergrîûert werden, daû 20 Dateien mehr angezeigt
+werden.
+Die Angabe, wo die Dateien BINKLEY.[0-5] bzw. TB.[0-5] zu finden sind,
+enfÑllt. Diese werden jetzt immer im Systemordner AVALON erwartet!
+Neuer Button "Use TOSRUN environment". Wenn diese Option aktiv ist,
+wird anstelle der internen Ausgabeumlenkung, daû in "TOSRUN=" eingetragene
+Programm aufgerufen!
+Beim ersten Programmstart sind jetzt voreingestellt:
+"4D-Mode", "Use windows for Terminal/Batchinterpreter", "MsgBaseChecking"
+
+
+Edit areas:
+------------
+Die Zone wird jetzt nicht mehr getrennt eingegeben! Auch kann Avalon jetzt
+AREAS.BBS-Dateien verwalten, die als ersten Nodeeintrag einen Point
+angegeben haben (z.B. bei lokalen Areas). Bisher wurde die Pointinformation
+einfach abgeschnitten.
+"-DAYS 0" wurde in frÅheren Avalon-Versionen nicht gespeichert.
+
+F'Hatch:
+---------
+Leerzeichen am Anfang/Ende der Description werden entfernt.
+Ist eine Textdatei mit Namen "AVALON.HTC" vorhanden, so wird diese VOR
+einer Mail in die Message geschrieben.
+
+Areafix-Manager:
+-----------------
+Werden neue Areas automatisch an AREAS.BBS angehÑngt, wird nun ÅberprÅft,
+ob der Pfad korrekt ist und ggf. kann dieser neu eingegeben werden.
+
+BatchCLI:
+----------
+CHDIR setzt nun auch automatisch das Laufwerk, sofern es angegeben
+wurde!
+"CHDIR D:\JETMAIL" ist also Ñquivalent zu "D:" und "CHDIR \JETMAIL".
+
+Allgemein:
+-----------
+In der Listenanzeige springt (Shift)Home zum Listenanfang/-ende.
+Kopieren von Dateien nun Åber viermal schneller.
+Slider perfektioniert. ;-) Es ist jetzt mîglich auch links/rechts vom Slider
+zu klicken um ihn zu bewegen.
+Jetzt 27 anstatt nur 9 Filelisten/MailAreas mîglich!
+SHIP zeigt nun korrekte Kennung beim TT/Falcon an.
+SPLIT-IT: Fuûnote nun korrekt und ein wenig schneller.
+PN24CONV: Ein wenig schneller.
+PN24LIST: Nicht mehr im Avalon-Paket vorhanden.
+COMPDIFF: HÑngt Diff-Dateien an eine Point-/Nodeliste an.
+
+Speicherbedarf:
+----------------
+   Grundbedarf AVALON: 283 KByte
+  ggf. AreafixManager: max.240 KByte (dynamisch)
+ggf. AREAS.BBS-Editor: max.450 KByte (dynamisch)
+
+
+
+Systemfolder:
+--------------
+Avalon uses a lot of files...
+AVALON.CFG    - Configurationfile
+AVALON.LST    - Arealist for Areafix-Manager
+AVALON.HTC    - Header for File-Hatch
+AVALON.WPS    - Windowpositions
+AVALON.TNB    - Notebook
+AUTOEXEC.BAT  - Autoexecuted batch
+BINKLEY.[0-5] - Binkley setups
+TB.[0-5]      - TheBox setups
+...so these files are expected in a systemfolder named AVALON now!
+This folder is created automatically by Avalon and all important files
+are moved into this folder automatically, too (except: *.[0-5]).
+
+FileRequest:
+-------------
+NOW: Files can be chosen from a mail directly!
+New button "<123>". This button allows to change to filelists 1-9,
+10-18,19-27.
+"FILES" does not delete all entries (in my opinion it was more comforable
+before that change, but some people ask me to change it...).
+
+Special:
+---------
+New button "Big windows (vert.>=672 points)". When you start Avalon in a
+vertical resolution higher than 672 points, the FileRequestBox and the
+AreafixManager will list 20 filenames more.
+It is not longer possible to define the path where BINKLEY.[0-5] and
+TB.[0-5] are stored. These files are always expected in the systemfolder
+AVALON now.
+New button "Use TOSRUN environment". When this option is activated,
+Avalon uses the program defined by "TOSRUN=" to redirect screen outputs
+instead of internal redirection.
+Defaults (if you use Avalon the first time):
+"4D-Mode", "Use windows for Terminal/Batchinterpreter", "MsgBaseChecking"
+
+Edit areas:
+------------
+The zone is not entered seperatly from the address. Avalon can also edit
+AREAS.BBS files which have a pointentry as first nodeaddress (e.g. used
+for local areas). Avalon <3.50 has cut this pointinformation.
+"-DAYS 0" wasn't saved in older Avalon versions.
+
+F'Hatch:
+---------
+Spaces at start/end of description will be cut.
+When a textfile named "AVALON.HTC" exists, the text is put at the
+beginning of a created mail.
+
+Areafix-Manager:
+-----------------
+When new areas are added to AREAS.BBS, the path will be checked now. When
+it is not correct you can retype the path.
+
+BatchCLI:
+----------
+CHDIR sets the correct drive automatically, if it is defined.
+"CHDIR D:\JETMAIL" is equal to "D:" and "CHDIR \JETMAIL".
+
+Generally:
+-----------
+(Shift)Home jumps to textstart/-end in listboxes.
+Copying of files four times faster now.
+Slider made perfectly. ;-) It is possible to click left/or right from the
+slider to move it.
+Now you can use 27 filelists/mailareas instead of 9!
+SHIP shows the correct ID on a TT/Falcon!
+SPLIT-IT: Footnote now correct and a little bit faster.
+PN24CONV: A little bit faster.
+PN24LIST: Not longer published with Avalon.
+COMPDIFF: Applies diff files to a point-/nodelist.
+
+Used memory:
+-------------
+Mainprogram AVALON: 270 KByte
+    AreafixManager: max.240 KByte (dynamic)
+  AREAS.BBS-Editor: max.450 KByte (dynamic)
+
+
+***************************************************************************
+
+Addendum V3.40     (14.10.1993)
+================================
+
+BatchCLI:
+----------
+"LOG", "LOGn" eingebaut. Hiermit kann ein beliebiger Text im BinkleyStyle-
+Format ins Logfile geschrieben werden.
+"exec" erlaubt als Parameter: "EXPORT|IMPORT|CRUNCH|SCAN|MSGEDIT|TXTEDIT|
+MAILER|TERMINAL|UTIL1...6".
+"!FILESELECT" erlaubt es ein File per Fileselector auszuwÑhlen.
+"!CONVERT=ON" war fehlerhaft.
+"FILESELECT [n]" eingebaut. Hiermit wird ein Filename in einem der
+Parameter 0 bis 9 abgelegt. Die Parameter kînnen mit %%n in jedem anderen
+Befehl verwendet werden.
+"CUTEXTENSION [n]" schneidet die Extension des Parameters n ab. Dieses ist
+in einigen FÑllen erforderlich, siehe dazu auch TEXT2MSG.BAT.
+"CUTPATH [n]" entfernt den Pfad aus Parameter n.
+Befehl "!SUBJECT": "*filename*" gibt es nicht mehr, dafÅr aber
+                   "%filename%" - Filename ohne Extension
+                   "%file%"     - Filename mit Extension
+                   "%ext%"      - Extension als Zahl (oder 0, wenn nicht als
+                                  Zahl auswertbar)
+
+F'Hatch:
+---------
+Es kann nun ein Text geladen werden. Die "Description" wird korrekt
+umgebrochen.
+
+F'Request:
+-----------
+"Select node:" entfernt, dafÅr werden jetzt aber neun Filelisten direkt
+verwaltet (vorher 4).
+Requestfiles, die einen UpdateRequest beinhalten, werden nun korrekt
+geladen. Der UpdateRequest geht aber beim Abspeichern verloren.
+
+Edit areas:
+------------
+DAREAS.BBS wird jetzt noch besser unterstÅtzt.
+
+AreaManager:
+-------------
+Leere HDR/MSG-Dateien werden jetzt (auf Wunsch) wie im AREAS.BBS-Editor
+angelegt. "NODE" in AVALON.LST erlaubt jetzt Domains.
+
+Terminal:
+----------
+32KB Buffer eingebaut.
+
+Kommandozeilenbefehle:
+-----------------------
+Man kann jetzt Avalon Åber die Kommandozeile einige Kommandos Åbergeben:
+NoAutoBatch  - AUTOEXEC.BAT  wird nicht ausgefÅhrt (falls  vorhanden;  den 
+               gleichen Effekt bewirkt die linke Shifttaste).
+NoAutoStart  - AutoStartSessions werden nicht ausgefÅhrt (gleicher  Effekt 
+               wie das GedrÅckthalten von Alternate).
+NoDelay      - Die   fÅnf  Sekunden  Wartezeit  wird  unterdrÅckt   (falls 
+               eingestellt in "Special").
+Override     - Die Zeitbereiche zum AutoStart werden nicht beachtet.
+Batch:<file> - Es wird die Batchdatei <file> direkt nach der  AUTOEXEC.BAT 
+               gestartet.
+
+Allgemein:
+-----------
+Mails tragen jetzt das korrekte Datum (Sommer-/Winterzeit wird beachtet).
+Falls nichts anderes in "Special" angegeben wird, wird die Netmail aus
+dem NETMAIL-Statement in der Binkley.Cfg ermittelt.
+PN24CONV: Konvertierung einer 4D-Pointliste ist mîglich. Optional kann die
+Zone frei bestimmt werden.
+"ZoneRequest" (FileRequest) und "ZoneSend" (FileHatch) nun komfortabler
+(die ersten fÅnf Aka's werden als Zone/Domain in der Dialogbox zur Auswahl
+angezeigt).
+Die Filebufferverwaltung wurde verÑndert. Kopieroperationen sollten jetzt
+um einiges schneller ablaufen, allerdings benîtigt Avalon jetzt 32KB mehr.
+
+
+BatchCLI:
+----------
+"LOG","LOGn" implemented. This allows you to write a text in binkley's
+logfile (binkley-style).
+"exec" allows follwing parameters: "EXPORT|IMPORT|CRUNCH|SCAN|MSGEDIT|
+TXTEDIT|MAILER|TERMINAL|UTIL1...6".
+"!FILESELECT" allows to select a file using the fileselector.
+"!CONVERT=ON" does not work correctly.
+"FILESELECT [n]" implemented. This statement allows you to select a
+filename whitch is stored in the parameter (0<=n<=9). The parameter can
+be used in every command (%%n).
+"CUTEXTENSION [n]" deletes extension from parameter n. This may be usefull
+in some batchfiles (see TEXT2MSG.BAT).
+"CUTPATH [n]" deletes path in parameter n.
+Command "!SUBJECT": "*filename*" removed, but now:
+                    "%filename%" - Filename without extension
+                    "%file%"     - Filename with extension
+                    "%ext%"      - Extension interpreted as number (or 0, if
+                                   interpretion as number is not possible)
+
+F'Hatch:
+---------
+It is possible to load a text. The "Description" line in a mail will be
+formated now.
+
+F'Request:
+-----------
+"Select node:" removed, but now nine filelists can be defined (instead
+of four).
+Requestfiles with update-requests will be loaded correctly. The update-
+request is lost after saving the request again.
+
+Edit areas:
+------------
+DAREAS.BBS handling improved.
+
+AreaManager:
+-------------
+Empty HDR/MSG files can be created automatically.
+Possible use of domains in AVALON.LST (statement NODE).
+
+Terminal:
+----------
+32KB buffer implemented.
+
+Commandlinestatements:
+-----------------------
+Now you can put some statements in AVALON's commandline:
+NoAutoStart    - AUTOEXEC.BAT will not be started.
+NoAutoStart    - No AutoStartSession will be processed.
+NoDelay        - Avalon is not waiting five seconds before a AutoStart-
+                 Session starts (if defined in "Special").
+Override       - AutoStartSessions will start always (the timezones you
+                 defined in "Session setup" will not be taken).
+Batch:<file>   - A batchfile <file> is started directly after AUTOEXEC.BAT
+                 has been processed.
+
+Generally:
+-----------
+Mails got the correct timestamp (summer-/wintertime works properly).
+PN24CONV: 4D-pointlists can be compiled. Optional it is possible to add
+the zone.
+Netmail will be taken from Binkley.Cfg if no netmail is defined in
+"Special".
+"ZoneRequest" (FileRequest) and "ZoneSend" (FileHatch) more convenient
+(the first five aka's will be shown as zone/domain in the dialogbox).
+Filebufferhandling changed. Copying og files should be much faster now,
+but Avalon needs 32KB more memory.
+
+
+***************************************************************************
+
+Addendum V3.32     (29.08.1993)
+================================
+
+Neue Buttons in "Special":
+---------------------------
+"Always center textwindows" eingebaut. Hiermit wird erreicht, daû das Terminal-,
+Batchinterpreter- und Redirect-Window IMMER zentriert dargestellt werden und
+nicht nur, wenn das Window aus dem Bildschirm herausreichen wÅrde.
+
+Allgemein:
+-----------
+BugFix: Probleme mit alternativen Fileselektoren behoben.
+
+
+New button in "Special":
+-------------------------
+"Always center textwindows" implemented. If you turn on this function the
+following windows will always be centered: terminal-, batchinterpreter- and
+redirect-window.
+
+Generally:
+-----------
+BugFix: Problems with alternative fileselectors fixed.
+
+***************************************************************************
+
+Addendum V3.31     (21.08.1993)
+================================
+
+Batchinterpreter:
+------------------
+Mit den neuen Kommandos ("!xxxxx") ist es nun mîglich, Textfiles direkt als
+Msg zu versenden. NÑheres hierzu steht im Handbuch und in TXT2MSG.BAT.
+"PRINT datei" gibt eine Datei auf dem Drucker aus, sofern er Online ist.
+
+Allgemein:
+-----------
+AreafixManager erlaubt max.2000 EintrÑge und "Add area"-Funktion stark
+verbessert.
+Fileauswahl in F'Request optimiert.
+Terminal: "F9-Show file" zeigt ein File unter Beachtung der Emulation an.
+          "sF1-Wrap on/off". Weitere VT-Codes implementiert.
+BugFix: "Redirect" konnte ggf. nicht wieder abgeschaltet werden (Find-1/2).
+BugFix: DAREAS.BBS wird nun korrekt verarbeitet.
+BatchCLI: "!FILE","!AREA","!SUBJECT","!FLAGS","!FROM","!SEND","!BASE",
+          "!CONVERT=ON|OFF".
+
+
+Batchinterpreter:
+------------------
+It is now possible to send textfiles as message with the new statements
+("!xxxxxxxx"). For more information: see manual and TXT2MSG.BAT.
+"PRINT file" prints a file, when the printer is online.
+
+Generally:
+-----------
+AreafixManager allows max.2000 entries and "Add area"-function improved.
+Fileselection in F'Request optimized.
+Terminal: "F9-Show file" shows a file with current emulation.
+          "sF1-Wrap on/off". More VT codes implemented.
+BugFix: It was sometimes impossible to turn of "redirection" (Find-1/2).
+BugFix: DAREAS.BBS will be processed correctly.
+BatchCLI: "!FILE","!AREA","!SUBJECT","!FLAGS","!FROM","!SEND","!BASE",
+          "!CONVERT=ON|OFF".
+
+***************************************************************************
+
+Addendum V3.30     (01.08.1993)
+================================
+
+Session-Setup und Find-1/2:
+----------------------------
+Die Ausgaben eines TOS-Programms kînnen in das Window von Avalon gelegt
+werden. Hierzu die entsprechende Box anwÑhlen.
+Es kann nun auch ein Programm in eine Session eingefÅgt werden. Einfach
+auf den gewÅnschten Eintrag klicken.
+
+Batchinterpreter:
+------------------
+REDIRECT=ON/OFF
+Avalon versucht alle BIOS-Ausgaben, also alle Ausgaben, die ein mit
+"exec" oder "dexec" gestartetes TOS-Programm tÑtigt, in sein Window
+umzulenken.
+
+Neue Funktion "Areafix-Manager":
+---------------------------------
+Hiermit kînnen sehr leicht Areas an- und abgemeldet werden.
+FÅr zusÑtzliche Areas, die noch nicht im (D)AREAS.BBS eingetragen sind,
+kann eine Datei AVALON.LST angelegt werden. In dieser Datei sind auûerdem
+die Kommandos "PASSWORD", "AREAFIX", "REM", "NODE" bzw. "LINK" und ";"
+erlaubt.
+FÅr (D)AREAS.BBS gibt es die Kommandos "-Fixname" (=>AREAFIX) und
+"-FixPassword" (=>PASSWORD). Auf Wunsch wird die neue Area auch sofort in
+die Datei "(D)AREAS.BBS" Åbernommen.
+
+Neue Buttons in "Special":
+---------------------------
+"F'Hatch" und "Areafix" Mails kînnen nun mit dem "Kill after sent" Flag
+versehen werden.
+Die Ausgaben des Batchinterpreters/Terminals kînnen in ein Window gelegt
+werden. Hierzu einfach "Use window for batchinterpreter" bzw. "...terminal"
+anwÑhlen.
+Sollen die Ausgaben eines Programms, welches mit den Buttons "*.TOS" oder
+"*.TTP" gestartet wurde, in ein Window gelegt werden, so einfach
+"Redirect output (direct start)" anwÑhlen.
+Mit "Do not use LineA" werden bei der Ausgabeumlenkung keine LineA-
+Variablen benutzt. Damit erkauft man sich aber ein paar Nachteile (siehe
+im Handbuch "BIOS-Ausgabeumlenkung").
+Textausgaben kînnen ein wenig beschleunigt werden mit "Snap textwindows"
+(aber wirklich nur ein wenig)...
+
+Allgemein:
+-----------
+Neun anstelle von sechs Defaultbuttons in "F'Hatch".
+Infoboxanzeige "<=2.40" entfernt.
+Pfade in "Special" Åber Doppelklick einstellbar.
+Slider nun endlich perfektioniert. ;-)
+Ship Åber XHDI (auch fÅr SCSI-HDs (im TT) und IDE-Platten (im Falcon)).
+Bugfix in "Load Request" im Zusammenhang mit 4D-Adressen.
+"RENAME" im Batchinterpreter verbessert (verschiebt auch mehrere Dateien).
+"GEM" und "NOGEM" im Batchinterpreter entfernt.
+Ausgaben des Batchinterpreters und Terminals kînnen in ein Window erfolgen.
+Serieller Port kann im Terminal verÑndert werden.
+ZModem-Transfer im Terminal mîglich, VT100 und Hilfsseite eingebaut.
+Checkboxen implementiert.
+500 EintrÑge in AREAS.BBS erlaubt.
+Uhrzeit/Datum wird im Hauptdialog angezeigt.
+Einige weitere Anpassungen an MultiTOS.
+Optische Verbesserungen und kleinere Programmoptimierungen.
+
+
+Session setup and Find-1/2:
+----------------------------
+The screen output of a TOS program can be redirected to a window.
+Select the coresponding box on the right hand of the filenames.
+It is possible to insert an entry in a pollsession. Just click on the
+entry you want to edit.
+
+Batchinterpreter:
+------------------
+REDIRECT=ON/OFF
+Avalon tries to redirect all outputs to his own window (all outputs of
+programs that have been started with "exec" or "dexec" will be redirected
+if bios is used).
+
+New function "Areafix manager":
+--------------------------------
+You can announce areas using this manager very easiliy.
+For additional areas that are not defined in (D)AREAS.BBS a file AVALON.LST
+can be used. In this file you can also use the statements "PASSWORD",
+"AREAFIX", "REM", "LINK"/"NODE", ";". The statements "-Fixname" (=>AREAFIX)
+and "-FixPassword" (=>PASSWORD) can be used in (D)AREAS.BBS. It is possible
+to add the new area to "(D)AREAS.BBS" at the same time.
+
+New button in "Special":
+-------------------------
+"F'Hatch" and "Areafix" mails can be created with "Kill after sent" flag.
+A window can be used for the printout of the batchinterpreter and terminal.
+Just turn on "Use window for batchinterpreter" or "...terminal".
+If you want to redirect the screen output of a program started with the
+button "*.TOS" or "*.TTP", select "Redirect output (direct start)".
+The button "Do not use LineA" makes Avalon not to use LineA variables.
+If you do so you got some disadvantages (see manual "BIOS redirection"
+for more information).
+Textoutputs can be made a little bit faster with "Snap textwindows" (but
+only a little bit)...
+
+Generally:
+-----------
+Nine instead of six defaultbuttons in "F'Hatch".
+Infobox "<=2.40" removed.
+Paths can be defined by doubleclick in "Special".
+Sliders are working perfectly now. ;-)
+Ship uses XHDI (works with SCSI-HDs (TT) and IDE-HDs (Falcon)).
+Bugfix in "Load Request" using 4D-adresses.
+"RENAME" in the batch-cli improved (now moves more than one file).
+"GEM" and "NOGEM" removed from the batchinterpreter.
+Batchinterpreter and terminal are able to use a window for printouts.
+Port can be changed in terminal.
+ZModem transfer possible in terminal, VT100 and helptext implemented.
+Checkboxes implemented.
+500 entries allowed in AREAS.BBS.
+Time/Date will be shown in main dialog.
+Some more improvements for MultiTOS.
+A little bit optimized.
+
+***************************************************************************
+
+Addendum V3.20     (08.05.1993)
+================================
+
+File-Hatch:
+------------
+Es kann jetzt ein EmpfÑngername angegeben werden.
+
+Neuer Button in "Special":
+---------------------------
+Normalerweise wird mit "Edit areas" nur die AREAS.BBS editiert. Wird aber
+"Ask for AREAS/DAREAS" angewÑhlt, so fragt Avalon jedesmal nach, ob die
+AREAS.BBS oder DAREAS.BBS editiert werden soll.
+
+"Find-1":
+----------
+Es kann ein externer AREAS.BBS-Editor definiert werden, der anstelle des
+eingebauten gestartet wird.
+
+Allgemein:
+-----------
+Das Redraw wurde vîllig Åberarbeitet. Ich hoffe, daû jetzt nicht auf einmal
+Probleme auftauchen (getestet wurden die neuen Routinen mit TOS 3.06 und
+MultiTOS 1.00). Suchroutine im Filerequest ist ein wenig schneller.
+
+
+File-Hatch:
+------------
+You can enter a name that is used for the destination.
+
+New button in "Special":
+-------------------------
+If you want to edit AREAS.BBS and DAREAS.BBS then switch on "Ask for
+AREAS/DAREAS". If you click on "Edit areas" you will be asked "Edit
+AREAS or DAREAS?".
+
+"Find-1":
+----------
+It is possible to define a external AREAS.BBS editor, that is called
+instead of the build-in.
+
+Generally:
+-----------
+The redraw has been rewritten. I hope that no more problems will apear now
+(I have tested the new functions with TOS 3.06 and MultiTOS 1.00).
+Searching in filelists is a little bit faster.
+
+***************************************************************************

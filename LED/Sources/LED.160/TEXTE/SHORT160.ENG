@@ -1,0 +1,211 @@
+
+====================================================
+Update-Info (Short-Version, only important changes):
+====================================================
+
+V1.60   30.01.98
+V1.51   07.05.97
+V1.50   14.11.96
+V1.45   12.08.96
+V1.44   03.08.96
+V1.43   29.06.96
+V1.42   01.05.96
+V1.41   14.03.96
+V1.40   20.12.95
+V1.31   23.09.95
+V1.31b  21.08.95
+V1.30   21.07.95
+V1.29   21.05.95
+V1.28b  01.04.95
+V1.27   11.03.95
+V1.26   13.02.95
+V1.25   02.01.95
+V1.24   13.12.94
+
+====================================================
+
+V1.60
+
+* LED is FREEWARE now!
+* AkaSysop limit removed!
+
+V1.51
+
+* RECEIVED flag will be set
+* ToSysop flag is deleted even when a pseudonym is used
+* Footlines are set correctly in PRIVATEMAILBOX
+* Lots of bugfixes
+* Some improvments
+
+V1.50     14.11.96
+
+* Better support of pseudonyms/AkaSysops
+* 12 userlists
+* Seperate netmails for each domain
+* Seperate toplines and nicknames for each area
+* Quoting english/nativ changed
+* "Auto WriteBinary" for splitted msgs
+* "CHRS: ATARI-ST 2" kludge
+* Better MagiC 5.0 support
+* Selection of reversed displayed text corrected
+* Deleting tearlines in "ChangeMsg" improved
+
+V1.45     12.08.96
+
+* Printer can be initialized
+* Special parameters for quotes
+* Nicknames
+* Hotkey for "Locked" flag
+* Some improvments
+
+V1.44     03.08.96
+
+* "Write Binary" decodes MIME-coded-msgs in base64 format
+* AutoExport when LED is aborted
+* Tearline AutoDelete for Change Msg
+* "Outbound36", "CallExporter" statement
+* UUE and MIME (base64) support
+* FidoMsg-Protocol support
+* Speed improvments
+
+V1.43     29.06.96
+
+* MagiC and MultiTOS-Iconify support
+* German manual
+
+V1.42     01.05.96
+
+* AREAS.BBS: -FollowUp
+* LED.CFG: Echolist
+
+V1.41     14.03.96
+
+* LED.CFG: Nodelist, BTNC
+* AREAS.BBS: -UseCommentTree, -NoCommentTree, -NoExport
+* Switch: "Switches->Show cursor position"
+* Incremental search for areanames in AreaListWindow
+* New flag: "Multiple CC"
+* Address searching in nodelist
+* "Hidden CC" implemented
+* New Deadkey
+* Language files
+
+V1.40     20.12.95
+
+* LED can display msgs with MIME coded characters
+* Searching for words in LED.SCT
+* Help feature available with CONTROL-F4
+* Switch: "Options->Comment->Complete msgbase scan"
+* Better NumBlock graphics support
+* Deleting msgs (all msgs with same subject/from same person)
+* Hypertext support
+* Merging of CC-Files
+* Encoding/Decoding of uue-coded msgs
+
+V1.31     23.09.95
+
+* Editing of all flags possible
+* MultiTOS/MagiC support improved
+* Inverse Texteffect
+
+V1.31b    21.08.95
+
+* System report implemented
+* Detection of quote stuff at the end of a new written mail
+* Word-wrapping if imported files
+* Edit commands improved
+
+V1.30     21.07.95
+
+* AREAS.BBS: -IgnoreNewMsgFlag, -IgnoreUnreadFlag, -RandomFootline,
+             -NoRandomFootline, -FootlineFile
+* Selection of filenames in MsgWindow possible
+* Msg thread commands improved
+* Edit commands improved
+* Switch: "Switches->GEM infoline"
+          "Switches->MsgWindow->...autoclose window"
+           "Quote->No topline in netmail"
+           "Options->Quote->No compression"
+* Random footlines
+* 20 function keys
+* 40 cc's
+* Userlist-Dialog improved
+* Carbon-Copy-Dialog improved
+* Quoting improved
+* New parameters
+* Function Macros implemented
+
+V1.29    21.05.95
+
+* Recognization of CHARSET/CHRS
+* Configuration folder
+* Deadkeys
+* ST-GUIDE support
+* Switch: "Options->Switches->Use GDOS for printing"
+          "Options->Quote->Set cursor"
+* Uucp-Gate support (REPLYTO and REPLYADDR)
+* Textsearching faster
+* Shortcut function improved
+* Quoting changed
+
+V1.28b   01.04.95
+
+* AREAS.BBS: -CONVERT
+* Searching in userlist improved
+* Printer-driver
+* Printing of texteffects possible
+* Move/Forward msg rewritten
+
+V1.27    11.03.95
+
+* AREAS.BBS: -FORCEPVT
+* New parameters
+* Texteffects improved
+* Switch: "Options->Comment tree->NumPad in comment tree mode"
+* "Re^n:" support
+
+V1.26    13.02.95
+
+* AREAS.BBS: -FIXEDADDRESS, -NONEWECHO
+* More than 2^16 user can be read from a user list
+* Shortcut feature dialog
+* Window handling changed
+* 4d-frequestfiles (ORT) and 4d-flowfiles (OFT)
+* Network frequests (5d) possible now
+* New switches
+* Texteffects
+* Edit functions improved
+* Font dialog improved
+* Faster sorting of headers
+* Comment tree is built aprox. 400% faster
+* New parameters
+* New quoting functions implemented
+* Better MultiTOS and MagiC support
+* Short msginfo
+* Comment tree improved
+* Move/Forward improved
+* Quote toplines improved
+* Six user lists
+
+V1.25   02.01.95
+
+* MsgListWindow
+* New window functions
+* New parameters
+* New quoting functions implemented
+* Printing of Arealist/Msglist
+* AVALON support
+* Faster forward searching with ALT-F
+* Area description is shown
+* Max. 32767 areas allowed in AREAS.BBS
+* Header sorting
+* Address correction
+* New AREAS.BBS flags
+
+V1.24   13.12.94
+
+* "Write Msg plain..." and "Append Msg plain..."
+* Arealist and Msglist can be put in a window
+* Window manager rewritten
+* ALT+I: Indent On/Off, ALT+T: Expand TABs
+* New Limits: (4 MsgWindows, 2 ListWindows, 5000 Msgs, 5000 Lines, 100 Fonts)

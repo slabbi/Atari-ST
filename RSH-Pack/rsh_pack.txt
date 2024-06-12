@@ -1,0 +1,82 @@
+===========================================================================
+RSH-PACK V1.1                                    Letzte énderung: 22.08.92
+===========================================================================
+
+Das  Resource-Construction-Set INTERFACE (von der Firma Shift) ist  in  der 
+Lage  eine RSC-Datei als C-Source auszugeben,  um diese dann direkt in  ein 
+Programm  einzubinden.  Leider  ist diese Ausgabe  nicht  optimal,  sondern 
+verschwendet  ziemlich viel Speicherplatz,  da auch gleiche  Strings  immer 
+wieder  erneut  abgelegt werden.  Gerade die Eingabemaske taucht  in  jeder 
+TEDINFO  immer  wieder auf,  obwohl diese eigentlich nur  einmal  vorhanden 
+sein brauch.
+
+Dieses Utility filtert nun doppelte Eingabemasken heraus und legt diese  in 
+einer  einzigen  CHAR-Struktur am Sourceanfang ab.  Hierdurch  ist  es  oft 
+mîglich bis zu 30% Speicherplatz zu sparen.
+
+Das  Utility verÑndert die Originaldatei (*.RSH) nicht,  sondern legt  eine 
+neue  Datei  mit der Endung "*.RSP" an,  welche dann einfach  anstelle  der 
+RSH-Datei eingebunden werden kann.
+
+Der Aufruf ist denkbar einfach:
+
+RSH_PACK.TTP <file>
+
+<file> ist der Dateiname der "*.RSH"-Datei (ggf. mit Pfadangabe).
+
+z.B.: RSH_PACK.TTP E:\RSCS\TEST.RSH
+
+
+Beispiel:
+
+Diese RSH-Datei wird von Interface erzeugt (ca. 360 Byte):
+
+TEDINFO rs_tedinfo[] =
+{ "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+  "Test:____________________________________________________________",
+  "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+  IBM  , 0, TE_LEFT , 0x1180, 0, -1, 61, 66,
+  "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+  "Test:____________________________________________________________",
+  "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+  IBM  , 0, TE_LEFT , 0x1180, 0, -1, 61, 66,
+};
+
+Diese RSH-Datei wurde mit dem Utility bearbeitet:
+
+char XTEMP0[]="Test:_______________________________________________________
+_____";
+char TEMPX[]="XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX";
+TEDINFO rs_tedinfo[] =
+{ "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+  XTEMP0,
+  TEMPX,
+  IBM  , 0, TE_LEFT , 0x1180, 0, -1, 61, 66,
+  "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+  XTEMP0,
+  TEMPX,
+  IBM  , 0, TE_LEFT , 0x1180, 0, -1, 61, 66,
+};
+
+Die  untere  Version spart beim kompilieren schon 120  Byte  ein,  d.h.  es 
+werden 30% Speicherplatz gespart.
+
+
+ 1)  Es werden alle Templates herausgefiltert und in der Form:
+     "TEMP" + <Template-Typ> im Source abgelegt.
+
+ 2)  Weiterhin  werden Nullstrings herausgefiltert und duch XNULL  ersetzt. 
+     Dieses erspart ebenfalls noch 1 Byte pro String.
+
+ 3)  Doppelte String bzw.  Textobjekte werden ebenfalls herausgefiltert und 
+     in  der  Form  "XTEMPx",   wobei  <x>  eine  durchlaufende  Zahl  ist, 
+     abgelegt.
+
+
+Ich hoffe, daû Sie dieses Programm ebenso nÅtzlich finden werden wie ich.
+
+HISTORIE:
+=========
+V1.0 - Packer fÅr Interface V1.0x
+V1.1 - Packer fÅr Interface V1.0x und 2.xx
+

@@ -1,0 +1,6 @@
+WINDMINI.LIB
+.C [ -G -K ]
+.L [ -J ]
+.S [ ]
+=
+WINDMINI.C

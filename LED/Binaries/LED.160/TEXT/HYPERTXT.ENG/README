@@ -1,0 +1,11 @@
+
+This is a ST-Guide Hypertext (english version).
+
+To compile it with STOOL.TOS please add following two lines to KATALOG.CFG:
+
+============( CUT )==============
+>Manual/Fido
+Manuals about FidoSoftware.
+============( CUT )==============
+
+St.Slabihoud 1995

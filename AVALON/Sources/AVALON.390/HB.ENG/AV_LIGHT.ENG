@@ -1,0 +1,18 @@
+AV_LIGHT.PRG
+============
+
+AVALON-Light is a special version of AVALON. Some functions have been
+removed to make more memory available for applications like LED. I hope
+thats enough for points with only one megbyte...
+
+Following functions have been removed:
+
+ - Terminal
+ - Filemanager
+ - File hatcher/ticker (F'Hatch)
+ - "!xxx"-commands in batchinterpreter
+ - Notebook
+ - Windowpositions will not be saved
+ - "N/P" in "Edit areas"
+
+St.Slabihoud

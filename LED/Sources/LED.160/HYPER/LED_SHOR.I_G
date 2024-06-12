@@ -1,0 +1,65 @@
+
+AbkÅrzungen in der Statuszeile und MsgKopf:
+
+HC        Header Cache
+RC        Recognize Characters
+MI        Mime character conversion
+RM        RC/MI
+TE        Text effects
+
+Standard Flags:
+
+Local     Local
+Pvt       Private
+K/S       Kill (after) Sent
+Crash     Crash
+Hold      Hold
+Sent      Sent
+W/F       With File
+FReq      File Request
+Recd      Received
+RetRec    Return Receipt
+IsRec     Is Return Receipt
+AudReq    Audit Request
+InTr      In Transit
+Orph      Orphan
+Del       Deleted
+R10       Reserved (Bit 10)
+
+Erweiterte Flags:
+
+(-)       Read
+Fixed     Fixed Address
+Immed     Immediate
+Direct    Direct
+CC        Multiple Carbon Copy
+TFS       Trunc File (after) Sent
+KFS       Kill File (after) Sent
+Arc/S     Archive (after) Sent
+Locked    Locked
+Gated     Gated
+HostR     Host Route
+ZGate     Zone Gate
+Sign      Signature
+CFF       Create Flow File
+Maus      Maus Msg
+R12       Reserved (Bit 12)
+
+Maus Flags:
+
+n         Nicht gelesen/Unread
+z         ZurÅck/Return
+b         Beantwortet/Answered
+g         Gelesen/Read
+w         Weiter/Forward
+m         MausNet/MausNet
+a         Angekommen/Received
+y         Gateway
+k         Kopiert/Copied
+u         Unbekannt/Unknown
+t         Maustausch
+1         Interessant 1/Interesting 1
+2         Interessant 2/Interesting 2
+h         Vererbt/Hereditary
+r14       Reserviert (Bit 14)/Reserved (Bit 14)
+r15       Reserviert (Bit 15)/Reserved (Bit 15)

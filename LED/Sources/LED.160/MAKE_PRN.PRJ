@@ -1,0 +1,12 @@
+make_prn.ttp
+
+.C [ -Y -K -G ]    ; SM
+; .L [ -R -M ]
+; .S [ -Y ]
+=
+pcstart.o
+make_prn.c
+
+pcstdlib.lib
+pctoslib.lib
+pcextlib.lib

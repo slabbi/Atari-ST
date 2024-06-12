@@ -1,0 +1,103 @@
+AVALON Infotext
+
+<pre>
+AVALON - INFOTEXT
+
+Besonderheiten:
+================
+AreafixManager:  Keine umst&auml;ndlichen Mails mehr an den Areafix. Einfach nur
+                 die gew&uuml;nschten Areas aus einer Liste ausw&auml;hlen, den Rest
+                 erledigt Avalon.
+FileRequest:     Einfache Auswahl der zu requestenden Files aus einer File-
+                 liste. Avalon verwaltet mehrere Filelisten und erleichtert
+                 so den FileRequest ungemein. Es werden auch Requestfiles
+                 f&uuml;r andere Zonen und Domains unterst&uuml;tzt.
+MsgFileRequest:  Zus&auml;tzlich zur Auswahl aus Filelisten, ist es m&ouml;glich Files
+                 direkt aus einer Message(!) auszuw&auml;hlen!
+FileHatcher:     Avalon bietet die M&ouml;glichkeit Files an andere Personen zu
+                 versenden. Hierbei werden die im Fido verbreiteten TIC-
+                 Files (f&uuml;r Filenetze) und FileAttach (private Files)
+                 unterst&uuml;tzt.
+Batchinterpreter:Der eingebaute Batchinterpreter erlaubt es viele Aufgaben
+                 zu automatisieren, z.B. ist es m&ouml;glich an bestimmten Tagen
+                 ein Textfile automatisch in eine Area zu setzen, oder
+                 an bestimmten Wochentagen automatisch ein RequestFile
+                 zu erzeugen, oder neue Diff-Files in die Nodeliste ein-
+                 zubinden, oder...
+PollSessions:    PollSessions erlauben es den Poll-Vorgang beim Boss
+                 flexibel zu steuern. Schleifen (LoopMode), sowie bedingte
+                 Abbr&uuml;che &uuml;ber Errorlevel sind selbstverst&auml;ndlich. Auch
+                 ein zeitgesteuerter Ablauf ist ohne weiteres m&ouml;glich.
+Node-/Pointlist: Avalon besitzt ab V3.70 einen eingebauten DIFF-Compiler,
+                 der &uuml;ber den eingebauten Batchinterpreter aufgerufen
+                 werden kann. Au&times;erdem kann Avalon aus einer Node- bzw.
+                 Pointliste direkt eine Userliste f&uuml;r den LED erstellen,
+                 ebenfalls &uuml;ber ein Kommando im Batchinterpreter.
+NodelistExtract: Ab V3.72 kann Avalon aus einer vorhandene Nodeliste
+                 beliebige Regionen extrahieren und so eine verkleinerte
+                 Nodeliste erzeugen.
+Splitter:        Der eingebaute Batchinterpreter kann &uuml;berlange Texte
+                 aufteilen und automatisch in eine bestimmte Area setzen.
+
+weitere Leistungsmerkmale:
+===========================
+ - ersetzt vollst&auml;ndig die TinyShell oder BinkleyTermShell (BTS)
+ - GEM gesteuert (Auswahl wahlweise per Dialog, Men&uuml;, Tastatur;
+   Tastaturbelegung ist TinyShell kompatibel)
+ - lauff&auml;hig auf allen TOS-Versionen (einschl. MagiC, MultiTOS und KAOS-TOS)
+ - bis zu sechs Pointsetups (Namen frei w&auml;hlbar)
+ - sechs unterschiedliche (Auto-)PollSessions (Namen frei w&auml;hlbar)
+ - alle/bestimmte PollSessions k&ouml;nnen direkt zum Programmstart abgearbeitet
+   werden (f&uuml;r Points mit Zeitschaltuhr)
+ - AutoStartPoll zeitgesteuert
+ - jede (Auto-)PollSession kann n-mal abgearbeitet werden (Loop-Modus)
+   (Abbruch nach jeden Programm m&ouml;glich &uuml;ber bestimmbare Errorlevel)
+ - es k&ouml;nnen markierte Sessions abgearbeitet werden
+ - integrierter umfangreicher Batchinterpreter mit vielen Features speziell
+   f&uuml;r den Pointbetrieb
+ - automatische Abarbeitung einer AUTOEXEC.BAT (falls vorhanden)
+ - Batchfiles k&ouml;nnen in eine PollSession eingebunden werden
+ - Einundzwanzig frei definierbare Utilities direkt von der Shell aufrufbar
+ - guter (D)AREAS.BBS Editor mit Zone und Domain Unterst&uuml;tzung
+   f&uuml;r 5D-Betrieb (unterst&uuml;tzt auch &quot;IOSmail&quot;,&quot;JETmail&quot;,&quot;ECU/LLEGADA&quot; u.a.)
+ - es kann auch ein externer AREAS.BBS-Editor verwendet werden
+ - komfortabler AreaFix-Manager
+ - MSG/HDR-Dateien werden auf Wunsch automatisch angelegt bzw. gel&ouml;scht
+ - komfortabler FileRequest mit Suchfunktion f&uuml;r lange Filelisten
+ - Auswahl von Files aus einer Message
+ - Filelisten k&ouml;nnen beliebig lang sein
+ - 27 Filelisten sind direkt anw&auml;hlbar
+ - ZoneFileRequest (4D) und NetworkFileRequest (5D) m&ouml;glich
+ - Files k&ouml;nnen gehatched werden; dabei werden TIC-Files, Netmails und/oder
+   Echomails automatisch erzeugt.
+ - Texte k&ouml;nnen direkt ins MsgBase-Format konvertiert werden. So werden
+   ASCII-Texte schnell an mehrere Personen weitergeleitet. Optional auch
+   mit automatischer Umlaut-Konvertierung (&auml;hnlich FILE2MSG, aber intern)
+ - eingebauter Filemanager (kopieren, verschieben usw. von der Shell aus)
+ - eingebautes Notizbuch und Terminal
+ - Ausgaben von TOS-Programmen k&ouml;nnen in ein Window umgelenkt werden
+ - ICFS-Iconify support
+ - geringer Speicherplatzbedarf
+ - es werden einige Utilities mitgeliefert, wie z.B.
+   FILE2MSG konvertiert beliebige Textfiles in MsgFiles f&uuml;r den LED
+   (diese k&ouml;nnen anschlie&times;end auf Wunsch sofort versendet werden)
+   ARC-IT archiviert Nachrichten in ein Textfile
+   BBS-INFO gibt eine ausf&uuml;hrliche Statistik &uuml;ber Msg-Areas aus
+   SPLIT-IT teilt lange Textdateien in k&uuml;rzere auf
+   PN24CONV konvertiert Pointlisten in Userlisten f&uuml;r den LED
+   CONVERT konvertiert Point- und Nodelisten in Userlisten f&uuml;r den LED
+   COMPDIFF h&auml;ngt Diff-Dateien an eine Point-/Nodeliste an
+   EXTRACT extrahiert Regionen aus einer Nodelist
+   MYBLUE.FNT GDOS-Font (ANSI)
+ - Die Programme COMPDIFF,PN24CONV,CONVERT,SPLIT-IT,EXTRACT und FILE2MSG
+   sind auch schon im Batchinterpreter von Avalon implementiert
+ - einfachste Installation (teilweise wie in der TinyShell/BTS)
+ - l&auml;uft auf jedem ST/STE/TT/Falcon
+ - arbeitet mit jeder Binkley- und Semper-Version zusammen
+ - kostenloser UpDate-Service
+ - Handbuch in deutscher und englischer Sprache
+ - &quot;Beginners Guide&quot; von Florian Diete zum Schnelleinstieg
+ - von STeVeN Green im Manual von BT 3.0 empfohlen
+   und Gary Spiteri (Australischer JETmail Support Node)
+      
+</pre>

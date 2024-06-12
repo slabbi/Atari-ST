@@ -1,0 +1,21 @@
+                        AVALON & SEMPER
+                  ===========================
+
+You can use Avalon together with Semper.
+
+- The key must be put in a file called "AVALON.KEY". This file must be 
+  put in the systemfolder "AVALON\".
+  The file contains: "Application AVALON <key>". This is the same line
+  you use in Binkley.Cfg.
+
+- Please define the path to the file "Config.Dat" in the "Special"
+  dialog from Avalon. Semper 0.55 (and higher) creates this file
+  when "Write ascii config" is switched on.
+
+- Switch off the maindialogbox from Avalon if you want. So you have
+  enough room on your screen to work with other applications without
+  any problems.
+
+- Avalon recognizes the "FidoMessage-Protokoll". For example: When you 
+  make a request in Semper, Avalon opens its own request dialog.
+  So you can install Avalon as autostart application in Magix.

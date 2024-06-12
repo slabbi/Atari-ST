@@ -1,0 +1,100 @@
+; Demofile for AreafixManager / FileFix
+; Demofile fÅr AreafixManager / FileFix
+; -------------------------------------------------------------------------
+
+; Write a small infoline in the dialogbox:
+; Eine kleine Infozeile in der Dialogbox ausgeben:
+
+REM   *** NeST ***
+
+; The areafix is called "Areafix"
+; Der Areafix heiût "Areafix"
+
+AREAFIX Areafix
+
+; The areafix for the following areas is on 90:.....
+; Der Areafix fÅr die folgenden Areas hat die Adresse 90:.....
+
+NODE 90:400/404@nest.ftn
+
+; Now the password for areafix:
+; Nun das Paûwort fÅr den Areafix:
+
+PASSWORD password -l -q
+
+; All areas for 90:400/404 except N.ADM....
+; Alle Areas fÅr 90:400/404 auûer N.ADM....
+
+N.ADM.ECHO     90:400/400
+N.ADM.NEST     90:400/400
+N.FALCON.MISC
+N.GER.MISC
+N.GER.ST
+
+REM *** AtariNet ***
+NODE 51:601/7@atarinet.ftn
+
+A.4SALE.COMMERCIAL
+A.4SALE.PERSONAL
+A.ATARI
+A.ATARI.DTP
+A.ATARI.EXPLORER
+
+REM *** FidoNet ***
+NODE 2:2401/103@fidonet.org
+
+REQUEST.ST
+386.GER
+BINKLEY
+CROSSPOINT.GER
+FASTECHO.GER
+FILESCAN.GER
+GOLDED.GER
+IBM.GER
+
+; Following areas are fileareas.
+; Folgende Areas sind Fileareas.
+
+AREAFIX FileFix
+REM *** FileFix ***
+NODE 2:2401/103@fidonet.org
+
+24000
+FNEWS
+F_ECHO
+AST-POINT
+
+; Statements for ALLFIX and AREAFIX
+; Befehle fÅr den ALLFIX und AREAFIX
+
+AREAFIX Allfix
+REM *** ALLFIX-CMDs ***
+NODE 2:2401/103@fidonet.org
+
+%HELP
+%LIST
+%QUERY
+%UNLINKED
+%-ALL
+%+ALL
+%NOTIFY=On
+%NOTIFY=Off
+%TICK=On
+%TICK=Off
+%STATUS
+%INACTIVE          To temporarily turn off all areas
+%ACTIVE            To turn any inactive areas back on
+
+AREAFIX AreaFix
+REM *** AREAFIX-CMDs ***
+NODE 2:2401/103@fidonet.org
+
+%QUERY                       <- Ask for your active areas
+%INFO                        <- Ask for general information
+%LIST                        <- List available areas
+%UNLINKED
+%AVAIL
+%PAUSE
+%RESUME
+%NOTE
+%HELP

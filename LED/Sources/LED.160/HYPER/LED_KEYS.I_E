@@ -1,0 +1,219 @@
+
+E = available in EditWindow
+M =     "     "  MsgWindow
+L =     "     "  MsgListWindow
+A =     "     "  AreaListWindow
+
+  Key                E M L A
+-------------------------------------------------------------------
+  ALT F              x x x x    Find
+  ALT G              x x x x    Find same
+  ALT U              x x x x    Search user
+
+  ALT E                x x x    Execute program
+  ALT Z                x x x    Execute shell
+  ALT Fn               x x x    Start shell <n>
+
+  ALT 8                  x x    Tiny font size
+  ALT 9                x x x    Small font size
+  ALT 0                x x x    Normal font size
+
+  CNTRL Q            x x x x    Quit
+  CNTRL O            x x x x    Open area
+  CNTRL A            x x x x    Change area
+  CNTRL W            x x x x    Cycle window
+  CNTRL U            x x x x    Close window
+  CNTRL P              x x x    Print msg/window contents
+
+  CNTRL L              x x x    List msgs (in dialog or window)
+  SHIFT CNTRL L        x        List msgs (always in dialog)
+  CNTRL G              x x      Goto msg
+  CNTRL RETURN         x x      Kill active msg
+  ALT RETURN           x x      Kill all msgs with same subject/
+                                  "   "    "  from same person
+
+  CNTRL F1           x x x x    Shortcut
+  HELP               x          ST-GUIDE: Search word
+  HELP                 x x x    Calls ST-Guide (LED.HYP)
+  SHIFT HELP         x x x x    Calls ST-Guide (available keys)
+                                (add LED.REF to ALL.REF)
+
+  ALT O              x x x x    Switches
+  ALT J              x x x x    Windows
+  ALT N                x x x    Quotes
+  ALT Y                x x x    User lists
+  ALT M              x x x x    Fonts
+  ALT K              x x x x    Function keys
+  ALT S                x x x    Save options
+  ALT Q              x x x x    File request
+
+  ALT CNTRL SPACE    x x x x    (Un)Iconify top window
+   ditto with SHIFT  x x x x    (Un)Iconify all windows
+  UNDO                 x        Redraw window
+  UNDO               x          Undelete line
+  UNDO                   x x    Close Window
+                    x x x x    Scroll one line down
+                    x x x x    Scroll one line up
+  SHIFT             x x x x    Display next page
+  SHIFT             x x x x    Display prev page
+  SPACE                x        Display next/prev page/msg
+  RETURN               x        Display next msg
+  RETURN                 x      Undelete msg
+  RETURN                   x    Select area
+  ENTER              . . . .    see RETURN
+  BACKSPACE            x        Display prev page
+                      x x      Display previous msg (*)
+                      x x      Display next msg (*)
+  NUM 2 or +           x x      First comment on aktive msg (*)
+  NUM 8 or -           x x      Origin msg (*)
+  NUM 6 or >           x x      Next comment (*)
+  NUM 4 or <           x x      Previous comment (*)
+  NUM 5                x x      First msg of thread (*)
+  p or NUM 1           x        Jump to previous unread msg
+  n or NUM 3           x        Jump to next unread msg
+  NUM (                x        Prev msg with same subject
+  NUM )                x        Next msg with same subject
+  NUM CNTRL (          x        Prev original msg
+  NUM CNTRL )          x        Next original msg
+  SHIFT               x        Screen left
+  SHIFT               x        Screen right
+  NUM +                x   x    Next area
+  NUM -                x   x    Previous area
+  NUM *                x   x    Next area with new msg
+  NUM /                x   x    Next area with unread msg
+  NUM #                x   x    Next area with msg to sysop
+  HOME               x x x x    Start of text
+  CLR                x x x x    End of text
+
+  <character>              x    Enter areaname successive
+  TAB                  x   x    Cycle between areanames
+
+  (*) only when "Numpad in comment mode" is active
+
+
+Write/Read msg or window contents:
+
+  Key                E M L A
+-------------------------------------------------------------------
+  ALT W                x        Write ASCII
+  ALT A                x        Append ASCII
+  ALT B                x x x    Write clipboard
+  SHIFT ALT W          x x x    Write plain
+  SHIFT ALT A          x x x    Append plain
+
+  ALT A              x          Append block
+  ALT W              x          Write block
+  ALT B              x          Write block to clipboard
+  ALT R              x          Read ASCII
+  ALT L              x          Read clipboard
+
+
+Available in MsgWindow:
+
+  Key                E M L A
+-------------------------------------------------------------------
+  CNTRL E              x        Enter Msg
+  CNTRL R              x        Reply Msg
+  CNTRL T              x        Quote Msg          -+
+  CNTRL N              x        Quote to Netmail    +- as defined
+  CNTRL J              x        Quote to Area      -+
+  SHIFT T              x        Quote Msg          -+
+  SHIFT N              x        Quote to Netmail    +- switch language
+  SHIFT J              x        Quote to Area      -+
+  CNTRL F              x        Forward Msg
+  CNTRL M              x        Move Msg
+  ALT C                x        Change Msg
+
+  CNTRL K              x        Kill msgs
+  CNTRL H              x        Heal msgs
+  ALT H                x        Edit header flags
+  SHIFT ALT H          x        Edit header
+
+  ALT P                x        Add to user list
+  p or NUM 1           x        Jump to previous unread msg
+  n or NUM 3           x        Jump to next unread msg
+  
+  SHIFT X              x        Sets "Locked" flag
+  SHIFT W              x        Write Binary (UUE or MIME) automatically
+
+  ALT 1                x        Toggle "Convert MIME style"
+  ALT 2                x        Show text attributes
+  ALT 3                x        Toggle "Recognize ^CHRS/CHARSET"
+  ALT 4                x        Show MSGID/REPLY/REPLYTO
+  ALT 5                x        Show PID/TID/EID
+  ALT 6                x        Show other ^A cludges
+  ALT 7                x        Show SEEN-BYs
+  ALT 8                x        Show comment tree
+
+  CNTRL F1           x x x x    Shortcut
+  CNTRL F2             x        Small msginfo
+  CNTRL F3             x        Kill all msgs
+  CNTRL F4                      Function help dialog
+  CNTRL F5             x        Change sysop name
+  CNTRL F6             x        Sort the headerfile by date
+  CNTRL F7             x        Print msg with formfeed
+  CNTRL F8             x        Set the lastread pointer to maximum
+  CNTRL F9             x        Set all lastread pointers to maximum
+  CNTRL F10            x        Delete all unread and tosysop flags
+  ESC                  x        Reread area
+
+
+Block commands in EditWindow:
+
+  Key                E M L A
+-------------------------------------------------------------------
+  CNTRL B            x          Block begin/end
+  CNTRL D            x          Del blockmark
+  CNTRL X            x          Cut block
+  CNTRL C            x          Copy block
+  CNTRL V            x          Paste block
+  CNTRL F            x          Clear cutbuffer
+  CNTRL K            x          Append line to cutbuffer
+
+  SHIFT ALT Y        x          Hard delete paragraph
+  SHIFT CNTRL Y      x           ditto
+
+  CNTRL Y            x          Delete line
+  ALT Y              x          Undelete line
+  ESC                x          Cut/Paste line
+
+  SHIFT NUM n        x          Blockgraphics
+  CNTRL NUM n        x          Blockgraphics
+  ALT NUM n          x          ASCII-Code
+
+
+Other commands in EditWindow:
+
+  Key                E M L A
+-------------------------------------------------------------------
+  ALT X              x          Carbon copy
+  ALT I              x          Indent on/off
+  ALT T              x          Extend tabs
+
+  CNTRL S            x          Save msg
+  CNTRL Z            x          Abort msg
+  SHIFT CNTRL Z      x          Abort msg immediatly
+
+  ALT D              x          Edit To-line
+  ALT N              x          Edit address (Netmail)
+  ALT S              x          Edit subject
+  ALT V              x          Edit flags (Netmail)
+  ALT E              x          Soft format paragraph (until <cr>)
+  SHIFT ALT E        x          Hard format paragraph (until emtpy line)
+
+  ALT F              x          Search text
+  ALT G              x          Continue search
+
+  SHIFT DEL          x          Del with linewrap
+  CNTRL DEL          x          Del one word
+  TAB                x          Tabulator
+  RETURN             x          Newline (new paragraph)
+  HOME               x          Top of msg
+  CLR                x          End of msg
+  DELETE             x          Del character
+  INSERT             x          Toggle Insert/Overwrite
+  BACKSPACE          x          Del character
+  Cursorkeys         x          Cursor movement
+  SHIFT <,>          x          Start/End of line
+  CNTRL <,>          x          Word left/right
+  CNTRL ^,v          x          Top/Buttom of screen

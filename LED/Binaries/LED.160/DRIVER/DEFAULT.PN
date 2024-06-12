@@ -1,0 +1,18 @@
+; Default driver for all printer (printing of TextEffects is not possible)
+; (c) St.Slabihoud 1995
+;
+; Converts:      To:
+;  arrow up       '^'
+;  arrow left     '<'
+;  arrow right    '>'
+;
+; The table has follwing format:
+;  <original character>, <char1> [, <char2> [...]]
+;
+; Up to eleven "chars" are allowed (maximum number of entries per
+; line is twelve). This is enough for all convertions. You can
+; enter values in decimal, in octal (0...) or in hex (0x...).
+;
+0x01, 0x5e
+0x03, 0x3e
+0x04, 0x3c

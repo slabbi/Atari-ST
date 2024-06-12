@@ -1,0 +1,1564 @@
+LED Versie     V1.27
+Little red EDitor
+
+De Message-Editor voor FIDO-points
+met Atariæ ST/STE/TT/Falcon
+door Volkmar Wieners, Roland Bohn
+en Stephan Slabihoud
+
+Documentatie:
+Arno Mehling, Volkmar Wieners en Stephan Slabihoud
+
+Vertaling:
+Godfried Cobben
+
+Datum laatste update: 14.04.95
+
+Dit programma mag vrij gekopiâerd en verder gegeven worden. Verspreiding 
+via bulletin board systemen wordt aangemoedigd. Opname in commerciâle 
+PD-banken is uitdrukkelijk verboden. Verspreiding in combinatie met 
+commerciâle produkten is mogelijk na verkregen toestemming van de auteurs.
+
+Vanaf versie 1.2 is LED geen freeware meer maar SHAREWARE. Als het 
+programma U bevalt en U het regelmatig wenst te gebruiken, bent U aan de 
+auteur rechten verschuldigd. Het gebruiksrecht bedraagt 30 DM. Mocht U het 
+programma meer waard vinden danstaat het U vrij meer te betalen, echter 
+met een maximum van 50DM.
+
+U ondersteunt daarmee de verdere ontwikkeling van het programma. Als U 
+nagaat hoeveel tijd U al lezend door zult brengen met dit programma dan 
+valt de shareware-bijdrage wel mee. De eerste LED-versie verscheen medio 
+1989. Sindsdien is er steeds verder ontwikkeld en verbeterd, ook al 
+verscheen nietelke maand een nieuwe update. Om de verdere ontwikkeling 
+veiligte stellen was de stap naar shareware onvermijdelijk. Het zal 
+afhangen van de eerlijkheid van de regelmatige gebruikers of enwanneer er 
+volgende versies verschijnen. Ideeân zijn er in elkgeval voldoende.
+
+     Gelieve altijd uw naam en Fidonet-adres op te geven.
+
+BETALING VIA CENTRAAL SHAREWARE REGISTRATIEPUNT AMSTERDAM, NL:
+
+Gefeliciteerd, u heeft hierbij een uitmuntend programma in handen gekregen 
+maar het is shareware, maar wat nu ???
+
+Om dit soort software in stand te houden dient u, indien u het programma 
+daadwerkelijk blijft gebruiken natuurlijk, het ook te laten registreren. 
+Dit kunt u rechtstreeks bij de programmeur laten doen maar ook via het 
+centrale registratiepunt in Amsterdam. De voordelen hierbij kunnen voor U 
+o.a. zijn:
+
+  - lagere kosten voor het registreren doordat het betalen van die 
+  registratie gezamelijk kan gebeuren vanwege grotere interesse.
+
+  - ook kan het zijn dat een soort korting verkregen kan worden bij de 
+  programmeur op zijn programma, als meerdere users zich laten 
+  registreren. We hebben wat dat betreft reeds voordelen geboekt bij 
+  Wolfgang Wander van CONnect.
+
+Wat de kosten van registratie via ons punt betreft zijn die als
+volgt:
+
+De kosten zijn: valuta x koers + Fl 2.50. De valuta worden ook in de 
+maandelijkse lijst vermeld.
+Om in kontakt te komen met het Centrale Registratiepunt kunt u een bericht 
+achterlaten op een BBS (bulletin board system) voor Ruud SinT 
+2:286/503.12@fidonet.org (NETmail) of in o.a. de ATARI.028 ECHO-area of op 
+BearBoard BBS on-line. Nummer van dit BBS wordt aan het eind van het 
+bericht aangegeven.
+
+Maar mocht u geen mogelijkheid hebben dit via een BBS te doen,
+kunt u ook een brief schrijven naar
+
+     Ruud Sint
+
+We geven dan zo spoedig mogelijk antwoord op uw vragen.
+
+Bij dit alles dient u te weten dat deze organisatie geen enkele winst 
+maakt door deze hulpverlening, maar alleen bedoelt is om Shareware 
+makkelijker en/of goedkoper te verkrijgen.
+
+Auteur
+
+Vanaf versie 1.24 is de nieuwe LED auteur:
+
+     Stephan Slabihoud
+     Duitsland
+
+     FidoNet:       2:2446/110.6@fidonet.org
+     AtariNet:      51:601/7.6@atarinet.ftn
+     NetworkST:     90:400/410@nest.ftn, 90:400/404.6@nest.ftn
+     Internet:      slabbi@kali.rhein-ruhr.de
+                    slabih00@marvin.informatik.uni-dortmund.de
+
+INHOUD
+
+Algemene inleiding
+Installatie
+
+Bediening van LED
+Het berichtenvenster
+Toetscommandos in het berichtenvenster
+     - Nummerieke toetsenbord
+     - Specials
+
+De menubalk
+     - LED
+     - File
+     - Area
+     - Message
+     - Edit
+     - Block
+     - Options
+     - Extra
+     - Help
+
+Configuratie
+
+ALGEMENE INLEIDING
+
+LED is een GEM-editor voor Fidonet-berichten, die met alle op dit moment 
+beschikbare mail-verwerkers gebruikt kan worden.
+
+Enkele mogelijkheden van LED worden echter alleen ondersteund door moderne 
+mail-verwerkers, zoals JETMAIL, IOSmail(Ú v0.8), ECU(Ú v2.0) of VMU(Ú 
+v0.5). Bijv. Host- en Zone-routing.
+
+LED werkt onder alle TOS-versies, MultiTOS en MiNT.
+
+Met behulp van geschikte mail-verwerkers (OPPI of VMU) kan LED ook als 
+Maustausch-Frontend (=pointsysteem in MausNet) ingezet worden.
+
+INSTALLATIE
+
+Het archief LED_12x.LZH bevat de volgende bestanden:
+
+     LED.PRG        het programma
+     LED.RSC        bijbehorende resourcefile
+     LED_GER.TXT    de duitse dokumentatie bij LED
+     LED_12x.TXT    een updatefile
+
+LED heeft om te kunnen werken de bestanden BINKLEY.CFG en AREAS.BBS nodig. 
+In de eerste is de complete setup te vinden (Naam, Fido-adres, de 
+zoekpaden voor de mailer), de tweede bevat alle areas waarop men is 
+aangesloten en hun zoekpad. Deze bestanden kunnen met diverse pointshells 
+of een ASCII-editor gemaakt/bewerkt worden. In plaats van BINKLEY.CFG kan 
+ook TB.CFG gebruikt worden, mocht er nog iemand met The Box werken.
+
+Er zijn twee manieren om LED te installeren:
+
+1.   LED.PRG en LED.RSC worden in de folder gekopiâerd waarin ook de 
+     andere Fido-programmatuur en hun configuratiebestanden (BINKLEY, 
+     ACS/BTS, ECU/LLEGADA etc) te vinden zijn.
+2.   LED.PRG en LED.RSC (en ev. LED.CFG) worden in een willekeurige folder 
+     geplaatst, waarbij de omgevings-variabelen BINKLEY of MAILER m.b.v. 
+     een shell of autofolder-programma gedefinieerd moeten worden. LED.CFG 
+     of de variabele BINKLEY/MAILER bevat dan het pad waar de 
+     CFG-bestanden en AREAS.BBS te vinden zijn.
+
+Bij het opstarten van LED worden achtereenvolgens gezocht:
+(1) LED.CFG, (2) BINKLEY.CFG, (3)TB.CFG. De genoemde variabelen worden 
+gezocht en het werkpad ingesteld. Wordt e.e.a. niet gevonden dan zoekt LED 
+in de eigen folder en gebruikt deze als werkpad, waarin alle 
+LED-hulpbestanden geplaatst worden. Teweten:
+
+     LED.CFG - Dit bestand is optioneel en vooral voor gebruikers bedoeld 
+     die LED graag vanuit een andere folder starten zonder een environment 
+     variabele aan te maken. De volgende opdrachten kunnen in LED.CFG 
+     voorkomen:
+     SYSOP          name                -> als inBinkley.Cfg
+     ADDRESS        addresse [fakenet]  -> idem.
+     LOGFILE        file                -> idem.
+     NETMAIL        file                -> idem.
+     HOLD           path                -> idem.
+     SHELL          prg                 -> idem.
+     Optioneel kunnen nog de volgende Statements benut worden:
+
+     MAILER         path                -> van AREAS.BBS
+     AKASYSOP       name                -> voor extra namen
+
+     LED.NEW - Dit bestand omvat een lijst met daarin het laatst gelezen 
+     bericht en nieuwe cq. ongelezen berichtenvan elke area.
+     De meeste mail-verwerkers betrekken deze lijst bij de import van 
+     nieuwe danwel het verwijderen van oude berichten.
+     Het bestand heeft de volgende vorm:
+
+          ST_POINTS      58   1
+          ATARI.GER      862  3
+          ST_FIDO.GER    534  2
+          ATARI_ST       134  0
+
+     Het eerste getal geeft het nummer van het laatst gelezen bericht. Het 
+     tweede getal geeft informatie m.b.t. area en kan het volgende 
+     betekenen:
+
+     0    geen nieuwe berichten in deze area
+     1    nieuwe berichten binnengekomen          bit 0     *
+     2    ongelezen berichten aanwezig            bit 1     /
+     3    nieuwe en ongelezen berichten aanwezig            */
+     4    berichten voor de sysop aanwezig        bit 2     #
+
+     LED.OPT - Bevat de LED-instellingen en het aantal en de positie van 
+     de vensters. Als onder ÆOptions/SwitchesØ de betreffende vlag gezet 
+     is,wordt de actuele instelling telkens bij het verlaten van LED, 
+     opgeslagen. Dit kan verhinderd worden dooreen shift-toets in te 
+     drukken.
+
+     LED.FKY - Bevat de instellingen voor de funktietoetsen.
+
+     LED.DLG - Bevat de coîrdinaten van de FlyDial dialogen. Bij problemen 
+     met de dialogen kan dit bestand gewist worden waarna ze weer opnieuw 
+     gecentreerd worden.
+
+DE BEDIENING VAN LED
+
+Na het opstarten van LED worden de configuratiebestanden ingelezen en 
+vervolgens wordt automatisch het laatst gelezen bericht getoond. Was bij 
+het verlaten van LED geen enkel Msg-venster geopend, dan wordt er een 
+venster geopend voor de eerste area uit AREAS.BBS.
+
+Er kunnen maximaal vijf vensters geopend zijn.(ook onder WINX; vert.) Per 
+area kan er ÇÇn Msg-vensters en ÇÇn edit-venster worden geopend. Probeert 
+men de area nog eens te openen danwordt het Msg-venster van deze area 
+geaktiveerd(op de voorgrond gezet).
+
+De vensters kunnen naar believen verschoven, gewisseld, geopend of 
+gesloten worden. Is er geen venster meer beschikbaar dan verschijnt de 
+melding "No more windows available".
+
+De breedte van een venster kan onder ØOptions/Window...Æ op een maximum 
+van 80 tekens worden ingesteld. Een editvenster mag niet meer dan 75 
+tekens breed zijn, vooral wanneer berichtenge'quote' gaan worden met 
+initialen van de afzender.
+
+HET Msg-venster
+
+Een geopend Msg-venster laat bovenin, net onder de inforegel, de kop van 
+het bericht zien. De tekst van het bericht wordt dooreen lijn van de kop 
+gescheiden.
+
+>>L_SNAP01<<
+
+In de inforegel wordt de status van de header-cache, info of het eerste 
+danwel het laatste bericht van een area betreft en de commentaarketen 
+getoond.
+
+In bovenste regel van de kop worden het nummer van het bericht, het aantal 
+berichten in de area, de aanmaakdatum en eventuele flags getoond. Daar 
+onder staan dan achtereenvolgens deafzender, de geadresseerde en het 
+onderwerp van het bericht. Ook als er geen afzender in de header staat 
+wordt een berichtgetoond.
+
+Onder de streep staat dan het bericht. Het bericht wordt voorafgegaan door 
+nog een paar regels, de zg. "Kludge" beginnend met CTRL-A, waarin Msg-ID, 
+Reply-ID en ev. verdere informatie zijn opgenomen.
+
+Onder aan de tekst van het bericht volgen nog de zg. "Tear-Line", die met 
+"---" begint en de naam van de mail-verwerker bevat, en de "Origin" waarin 
+het FidoNet-adres van de afzender staat. Het geheel wordt afgesloten met 
+de "Seen-By"-regel(s) die aangeven welke nodes het bericht hebben 
+ontvangen,en de "Path"-regel die laat zien langs welke weg het bericht van 
+afzender naar geadresseerde is gegaan.
+
+De "Kludge"-, "SeenBy"- en "Path"-regels kunnen onder 
+ØOptions/Switches...Æ uitgeschakeld worden zodat ze in het Msg- venster 
+onzichtbaar zijn. De Msg-ID en Reply-ID kunnen bovendien met [ALT][4] 
+aan/uit gezet worden.
+
+TOETSENCOMMANDO'S
+
+De meeste functies van LED kunnen zowel met het toetsenbord als de 
+menubalk geaktiveerd worden. Na het drukken van [HELP] worden de 
+toetsencommando's voor resp. het Msg-venster of het edit-venster getoond. 
+Als toevoeging is de helpfunctie ook bereikbaar via de menubalk.
+
+De gewone cijfertoetsen zijn, afhankelijk van de lees-modus(Msg-venster) 
+cq. de schrijf-modus(edit-venster) met verschillende commando's verbonden.
+Bij het lezen van berichten worden de cijfertoetsen gebruikt om direkt 
+naar een bepaald bericht te springen (m.b.v. berichtnummer). Is echter de 
+commentaarketen aktief, dan dienen ze om naar een ander bericht in deze 
+keten te springen.
+Bij het schrijven van berichten zitten onder de numerieketoetsen grafische 
+tekens, mits deze optie is ingeschakeld via ØOptions/Switches...Æ.
+
+Toetscommando's voor het Msg-venster (commando's voor het edit- venster 
+zijn te vinden in het hoofdstuk EDIT):
+
+     [DOWN]              Bericht ÇÇn regel naar beneden scrollen
+
+     [UP]                Bericht ÇÇn regel naar boven scrollen
+
+     [SHIFT][DOWN]       Bericht ÇÇn venstergrootte naar beneden
+                         scrollen
+     [SPACE]             Idem. en bij het einde van het bericht
+                         het volgende bericht tonen
+
+     [SHIFT][UP]         Bericht ÇÇn venstergrootte naar beneden
+                         scrollen
+     [BACKSPACE]         Idem. en bij het begin van het bericht
+                         het vorige bericht tonen
+
+     [HOME]              Naar het begin van het bericht.
+     [SHIFT][HOME]       Naar het einde van het bericht.
+
+     [RETURN]/[ENTER]    Volgende/vorige bericht tonen. Afhankelijk of men 
+                         in de berichten vooruit of achteruit bladerd
+
+     [RIGHT]             Naar het volgende bericht.
+     [LEFT]              Naar het volgende bericht.
+
+     [CTRL][RETURN]      Huidige bericht wissen.
+     [SHIFT][F2]         Toont een korte Msg-info.
+
+     [N] of [n]          Naar het volgende ongelezen bericht.
+     [P] of [P]          Naar het vorige ongelezen bericht.
+     [Q] of [q]          Bericht met tegengestelde kopregelquoten.
+
+     [#]                 Naar het volgende bericht aan de SysOp.
+
+     [0] bis [9]         Berichtnummer van het gewenste bericht opgeven.
+
+Numerieke toetsen:
+
+     [#(]                Naar het vorige bericht met hetzelfde onderwerp.
+     [#)]                Naar het volgende bericht met hetzelfde onderwerp.
+     [CTRL][#(]          Naar het vorige bericht met hetzelfde 
+                         onderwerp afkomstig de geadresserde van het 
+                         huidige bericht.
+     [CTRL][#)]          Naar het volgende bericht met hetzelfde onderwerp 
+                         aan de afzender van hethuidige bericht.
+
+     [#*]                Naar de volgende area met nieuwe berichten.
+     [#/]                Naar de volgende area met ongelezen berichten.
+     [#+]                Naar de volgende area in de arealijst.
+     [#-]                Naar de vorige area.
+
+Is de commentaarketen uitgeschakeld, dan wordt een berichtdirekt gekozen 
+met de toetsen [0] t/m [9]. Is de commentaarketen ingeschakeld wordt met 
+de cijfertoetsen binnen de commentaarketen gebladerd. Bvendien kan de 
+keten in de inforegel van het venster aangegeven worden. Het is dan 
+mogelijk om direkt naar een bericht in de keten te springen door met de
+muis op het berichtnummer te klikken.
+
+     [#8] of [-]         Naar het oorspronkelijke bericht in de keten
+     [#2] [+]            Naar het eerste commentaar op het huidige bericht.
+     [#6] [[]            Naar het volgende commentaar op 
+                         hetzelfde niveau.
+     [#4] []]            Naar het vorige commentaar op hetzelfde niveau.
+
+     [#1]                Naar het vorige bericht.
+     [#3]                Naar het volgende bericht.
+
+De toetsen voor het wandelen in een commentaarketen zijn dus kruislings op 
+het numerieke toetsenbord geplaatst.
+
+     Een voorbeeld
+     Het huidige bericht in het venster is nummer 12 en de  inforegel laat 
+     het volgende zien:
+
+     2- 5+ *12+ 39+ 83
+
+     Met * wordt aangegeven dat men van de keten bericht nummer 12 in het 
+     venster te zien is, en dat dit bericht eencommentaar is op bericht 
+     nummer 2 (2-). Bovendien zijn er opbericht nr 2 nog meer commentaren, 
+     zoals bericht nr 5, 39,en 83. Hierbij volgt op    bericht 5 en 
+     bericht 39 nog een commentaar(aangegeven met +) en is bericht 83 het 
+     laatste in     de keten(geen toevoeging).
+
+     Om nu bij bericht 2 te komen is het voldoende om [#8] in te drukken. 
+     Met [#4] springt men naar bericht 5, met [#6] naarbericht 39 resp. 
+     83, en met toets [#2] van het numerieke toetsenbord naar het eerste 
+     commentaar dat volgt op het huidige bericht(nog steeds nr 12).
+     Met [#1] wordt bericht 11 getoond en [#3] levert bericht 13 op.
+
+Afhankelijk van de rekenkracht van de computer kan bijtoenemende grootte 
+van het berichtengebied, het opbouwen van de commentaarketen storend 
+werken. Dan moet men deze optie uitschakelen. Hiertoe is naast de 
+schakelaar "Show" onder ÆOptions/Comment...Ø, ook de "hotkey" [ALT][3] te 
+gebruiken
+
+
+SPECIALS
+
+Deze funkties stellen enkele schakelaars uit het "Options"-menu in. Nadere 
+uitleg is te vinden in de betreffende paragraaf.
+
+     [HELP]              Help oproepen. Deze is min of meer 
+                         context-afhankelijk en laat de commandotoetsen 
+                         zien voor de actieve modus (bericht tonen cq. 
+                         bericht bewerken/schrijven
+     [UNDO]              Redraw, alle vensters worden opnieuw opgebouwd.
+     [ESC]               Het headerbestand wordt opnieuwingelezen.
+
+     [ALT][3]            Commentaarketen tonen
+     [ALT][4]            Toon MSGID/REPLY/REPLYTO aan/uit.
+     [ALT][5]            Toon PID/TID/EID aan/uit.
+     [ALT][8]/[9]/[0]    Fontgrootte instellen (8/9/10p)
+
+     [ALT][H]            Edit header-flags
+     [SHIFT][ALT][H]     Edit header
+     [SHIFT][ALT][A]     Append Msg (plain)
+     [SHIFT][ALT][W]     Write Msg (plain)
+
+     [SHIFT][F10]        Alle 'Msg Unread' vlaggen wissen.
+     [SHIFT][F9]         'Msg read' vlag in alle areas op het hoogste 
+                         bericht zetten.
+     [SHIFT][F8]         Lastreadpointer op maximum zetten
+     [SHIFT][F7]         Msg afdrukken met FF.
+     [SHIFT][F6]         Sorteer headers van de aktuele area op datum.
+     [SHIFT][F5]         Wijzig UserName.
+     [SHIFT][F4]
+     [SHIFT][F3]
+     [SHIFT][F2]         Korte Msg-info.
+     [SHIFT][F1]         Shortcut.
+
+DE MENUBALK
+
+Menu-items kunnen ook met toetscommando's geactiveerd worden. Het 
+betreffende commando staat dan achter het menu-item. De zg. FlyDials, 
+dialoogboxen, zijn te verplaatsen door het "ezelsoor" in de 
+rechterbovenhoek met de muis aan te klikken en met ingedrukte linker 
+muisknop te verschuiven naar de gewenste positie.
+
+De knoppen in de dialogen kunnen via toetsen bediend worden; hiertoe moet 
+de [ALTERNATE]toets in combinatie met een letter ingedrukt worden. De 
+betreffende letters zijn in dat geval onderstreept weergegeven.
+
+   LED-menu
+
+   LED: About LED...   [CTRL][I] 
+
+De copyrightmelding met LED-versienummer en informatie over het vrije 
+geheugen. De knop INFO onthult de ShareWare informatie zoals adres en 
+bankrekening van de auteur.
+Middels de knop "Registration Key" kan het registratienummer worden 
+ingevuld. Reeds bij versie 1.25 geregistreerde gebruikers worden 
+automatisch herkend. Nieuwe gebruikers ontvangen hun persoonlijke 'Key' 
+nadat zij de sharewarebijdrage voldaan hebben.
+Er is geen enkele beperking in de ongeregistreerde versie!!! Het enige 
+verschil is dat als PID "LED x.xx/unreg." wordt geschreven i.p.v. "LED 
+x.xx" en dat er een klein logo voor 2sec. in beeld verschijnt.
+
+   File-menu
+
+   File: Read ASCII... [ALT][R]
+
+
+Bij het schrijven van berichten kan d.m.v. dit menu-item een ASCII-tekst 
+ingelezen worden, die vervolgens op de cursorpositie in het bericht wordt 
+ingevoegd. Daarbij moet worden aangetekend dat een bericht max. 4000  
+regels mag bevatten en niet groter mag zijn dan 64 Kbyte. Vele 
+mail-verwerkers kunnen echter geen berichten verwerken die groter zijn dan 
+16 Kbyte. Een veilige omvang van een bericht ligt tussen 8 en 16 Kbyte.
+
+   File: Write ASCII...     [ALT][W]
+
+
+Is een Msg-venster actief dan kunnen berichten met deze menu-optie als 
+ASCII-bestand opgeslagen worden. Er verschijnt een dialoog waarin men de 
+nummers kan opgeven van het eerste en het laatste bericht uit de reeks die 
+men wil opslaan. Hierna verschijnt de fileselector zodat men de gewenste 
+bestandsnaam kan opgeven. Bestaat het bestand al, dan heeft men de keuze 
+uit "Overwrite" en "Append", resp. het bestaande bestand
+overschrijven danwel uitbreiden. De speciale Fidonet regels in de tekst 
+(Tearline, Origin, SeenBy en Path) worden automatisch 'aangepast'.
+
+   File: Write Plain   [ALT][B]
+
+
+Het bericht wordt nu zonder Msg-kop en TearLine bewaard. Spaties aan het 
+begin en eind van de mail worden genegeerd. Dit is m.n. van belang voor 
+InterNet-mail met 'gesplitte' UUE-gegevens. Verder identiek aan ÆWrite 
+ASCIIØ
+
+   File: Append Plain  [ALT][B]
+
+
+Het bericht wordt toegevoegd aan het laatste bericht dat met ÆWrite PlainØ 
+werd bewaard.
+
+   File: Read Clipboard     [ALT][L]
+
+
+Dezelfde functie als ØRead ASCII...Æ, echter met het verschildat nu het 
+bestand SCRAP.TXT uit de Clipboard-folder wordtingelezen.
+
+   File: Write Clipboard    [ALT][B]
+
+
+Dezelfde functie als ØWrite ASCII...Æ, echter met het verschil dat nu het 
+bestand SCRAP.TXT uit de Clipboard-folder wordt weggeschreven.
+
+   File: TOS-Shell...  [ALT][Z]
+
+
+Als de omgevingsvariabele SHELL gezet is wordt met deze menu-optie een 
+TOS-Shell gestart. SHELL bevat het volledige pad vande te starten 
+commandline-shell. Daarna leest LED weer zijn volledige configuratie 
+opnieuw in.
+
+   File: Execute...    [ALT][E]
+
+
+Met behulp van de fileselector kan een willekeurig TOS- of GEM- programma 
+gestart worden. Na beâindiging daarvan keert men weer terug bij LED. Omdat 
+LED bij elke nieuwe start de configuratie compleet opnieuw inleest kan men 
+vanuit LED een editor starten, de cfg-bestanden wijzigen (bijv. 
+BINKLEY.CFG of AREAS.BBS)en opslaan, waarna deze wijigingen bij terugkeer 
+in LED onmiddelijk actief zijn.
+
+   File: Quit     [SHIFT][Q] 
+
+LED sluit alle vensters en slaat de Lastread-Pointers van alle areas op in 
+LED.NEW. De positie en het aantal open vensters, het ingestelde font en 
+alle andere opties worden in LED.OPT bewaard. Het opslaan van de opties 
+kan verhinderd worden door tijdens het verlaten van het programma [SHIFT] 
+ingedrukt te houden.
+Als men niet wenst dat de opties telkens bij het verlaten van LED worden 
+opgeslagen dan moet men onder ÆOptions/ SwitchesØ de betreffende 
+schakelaar omzetten.
+
+   Area-menu
+
+Met het menu ÆAreaØ worden de areas geselecteerd die in Msg-vensters 
+getoond worden. Er kan niet meer dan ÇÇn Msg-venster en ÇÇn editvenster 
+per area geopend zijn.
+
+   Area: Open...  [CTRL][O] 
+Als er nog vensters beschikbaar zijn, wordt hiermee een volgend 
+Msg-venster geopend. Hiertoe verschijnt een dialoog met eenlijst van alle 
+beschikbare area's. Bij meer dan 60 areasverschijnen onder in de 
+dialoogbox twee kleine pijlen waarmeenaar de volgende/vorige 60 areas 
+omgeschakeld kan worden. Dezepijlen kunnen met de muis of met
+[SHIFT][>] resp. [SHIFT][<]bediend worden. In het Options-menu bestaat ook 
+de mogelijkheidom de arealijst in een venster weer te geven.
+
+Achter de areanamen kunnen, in het geval deze optie is ingeschakeld, drie 
+tekens staan met de volgende betekenis:
+
+     *    in deze area zijn nieuwe berichten
+     /    in deze area zijn nog ongelezen berichten
+     #    in deze area zijn berichten voor de SySop
+
+Met de cursortoetsen kan de blokcursor over de areanamen bewogen worden. 
+Met [RETURN] wordt de aangegeven area in een nieuw Msg- venster 
+weergegeven. Met de muis kan een area direktgeselecteerd worden worden.
+
+ - Toetsbezetting AreaList-venster
+
+     [A-Z],[0-9]         Spring naar de betreffende Area
+     [ESC]               Update van alle Flags (new,unread,to
+     sysop)
+     [UNDO],[CTRL][U]    Sluit venster
+     [SHIFT][HOME]       Naar het einde van de lijst
+     [HOME]              Naar het begin van de lijst
+     [SHIFT][cursor]     Pagina naar boven/onder/links/rechts
+     [BACKSPACE]         Pagina terug
+     [SPACE]             Pagina vooruit
+     [RETURN]            Selecteer bericht (gewiste berichten
+                         terughalen)
+     [CTRL][RETURN]      Geselecteerd bericht wissen
+     [LEFT/RIGHT]        Regel naar boven/onder
+     [UP/DOWN]           Regel naar boven/onder
+     num[+]              Regel naar onder
+     num[-]              Regel naar boven
+     num[*]              Volgende area met nieuwe berichten
+     num[/]              Volgende area met ongelezen berichten
+     [#]                 Volgende area met berichten aan SysOp
+
+   Area: Change...     [CTRL][A] 
+
+Met ÆChange...Ø wordt geen nieuw venster geopend maar in het bovenste 
+Msg-venster een nieuwe area getoond. De dialoog is functioneel gelijk aan 
+die van ÆArea/Open...Ø. Is er geen venster geopend dan kan een area 
+geselecteerd worden.
+
+Dit menu-item kan overgeslagen worden door gebruik te maken van de 
+volgende toetsen op het numerieke toetsenbord:
+
+     [+] ...naar de volgende area in de lijst.
+     [-] ...naar de vorige area in de lijst.
+     [*] ...naar de volgende area met nieuwe berichten.
+     [/] ...naar de volgende area met ongelezen berichten.
+     [#] ...naar de volgende area met berichten aan SysOp.
+
+   Area: Cycle    [CTRL][W] 
+
+Als er meerdere vensters geopend zijn kan met deze menu-optie tussen 
+vensters gewisseld worden.
+
+   Area: Close    [CTRL][U] 
+
+Het bovenste venster wordt hiermee gesloten. Is dit een editvenster dan 
+wordt nog gevraagd of het bericht verworpen ("Abandon") of dat het 
+opgeslagen ("Save") moet worden.
+
+   Message-menu
+
+Dit menu is alleen dan actief als tenminste ÇÇn Msg-venster geopend is. 
+Led kan maximaal 4000 berichten per area beheren, waarbij elk bericht niet 
+langer mag zijn dan 4000 regels (en 64 Kbyte).
+
+   Message: List...    [SHIFT][CTRL][L] 
+
+Met dit menu-item worden de berichtenlijst van een area weergegeven. 
+Getoond worden het Msg-Nr, de afzender (FROM), de geadresseerde (TO) en 
+het onderwerp (SUBJECT) van het bericht. Bovenaan worden de naam van de 
+area en het aantal berichten inde area aangegeven.
+
+Er worden 18 berichten in de lijst getoond, waarbij het laatst gelezen 
+bericht als eerste te zien is en door de blokcursor geãnverteerd is 
+weergegeven. Gewiste berichten worden in grijs weergegeven.
+
+De lijst kan met de muis gescrolled worden of met toetsen:
+     [SHIFT][DOWN]       een bladzijde verder (volgende 18
+                         berichten)
+     [SHIFT][UP]         een bladzijde terug
+     [HOME]              naar het begin van de lijst
+     [CTRL][HOME]        naar het eind van de lijst
+
+Aan de linkerzijde van de lijst kunnen nog symbolen staan die extra 
+informatie geven over elk bericht:
+     berichten aan sysop      geãnverteerde pijl naar rechts (in)
+     berichten van sysop      gewone pijl naar links (uit)
+     ongelezen bericht        "u" (unread)
+
+Berichten selecteren gaat eenvoudig door het plaatsen van de blokcursor op 
+het bericht en dan [RETURN] drukken, of door het bericht direkt met de 
+muis aan te klikken. Gewiste (grijze) berichten kunnen niet met de muis 
+geselecteerd worden, echter wel door het plaatsen van de blokcursor via de 
+toetsen. Naselectie met [RETURN] worden gewiste berichten "undeleted"
+
+De dialoog kan men verlaten met de cancel-knop of door het drukken van 
+[UNDO]. Wordt de lijst in een venster weergegevendan wordt het venster 
+automatisch gesloten als men deze optie weer uitschakeld.
+
+Toetsbezetting voor het MsgList-venster:
+
+     [ESC]               Update van alle Flags (new,unread,to sysop)
+     [UNDO],[CTRL][U]    Sluit venster
+     [SHIFT][HOME]       Naar het einde van de lijst
+     [HOME]              Naar het begin van de lijst
+     [SHIFT][cursor]     Pagina naar boven/onder/links/rechts
+     [BACKSPACE]         Pagina terug
+     [SPACE]             Pagina vooruit
+     [RETURN]            Selecteer bericht (gewiste berichten terughalen
+     [CTRL][DEL]         Springt naar het eerstevolgende niet-gewiste 
+                         bericht.
+     [CTRL][RETURN]      Geselecteerd bericht wissen
+     [LEFT/RIGHT]        Regel naar boven/onder
+     [UP/DOWN]           Regel naar boven/onder
+     num[+]              Regel naar onder
+     num[-]              Regel naar boven
+
+   Message: Goto...                                       [CTRL][G] 
+
+Hiermee kan een bericht geselecteerd worden door middel van het Msg-Nr. Er 
+verschijnt een dialoogbox waarin het gewenste nummer opgegeven kan worden.
+Is het opgegeven nummer kleiner dan het laagste nummer of groter dan het 
+hoogste nummer, dan wordt het bericht dat als eerste resp. als laatste in 
+de lijst staat geselecteerd.
+
+De dialoog verschijnt ook als men een cijfer intypt, op deze wijze is het 
+gewenste nummer snel te bereiken.
+
+   Message: Forward...                                    [CTRL][F] 
+
+Een bericht wordt verder gestuurd aan een nieuwe geadresseerde.
+
+Er verschijnt een dialoog waarin men de naam van de nieuwe geadresseerde 
+opgeeft, aan wie het bericht verder gestuurd moet worden. In de 
+NetMail-area moet bovendien het Fido-adres van de geadresseerde vermeld 
+worden.
+
+Met de button USERLIST kan in ÇÇn of meer adreslijsten(nodes cq. points) 
+de geadresseerde worden opgezocht. Hiertoe moettenminste een lijst 
+ingesteld zijn bij ÆOptions/UserlistØ. Gebruik van de userlist wordt onder 
+ÆEdit/Enter MsgØ verder uitgelegd
+
+Ter aanduiding dat het een doorgestuurd bericht is wordt aan het begin 
+ervan het volgende vermeld:
+
+     "Originally from Area ..."
+     "Originally to ..."
+     "Forwarded by ..... on ....."
+
+   Message: Move...                                       [CTRL][M] 
+
+Met deze functie kunnen een of meer berichten naar een andere area 
+verplaatst of gekopiâerd worden. Heeft men bijv. een nieuwe area 
+aangevraagd, maar vergeten AREAS.BBS aan te passen, dan belanden de 
+berichten in de Badmail-area "Trash". Na aanpassing van AREAS.BBS kunnen 
+de berichten met de opdracht "Move..." in de juiste area geplaatst worden.
+
+In de dialoog moeten eerst de nummers opgegeven worden van de berichten 
+uit de actuele area welke men wil verplaatsen naar een andere area. Als 
+voorinstelling verschijnt altijd het nummer van het op dat moment 
+zichtbare bericht. Door de begin- en eindnummers te wijzigen kunnen 
+meerdere berichten in een keer verp[laatst worden.
+
+Met de cursortoets [UP] kan vervolgens een bestemming gekozen worden uit 
+de arealijst. Voor met [RETURN] of een muisklik de opdracht uitgevoerd 
+wordt, kunnen noch drie opties gekozenworden:
+
+     Remove arealine     Een eventuele eerste regel "AREA: ....." wordt 
+                         niet mee verschoven/gekopieerd.
+
+     Keep Copy           Normaal wordt elk bericht in de nieuwe area 
+                         verschoven en in de oude gewist. Is 
+                         deze optie actief dan blijft het bericht ook in 
+                         de oude area staan.
+
+     Forward             Het bericht krijgt een nieuwe geadresseerde. 
+                         Nadat de bestemmings-area is uitgezocht 
+                         verschijnt een dialoog waarin men het 
+                         nieuwe adres kan opgeven.
+
+   Message: Print                                         [CTRL][P] 
+
+Het actuele bericht wordt naar de printer gestuurd. Wil men na het 
+afdrukken nog een FormFeed toevoegen dan moet men met [SHIFT][F8] het 
+bericht laten afdrukken.
+
+   Message: Set Flag...                                   [CTRL][K] 
+
+Met deze functie kunnen bepaalde "flags" voor een bericht gezet worden. In 
+de dialoogbox wordt het actuele Msg-Nr automatisch ingevuld. Wil men 
+meerdere berichten bewerken dan moeten begin- en eindnummer worden 
+ingevuld. De vlaggen worden gezet door aanklikken met de muis en met 
+[RETURN] overgenomen in het bericht.
+
+De navolgende "Flags" worden door alle mailverwerkersondersteund:
+
+     Deleted             Msg is gewist.
+     K/Sent              Msg word bij exporteren gewist.
+     Private             PrivÇ Netmail, wordt automatisch gezet.
+     Read                Msg is gelezen.
+     Sent                Msg is geâxporteerd.
+     Local               Msg is op eigen comp.systeem ingevoerd.
+     With File           aan het bericht is een bestand gekoppeld (file 
+                         attach)
+     Crash               Msg gaat onmiddellijk en regelrecht naar de 
+                         geadresseerde.
+     Hold                Msg wordt vastgehouden (op Hold gezet).
+     Orphan              Msg is "onbestelbaar".
+     Received            Msg met ontvangstbevestiging is aangekomen.
+
+De navolgende "Flags" worden op dit moment alleen door JETMAIL ondersteund:
+
+     InTransit           Msg is onderweg
+     Archivsent          Het bericht wordt na export in een speciale 
+                         archief-area geplaatst
+     KillFileSent        Bij een File Attach wordt de mee te zenden file 
+                         gewist na verzending.
+     TruncFilesent       Bij een File Attach wordt de mee te zenden file 
+                         op 0 bytes gezet na verzending.
+     Direct              Komt overeen met Crashmail. Bericht wordt bij 
+                         gebruik van BINKLEYTERM 3.03 meteen en zonder 
+                         rekening te houden met ev. CM-Events en 
+                         CM-mogelijkheden van de geadresseerde verzonden.
+     ZoneGateRouting     Msg gaat direkt naar de Zonegate.
+     HoustRouting        Msg gaat naar de Host van de geadresseerde.
+     Locked              Msg wordt niet gewist. Voorzichtig met Locked: 
+                         het berichtwordt niet gewist maar ook 
+                         niet geâxporteerd.
+
+Speciale LED-vlaggen:
+
+     MausMsg             Dit bericht is afkomstig uit het MausNet en kan 
+                         meerdere speciale Maus-Flags bevatten, welke per 
+                         Msg-Header dialoog bereikbaar zijn.
+
+Links onder in de dialoog kan nog de optie ABSOLUTE gekozen worden. 
+Gewoonlijk worden de ingestelde flags slechts toegevoegd aan wat al in het 
+bericht ingesteld was. Met de optie ABSOLUTE worden de flags zo ingesteld 
+als in de dialoog te zien is.
+
+NB.  De instelling van de schakelaars (checkbox) in deze dialoog komt NIET 
+overeen met flag-instelling van het actuelebericht, maar is de situatie 
+van de dialoog zoals bij de voorgaande oproep.
+
+De "shortcuts" (in de dialoog onderstreepte letters) voor de flags worden 
+in het berichten/edit-venster rechtsboven weergegeven.
+
+   Edit-menu
+
+De functies van dit menu hebben betrekking op het schrijven van berichten. 
+Alle functies gelden voor het actuele Msg-venster. Is er geen venster voor 
+een area geopend, dan kunnen ook geen berichten geschreven worden. De 
+maximale breedte van een edit-venster is 75 tekens, kleinere breedten 
+kunnen onder ÆOptions/WindowØ ingesteld worden.
+
+Toetscommando's in edit-venster:
+
+     [CTRL][B]           Begin/End of block
+     [CTRL][D]           Del blockmark
+     [CTRL][X]           Cut block
+     [CTRL][C]           Copy block
+     [CTRL][V]           Paste block
+     [CTRL][Z]           Abort msg
+     [CTRL][Y]           Delete line
+     [ALT][Y]            Undelete line
+     [ALT][D]            Edit To-line
+     [ALT][N]            Edit address (Netmail)
+     [ALT][S]            Edit subject
+     [ALT][V]            Edit flags (Netmail)
+     [ALT][2]            Edit origin
+     [ALT][W]            Format paragraph
+     [ALT][F]            Search text
+     [ALT][G]            Continue search
+     [ALT][I]            Indent on/off
+     [ALT][T]            Expand tabs
+     [CTRL][DEL]         Del with linewrap
+     [ESC]               Cut/Paste line
+     [TAB]               Tabulator
+     [RETURN]            Newline (new paragraph)
+     [HOME]              Top of Msg
+     [SHIFT][HOME]       End of Msg
+     [INSERT]            Insert/Overwrite
+     [DELETE]            Del character
+     [BACKSPACE]         Del character
+     [cursorkeys]        Cursor movement
+     [SHIFT][left|right] Start/End of line
+     [CTRL][left|right]  Word left/right
+     [ALT][W]            Soft format paragraph (until <cr>)
+     [SHIFT][ALT][W]     Hard format paragraph (until emtpy line)
+
+   Edit: Enter MSG                                        [CTRL][E] 
+
+Er wordt met dit menu-item een edit-venster geopend voor de actuele area 
+zodat een bericht in deze area kan worden geschreven. Er kan tussen het 
+edit-venster en het Msg-venster gewisseld worden met [CTRL][W].
+
+Voordat een bericht geschreven wordt moet eerst de geadresseerde (TO) en 
+het onderwerp (Subject) worden opgegeven. Beide regels worden afgesloten 
+met [RETURN] waarna zij in de Msg-kop zijn opgenomen.
+Is het bericht niet voor ÇÇn bepaalde geadresseerde bedoeld, dan kan op de 
+TO-regel "All" o.i.d. worden ingevuld. Een "*" moet niet ingevuld worden 
+omdat LED dan in de opgegeven Userlist naar alle namen gaat zoeken.
+
+Is de actuele area een NetMail-area, dan dient behalve de naam van de 
+geadresseerde ook nog het FidoNet-adres te worden opgegeven. Hiertoe kan 
+de knop USERLIST gebruikt worden:
+
+1.   Men vult de volledige (en juiste) voor- en achternaam van 
+     de geadresseerde op. Wordt nu de knop USERLIST aangeklikt 
+     dan wordt de ingevulde naam opgezocht in de adreslijst(en) en het 
+     FidoAdres wordt indien gevonden, toegevoegd.
+
+2.   Men vult alleen de initialen (voor- än achternaam) in, bijv. "vw" 
+     voor Volkmar Wieners". Wordt nu de knop USERLIST aangeklikt dan wordt 
+     de adreslijst doorzocht op namen met deze voorletters. De gevonden 
+     namen worden in en dialoogbox getoond, met de cursortoetsen [UP] en 
+     [DOWN] kan de gewenste naam geselecteerd worden.
+
+Bij alle berichten, die men zelf schrijft, wordt de Local-flag gezet en 
+rechts boven in de kopregel getoond. Voor NetMail-berichten wordt 
+bovendien de Private-flag gezet. Door met de muis te klikken in het gebied 
+van de kopregel waar de flagsgetoond worden, kan men in NetMail-berichten 
+nog enkele flagstoevoegen via een dialoogbox:
+
+WITH FILE Samen met het NetMail-bericht wordt een bestand verstuurd. Het 
+          bestand kan men m.b.v. de fileselector opgeven. Het bestand 
+          wordt met zijnvolledige naam en pad in Subject opgenomen.
+          NB. NetMails met daaraan een bestand gekoppeld(FileAttach) 
+          worden echter niet gerouted!
+
+          Met deze flag kan men slechts zijn boss of een mede-point een 
+          bestand sturen. Ofwel men stuurt de FileAttach als CrashMail, 
+          welke op eigen kosten direct naar de geadresseerde gaat.
+
+CRASH     Het bericht wordt direct naar de geadresseerde vertuurd, hetgeen 
+          betekent dat de eigen mailer zelf de geadresseerde belt en het 
+          bericht daar aflevert.
+
+HOLD      Het bericht wordt vastgehouden totdat het door de geadresseerde 
+          zelf wordt opgehaald. Is voor points minder zinvol.
+
+K/SENT    Het bericht wordt na Export als gewist gemarkeerd.
+
+De TO- en de SUBJECT-regel, evenals de Msg-Flags kunnen tijdens het 
+schrijven van het bericht ten allen tijden gewijzigd worden nadat men ze 
+met de muis aanklikt.
+
+De tekst van een bericht kan aaneengesloten worden getypt. Aan het eind 
+van een regel springt de cursor automatisch naar de volgende regel. Met 
+[Return] wordt een alinea afgesloten.
+
+Met behulp van de optie "Text effects (/*_)", onder ÆOptions/SwitchesØ, 
+kunnen in berichten teksteffecten worden weergegeven. Er wordt gezocht 
+naar de volgende schrijfwijzen:
+
+     _Text_ = onderstreept
+     *Text* = vet
+     /Text? = cursief
+
+Deze tekstattributen zij geldig tot het eind van de regel en kunnen ook 
+gecombineerde worden. Ervoor en er achter moet een spatie staan m.u.v. het 
+begin cq. het einde van de regel.
+
+Het schrijven van een bericht kan op elk moment wordenafgebroken met het 
+menu-item 'Abort Msg'. Met 'Save Msg' wordthet bericht bewaard en het 
+edit-venster gesloten. Een muisklikin de close-box van dit venster heeft 
+hetzelfde effect, er wordtechter gevraagd of het bericht bewaard moet 
+worden(Save Msg) ofdat men het schrijven wil afbreken(Abort Msg).
+
+   Edit: Reply MSG                                        [CTRL][R] 
+
+Hiermee kan men reageren op een bericht in de actuele area.
+
+Ontvanger en onderwerp worden automatisch uit hetoorspronkelijke bericht 
+overgenomen. Om aan te geven dat het eenreactie is wordt voor het 
+onderwerp "Re:" (van Reply) ingevoegd.Onder Options is in te stellen of 
+"Re:" toegevoegd moet worden.Deze flag dient men uit te schakelen om te 
+voorkomen dat aan eenreeds aanwezig "Re:" er nog een wordt toegevoegd.
+
+Voor het overige zijn de functies gelijk aan die bij ÆEdit:Enter MsgØ
+
+   Edit: Quote MSG                                        [CTRL][T] 
+
+Het actuele bericht wordt geciteerd. Ontvanger en onderwerp worden 
+overgenomen, de tekst van het bericht wordt in Quotes gezet voor zover dit 
+nog niet het geval was. Afhankelijk van de instellingen onder ÆOptions: 
+QuoteØ wordt het geciteerde bericht voorafgegaan door een inleidende regel 
+die er als volgt uit kan zien:
+
+"In een bericht van 20.12.1994 schreef Jack Tramiel ..."
+
+Een bericht kan ook geciteerd worden met de toets [Q] of [q].Het verschil 
+met het menu-item/[CTRL][T] is dat met [Q] de inleidende regel in de 
+andere taal gebruikt wordt. Is de standaard instelling gezet op een duitse 
+inleiding, dan wordt met [Q] de engelse gebruikt en andersom.
+
+Alle regels worden op de maximale regellengte (in te stellen onder 
+ÆOptions: WindowØ van het editvenster geformateerd. Bij de citaten wordt 
+zoveel mogelijk geprobeerd de "regels op tevullen". Met [CTRL][Y] hoort 
+men vervolgens de overbodige regels te wissen zodat alleen die gedeelten 
+van het oorspronkelijkebericht overblijven waarover men het wil hebben.
+
+Voor het overige zijn de functies gelijk aan die bij ÆEdit:Enter MsgØ
+
+   Edit: Quote to NetMail                                 [CTRL][N] 
+
+Functioneel gelijk aan de optie ÆEdit: Quote MsgØ, met het verschil dat 
+het bericht met het citaat niet in de actuele area wordt geplaatst maar in 
+de NetMail-area. Dus als een prive bericht. Het FidoNet-adres wordt 
+automatisch toegevoegd (voor zover de 'origin' juist is).
+Bovendien wordt aangegeven uit welke area het oorspronkelijke bericht 
+afkomstig is.
+
+Voor het overige zijn de functies gelijk aan die bij ÆEdit:Enter MsgØ
+
+   Edit: Change Msg                                       [ALT][C]
+
+Reeds geschreven (eigen!) berichten kunnen hiermee gewijzigd worden. Bij 
+het opslaan van het gewijzigde bericht wordt het oude bericht automatisch 
+gewist.
+
+Voor het overige zijn de functies gelijk aan die bij ÆEdit:Enter MsgØ
+
+   Edit: Carbon Copy                                      [ALT][H]
+
+Hiermee wordt een NetMail aan meerdere geadresseerden tegelijk verzonden.
+
+Bij het schrijven van een NetMail-bericht verschijnt na oproep van deze 
+menu-optie een dialoog waarin men de (volledige!) naam en Fido-adres 
+opgeeft van al diegenen aan wie het bericht ook moet worden verzonden. Ook 
+hier kan men gebruik maken van de UserList, net als bij Edit MSG.
+
+Met 'Save' kunnen alle opgegeven adressen in een speciale 'userlist' 
+(*.CCL) opgeslagen worden, deze zg. CarbonCopyList kan naderhand met 
+'Load' weer tevoorschijn gehaald worden. De knop 'Clear' wist alle 
+opgegeven adressen.
+LED kan maximaal 30 adressen voor een CarbonCopy beheren. Hiervan worden 
+er slechts 10 tegelijk getoond. De knoppen 'Prev.' resp. 'Next' maken 
+voor-en achteruit bladeren in de lijst mogelijk.
+
+   Edit: Abort Msg                                        [CTRL][Z] 
+
+Stopt de edit-modus en het bericht wordt NIET opgeslagen. Het edit-venster 
+wordt gesloten.
+
+   Edit: Save Msg                                         [CTRL][S] 
+
+Het bericht in het edit-venster wordt opgeslagen en het edit-venster wordt 
+gesloten.
+
+   Block-menu                                                       
+
+De opties uit het menu Block hebben betrekking op het markeren van blokken 
+tekst en het bewerken van deze blokken. Gemarkeerde blokken tekst omvatten 
+in LED altijd hele regels.
+
+   Block: Begin/End                                       [CTRL][B] 
+
+De huidige regel (daar waar de cursor staat) wordt de eerste resp. de 
+laatste regel van het blok. Eerst wordt de beginregel van het blok 
+gemarkeerd, daarna de eindregel. Is een blok gedefinieerd dan wordt het 
+blok (naar keuze) lichter of invers weergegeven.
+
+   Block: Del Marks                                       [CTRL][D] 
+
+De blokmarkering wordt weggehaald en de weergave weer normaal.
+
+   Block: Cut                                             [CTRL][X] 
+
+Het geselecteerde blok tekst wordt uit het bericht gesneden en in 
+de interne buffer opgeslagen.
+
+   Block: Copy                                            [CTRL][C] 
+
+Een kopie van het geselecteerde blok tekst wordt in de interne buffer 
+opgeslagen. De oorspronkelijke tekst veranderd nu niet.
+
+   ÆBlock: PasteØ [CTRL][V] 
+
+Een met ÆCopyØ of ÆCutØ in de interne buffer opgeslagen tekst wordt op de 
+cursorpositie ingevoegd. In het geval er nog geen ÆCopyØ of ÆCutØ heeft 
+plaatsgevonden (de buffer is nog leeg),dan wordt voorafgaand aan ÆPasteØ 
+eerst een ÆCopyØ uitgevoerd.
+
+   ÆBlock: IndentØ                                        [ALT][I]  
+
+Automatisch inspringen na een regelomslag. Het aantal spaties kan onder 
+ÆOptions/WindowsØ worden ingesteld. Deze menu-optie is alleen in de 
+edit-modus te kiezen.
+
+   ÆBlock: Ext. TabsØ                                     [ALT][T]  
+
+Eventueel in de tekst voorkomende tabulaties (ascii 9) worden door een 
+overeenkomstig aantal spaties vervangen. Dit is van belang voor het 
+inlezen van C-sources of soortgelijke tekstendie in tabelformaat 
+weergegeven worden.
+
+   Options menu                                                     
+
+Onder dit menu zijn de verschillende instellingen mogelijk,welke in 
+LED.OPT worden opgeslagen en die bij elke nieuwe programmastart worden 
+ingelezen. Is geen LED.OPT bestand aanwezig dan start LED met zijn 
+standaardinstellingen.
+
+   ÆOptions: Switches...Ø                                 [ALT][O]  
+
+In de dialoogbox kunnen verschillende instellingen worden gekozen door ze 
+aan te kruisen.
+
+Save always LED.OPT      Alle gemaakte instellingen die onder ÆOptionsØ 
+                         mogelijk zijn, alsmede de positie en grootte van 
+                         de verschillende vensters worden bij het verlaten 
+                         van LED opgeslagen.
+
+Save Dialog Position     De positie van dialogen wordt bij het verlaten 
+                         van LED opgeslagen in LED.DLG.
+
+Header-Cache             Bij voldoende werkgeheugen laadt LED het hele 
+                         headerbestand van een area. Dit versnelt enkele 
+                         bewerkingen. Ten teken dat de header cache actief 
+                         is verschijnt in de inforegel van een 
+                         Msg-venster "(HC)".
+
+Skip Scanner             Elke, in een Echo-area geschrevenbericht wordt 
+                         ook in de NetMail-areagekopiâerd, met AREA-line 
+                         en ORIGIN. EenMsg-scan is dan niet nodig.
+
+Rescue Lastreads         De LastRead-pointers worden bij elke area- 
+                         wisseling van area opgeslagen. Is bedoeld 
+                         voor systeemconfiguratiesbedoeld die er 
+                         een gewoonte van makenmidden in het werk af 
+                         te storten.
+
+AreaList window          Hiermee worden alle beschikbare areas in een 
+                         venster getoond. M.n. bij multitaskingsystemen en 
+                         InterNet-Areanamen heeft dit voordelen.
+
+...show areadescription  ...
+
+...autoclose window      Sluit automatisch het AreaList-venster nadat een 
+                         area geopend wordt.
+
+MsgList window           Hiermee worden alle beschikbareberichten in een 
+                         venster getoond. M.n.bij multitaskingsystemen en 
+                         InterNet-Areanamen heeft dit voordelen.
+
+...use Comment-Tree      ...
+
+Address correction(Net)  ...
+
+...set 'FIXED_ADDRESS'   ...
+
+Smart redraw             Enkele redraw-opdrachten worden overgeslagen. 
+                         M.n. bedoeld voor KAOS-TOS
+
+Add FormFeed             ...
+
+Show new/unread Msgs     De groottes van de area-bestanden worden 
+                         opgevraagd en bewaard, zo worden ook de '*' en 
+                         '/' in de arealijst weergegeven.
+
+Hide ^MSGID/REPLY        Uit de eerste Kludge-regel wordt het Msg-ID niet 
+                         meer getoond.
+
+Hide ^PID/TID/EID        ...
+
+Hide other ^A-lines      De na Msg-ID volgende Kludge-regels worden niet 
+                         meer getoond. Het gaat hier om 'PID', 'CHARS' en 
+                         'PATH'.
+
+Hide Seen-By's           De SeenBy-regel wordt niet meer getoond op het 
+                         scherm. De Origin-regel kan niet weggelaten 
+                         worden.
+
+Always use ^REPLYTO      ...
+
+Always use ^REPLYADDR    bestemd voor UUCP-gateways.
+
+Text effects (/*_)       In berichten worden teksteffecten weergegeven. Er 
+                         wordt gezocht naar de volgende schrijfwijzen:
+                              _Text_ = onderstreept
+                              *Text* = vet
+                              /Text? = cursief
+
+Show 'CR'                Het CR-return teken aan het eind van een regel 
+                         wordt getoond in edit-modus.
+
+'Ñ' in Netmail-Area      Het vervangen van "Ñ" door "ae" vindt niet plaats 
+in NetMail.
+
+'Ñ' in Echomail-Area     Het vervangen van "Ñ" door "ae" vindt niet plaats 
+                         in NetMail. M.n. nodig in scandinaviâ.
+
+Always extend Tabs       Bevat een Msg echte tabulaties, dan worden deze 
+                         automatisch door een passend aantal 
+                         spaties vervangen.
+
+Add "Re:"                Bij een Reply of Quote wordt in de onderwerpregel 
+                         een "Re:" toegevoegd als deze er nog niet staat. 
+                         Is deze schakeloptie uit dan blijft het 
+                         onderwerp onveranderd.
+
+Num-Block Graphics       In de edit-modus staan enkele grafische tekens 
+                         ter beschikking via de toetsen van het numerieke 
+                         toetsenbord.
+
+Delete new Msg flag      De NewMsg flag's van alle areas worden bij het 
+                         verlaten van LED gewist. Bij een volgende start 
+                         wordt in de area-lijst geen nieuwe berichten met 
+                         "*", tenzij intussen weer nieuwe berichten 
+                         geãmporteerd zijn.
+
+   ÆOptions: Window...Ø                                        [ALT][J]
+
+Hier worden de venster- en tabulatie-grootte ingesteld. Het Msg-venster 
+kan maximaal 80 tekens breed zijn, en het edit-venster79 tekens. Om 
+berichten met initialen te quoten, dient de debreedte niet groter te maken 
+dan 76 tekens.
+
+   ÆOptions: QuoteØ                                            [ALT][N]
+
+In de dialoogbox kan men de opties voor het quoten van berichten 
+instellen. Een aangekruiste optie betekent dat deze ingeschakeld is.
+
+Bij PREFIX kan worden aangegeven of voor de geciteerde tekst de initialen  
+van de afzender worden gezet of niet. Bij TOPLINE wordt de inleidende 
+regel ingesteld:
+
+In a message...          Bij een quote wordt de inleiding in het engels 
+                         opgesteld.
+
+In einer Nachricht...    Bij een quote wordt de inleiding in het duits 
+                         opgesteld.
+
+*.GER/AUS/CH detection   Voor areas met de extensie GER, AUS of 
+                         CH wordt de duitstalige inleidingopgesteld, 
+                         in andere gevallen de engelse.
+
+None      Er wordt geen inleidende regel opgesteld.
+
+Het is mogelijk om een eigen inleidende regel te gebruiken in plaats van 
+de standaardregels. Hiertoe moet de vlag FREEEDITABLE gezet worden. In de 
+beide regels "Native" cq. "English" kan men de gewenste tekst invullen.
+Bij het oproepen van de quote-functie wordt nu de standaardregel vervangen 
+door het eigen alternatief.
+
+De inleidende regel kan meerdere regels beslaan door hetinvoegen van
+een CR (met [CTRL][M]).
+
+Aan de rechterkant van de dialoogbox zijn nog de parameters te zien welke 
+gebruikt kunnen worden om afzender-adres, datum e.d. op te nemen in de 
+tekst. In Quotes is bovendien de parameter %# toegestaan waarbij '#' het 
+nummer van de functietoets aangeeft.
+
+Bij het quoten met [CTRL][T] wordt altijd de ingestelde inleidende regel 
+gebruikt, met [Q] wordt de anderstalige regel gebruikt.
+
+   ÆOptions: CommentØ                                          [ALT][5]
+
+Met USE wordt de commentaarketen ingeschakeld en de numerieke toetsen op 
+commentaarmodus gezet. Het gebruik van het numerieke toetsenbord is onder 
+"Toetsbezetting voor Msg-vensters" beschreven.
+
+Met SHOW wordt de commentaarketen bovendien in de inforegel
+getoond.
+
+MAILER(0-3); De commentaarketen is in de "Up/Parent" en "Read/Cost" van de 
+Msg-header ondergebracht. Daar enkele programma's deze velden voor eigen 
+doeleinden benutten, kan met MAILER (0-3) de checksum voor de keten in het 
+veld "Mailer" van de Msg-header worden ondergebracht.
+
+   ÆOptions: UserlistØ                                         [ALT][Y]
+
+Hier kunnen zes bestandsnamen worden ingevuld, waarin een lijst van 
+FidoNet-deelnemers in het formaat zoals de door de NodeList-compiler 
+gemaakte FIDOUSER.LST is opgenomen. De bestanden worden altijd in de hier 
+aangegeven volgorde doorzocht. De bestanden mogen in elk willekeurig 
+zoekpad staan, op harde schijf of diskette.
+
+Met een dubbelklik op een van de vier regels verschijnt de fileselector 
+waarmee vervolgens de UserList uitgekozen kan worden. Hoewel in het 
+lijstje alleen de bestandsnamen zichtbaar zijn, wordt door LED intern het 
+volledige pad vastgehouden en ook bewaard in LED.OPT.
+
+De eerste kan bijv. FIDOUSER.LST zijn, de volgende de nederlandse 
+pointlist POINTUSE.LST en als derde de eigenPRVTUSER.LST. Meer hierover 
+onder ÆExtras/Add Prvtuser.lstØ.
+
+Uit een UserList kunnen meer dan 65536 users ingelezen worden.
+
+   ÆOptions: FontØ                                             [ALT][M]
+
+Onder dit menu-item kunnen alle instellingen met betrekking tot fontsoort 
+en -grootte gedaan worden. Ook de weergave van "quotes" is hier in te  
+stellen.
+Als er geen GDOS geladen is kan alleen de grootte van het systeemfont 
+ingesteld worden. Is er wel een GDOS aktief dan kan een lettertype worden 
+gekozen. Door aanklikken van het hokje met de cirkelpijl wordt telkens het 
+volgende font gekozen. Met "point" stelt men de puntgrootte van de letter 
+in.
+
+Geeft men een muisklik op de fontnaam dan wordt het eerste 
+font (systeemfont) ingesteld.
+
+Er kan voor het Msg-venster en het edit-venster, alsmede het MsgList- en 
+AreaList-venster elk een eigen font gekozen worden. Voor het edit-venster 
+kunnen echter geen proportionele fonts worden gebruikt.
+
+Bij "Block" kan ingesteld worden of men een gemarkeerd bloktekst licht 
+("Highlighted") dan wel invers ("Reverse") wil weergeven.
+
+Met "Quotes" stelt men de weergave van citaten in; vet ("Thick") of niet.
+
+De ingestelde waarden worden met [Return] overgenomen.
+
+   ÆOptions: Function keysØ                                    [ALT][K]
+
+De tien functietoetsen kunnen gebruikt worden om vooraf ingestelde (vaak 
+benodigde) tekstregels te produceren. Deze kunnen met dit menu-item 
+opgegeven worden.
+
+Wil men de tekst onder een functietoets op meerdere regels 
+laten verschijnen dan dient men op de juiste plaats een CarriageReturn in
+te voegen met [CTRL][M] of met [ALT][#ASCII-nr.].
+Er kunnen de volgende parameters gebruikt worden: %f, %F, %t,%T, %a, %d, 
+%D, %z, %n, %s und %%. In Quotes is bovendien de parameter %# toegestaan 
+waarbij '#' het nummer van de functietoets aangeeft.
+
+De knop "Save" bewerkstelligd dat de bezetting van de functietoetsen wordt 
+opgeslagen in het bestand LED.FKY.
+
+De tekst onder een f-toets kan alleen in de Msg-tekst worden gebruikt, 
+NIET in de Msg-kop.
+
+   ÆOptions: SaveØ                                             [ALT][S]
+
+Het menu-item "Save" bewaart de instellingen in het bestand LED.OPT.
+
+   Extras menu
+
+In het menu Extras zijn nog enkele hulpfuncties te vinden die niet in een 
+van de andere menu's konden worden ondergebracht.
+
+   ÆExtras: Msg-headerØ     [ALT][H]
+
+
+Toont de aktuele message-header.
+ Eigenlijk een intern commando. Het toont in een dialoog alle
+informatie van de msg-headerstruktuur van het aktuele bericht.
+Het veld "mailer" en de origin- en destination-nodes kunnen
+gewijzigd worden. Bovendien kunnen de "Flags" naar believen aan
+en uitgezet worden.
+
+Indien men zich in een NetMail area bevindt en daar in "mailer[0]" tot 
+"mailer[2]" het nodenummer van de Boss staat, of de SENT-flag is 
+ingeschakeld, dan is dat een aanwijzing dat dit bericht al geâxporteerd 
+werd. Wanneer men vervolgens "mailer[0]" tot "mailer[2]" met de hand op 0 
+zet en de SENT-flag wist, dan wordt het beicht bij de volgende 
+Export-Start opnieuw geâxporteerd. Wil men verhinderen dat een bericht 
+wordt geâxporteerd, dan dient men dus de SENT-flag te zetten.
+ Let Op! De velden "mailer[4]" en "mailer[5]" worden al gebruikt
+voor de uitgebreide flags (JetMail) cq. de MausFlags.
+Verlaat men de dialoog met ÆOK/WriteØ dan wordt een nieuweheader voor het 
+bericht geschreven. Met ÆCancelØ blijft alles ongewijzigd. Cancel is 
+overigens als default knop uitgevoerd.
+
+   ÆExtras: ... header-flagsØ                         [ALT][H]
+
+   ÆExtras: File RequestØ                             [ALT][Q]
+
+Een Binkley-compatibel Frequest-file wordt aangemaakt.
+
+In de dialoog die verschijnt moet ten eerste het Nodenummer van het 
+systeem, waar de Request naar toe moet, ingevuld worden. Dan volgen de 
+namen van de bestanden die men wil aanvragen (max.20). Achter het 
+uitroepteken bij de bestandsnaam kan een ev.benodigd wachtwoord worden 
+ingevuld. (De namen worden altijd in hoofdletters bewaard.)
+
+Met "Make File" wordt in de Outbound-folder een 4D-Frequest (*.ORT) 
+bestand aangemaakt. Is de optie FLO ingeschakeld dan
+wordt ook een overeenkomstige Flowfile geschreven. Network-Frequests (5d) 
+zijn eveneens mogelijk.
+   ÆExtras: Add PRVTUSER.LSTØ    [ALT][P] 
+ De afzender van het actieve bericht wordt met naam en fido-adres
+in het alfabetisch gesorteerde bestand PRVTUSER.LST opgenomen.
+   ÆExtras: Find in UserList...Ø [ALT][U] 
+
+Dit menu-item maakt het mogelijk om te zoeken naar namen of
+(FidoNet-) adressen in de onder ÆOptions: UserlistØ opgegeven
+adreslijsten.
+
+Het zoeken naar een adres is bij Edit/Enter Msg beschreven. Omte
+zoeken op naam moet in het veld "ON" het complete Node- cq.
+Pointnummer worden ingevuld, waarna het zoeken gestart wordt met
+een muisklik op de knop "Userlist".
+
+Zoekt men "Volkmar Wieners" dan kan in het naam-veld hetvolgende
+worden ingevuld:
+1.   de volledige naam "Volkmar Wieners"
+2.   de achternaam "Wieners"
+3.   de eerste letter van de voornaam "v"
+4.   de initialen "vw"
+
+Wordt het ingevulde gevonden dan krijgt men de volledige naammet
+adres te zien of een lijst met passende namen en adressen inhet geval
+er meerdere mogelijkheden zijn.
+Daarbij moet rekening gehouden worden met achternamen die uit
+meer delen bestaan; het woord na de eerste spatie wordt als
+achternaam beschouwd. Bij de naam "Henk van Endert" wordt de
+achternaam "van", de letter "H" en de initialen "hv".
+
+Wordt in het naamveld een sterretje [*] ingevuld dan worden alle
+adressen uit de opgegeven Userlists getoond.
+
+   ÆExtras: Find string...Ø                           [ALT][F]
+
+Zoek een string of stringcombinaties in de Msg-kop of Msg-tekst.
+
+In de drie regels van de Msg-kop, "From:", "To:" en "Subj.:" kan naar 
+strings gezocht worden. Daarbij kunnen ook meerdere strings gecombineerd 
+worden: Bijv. Zoek naar alle Msgs die ene 'Volkmar' (in "From:") aan 
+'Bohn' (in "To:") geschreven heeft.
+
+Gewoonlijk wordt vanaf het actuele bericht opwaarts gezocht. Is echter 
+"Backwards" actief, dan wordt vanaf het actuele bericht neerwaarts 
+gezocht. Met de flag INSIDE wordt alleen binnen het actuele bericht 
+gezocht, anders wordt in ALLE berichten van de actuele area gezocht.
+
+Het is aan te bevelen de Header-Cache te activeren bij het zoeken, dus 
+aleen te zoeken in vensters waarin "(HC)" te zienis. Het zoeken op schijf 
+zou anders behoorlijk kunnen gaanvervelen.
+
+   ÆExtras: Find sameØ                                [ALT][G]
+
+De laatste zoek-opdracht wordt herhaald. Is het laatste bericht bereikt 
+dan wordt de zoekrichting omgekeerd.
+
+   Help menu
+
+Met de items uit dit menu kunnen vier help-dialogen worden opgeroepen, 
+waarin de betreffende toetscommando's die niet in de menu's te vinden zijn 
+worden uitgelegd.
+
+Er is een help-dialoog voor Msg-vensters, Editvensters, dialogen en de 
+commentaarketen.
+
+   Configuratie
+
+In dit hoofdstuk wordt beschreven welke gegevens LED uit de 
+configuratiebestanden BINKLEY.CFG en AREAS.BBS betrekt. Beide bestanden 
+zijn in ASCII en kunnen met elke editor bewerktworden. Een algemene 
+beschrijving van deze bestanden kangevonden worden in de documentatie van 
+de Mailer cq. Tosser.Hier worden alleen die sleutelwoorden besproken die 
+voor LED vanbelang zijn.
+LED.CFG is m.n. bedoeld voor gebruikers die LED in een andere folder 
+willen hebben zonder een Environment-variabele aan te leggen. LED.CFG is 
+optioneel.
+
+LED.CFG
+(mogelijke opdrachten's)
+
+     SYSOP      Naam van de Point/Node-beheerder
+     ADDRESS    "    "    (vervangt die tussen haakjes)
+     LOGFILE    Naam en pad voor het LOG-bestand
+     NETMAIL    Naam en pad van het NetMail-bestand
+                (bijv. D:\POINT\MSGS\NETMAIL)
+     HOLD       Folder voor uitgaande pakketjes/bestanden.
+                (bijv. D:\POINT\OUTBOUND\)
+     SHELL      Hier kunnen max. 9 TOS/GEM Applikaties (ÇÇn per 
+                SHELL-regel!) genoemd worden, die met de hotkeys 
+                [ALT][F1] tot [ALT][F9] opgestart kunnen worden.
+     MAILER     Pad voor AREAS.BBS
+
+BINKLEY.CFG
+(indien afwezig: TB.CFG)
+
+     SYSOP      Naam van de Point/Node-beheerder
+     ADDRESS    Fido-Adres (vervangt die tussen haakjes)
+     STATUSLOG  Naam en pad voor het LOG-bestand
+     LOGFILE    "    "    "    "    "
+     NETMAIL    Naam en pad van het NetMail-bestand
+                (bijv. D:\POINT\MSGS\NETMAIL)
+     HOLD       Folder voor uitgaande pakketjes/bestanden.
+                (bijv. D:\POINT\OUTBOUND\)
+     SHELL      Hier kunnen max. 9 TOS/GEM Applikaties (ÇÇn per 
+                SHELL-regel!) genoemd worden, die met  de hotkeys 
+                [ALT][F1]tot [ALT][F9] opgestart kunnen worden.
+
+AREAS.BBS
+
+De eerste regel in AREAS.BBS dient de Default-Origin tebevatten. De eerste 
+AreaDefinition dient altijd voor de NetMail gereserveerd te worden! Alle 
+opdrachten beginnend met "-" gelden voor de eerstvolgende AreaDefinition. 
+Deze bestaat voor LED uit AreaPath, AreaName en het eerste NodeAdress.
+
+     -ORIGIN    De Origin-regel, kan tijdens hetschrijven van een 
+                bericht met [ALT][2] gewijzigd worden.
+     -PASSTHROUGH   Deze Area wordt niet getoond.
+     -VISIBLE   Samen met PASSTHROUGH: Area wordt toch getoond maar 
+                zonder NewMsg-flags.
+     -INVISIBLE     Deze Area wordt niet getoond.
+     -UMLAUTE   Geen conversie van umlauten in deze area.
+                N.B.: Houdt rekening met AreaRules! Vaak is het 
+                gebruik van tekens met een ASCII-code hoger dan 127 
+                niet toegestaan.
+     -FORCEPVT  Met deze opdracht zet LED automatisch de Private flag 
+                    in een EchoArea (BBS-systemen).
+     -FIXEDADDRESS  Voor deze area corrigeert LED het adres cq. de     
+                adressen. Bovendien wordt automatisch de Fixed-addres 
+                flag. Fixedaddress geldt overigens alleen in EchoMail 
+                areas.
+     -QUOTE_NON     Geen Topline bij Quoten.
+     -QUOTE_MSG     Topline: "In a msg from...".
+     -QUOTE_NACHRICHT    Topline: "In einer Nachricht...".
+     -QUOTE_NATIVE  Topline: frei editierbar, Heimatsprache
+     -QUOTE_ENGLISH Topline: frei editierbar, Englisch
+     -MAUS      Area is een MausArea
+
+APPENDIX C: TOETSCOMMANDO's
+
+      TastaturÅbersicht:
+
+     Alternate: ALT R  Read msg          ALT B  Write clipboard
+                ALT A  Append msg        ALT E  Execute program
+          Shift+ALT A  Append msg plain  ALT L  Read clipboard
+                ALT W  Write msg         ALT Z  Execute shell
+          Shift+ALT W  Write msg plain   ALT C  Chance msg
+                ALT X  Carbon copy       ALT I  Indent on/off
+                ALT T  Extend tabs       ALT O  Switches
+                ALT J  Windows           ALT N  Quotes
+                ALT Y  User lists        ALT 7  Comment-tree dialog
+                ALT M  Fonts             ALT K  Function keys
+                ALT S  Save options      ALT Q  File request
+                ALT H  Edit header flags ALT P  Add to user list
+          Shift+ALT H  Edit header       ALT F  Find
+                ALT U  Search user       ALT G  Find same
+                ALT 8  Very small font   ALT 9  Small font size
+                ALT 0  Normal font size
+                ALT 1  Refresh windows
+                ALT 2  Show text attributes
+                ALT 3  Show comment tree
+                ALT 4  Show MSGID/REPLY/REPLYTO
+                ALT 5  Show PID/TID/EID
+                ALT 6  Show other ^A cludges
+                ALT_Fn Start shell <n>
+
+     Control: CNTRL I  Info              CNTRL Q  Quit
+              CNTRL O  Open area         CNTRL A  Change area
+              CNTRL W  Cycle window      CNTRL U  Close window
+              CNTRL L  List msgs         CNTRL G  Goto msg
+              CNTRL K  Kill msgs         CNTRL H  Heal msgs
+              CNTRL F  Forward msg       CNTRL M  Move msgs
+              CNTRL P  Print msg         CNTRL E  Enter msg
+              CNTRL R  Reply msg         CNTRL T  Quote msg
+              CNTRL N  Quote to Netmail  CNTRL J  Quote to area
+              CNTRL Z  Abort msg         CNTRL S  Save msg
+              CNTRL B  Block begin/end   CNTRL D  Del blockmark
+              CNTRL X  Cut block         CNTRL C  Copy block
+              CNTRL V  Paste block
+              CNTRL<cr>Kill active msg
+
+     Normal and other keys:
+              CTRL T   Quote Msg (native language)
+              SHIFT T  Quote msg (alternate language)
+              HELP     Help
+              UNDO     Redraw window
+              v        Scroll one line down
+              ^        Scroll one line up
+              SHIFTv   Display next page
+              SHIFT^   Display prev page
+              SPACE    Display next msg
+              RETURN   Display next/prev msg
+              ENTER    Display next/prev msg
+              BACKSPACE Display prev page
+              NUM 1,<  Display previous msg
+              NUM 3,>  Display next msg
+              P        Previous unread msg
+              N        Next unread msg
+              NUM 2,+  First comment on aktive msg
+              NUM 8,-  Origin msg
+              NUM 6,s> Next comment
+              NUM 4,>  Previous comment
+              NUM (    Prev msg with same subject
+              NUM )    Next msg with same subject
+              NUM ^(   Prev original msg
+              NUM ^)   Next original msg
+              SHIFT<   Screen left
+              SHIFT>   Screen right
+              NUM +    Next area
+              NUM -    Previous area
+              NUM *    Next area with new msg
+              NUM /    Next area with unread msg
+              NUM #    Next area with msg to sysop
+              HOME     Start of msg
+              CLR      End of msg
+              SHFT F10 Delete all unread and tosysop flags
+              SHFT F9  Set all lastread pointers to maximum
+              SHFT F8  Set the lastread pointer to maximum
+              SHFT F7  Print msg with formfeed
+              SHFT F6  Sort the headerfile by date
+              SHFT F5  Change sysop name
+              SHFT F3  Start SIB.ACC???
+              SHFT F2  Small msginfo
+              SHFT F1  Shortcut
+              ESC      Reread area
+
+     Edit-Window keys:
+
+       ^B     Begin/End of block  ^D     Del blockmark
+       ^X     Cut block           ^C     Copy block
+       ^V     Paste block         ^Z     Abort msg
+       ^Y     Delete line         ALT Y  Undelete line
+       ALT D  Edit To-line        ALT N  Edit address (Netmail)
+       ALT S  Edit subject        ALT V  Edit flags (Netmail)
+       ALT 2  Edit origin         ALT A  Abort msg
+       ALT W  Format paragraph
+       ALT F  Search text         ALT G  Continue search
+       ALT I  Indent on/off       ALT T  Expand tabs
+       ^DEL   Del with linewrap   ESC    Cut/Paste line
+       TAB    Tabulator           RETURN Newline (new paragraph)
+       HOME   Top of msg          sHOME  End of msg
+       DELETE Del character       INSERT Insert/Overwrite
+       BACKSPACE    Del character
+       Cursorkeys   Cursor movement
+       Shift <,>    Start/End of line
+       Control <,>  Word left/right
+             ALT W  Soft format paragraph (until <cr>)
+       Shift+ALT W  Hard format paragraph (until emtpy line)
+

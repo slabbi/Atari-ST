@@ -1,0 +1,23 @@
+                     AVALON, Mag!X & Binkley
+                  =============================
+
+Avalon lÑuft ohne Probleme unter Magix (und natÅrlich auch MultiTOS).
+
+Leider kann man das von Binkley nicht unbedingt behaupten. Zwar 
+lÑuft Binkley unter Magix in einem Window, aber es erkennt nicht
+mehr einen Tastendruck auf Anhieb.
+
+Wird Binkley und Magix verwendet, so sollte AVALON im "Single Mode"
+gestartet werden. Alle von Avalon gestarteten Programme laufen dann
+ebenfalls im "Single Mode" ab.
+
+
+                       AVALON & Mag!X
+                    ====================
+
+Wird AVALON *nicht* im "SingleMode" unter Mag!X gestartet, so sollte
+"Redirect (screen) output" nicht verwendet werden, sondern lieber der
+VT52-Emulator von Mag!X. Ich hatte zwar bisher keine Probleme, aber
+wer diese hat, sollte "Redirect output" grundsÑtzlich ausschalten, d.h.
+in "Special", in "Find-1" und "Find-2", im "Session-Setup" und kein
+"REDIRECT=ON" in Batchfiles!

@@ -1,0 +1,323 @@
+
+                       BinkleyTerm-ST 3.14pl8
+                       ======================
+
+                            Update-Manual
+                  Written By Stephan Slabihoud 1994
+              This text explains all changes since 3.00
+
+I have written this update manual in english, because it is a addendum to
+the original binkley reference manual. Some explanations are taken from
+the update manuals written by different authors (e.g. Steven Green, Bill
+Scull, Joerg Spilker and me).
+
+
+New statements:
+===============
+
+AfterFax
+
+   The program defined here is immediately called after recieving a
+   fax with the built-in or any external fax reciever module.
+
+
+BTNC
+
+   Supports Daniel Roesen's BTNC nodelist format.
+
+   Uses the *.BNL format nodelists as created by Daniel Roesen's
+   BTNC nodelist compiler instead of the default version 6 nodelist
+   produced with ParselST.
+
+   The BTNC nodelist has some advantages in that points can be used
+   without having to fiddle with fakenet addresses. It also allows
+   several domains to be combined in one set of files.
+
+
+UseCallSlots
+
+   Implemented new feature for controlling polls (better than the
+   method with costs and changing the mailflow).
+   Put the Keyword 'UseCallSlots' into your configuration file.
+   But please remember, because i had to use the cost field of
+   the nodelist structure for this, the cost field in the
+   outbound window will be 0 forever.
+
+   Put a &x (where x is any alphanumeric character) into the Key lines
+   after the password:
+
+     Key !abcdef &b 90:6000/106.2
+
+   Complete your Event file with lines like this:
+
+     Event All 20:00 21:00 S N D A=10 T=2,30 P=string
+                                             ^^^^^^^^
+   "string" is a sequence of alphanumeric characters up to 32 chars.
+
+   Now in the above event, Binkley will only call those nodes with &x
+   character matches one of the characters in the 'string'.
+
+   IMPORTANT NOTE: All systems with no &x definition (usually the rest of
+                   the nodelist) will not be polled for normal mail.
+
+   Because the format of the BINKLEY.SCD file has changed, all forced
+   events will be started again when using Beta-8. It is a good idea to
+   delete an existing BINKLEY.SCD file before running this version.
+
+
+FastScreen
+
+   When using fullscreen output you can speed up binkley with the
+   statement FASTSCREEN.
+
+
+Fax <path and program>
+
+   If the keyword Fax (with optional parameters) is specified
+   in the configuration file, then this program is started instead
+   of the integrated module.
+
+   Initialize your ZyXel Modem with AT#B0+FCLASS=6
+
+
+FaxInbound
+
+   Lets Binkley know where to place incoming fax images.
+
+
+FaxConnect <string>
+
+   In addition to the hardcoded connect strings +FCON and CONNECT FAX
+   binkley will recognize a fax connect when <string> is matched by the
+   incoming connect string.
+
+
+FDBugfix
+
+   Maybe this can fix problems with FD. The break only fixes the FD
+   problem but causes a Resend on the first DATA block. The second
+   (original) code doesn't have Resend problems but probably the ESC
+   problem again.
+
+
+FirstInit <string>
+
+   Send to modem only on initial startup of Binkley.
+
+
+Hold4D
+IOS
+
+   These are identical and put BinkleyTerm in 4D mode. When in this
+   mode, BinkleyTerm will use the 4D naming convention above whenever
+   it writes files into the outbound areas.
+   Without either of these commands, BinkleyTerm will use the old 3D
+   Hex naming convention, like it always has.
+
+   Note that they only affect the generation of files, and both the 3D
+   and 4D packets will get transferred during a mail session.
+
+
+NeedTime <n milliseconds (0..1000)>
+
+   Perhaps this statement will help you to fix the zmodem bug.
+   Use this statement very carefully! Try values like 20, 50 or 100,
+   before using higher values like 200 or 300!
+
+
+NodeCache <size>
+
+   Binkley uses a Nodelist cache.  This certainly speeds things up.
+   What it does is to store the information about a node when it is
+   accessed avoiding the slow nodelist searching and disk access.
+   The size of the cache is configurable with the keyword NodeCache.
+
+   Nodecache sets the size of the Nodelist Cache to <size> entries.
+   Each entry represents one address and occupies 146 bytes of memory.
+   The default value is 16 taking up 2336 bytes.
+
+   Setting <size> to 0, will disable the cache.
+
+   Whenever a node is looked up in the nodelist it is added to the
+   cache.  If the cache is full then the entry that has not been
+   accessed for the longest will be removed to make way for the new
+   one.  I'll see how this works and maybe use a different algorithm
+   to pick which one to lose if it seems necessary.
+   A good size seems to be a few more than however many nodes there
+   are in your outbound area.
+
+
+NoJanus <address> <...>
+
+   This command takes a list of nodes for which  you wish to disable
+   Janus (even if JanusBaud/JanusOK allows a Janus session). This works
+   ONLY for outgoing calls.
+
+
+NoRequest <address> <...>
+
+   Nodes listed after this keyword are not allowed to request files on
+   your system at any times. You can use the same syntax as in NoEMSI
+   for the list of nodes.
+
+
+Port <n>
+
+   For more information: see RSVEboard
+
+   Default is port 1 (ST-serial)
+
+   Also you should set MaxPort to the maximum numbers of ports supported
+   by your ST computer (default for MaxPort is the setting of Port).
+
+   If not using Port you must set the Baudrate for this Port with some
+   external utility.
+
+   Binkley doesn't reset the Port after exiting, so every BBS program
+   which uses Bconin(Aux) should also work.
+
+   If you wish to reset the port after exit (this also applies to
+   aftermail, cleanup und BBS Spawn) put the keyword "ResetPort"
+   in the configuration file.
+
+
+Rbuf <size>
+Tbuf <size>
+
+   These set the size of the RS232 buffers in a more convenient manner
+   than the previous method of using environment variables.
+
+   Environment variables may still be used, but these configuration
+   options take priority.
+
+   Standard for RBUF/RBUF is now 8K if not defined in the environment
+   or with the Rbuf/Tbuf config keywords.
+
+
+Reset
+
+   The string here is send to the modem when exiting with ALT-X 
+   immediately before the hangup string is send.
+
+
+ResetPort
+
+   For more information: see Port
+
+
+RSVEBoard
+
+   Only usefull when you have the RSVE hardware or HSMODEM installed.
+   In this case you can use 38400, 57600, 76800, 115200 and 153600 as
+   valid baudrates. On a STE, TT or Falcon you must not use this
+   statement.
+
+
+TimeZone GMT+x
+TimeZone GMT-x
+
+   Defines the timezone you live in. For germany this will be GMT+2
+   (and GMT+1 later in the year).
+
+   You can also set TZ=GMT+x in your environment.
+
+   Please note, that parsing this line is very stupid. It just 
+   converts the string after 'GMT+' into a long decimal.
+
+   After setting the correct timezone, all times from PC nodes are two
+   hours in the future. Maybe because the TZ setting on this systems is
+   not ok. You could put a correction factor in the Tranx lines for this
+   nodes.
+
+Tranx [[+|-]number!]node
+
+   Tranx field can be used to update your system clock.
+
+   The list of nodes is in the same format as that used by HoldsOnUs
+   and may include wildcards, etc.
+
+   If during an EMSI session and the remote system has a TRX# field
+   and their *primary* address matches the list of nodes, then the
+   time of your machine will be set to the value given in the tranx
+   data. You might want to enable this, if you know for example that
+   another system has their clock updated by an atomic clock receiver.
+   Note that due to the time involved in the EMSI handshake, it might
+   be a second or two out.
+
+   Both the BIOS and GEMDOS clocks are updated. It is possible to define
+   a correction factor <number>.
+
+   Example: Tranx -2!2:240/36
+
+
+UseColors
+
+   Forces BinkleyTerm-ST's display routines to use colors. This slows
+   down the display and is not recommended.
+   This option is automatically enabled if you use the colors keyword.
+
+
+
+Command Line Options:
+=====================
+
+Connect <connect string>
+
+   The intended use for this is when BinkleyTerm-ST is called in
+   BATCH mode then the calling program should pass the modem's
+   connect string to BinkleyTerm so that BinkleyTerm can know what
+   the baud rate is and work out such things as whether or not to
+   allow Janus connections. Example:
+     BT.TTP BATCH CONNECT 9600/V32
+
+
+NoFullScreen
+
+   This option has the same effect as the keyword NoFullScreen.
+
+
+
+Environment strings:
+====================
+
+BROWS=<n>
+BCOLS=<n>
+
+   You can use the environment variables BROWS and BCOLS to
+   limit the number of rows and cols which binkley will use for
+   display. BCOLS < 80 will lead to a corrupted "Pending outbound
+   mail" window with normal character size.
+
+
+
+Other changes:
+==============
+
+- Maximum number of Address aliases is 30 (instead of 15).
+
+- Maximum lenght for every component of a Dial statement is now
+  40 (instead of 20).
+
+- Binkley returns the correct errorlevel according to the
+  connect rate. For example, a CONNECT 16800 will give 168 as
+  errorlevel (14400 = 144, 12000 = 120, 7200 = 72).
+
+- Support for the FIDOUSER.LST format created by BTNC. If the keyword
+  BTNC is active, Binkley makes a sequentiell search in the file,
+  otherwise the file is treated as sorted with fixed length records
+  and Binkley will make a binary search.
+  Please note that sequential searching isn't very fast!
+
+- DIAL statement now works as the DIAL statement in parselist.
+  Default DIAL translation is the last DIAL line!
+
+- HoldOnUs/ReqOnUs/NoEmsi is now active for ALL nodes if no
+  list is specified.
+
+- Updated Function Requests + and $
+  If the caller is a point then the point will be added to the
+  commands generated from these requests.
+  With $ you may now put up to 3 "%d" in the command and the last
+  one is substituted by the point number.
+  With + the point number is added to the end unless it is zero.
+

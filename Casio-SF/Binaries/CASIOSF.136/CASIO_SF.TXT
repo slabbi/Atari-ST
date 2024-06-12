@@ -1,0 +1,417 @@
+CASIO_SF V1.x                                Letzte énderung: 25/11/1995
+=========================================================================
+                        CASIO-SF <-> Atari-ST
+=========================================================================
+
+Dieses Programm erlaubt den Datenaustausch zwischen dem Atari-ST (TT,
+Falcon) und einer CASIO-SF Datenbank. Getestet wurde das Programm mit
+dem CASIO-SF 8350 und 4300, es sollte aber auch mit jedem anderen
+Digital-Diary von CASIO funktionieren.
+
+Die Shareware-Bedingungen befinden sich am Ende des Textes. Wer kein 
+Interface besitzt, sollte dort ebenfalls einmal nachlesen.
+
+
+
+Voraussetzung:
+==============
+Damit der Datenaustausch auch funktioniert, muû die Schnittstelle des
+CASIO wie folgt eingestellt werden:
+
+  ParitÑt: NONE (KEINE)
+WortlÑnge: 8 BIT
+      BPS: 2400 (mehr zur bps-Einstellung spÑter)
+
+Das Programm CASIO-SF kann auf einem TT alle seriellen Schnittstellen
+bedienen. Mit "Konfigurieren" erscheint folgende Dialogbox:
+
+Daten vom CASIO empfangen mit: 1200  2400  4800  9600  19200
+   Daten zum CASIO senden mit: 1200  2400  4800  9600  19200
+                Schnittstelle: akt.  Modem1  Modem2  Ser.1  Ser.2
+         Umlaute konvertieren: Ja
+
+Ich kann Daten zum CASIO 8350 mit bis 9600bps fehlerfrei senden. Bei
+einigen Modellen und hîheren bps-Raten gibt es immer einen Fehler
+("CRC-Fehler im Header"). Warum konnte ich noch nicht feststellen.
+Empfangen kann man die Daten vom CASIO allerdings problemlos mit
+9600bps...
+
+CASIO-SF 8350 und 4300:
+=======================
+Der 8350 und 4300 kennen alle deutschen Umlaute, somit ist eine 
+Umlautkonvertierung nicht notwendig. Bei anderen Casio-Rechnern ist 
+dieses nicht unbedingt der Fall. Dort sollte die Umlautkonvertierung
+ggf. eingeschaltet werden.
+
+TIP:
+====
+Ich kann Daten mit 9600bps zum CASIO SF-8350 senden und mit 9600bps
+empfangen. Bei (ganz) wenigen Modellen gab es aber Probleme, wenn man
+Daten zum Casio mit 9600bps senden wollte. Man muû nun aber nicht
+jedesmal die Schnittstelle des CASIO von 4800bps auf 9600bps, und 
+umgekehrt, neu konfigurieren, sondern kann diese einfach auf 9600bps 
+stellen und konfiguriert das Programm CASIO-SF auf 
+"...senden mit: 4800" und "... empfangen mit: 9600". Der CASIO nimmt
+es nicht so ernst, wenn die Daten langsamer gesendet werden, als er zum
+Empfang konfiguriert wurde. Bei dem SF-4300 gilt dasselbe mit 4800bps
+und 2400bps.
+
+
+
+Das Transferprogramm:
+=====================
+Wird CASIO-SF gestartet, so erscheint folgendes MenÅ:
+
+[A] Empfangen (einzeln TEL,BUS,MEM,SCD,CAL,REM,FRF,WEE,TOD)
+[B] Empfangen (komplett CBU)
+[C] Empfangen (einzeln ASCII)
+[D] Senden (CBU,TEL,BUS,MEM,SCD,CAL,REM,FRF,WEE,TOD)
+[E] Telephonliste senden (Export-Datei)
+[F] Telephon (TEL)
+[G] Termine (SCHEDULE)
+[H] Visitenkarte (BUSINESS CARD)
+[I] Notiz (MEMO)
+[J] Kalender (CALENDAR)
+[K] Erinnerung (REMINDER)
+[L] Erinnerung (SCHEDULE)
+[Q] Programm beenden
+[R] Registrieren
+[S] Konfigurieren
+
+Im folgenden kînnen alle Buttons auch Åber die Tastatur gesteuert werden.
+Hierbei ist die Alternate-Taste zusammen mit den MenÅbuchstaben zu
+drÅcken.
+In allen Unterfunktionen kann mit ALT+Q der Dialog verlassen und mit
+ALT+S die Daten zum Casio gesendet werden. ZusÑtzliche Belegungen werden
+spÑter angegeben.
+
+
+
+WICHTIG!
+========
+Das Programm fordert den Anwender per Alert-Box (beim Senden von Daten)
+auf, den Casio auf Empfang zu schalten. Wird dieses vergessen, so scheint
+der Rechner zu "hÑngen". Durch Druck auf ESC wird dann zum HauptmenÅ
+zurÅckgekehrt.
+
+
+
+Empfangen von Daten (TEL,BUS,MEM,SCD,CAL,REM,FRF,WEE,TOD bzw. CBU)
+==================================================================
+Hiermit werden Daten von Casio empfangen. Es gibt zwei Mîglichkeiten:
+
+1.) Empfangen (komplett CBU)
+----------------------------
+Man sendet mit "ALLE EINTRéGE" alle Daten vom Casio zum Atari. Die Daten 
+werden in einer Datei mit der Endung CBU (Casio-Back-Up) gesichert.
+
+2.) Empfangen (einzeln TEL,BUS,MEM,SCD,CAL,REM,FRF,WEE,TOD)
+-----------------------------------------------------------
+a.) Man sendet mit "ALLE EINTRéGE" alle Daten vom CASIO zum Atari. Die
+    Daten werden in unterschiedlichen Dateien gesichert.
+         TELEPHONE -> Datei.TEL
+     BUSINESS CARD -> Datei.BUS
+              MEMO -> Datei.MEM
+          SCHEDULE -> Datei.SCD
+          CALENDAR -> Datei.CAL
+          REMINDER -> Datei.REM
+         FREE FILE -> Datei.FRF
+            WEEKLY -> Datei.WEE
+              TODO -> Datei.TOD
+b.) Man sendet mit "EINTRéGE EINES BEREICHS" nur die Daten eines Bereichs
+    zum Atari. Diese Daten werden in der entsprechenden Datei abgelegt.
+c.) Man mîchte nur einzelne DatensÑtze mit "EIN EINTRAG" senden.
+    Hierbei muû die Alert-Box "Sollen einzelne Daten empfangen werden?
+    (ONE DATA ITEM, EIN EINTRAG)" mit "Ja" beantwortet werden!
+    Jetzt kînnen einzelne Daten vom CASIO gesendet werden. Es ist egal,
+    ob es sich um Telephondaten oder Termine handelt. Das Empfangen
+    kann nur durch Druck auf ESC beendet werden.
+
+
+
+Empfangen von Daten (einzeln ASCII)
+===================================
+Hiermit werden die Daten, genauso wie bei dem MenÅpunkt "Empfangen (einzeln
+TEL,BUS,MEM,SCD,CAL bzw. CBU)", in mehreren Dateien abgelegt. Der wesentliche
+Unterschied ist jedoch, daû die Daten als (lesbare) ASCII-Daten abgelegt
+werden und die Dateien die Endungen "*._TE,*._BU,*._ME,*._SC,*._CA,*._RE,
+*._FR,*._WE,*._TO" bekommen.
+Die einzelnen DatensÑtze werden mit "---EOD---" bzw. "---EOD/MARKED---"
+getrennt. Eine Ausnahme bildet die Telephonkartei.
+Die Datei "*._TE" ist genauso aufgebaut, wie die "Export-Datei", die
+das Programm unter "Telephonliste senden (Export-Datei)" erwartet,
+also immer genau 12 Zeilen, wobei die 12.Zeile eine leere Zeile ist.
+Eine Datensatzmarke geht hierbei verloren.
+
+!!!WICHTIG!!!
+=============
+Falls die Daten irgendeines CASIOs (ich konnte es ja nur an meinem eigenen
+Modell testen) nicht korrekt bearbeitet werden, werden die falsch erkannten
+Daten in einer Datei mit der Endung "*.E_x" (x ist eine Ziffer oder Buchstabe)
+abgelegt. Bitte senden Sie mir diese Datei und eine Komplettsicherung (Empfangen 
+komplett CBU) auf Diskette zu. Ich werde das Programm dann umgehend an dieses 
+Modell anpassen.
+
+
+
+Senden (CBU,TEL,BUS,MEM,SCD,CAL,REM,FRF,WEE,TOD)
+================================================
+Hiermit kînnen die Dateien "TEL,BUS,MEM,SCD,CAL,REM,FRF,WEE,TOD bzw.
+CBU" wieder zum Casio gesendet werden (aber auch die Dateien
+"*.ERx"!).
+
+
+
+Telephonliste senden (Export-Datei)
+===================================
+FÅr Datenbank-Anwender (Adimens, Phînix usw.), die sich eine
+Adressenkartei eingerichtet haben, ist diese Funktion gedacht. Hiermit
+kann eine ASCII-Export-Datei zum Casio transferiert werden. Diese Datei
+MUû folgenden Aufbau haben:
+
+ 1.Zeile: Name
+ 2.Zeile: Vorname
+ 3.Zeile: Telephon
+ 4.Zeile: Straûe
+ 5.Zeile: Wohnort
+ 6.Zeile: Frei 1 (Geburtsdatum)
+ 7.Zeile: Frei 2
+ 8.Zeile: Frei 3
+ 9.Zeile: Frei 4
+10.Zeile: Frei 5
+11.Zeile: Frei 6
+12.Zeile: <Leerzeile>
+
+Jedes Datenbankprogramm sollte in der Lage sein, eine solche Exportdatei
+zu schreiben.
+
+CASIO-SF faût die Zeile 1 & 2 zu "Name, Vorname" und Zeile 4 & 5 zu
+"Straûe, Wohnort" zusammen. Steht in Zeile 6 der Text "00/00/00", so
+wird dieser automatisch unterdrÅckt. Warum? Nun, Adimens-ST schreibt ein
+leeres Datumsfeld immer als "00/00/00". Da ich in meiner Datenbank an
+dieser Stelle das Geburtsdatum eingetragen habe, und nicht als Datum
+"00/00/00" zum Casio transferieren wollte, habe ich dieses Feature 
+eingebaut.
+
+Wer in seiner Datenbank den Namen und Vornamen schon zu einem Feld
+zusammengefaût hat, der kann dieses Feld auch als 1.Zeile exportieren;
+die 2.Zeile muû dann leer bleiben (gleiches gilt fÅr Straûe und Wohnort).
+
+Das Senden zum Casio lÑuft wie folgt ab:
+----------------------------------------
+Jeder Datensatz wird in der Dialogbox angezeigt. Mit "SENDE" wird er zum
+Casio gesendet, mit "WEITER" wird er Åbersprungen und mit "ENDE" wird
+ganz abgebrochen. Soll der Datensatz und alle nachfolgenden Daten (ohne
+Pause) gesendet werden, so ist dieses Åber "SENDE FORTLAUFEND" mîglich.
+
+Mit "SUCHE" kann ein bestimmter Name gesucht werden. Die Suche lÑuft ab
+der momentanen Position!
+
+Sollen von der Export-Datei bestimmte Zeilen (6 bis 11) nicht gesendet 
+werden (in der Dialogbox sind dieses die Zeilen 4 bis 9 bzw. Frei 1 bis
+Frei 6), so kann man den entsprechenden Pfeil "<" (rechts neben der 
+Zeile) deselektieren. Anstelle des Textes wird dann nur eine leere Zeile
+Åbermittelt.
+
+Wenn man als Zeile 7 bis 11 im Datensatz (Zeile 5 bis 9 auf dem 
+Bildschirm) z.B. nur Bemerkungen hat und einige leere Zeilen vorhanden
+sind, so kînnen durch Anwahl von "IGNORIERE LEERE EINTRéGE IN ZEILE 
+5 BIS 9" diese leeren Zeilen unterdrÅckt werden. Ist z.B. Frei 3 nicht
+belegt, so rÅcken alle nachfolgenden Felder um eins nach vorne.
+
+Soll der Datensatz markiert zum Casio gesendet werden, so kann "DATENSATZ
+MARKIERT" angewÑhlt werden".
+
+Tastenbelegung: ALT+R = fortlaufend Senden
+                ALT+W = Weiter
+                ALT+F = Suche
+
+
+
+Telephon (TEL) / Visitenkarte (BUSINESS CARD)
+=============================================
+Hiermit kînnen manuell Daten ins Telephon- und Visitenkartenregister
+gesendet werden.
+
+
+
+Termine (SCHEDULE)
+==================
+Dieser Dialog erlaubt es sehr schnell Termine zum Casio zu Åbermitteln.
+
+Als erstes wird das Datum eingegeben. Hierbei sind folgende Formate
+erlaubt: TT/MM, TT/MM/JJ, TT/MM/JJJJ
+Fehlt die Jahresangabe, so wird das aktuelle Jahr benutzt. Wird das Jahr
+zweistellig angegeben, so handelt es sich um eine Jahresangabe im
+20.Jahrhundert.
+
+Jetzt kann optional ein Zeitraum fÅr den Termin und eine Alarmzeit
+angegeben werden. Die Zeitangaben werden immer auf vier Stellen mit
+Nullen ergÑnzt, d.h. aus "14" wird "14:00", aus "2" wird "20:00" aus
+"13:2" wird "13:20".
+
+Der Text ist fortlaufend. Mîchte man eine neue Zeile beginnen, so ist
+dieses durch Eingabe von Control+M (auf dem Bildschirm erscheint ein
+kleines "CR") mîglich.
+
+"WEITERE TAGE" ist dann nÅtzlich, wenn dieser Termin nicht nur an dem
+unter "DATUM" eingegeben Datum gesichert werden soll, sondern noch an
+anderen Tagen im selben Monat. Man mîchte z.B. an jedem Werktag im
+September 94 um 16:00 an TNG/DSN erinnert werden: "DATUM: 01/09/94",
+"ZEIT: 16:00 ~ 17:00", "ALARM: 15:55", "TEXT: TNG/DSN", "WEITERE TAGE:
+2 5 6 7 8 9 12 13 14 15 16 19 20 21 22".
+
+
+
+Notiz (MEMO)
+============
+Hiermit werden Daten ins MEMORANDUM des Casio gesendet. Der Text ist
+forlaufend, d.h. eine neue Zeile wird durch Control+M erzeugt.
+Mit "LADE" kann eine ASCII-Datei geladen werden.
+
+
+
+Kalender (CALENDAR)
+===================
+Hiermit kînnen einzelne Tage im Kalender markiert werden. Das Datum kann
+angegeben werden als: MM, MM/JJ, MM/JJJJ.
+
+
+
+Erinnerung (REMINDER)
+=====================
+Dieser Dialog erlaubt es sehr schnell Erinnerungen zum Casio zu 
+Åbermitteln.
+
+Als erstes wird das Datum eingegeben. Hierbei sind folgende Formate
+erlaubt: <TT/MM>, <TT>, <>
+
+  TÑgliche Erinnerung: <>      (Feld freilassen)
+Monatliche Erinnerung: <TT>    (nur Tag angeben)
+ JÑhrliche Erinnerung: <TT/MM> (Tag und Monat angeben)
+
+Jetzt kann optional eine Alarmzeit angegeben werden. Die Zeitangabe 
+wird immer auf vier Stellen mit Nullen ergÑnzt, d.h. aus "14" wird
+"14:00", aus "2" wird "20:00" aus "13:2" wird "13:20".
+
+Der Text ist fortlaufend. Mîchte man eine neue Zeile beginnen, so ist
+dieses durch Eingabe von Control+M (auf dem Bildschirm erscheint ein
+kleines "CR") mîglich.
+
+
+
+Erinnerung (SCHEDULE)
+=====================
+Diese Funktion ist fÅr CASIO-Datenbanken gedacht, die keinen eingebaute
+REMINDER-Funktion besitzen, also z.B. SF-8350, SF-8500 und SF-9300.
+Aber auch die anderen Datenbanken kînnen hiervon profitieren, da diese
+Funktion nicht nur jÑhrliche, monatliche und tÑgliche, sondern auch
+wîchentliche Termine erlaubt. Weiterhin kînnen noch Termine eingegeben
+werden, die nur werktags stattfinden.
+
+Als erstes wird das Anfangsdatum und Enddatum eingegeben. Hierbei sind
+folgende Formate erlaubt: <TT/MM/JJJJ> oder <TT/MM/JJ>
+
+Jetzt kann optional ein Zeitraum fÅr den Termin und eine Alarmzeit
+angegeben werden. Die Zeitangaben werden immer auf vier Stellen mit
+Nullen ergÑnzt, d.h. aus "14" wird "14:00", aus "2" wird "20:00" aus
+"13:2" wird "13:20".
+
+
+Dann muû festgelegt werden, ob der Termin [jÑhrlich], [monatlich],
+[wîchentlich], [tÑglich] oder [werktags] ist. Hierbei wird immer Bezug
+auf das Startdatum genommen. Beispiele:
+
+Von Datum: 01.12.1994
+Bis Datum: 03.01.1995 [wîchentlich]
+ => erzeugt eine Erinnerung fÅr den 1.12, 8.12, 15.12, 22.12 und 29.12
+
+Von Datum: 01.12.1994
+Bis Datum: 03.04.1995 [monatlich]
+ => erzeugt eine Erinnerung fÅr den 1.12.94, 1.1, 1.2, 1.3, 1.4.95
+
+
+Als Besonderheit kann man noch [Wochentag] (unter [monatlich]) anwÑhlen.
+Macht man dieses, so wird dafÅr gesorgt, daû der Wochentag (vom
+Startdatum) beibehalten wird. Es kînnen hiermit also Termine wie:
+"jeden 1.Freitag im Monat" oder "jeden 3.Samstag im Monat" mîglich.
+
+Von Datum: 01.12.1994
+Bis Datum: 03.04.1995 [monatlich] und [Wochentag]
+ => erzeugt eine Erinnerung fÅr den 1.12.94, 5.1, 2.2, 2.3, 6.4.95
+
+
+Der Text ist fortlaufend. Mîchte man eine neue Zeile beginnen, so ist
+dieses durch Eingabe von Control+M (auf dem Bildschirm erscheint ein
+kleines "CR") mîglich.
+
+
+
+Programm beenden
+================
+Was wird das wohl sein ;-)
+
+
+
+Registrieren
+============
+Tja, auch dieser Punkt muû sein. In der unregistrierten Version sind
+einige Punkte gesperrt - und warum? Nun, ich habe schon oft Shareware-
+Programme frei "auf den Markt" geworfen, aber bisher nie auch nur eine 
+Mark dafÅr gesehen. Wer dieses Programm gebrauchen kann, kann sich fÅr 
+DM 20,- bei mir registrieren lassen. Er bekommt dafÅr einen Key der 
+unter "KEY:" einzutragen ist. Ich denke, daû DM 20,- nicht zu viel fÅr 
+dieses Programm sind.
+
+Wer kein Interface besitzt und keine DM 160,- dafÅr ausgeben mîchte,
+kann sich mit mir in Verbindung setzen. Auf Wunsch baue ich dann ein
+solches (kostengÅnstig) zusammen.
+
+
+
+FunktionsÅbersicht
+==================
+ x = Transfersoftware unterstÅtzt diese Funktion.
+(x)= Transfersoftware unterstÅtzt diesen Bereich, aber es existiert
+     z.Zt. noch keine Dialogbox zu komfortablen DatenÅbertragung.
+     Diese Funktionen konnte ich leider auch noch nicht testen!
+ o = Transfersoftware unterstÅtzt diese Funktion z.Zt. noch nicht
+     (bitte den Autor kontaktieren). Empfangene Daten landen in einer
+     Fehlerdatei (*.ERx bzw. *.E_x).
+(s)= Funktion auf diesem Casio nicht verfÅgbar; aber Transfersoftware
+     simuliert diese Funktion mit Hilfe der "Schedule".
+
+Funktion \ Modell | 4300 4600 5300 8350 8500 M-10 9300 R-10 R-20
+------------------+---------------------------------------------------
+Telephone         |   x    x    x    x    x    x    x    x    x
+Schedule          |   x    x    x    x    x    x    x    x    x
+Business Card     |                  x    x    x    x    x    x
+Memo              |   x    x    x    x    x    x    x    x    x
+Calendar          |   x    x    x    x    x    x    x    x    x
+Reminder          |   x    x    x   (s)  (s)   x   (s)   x    x
+------------------+---------------------------------------------------
+Spreadsheet       |                       o    o         o    o
+To Do             |                            o         o    o
+Free File         |                           (x)       (x)  (x)
+Weekly            |  (s)  (s)  (s)  (s)  (s)  (x)  (s)  (x)  (x)
+------------------+---------------------------------------------------
+
+email: 2:2446/110.6@fidonet.org
+       51:601/7.6@atarinet.ftn
+       90:400/410@nest.ftn
+       90:400/404.6@nest.ftn
+       slabbi@kali.rhein-ruhr.de (Internet)
+       slabih00@marvin.informatik.uni-dortmund.de (Internet)
+
+
+
+Historie:
+=========
+V1.00 - Erste offizielle Version
+V1.10 - Komplett neu geschrieben mit vielen neuen Features.
+V1.20 - REMINDER/WEEKLY fÅr Casio-Datenbanken ohne Reminder- bzw.
+        Weekly-Funktion.
+V1.25 - ICFS-Iconify implementiert.
+V1.30 - Schnittstellenroutine optimiert.
+V1.35 - FreeFile, Weekly, ToDo wird erkannt.
+V1.36 - Ein kleinen Bug beseitigt.

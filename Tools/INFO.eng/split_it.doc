@@ -1,0 +1,80 @@
+072000300070000144000006000014000
+11
+21
+F0000000001
+9[........................................................]0110
+€==========================================================================
+SPLIT-ITV1.x                                LastChanges:25Nov93
+==========================================================================
+(c)StephanSlabihoud
+==========================================================================
+SHAREWARE
+==========================================================================
+
+ForsharewaredetailsrefertoAVALON.TXT
+
+==========================================================================
+
+Ifyouhaveanyideasandbugreportsdirectedatmanualandprogram,
+pleasesendthemdirectlyandpercrashmailtome!
+
+
+
+INTRO:
+======
+
+Sometimestextfilesaretoolongtosendinonlyonemessage.Nowyoucan
+splitthesefilesintosmallerpart.Thesepartcanbesende.g.byusing
+FILE2MSG.
+
+
+
+€HowtouseSPLIT-IT:
+====================
+
+SPLIT_IT<file><maxbytes><maxlines>
+
+<file>-Filethatshouldbesubdivided.Thesubfilesareending
+withtheextension"*.xxx"(xxx=part).
+
+<maxbytes>-Maximumofbytesperpart,or"0",ifthefileshouldnot
+besubdividedusing<maxbytes>.
+
+<maxlines>-Maximumoflinesperpart,or"0",ifthefileshouldnot
+besubdividedusing<maxlines>.
+
+
+Examples:
+=========
+
+SPLIT_ITE:\TEST.TXT60000
+
+Thetextwillbesubdividedintopartsof6000bytes.
+
+SPLIT_ITE:\TEST.TXT0100
+
+     Thetextwillbesubdividedintopartsof100lines.
+
+SPLIT_ITE:\TEST.TXT6000100
+
+Thetextwillbesubdividedintopartsofmax.100linesandmax.
+6000bytes.
+
+
+
+INTERNA:
+========
+
+Thetextmayhaveanunlimitednumberoflines.
+
+
+
+
+HISTORY:
+========
+V1.0-  Firstofficialversion.
+V1.1-BugFix.
+V1.2-Insteadofaddingaheadlineafootlineiscreated.
+V1.3-BugFix.Numberingoffootlinecorrected.:-(
+V1.4-Alittlebitfaster.
+

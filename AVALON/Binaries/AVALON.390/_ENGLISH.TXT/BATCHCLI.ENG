@@ -1,0 +1,889 @@
+                                                   Last change: 09.10.1994
+
+==========================================================================
+=               T h e   B A T C H - I N T E R P R E T E R                =
+==========================================================================
+
+
+Note that the marked (!) commands can handle wildcards ("*" and "?"). 
+Commands marked with (*) are using/returning ERRORLEVEL.
+
+
+Important notes:
+----------------
+The AVALON interpreter was written especially for  "point business". 
+Therefore there are some specialities:
+
+ 1.) The batchfile will NOT terminate if an error occured (e.g. if you 
+     tried to copy a non-existing file). The warning on the screen 
+     usually can be ignored. Critical errors (wrong pathname, etc.) and 
+     messages (PAUSE) are shown in inverse style.
+ 2.) Immediatley after a batchfile is started, the drive/path is set to 
+     that drive/path where the batchfile resides.
+ 3.) Upper and lower case is not important within the commands.
+ 4.) The batchfile can be interrupted by pressing "ESC".
+ 5.) When the output mode is ECHO=FULL, it is possible to supress the 
+     printing of single lines, when you add a "@" in front of the 
+     statement.
+
+AUTOEXEC.BAT
+------------
+Before a AutoPoll session is startet, "AUTOEXEC.BAT" will be processed. 
+The batchfile "AUTOEXEC.BAT" must be put in the systemfolder of AVALON. 
+If you want AVALON not to start AUTOEXEC.BAT, hold down the LEFT shift 
+key after starting AVALON.
+
+It is possible to start another batchdatei when starting AVALON. Just 
+start Avalon with following  commandline:
+"Batch:PFAD\BATCH.BAT" (e.g. "Batch:E:\TEST\POLL.BAT)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+The batchinterpreter                                               Page 02
+
+
+     File commands ............................................ 3
+       COPY, MOVE, SCOPY, SMOVE
+       RENAME
+       DEL
+       TYPE, PRINT
+       DUMMYFILE
+       SPLIT
+     Starting of programs ..................................... 4
+       EXEC, DEXEC
+       REDIRECT=ON|OFF
+     Drive and path commands .................................. 4
+       DIR
+       CHDIR
+       X:
+     Testing and jumping ...................................... 5
+       EXIST, EXISTn, NOTEXIST, NOTEXISTn
+       JUMP
+       IFERR=, IFERR<, IFERR>, IFERR#
+       :label, GOTO
+     Functions that are using errorlevel ...................... 6
+       CLRERR
+       DAY?, MONTH?, YEAR?, WEEKDAY?, DATE?
+       HOUR?, MINUTE?, TIME?
+       GETKEY
+     Creation of textfiles .................................... 6
+       OPEN, APPEND
+       WRITE
+       CLOSE
+     Convert textfiles into the messagebase format ............ 7
+       !FILE
+       !FILESELECT
+       !AREA
+       !BASE
+       !FLAGS
+       !SUBJECT
+       !CONVERT=ON|OFF
+       !CONVERTTEARLINE=ON|OFF
+       !FROM
+       !SEND
+     Commands especially for parameters ....................... 8
+       FILESELECT
+       CUTEXTENSION, CUTPATH
+       INPUT, PRESET
+       CONVERT, CONVERT4D
+     Node-/Pointlist commands ................................. 9
+       APPLYDIFF
+       MAKEUSERLIST
+       EXTRACT
+     Other commands ........................................... 10
+       PAUSE
+       CLS
+       REM, ";"
+       ECHO, WECHO, ECHO=OFF|ON
+       EXIT
+       EndOfAvalon, ErrorEndOfAvalon
+       SHELL
+       HIDEM, SHOWM
+       SWITCH
+       SHIP
+       BELL, GONG
+       WAITTIME
+       LOG, LOGn
+     Examples ................................................. 12
+
+
+
+
+
+
+The batchinterpreter                                               Page 03
+
+
+
+File commands:
+==============
+
+!-)  COPY <source> <targetpath>
+!-)  MOVE <source> <targetpath>
+
+          COPY copies one or more files, MOVE moves files. The statements 
+          do not allow to rename a file. If you give a name of a target 
+          file it will be ignored. The target path must end with a "\". 
+          All sourcefiles found are copied/moved to the <target path>.
+
+!-)  SCOPY <source> <target>
+!-)  SMOVE <source> <target>
+
+          SCOPY/SMOVE always copies/moves ONE file. You can use wildcards 
+          within the source, but only the first file that is found will 
+          be copied to <target>; if necessary, the sourcefile is renamed. 
+          <target> must always be a file; a simple path (see COPY/MOVE) 
+          is not possible!
+
+     (S)COPY/MOVE also copy files with 0 bytes. A warning will be given 
+     to the user, but the copy will still be executed.
+
+--)  RENAME <oldfile> <newfile>
+
+          Change filename. It is also possible to move files with 
+          "RENAME" if the destination is on the same drive, e.g.
+            RENAME D:\JETMAIL\INBOUND\*.* D:\DOWNLOAD\
+          The last backslash in the destination path is very important!
+
+!-)  DEL <files>
+
+          Deletes one or more files.
+
+!-)  TYPE <files>
+
+          Shows <files>, waiting after each page.
+
+!-)  PRINT <files>
+
+          Prints <files>, when printer is online.
+
+--)  DUMMYFILE <file>
+
+          Creates a dummy file <file> with 0 bytes length.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+The batchinterpreter                                               Page 04
+
+
+
+!*)  SPLIT <file> <bytes> <lines>
+
+          Splits a textfile in parts of it.
+            <file>  - Filename
+            <bytes> - max.length in bytes (or 0)
+            <lines> - max.length in lines (or 0)
+          Errorlevels:
+            0-OK
+            2-Missing parameter
+            9-File open error
+
+
+
+Starting of programs:
+=====================
+
+-*)  EXEC <prog> [<cmd>]
+
+          Runs a program with commandline <cmd>
+          It is possible to use a shortcut for defined programs in "Find-
+          1/2". Possible shortcuts are:
+            EXPORT, IMPORT, CRUNCH, SCAN, MSGEDIT, TXTEDIT, MAILER,
+            TERMINAL, UTIL1, UTIL2, UTIL3, UTIL4, UTIL5, UTIL6
+          This will only work with programfiles, NOT batchfiles!
+
+!*)  DEXEC <file> <prog> [<cmd>]
+
+          See EXEC, but deletes <file> afterwards, if return code of 
+          <prog> was NULL (wildcards allowed with <file>.).
+
+--)  REDIRECT=ON
+
+          Avalon tries to redirect all outputs to its own window (all 
+          outputs of programs that have been started with "EXEC" or 
+          "DEXEC" will be redirected if the Bios is used).
+
+--)  REDIRECT=OFF
+
+          TOS screen will be used for outputs.
+
+
+
+Drive and path commands:
+========================
+
+!-)  DIR [[<pfad\>]<datei>]
+
+          Show directory.
+
+--)  CHDIR [<x:>]<pfad>
+
+          Change path (and drive, when defined).
+
+--)  X:
+
+          Change drive.
+
+
+
+
+
+
+
+
+
+
+
+
+The batchinterpreter                                               Page 05
+
+
+
+Testing and jumping:
+====================
+
+!-)  EXIST <file>
+
+          Checks if <file> exists. If it exists, continue with the next 
+          command, if not, go on with the command after the next command.
+
+!-)  EXISTn <file>
+
+          See EXIST, but skips n lines, if <file> does not exist.
+          If n is equal to 0 then 10 lines will be skipped (EXIST1 is the 
+          same as EXIST).
+
+!-)  NOTEXIST <file>
+
+          Opposite of EXIST.
+
+!-)  NOTEXISTn <datei>
+
+          Opposite of EXISTn.
+
+--)  JUMP <n>
+
+          Skip the next <n> lines.
+
+-*)  IFERR= <level> <label>
+-*)  IFERR< <level> <label>
+-*)  IFERR> <level> <label>
+-*)  IFERR# <level> <label>
+
+          If the ERRORLEVEL is equal, smaller, higher or not equal to 
+          <level> then jump to <label>
+
+--)  :label
+
+          Defines a label <label>. The maximum length of a label is 20 
+          characters.
+
+--)  GOTO <label>
+
+          Jumps to label <label>t.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+The batchinterpreter                                               Page 06
+
+
+
+Functions that are using errorlevel:
+====================================
+
+-*)  CLRERR
+
+          Clears ERRORLEVEL (ERRORLEVEL=0).
+
+-*)  DAY?, MONTH?, YEAR?
+
+          Returns day (1..31), month (1..12) or year (19xx) in errorlevel.
+
+
+-*)  WEEKDAY?
+
+          Returns weekday (0<=errorlevel<=6).
+          (0=Monday,1=Tuesday,...).
+
+-*)  DATE?
+
+          Returns date in errorlevel (YYYYMMDD).
+
+-*)  HOUR?, MINUTE?
+
+          Returns hour (0..23) or minute (0..59) in errorlevel.
+
+-*)  TIME?
+
+          Returns time in errorlevel (HHMM).
+
+-*)  GETKEY
+
+          Waits for a keypress and returns the ASCII-Code.
+
+
+
+Creation of textfiles:
+======================
+
+-*)  OPEN <file>
+
+          Open file <file>  (Errorlevel=0 means: No error).
+          OPEN and APPEND can only handle ONE file. It is impossible to 
+          open two files at the same time.
+
+-*)  APPEND <file>
+
+          Append text to file <file> (Errorlevel=0 means: No error).
+
+-*)  WRITE [<text>]
+
+          Writes a text into the file.
+
+-*)  CLOSE
+
+          Close the file.
+
+
+
+
+
+
+
+
+
+
+
+
+
+The batchinterpreter                                               Page 07
+
+
+
+Convert textfiles into the messagebase format:
+==============================================
+
+!-)  !FILE <filename>
+
+          Define file to send.
+
+!*)  !FILESELECT
+
+          See "!FILE", but uses the fileselector.
+          (ERRORLEVEL: 0=OK, 1=File not found, 2=Cancel)
+
+--)  !AREA <areaname>
+
+          Define (echo)area. This area must be defined in AREAS.BBS.
+
+--)  !BASE <msgbase>
+
+          Define msgbase. This statement can be used instead of "!AREA". 
+          The msgbase must be defined without extension.
+
+--)  !FLAGS <flags>
+
+          Mailflags ("Local" is always set)
+            [P] Private, [C] Crash, [S] Sent, [H] Hold
+            [W] Send-With-File, [K] Kill-If-Sent
+          "P" MUST be set in the netmail.
+          Examples:  Netmail: !FLAGS PK
+                    Echoarea: !FLAGS
+
+--)  !SUBJECT <subject>
+
+          Define the mailsubject.
+          "!SUBJECT" allows following parameters:
+           %filename% - filename without extension (of the converted file)
+           %file%     -    "     with       "       "   "     "       "
+           %ext%      - extension of the file interpreted as number
+                        (or 0, when the extension cannot be interpreted
+                        as number).
+
+--)  !CONVERT=ON|OFF
+
+          Turns on/off vowel-mutation conversion (only usefull for 
+          germans ;-)) Default is: "!CONVERT=OFF".
+
+--)  !CONVERTTEARLINE=ON|OFF
+
+          Beginning a new line with three "-" can make problems, because 
+          some exporters think that the text ends here. This function 
+          allows to convert the third "-" in a "!" automatically.
+
+--)  !FROM <addr> <name>
+
+          Address and name of sender.
+
+--)  !SEND <addr> <name>
+
+          Send mail to <name> with address <addr>.
+
+
+
+
+
+
+
+
+
+
+The batchinterpreter                                               Page 08
+
+
+
+Commands especially for parameters:
+===================================
+
+The parameters %%n can be used in every command (0<=n<=9). %%e returns 
+the last errorlevel.
+
+!*)  FILESELECT [n]
+
+          Allows to select a file witch is stored in the parameter n (if 
+          n is missing, 0 will be used) (0<=n<=9).
+          (ERRORLEVEL: 0=OK, 1=File not found, 2=Cancel)
+
+--)  CUTEXTENSION [n]
+
+          Cuts extension from parameter n.
+
+--)  CUTPATH [n]
+
+          Cuts path from parameter n.
+
+--)  INPUT [n [text]]
+
+          Reads a text from the keyboard. The text is stored in parameter 
+          n. Prompt = <text>. (0<=n<=9; if n is missing, 0 will be used).
+
+--)  PRESET [n [text]]
+
+          Sets parameter n to <text>.
+
+--)  CONVERT4D [n [addr]]
+--)  CONVERT [n [addr]]
+
+          Converts an address into a 3d- or 4d-filename and stores the 
+          result in parameter n.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+The batchinterpreter                                               Page 09
+
+
+
+Node-/Pointlist commands:
+=========================
+
+!*)  APPLYDIFF <nl> <diff> [clean]
+
+          Applies a diff-file to a point- or nodelist.
+               <nl> = nodelist (e.g. "D:\NODELIST.*")
+             <diff> = Diff-file (e.g.. "D:\NODEDIFF.*")
+          When you add the statement "clean", the Diff-file will be 
+          deleted automatically.
+          Errorlevels:
+            0-OK
+            1-Wrong CRC (new NL was created)
+            2-Missing parameter
+            3-Nodelist not found
+            6-Temporary file open error
+            7-Day number not found
+            9-File open error
+
+!*)  MAKEUSERLIST <typ> <lst> <out> [<zone>]
+
+          Creates a userlist for the LED from a 3D-/4D-pointlist or 
+          nodelist.
+            <typ> = Format (p=pointlist (3D or 4D), n=nodelist)
+            <lst> = 3D-/4D-pointlist or nodelist (e.g. "D:\POINTS24.*")
+            <out> = Name of userlist (e.g. "D:\PN24USER.LST")
+           <zone> = Optional (only pointlist):
+                    Add "<zone>:" to userlist.
+          Errorlevels:
+            0-OK
+            2-Missing parameter
+            9-File open error
+
+!*)  EXTRACT <nodelist> <output> [<region1> [<region2> ...]]
+
+          This statement allows to convert a nodelist into a smaller one.
+          You can define up to 50 regions which are included into the
+          smaller list. When no region is defined a list of all RCs is 
+          created.
+
+          Errorlevels:
+            0-OK
+            2-Missing parameter
+            9-File open error
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+The batchinterpreter                                               Page 10
+
+
+
+Other commands:
+===============
+
+--)  PAUSE
+
+          Waits for keypress.
+
+--)  CLS
+
+          Clear screen.
+
+--)  REM <text>
+--)  ; <text>
+
+          Remark (line will be ignored).
+
+--)  ECHO [<text>]
+
+          Output of <text>.
+
+--)  WECHO [<text>]
+
+          Output of <text> without linefeed.
+
+--)  ECHO=OFF|ON|FULL
+
+          ECHO=OFF: Show only warnings and errors.
+          ECHO=ON : Show more information. Available for following
+                    statements: !SEND,SWITCH,WEEKDAY?,OPEN,APPEND,
+                    DEXEC,(S)COPY/MOVE,DEL,TYPE,PRINT,RENAME,WAITTIME
+          ECHO=FULL:same as ECHO=ON and show every processed line.
+          Default is ECHO=ON.
+
+--)  EXIT [<n>]
+
+          Exit batchfile with errorcode <n>.
+
+--)  EndOfAvalon
+
+          Exit Avalon with errorcode 0.
+
+--)  ErrorEndOfAvalon <n>
+
+          Exit Avalon with errorcode n.
+
+--)  SHELL [<cmd>]
+
+          Starts a shell using "_shell_p" with command <cmd>.
+
+--)  HIDEM
+--)  SHOWM
+
+          Hide mouse (usefull when running TOS-programs) and show mouse.
+
+--)  SWITCH <n>
+
+          Switches to point setup <n> (0<=n<=5). Only for Binkley-Term 
+          setup.
+
+
+
+
+
+
+
+
+
+
+The batchinterpreter                                               Page 11
+
+
+
+
+--)  SHIP
+
+          Stop harddisc. All targets/units connected to the ASCI,SCSI and 
+          IDE port will be stopped.
+
+--)  BELL
+--)  GONG
+
+          Rings a bell or a gong (very nice).
+
+-*)  WAITTIME <HH:MM:SS>
+
+          Waits till <HH:MM:SS>. Pressing any key continues.
+          ERRORLEVEL =0: OK
+          ERRORLEVEL!=0: ASCII code of pressed key
+
+--)  LOG <text>
+
+          Writes "text" into binkley's logfile.
+
+--)  LOGn <text>
+
+          Same as LOG, but instead of the "!" as the preceeding 
+          character, you can define your own (0=! 1=* 2=+ 3=: 4=# 
+          5=Space).
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+The batchinterpreter                                               Page 12
+
+
+
+Examples:
+=========
+
+MOVE H:\FIDO\INBOUND\NODE_BRD.* H:\FIDO\LIST\
+
+     Move all "NODE_BRD.*" to the LIST-directory.
+
+
+TYPE H:\FIDO\INBOUND\*.RSP
+DEL H:\FIDO\INBOUND\*.RSP
+
+     Show all respondfiles and delete them afterwards.
+
+
+CHDIR \FIDO\INBOUND
+EXIST LISTE.TXT
+DEL LISTE.TXT
+
+     If exist, delete LISTE.TXT (also possible without EXIST, but then a      
+     warning will occur).
+
+
+EXIST2 readme.txt                  |    NOTEXIST2 readme.txt
+ECHO readme.txt exists!            |    ECHO readme.txt not found!
+JUMP 1                             |    JUMP 1
+ECHO readme.txt not found!         |    ECHO readme.txt exists!
+
+     Both examples check the existance of "readme.txt".
+
+
+Archive NODEDIFF.A67 contains NODEDIFF.267:
+
+DEXEC nodediff.* arc.ttp x nodediff.*
+
+     Gets the name of NODEDIFF.* (NODEDIFF.A67). After that, ARC.TTP 
+     unpacks NODEDIFF.*; then NODEDIFF.A67 is deleted. The unpacked file 
+     NODEDIFF.267 e.g. can be moved by "MOVE NODELIST.* E:\FIDO\LIST\".
+
+
+DUMMYFILE \FIDO\OUTBOUND\00F50008.FLO
+
+     A file 00F50008.FLO is created, filelength is 0 bytes.
+
+
+EXIST files.lzh
+DEXEC files.lzh \fido\lharc.ttp x -m files.lzh e:\fido\list\ *.*
+
+     Unpacks a filelist FILES.LZH into the directory E:\FIDO\LIST\.
+
+
+ECHO Press any key to exit
+WAITTIME 12:30
+IFERR# 0 continue
+EXIT
+:continue
+
+     Waits till 12:30, then continue with the batchfile.
+     To exit the batch press any key.
+
+
+
+
+
+
+
+
+
+
+The batchinterpreter                                               Page 12
+
+
+
+WEEKDAY?
+IFERR# 6 continue
+APPEND 09610067.REQ
+WRITE NEWFILES
+CLOSE
+:continue
+
+or
+
+WEEKDAY?
+IFERR# 6 continue
+CONVERT 0 2401/103
+APPEND %%0.REQ
+WRITE NEWFILES
+CLOSE
+:continue
+
+     Both examples create a requestfile every sunday for 2401/103 to 
+     request "NEWFILES".
+
+

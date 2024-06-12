@@ -1,0 +1,13 @@
+file2msg.ttp
+; .C [ -Y ]
+; .L [ -L -Y ]
+; .S [ -Y ]
+=                  ; list of modules follows...
+
+PCSTART.O          ; startup code
+
+file2msg.c     [ -K -A -Y -T -G]
+
+PCSTDLIB.LIB       ; standard library
+PCEXTLIB.LIB       ; extended library
+PCTOSLIB.LIB

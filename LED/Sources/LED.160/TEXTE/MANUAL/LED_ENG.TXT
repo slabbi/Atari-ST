@@ -1,0 +1,1048 @@
+                                                         Bottrop, 19.01.95
+
+                                  LED
+
+                          - Little red EDitor -
+
+                      - The-Box Messagebase Editor -
+                   - now optimized for ACS and Binkley -
+
+                             by Roland Bohn
+                          and Volkmar Wieners
+                         and Stephan Slabihoud
+
+                     English Users Manual (LED_ENG.DOC)
+                   Translated by Frank Bell (2:310/12.24)
+
+                              for Version 1.0
+
+                   Its recommended that you read this text
+                  before starting, or at least print it out
+                   and lay it next to your computer before
+                    using the program for the first time.
+
+ You are allowed to freely copy this program and pass it along to others.
+ We *want* you to distribute it to other Mailboxes.  This program *may
+ not* be distributed to or through commercial PD services.  Also, any,
+ commercial use or reproduction of this program can only be made with
+ the explicit approval of the authors.
+
+ Bugs, recommendations, and other comments should be sent, via Fido
+ Netmail, to the net addresses below. If possible, separate your errors
+ and recommendations and number each one. Thank you.
+
+     Stephan Slabihoud
+     
+       FidoNet: 2:2446/110.6@fidonet.org
+      AtariNet: 51:601/7.6@atarinet.ftn
+     NetworkST: 90:400/410@nest.ftn, 90:400/404.6@nest.ftn
+      Internet: slabbi@kali.rhein-ruhr.de
+                slabih00@marvin.informatik.uni-dortmund.de
+
+
+
+ 1. General Information
+ ======================
+
+ LED if an editor for FidoNet messages which are stored in "THE-BOX"
+ packet format.  LED replaces THE-BOX's message editor (almost) completely
+ and gives you on top of that a few extra functions.
+
+ If you've already worked with CanED for some time, then you'll find that
+ you must change your habits slightly.  But in the long run the comfort
+ and extra functions will more than make up for it.  Unlike CanED, LED is
+ fully integrated into GEM, with a Menu line, Windows, and Dialog boxes,
+ with all their advantages and weaknesses.  Along with mouse usage, just
+ about all functions can be accessed from your keyboard.
+
+
+
+ 2. Files needed and Installation
+ ================================
+
+ Besides this manual you should have:
+
+    LED.PRG  -  the program in question.
+    LED.RSC  -  the ressource.
+
+ The Resource File has been included in this version of the program. This has
+ the advantage that a *.RSC file doesn't have to be loaded along with the
+ program and it can't get lost or deleted.  If you have a LED.RSC file, it 
+ belongs to an older version of LED, you can remove it without feeling guilty.
+
+ If you have CanED installed then just copy LED.PRG into the same folder.
+
+ LED also needs the following files (not part of LED.PRG):
+
+    BINKLEY.CFG
+    or
+    TB.CFG       -    The Mailer configuration file, this contains your
+                      paths, Node List etc...
+
+    AREAS.BBS    -    List of Areas which you've requested. This also
+                      belongs to THE-BOX's installation.
+
+ If you've already worked with THE-BOX programs then you have to have these
+ two files, if not, then please read THE-BOX's or Binkleys documentation 
+ for more information on creating them.
+
+ You should pay special attention to the file paths that are contained in 
+ TB.CFG (BINKLEY.CFG) and AREAS.BBS which LED needs, in TB.CFG (BINKLEY.CFG)
+ the NETMAIL path and in AREAS.BBS all your Area paths.  
+ If the disk drive identification is missing as part of the path then LED 
+ defaults to the disk drive to the current active drive.  When only a 
+ relative path is givin (that is, a path without drive identification or 
+ a backslash at the beginning) then the actual path from where the editor 
+ resides is set in front of the existing path. 
+ 
+ With THE-BOX programs, you can generally distinguish between two types of
+ installations:
+
+ a) With the Environment Variable 'MAILER' or 'BINKLEY'.
+    Here the Shell Variable, MAILER or BINKLEY, should be set to the 
+    same path as the configuration folder. In this folder you should 
+    have all of your configuration files (TB.CFG or BINKLEY.CFG, AREAS.BBS, 
+    etc...). The Mailer and LED must be started from their respective 
+    shell program.
+
+ b) Without 'MAILER' or 'BINKLEY'.
+    If you don't use a shell, and an Environment Variable, then the
+    configuration files have to be in the same folder as the other THE-BOX
+    programs, along with LED.
+
+ In the same folder, as the one containing TB.CFG and AREAS.BBS, LED looks
+ for an existing LED.NEW file. LED saves the last read message number of 
+ the individual areas in it. You can edit this file with an ASCII-Editor 
+ by yourself if you want. 
+
+ File Structure:
+POINTS           58   1  <--- new Msgs
+ATARI.GER        862  3  <--- new unread Msgs
+ST_FIDO.GER      534  2  <--- unread Msgs
+ATARI_ST         134  0  <--- no Flags
+^                ^    ^--- Bit 0 = new Msgs, Bit 1 = unread Msgs
+|                |
+--- Areaname     --- last read Msg
+
+The LED.NEW File is also used by Come_In and Tidy_Up (both from the 
+ACS Packet).
+
+
+ LED also creates the following three files, in the same folder as TB.CFG
+ and AREAS.BBS:
+
+    LED.OPT  - Contains LED-Options, number of windows (along with their 
+               positions) and fonts selection, when LED is exited.  If the 
+               file doesn't exist, it is created.
+
+    LED.KEY  - Contains Function Key usage, this file is created when
+               the function key usage is saved.
+
+    LED.DLG  - Contains the Koordinates of the flying Dialogs.
+
+
+ 3. Starting the program
+ =======================
+
+ You can start the program now that you've copied LED.PRG in the same
+ folder as CanED.  The program first reads your configuration files (TB.CFG
+ and AREAS.BBS) which belong to THE-BOX and then opens a window showing the
+ last read message.
+
+ You can have a maximum of four 'Message Windows' opened at the same time
+ in which to display messages. You can position, change between, open and
+ close these windows as often as you want.
+
+ When you want to enter a message, the active message window becomes an 
+ 'Edit Window'.  This is always a full screen window, or at least the width 
+ can't be changed, athough its heigth can be.  Message and edit windows can
+ have a maximum width of 79 characters.  On a normal monochorom monitor the 
+ scoll bar on the right hand side of the screen can overlap some characters
+ when maximum number of columns is used.  76 character screens are a good
+ compormise for message and edit window sizes.
+ 
+ Not only can other message widows be opened, you can also switch back and 
+ forth between them.  When you finish editing, the edit window returns to 
+ a message window again.
+
+ Only one window can be opened at one time per area.  If you want to a second
+ window in an area that already has an opened window that window will then
+ become active, if not already active.
+
+ If a message window is open, you can use the following keyboard short cuts:
+
+ <CUR-DOWN>           = one line down
+ <CUR-UP>             = one line up
+ <SHIFT>-<CUR-DOWN> or
+ <SPACE>              = one page down
+ <SHIFT>-<CUR-UP> or
+ <SHIFT>-<SPACE>      = one page up
+
+ <CLR-HOME>           = to text begin
+ <SHIFT>-<CUR-HOME>   = to text end
+ <SHIFT>-<CUR-RIGHT>  = shift text to the right (within window)
+ <SHIFT>-<CUR-LEFT>   = shift text to the left  (within window)
+
+ <CUR-RIGHT> or
+ <N>                  = display next message
+ <CUR-LEFT> or
+ <P>                  = display previous message
+
+ <RETURN>             = display next message in the reading direction
+
+ <)> (number block)   = display the next message with the same subject
+                        (beginning 'Re:' will be ignored)
+ <CTLR-)> (number     = display the next message with the same subject with
+            block)      regard to the sender (-> old sender is new receiver)
+
+ <(> (number block)   = display the previous message with the same subject
+                        (beginning 'Re:' will be ignored)
+
+ <CTRL-(> (number     = display the previous message with the same subject
+            block)      with to the receiver (-> old receiver is new sender)
+
+ Additional number block keys:
+
+ <0> thru <9>         = goto message
+ <+>                  = change to next area
+ <->                  = change to previous area
+ <*>                  = change to next area with new messages
+ </>                  = change to next area with unread messages
+
+
+ You doen't have to remember all these key combinations, they can be found
+ under the menu item 'Help', or just by pressing the HELP key. 
+
+
+
+ 4. Menu functions
+ =================
+
+ Along with each menu item, a keyboard short cut character is shown:
+ '^'   stands for the <CONTROL> key,
+ ''   stands for the <ALTERNATE> key and
+ '...' means that a Dialog box will be displayed.
+
+
+
+
+ I. 'LED'
+ ========
+
+ A) 'About LED...'
+ -----------------
+
+ Information dialog with author information, Copyright mark, Version
+ number, Compilation date, and Free memory indication.  The addresses of
+ the two authors can also be found here.  We would be please if you would
+ send us a picture postcard of your home town in appreciation.  Otherwise
+ when you have questions or problems with LED or your 'Point' you can 
+ contact us, the best way is per Netmail.
+
+
+ B) 'Accessories'
+ ----------------
+
+ Self explanatory.
+
+
+
+
+ II. 'File'
+ ==========
+
+ This Menu contains the File-Input/Output functions.
+ 
+
+ A) 'Read ASCII...'
+ ------------------
+
+ A text file will be added to the message being edited at the currect cursor
+ position.
+
+ The text file is selected with the help of a file selector box.
+
+
+ B) 'Write ASCII...'
+ -------------------
+
+ One or more messages will be written to a file in ASCII format.
+
+ A dialog box is displayed, just like the 'Kill Msg' dialog box, where you
+ can enter the Beginning and Ending message numbers.  Then you get a file
+ selector box where you can enter the output file name.
+
+
+ C) 'Append ASCII...'
+ --------------------
+
+ The actual message will be added to a file.
+
+ In case you haven't previously selected a file name, a file selector box
+ will be displayed so that you can enter the file name.
+
+
+ D) 'Read Clipboard'
+ --------------------
+
+ When editing a message, you can insert text, beginning at the currect cursor 
+ position, from the Clipboard file SCRAP.TXT. 
+
+
+ E) 'Write Clipboard'
+ --------------------
+
+ The current message is written to the Clipboard file SCARP.TXT.
+
+ With the help to these two functions, its possible to easily exchange ASCII 
+ files with other programs, it requires, of course, that they also use the 
+ Clipboard. 
+
+
+ E) 'Execute...'
+ ---------------
+
+ Here you can execute a TOS or GEM program from within LED.  A file selector
+ box is displayed so that you can select the program you wish to run.  When 
+ the program is ended LED is automatically started again.  Because LED reads
+ the configurations files TB.CFG and AREAS.BBS after every program start its
+ possible to call a text editor from within LED, make changes to these files,
+ and save them; LED then takes these changes into consideration.
+
+
+ F) 'Quit'
+ ---------
+
+ LED closes its windows, writes the 'Last read' Pointers to LASTREAD.CED,
+ and (if the option is active) the area size and unread pointers to LED.NEW.
+ Position and number the open windows, the selected fonts and all other 
+ options are stored in the LED.OPT file, so that the next time LED is started
+ you are returned to the same environment from which you left.  If you don't
+ wish this, you can bypass the saving of LED.OPT by pressing the <SHIFT> key 
+ while leaving LED.  If generally, you don't want to save LED.OPT when 
+ quiting, you should set off the option 'Save always LED.OPT', found in the 
+ 'LED-Options'.
+
+
+
+
+
+III. 'Area'
+===========
+
+ This Menu contains functions for the Message Area. Within LED that means 
+ the same thing as Window.
+
+
+ A) 'Open...'
+ ------------
+
+ Another Message Window is opened.  In addition a new Area has to be 
+ selected.  To do this, a dialog box is displayed, equivalent to  'Change' 
+ (see the next Menu point) and is used in the same way.  The difference 
+ between the two is here a new window is opened, while by 'Change' the 
+ contents of the actual window are altered.
+
+ Only one window per Area can be opened.  If a window for the Area to be 
+ selected is already open it will become active.  Only four windows can be
+ opened at the same time.        
+
+
+ B) 'Change...'
+ -------------
+
+ The Current Area is changed.
+
+ A dialog box is displayed in which all of your Areas are listed.  You can 
+ use the cursor keys (left, right, up and down) to pick out the area you 
+ wish to change to.  Once you've selected the area you want, with the 
+ inverted cursor bar, just press <RETURN> to activate that area.  You can, 
+ of course, use the mouse for Area selection, one click on the left mouse 
+ butten is enough.
+
+ If you don't want to pick a new Area you can exit the dialog box by pressing 
+ the Cancel Button with the mouse, pressing <ENTER> or the <UNDO> key.
+
+ Next to the Area Names are two information characters (when the LED option
+ 'Show new/unread Msg' is active):
+
+ '*' = The number of messages in this area has changed since the last
+       LED session.  Normally this means that new messages have been
+       written into this area during the last Poll.  This character is
+       removed when you enter and leave this area.
+
+ '/' = In this area the last message has not yet been read.  Normally this
+       a sign that you have unread messages.  This character is shown
+       independently of the number of times you enter and leave this area.
+
+ (These characters are displayed without any guarantee, especially when
+ new areas, AREAS.BBS, are added or deleted.  For these situations use
+ SHIFT-F10 and/or SHIFT-F9 to set up the new conditions)
+
+ If you want to by-pass the 'Area change...' menu item, you can use the
+ following commands to change areas directly (keyboard number block only):
+
+ '+' = Change to the next area on the area list.
+ '-' = Change to the previous area on the area list.
+ '*' = Change to the next area with 'new' messages.
+ '/' = Change to the next area with 'unread' messages.
+   
+
+ C) 'Cycle...'
+ -------------
+
+ When more then one message window is opened, use this function to flip
+ through the windows one after the other.
+
+
+ D) 'Close...'
+ -------------
+
+ An open message window will be closed.  This is the same as clicking on
+ the window's 'GEM Window Closer' (in the upper left hand corner).
+
+
+
+
+
+ IV. 'Message'
+ =============
+
+ All items within this menu relate to the active message window, the window
+ which is on top if more than one window is open.  If no windows are open
+ then none of the menu items can be chosen.
+ LED supports maximal 4000 Msgs per Area. Each Msg with a maximum of 1000 
+ lines (or 64KBytes).
+ 
+
+ A) 'List...'
+ ------------
+
+ A list of items will be displayed, '#:' (message number), 'From:', 'To:', 
+ and 'Subject:'.  You can roll foreward and backwards to pick out message 
+ you want to read.
+
+ A dialog box is displayed with a list of up to 18 messages.  At the
+ top of the display, inverted, is the name of the actual, last read,
+ message.  With the <SHIFT>-<CUR-DOWN> and <SHIFT>-<CUR-UP> you can access
+ the previous, and next, 18 messages.  With <CUR-DOWN> and <CUR-UP> you can
+ move the inverted cursor over the 18 displayed message subjects.  When you
+ press <RETURN> to leave the dialog, the message indicated by the cursor
+ will be displayed.  You can also pick out a message, using the mouse, just
+ click once on the message you want.
+
+ If you don't want to select another message you can exit the Dialog Box by 
+ pressing the Cancel Button with the mouse, pressing <ENTER> or the <UNDO> 
+ key.
+
+ With the <CLR-HOME> key you can dispaly the first page of the Message Area 
+ and with <SHIFT>-<CLR-HOME> the last page.
+
+ Messages which have been deleted are shown in faded characters and can not
+ be selected with the mouse.  You can selected them using the cursor keys 
+ though.  Once a deleted message is selected, just press <RETURN> to 
+ un-delete it and then display it.
+ 
+ The roll bar on the right hand side of the dialog box is, of course, there
+ for those who like to use the mouse and it functions similarly to the roll
+ bar found in other programs, like the File Selector.  A click in the 'gray'
+ area scrolls one page up or down.  When you move the slider, with the mouse,
+ then the messages are positioned appropriately in relation to the slider.
+
+ You can only control the display using the roll bar, a message is selected,
+ for displaying, by using the <CUR-UP>, <CUR-DOWN>, or with the mouse.  
+
+ On the left side of the dialog box are inverted arrows that indicate that a
+ message is directed to the system sysop.  Messages which the sysop has 
+ entered are indicated with a normal arrow.  The direction of the arrows show 
+ if the message went out or came in.
+
+
+ B) 'Goto...'
+ ------------
+
+ Display a message, selected via a number.
+
+ You only have to enter the new message number in the dialog box and press
+ 'OK'.  If you enter a number which is lower than the first message in the
+ area or higher than the last message then the first message or the last
+ message, respectively, in that area will be retrieved and displayed.  If 
+ you don't enter any number, or delete a number after entering one, the last 
+ message displayed will be redisplayed.
+
+ You can also call this dialog box from a message window by just pressing a
+ number on the keyboard number block.
+
+
+ C) 'Kill...'
+ ----------------
+
+ One or more messages can be marked as deleted, at the same time other flags
+ can be set.
+
+ In the displayed dialog box, you can enter the beginning and ending number
+ of the message(s) to be processed.  Along with the Delete Flag, "Deleted", 
+ other flags can be set (these are only useful in the Netmail Area):
+ 
+ "Sent"   = a message with this flag will not be exported 
+ "K/Sent" = this message will be marked as "Deleted" after the next export 
+            run
+ "Crash"  = the recipient of this message will be called directly by the 
+            Point
+
+ Marked messages are physically removed with such programs as COMSCAN, 
+ FASTPACK, FCRUN, or TIDY_UP. 
+
+ -> 'Quick Kill': with <CTRL>-<RETURN> you can delete (mark as deleted) the
+                  actual message being displayed without being asked any 
+                  further questions.
+
+
+ D) 'Heal...'
+ ------------
+
+ Healing (removing) Flags. 
+
+ As with 'Kill' a dialog box is displayed in which you can enter the beginning 
+ and ending number of the messages to be healed as will as the other flags. 
+
+
+ E) 'Forward...'
+ ---------------
+
+ A message will be sent to a new address.
+
+ A dialog box will be displayed in which you can enter the name of the new
+ recipient, address, for the message that is currently being shown.  If the
+ address exist in your user list file then just click on the  'Userlist' 
+ button, otherwise enter his node address along with his name.  
+ 
+ When you leave the dialog box with 'OK' a copy of the message will be sent 
+ to the new address the next time you export.
+
+
+ F) 'Move...'
+ ------------
+
+ With this function you can move, or copy, one or more messages into another
+ area.
+
+ A dialog box is displayed in which you first have to enter a number of a
+ message you want to move (moving of a message is done from the actual area
+ into another area).  As default, the number of the actual message is
+ already entered.  Just by changing the 'From' and 'To' field contents you
+ can move any number of messages at the same time.
+
+ Below and to the left of the dialog box, you have three options:
+
+ 'Remove Arealine' = If a destination exist 'AREA: xxxxxxxx', it will 
+                     not be moved/copied with the message.
+
+ 'Keep Copy'       = Normally every message is moved into another area
+                     and the original message is deleted, if you chose
+                     this option the message is not removed.
+
+ 'Forward'         = The message gets a new address.  After you pick out
+                     your destination, a dialog box is displayed where
+                     you can enter the new address (Netmail Area
+                     messages also get a FidoNet Address).
+
+ After clicking 'OK' the previously faded list of Areas is highlighted.
+ Just click with the mouse on the area to which the message is to be sent.
+ Also refer to 'Change' in the above 'Area' section.
+
+
+ G) 'Print'
+ ----------
+
+ The currently displayed message is printed.
+
+ In case you want a page skip, after printing, then press <SHIFT-F8> while
+ the message is displayed (instead of using the menu or <CTRL-P>). 
+
+
+ 
+
+ V. 'Edit'
+ =========
+
+ A) 'Enter Msg'
+ --------------
+
+ Write a message in the current area.
+
+ The Message Window becomes an Edit Window.  You must first enter the
+ address and subject in the message header before you can enter your
+ message.  Exit both lines with <RETURN> when your finished.
+
+ If your in the FidoNetmail Area you will be asked for the Node Number via
+ a dialog box.  Within this box is a button 'Userlist', you have two
+ possibilities in which to enter the Node Number:
+
+ 1)  You must enter the complete (and correctly spelled) first and last 
+     name of your recipient (address).  Then click on the 'Userlist' to  
+     search the list (your Userlist file name is entered in the LED-Options'
+     'USERLISTs').
+
+ 2)  You just enter the first initials of the first and last name of the
+     wanted address.  Then when you click on 'Userlist' the first entry
+     matching what you entered will be copied to the address field.  Just 
+     click on 'OK' and it will be written into the message header.
+
+ NOTE: If your in another area you can still use the 'Userlist' as described
+ above to get the correct address but the Node Number is not displayed or
+ used.
+
+ The 'To:' and 'Subj.:' lines along with the message flags (top, right) can
+ be edited at any time, you just have to point and click with the mouse.
+ In the Netmail Area the 'Private Flag' is automatically set.
+
+ Within the Edit Window you can use the following key combinations along
+ with the normal cursor keys, <BACKSPACE> and <DELETE> keys:
+
+ <SHIFT>-<CUR-UP>   = Cursor one page up.
+ <SHIFT>-<CUR-DOWN> = Cursor one page down.
+
+ <CLR-HOME>         = Cursor is positioned to the beginning of your text.
+ <SHIFT>-<CLR-HOME> = Cursor is positioned to the end of the text.
+
+ <INSERT>           = Switch between Overwrite/Insert.
+ <CTRL>-<Y>         = Delete one line, the current line.
+
+ The maximal width of the Edit Window is 75 characters (changeable via LED-
+ OPTION).  You can enter your text without having to worry about carriage
+ returns, word-break is automatic at the end of each line.
+
+ You can cancel editing at any time by using 'Abort Msg'.  With 'Save Msg'
+ the message is saved.  The saved message is then Exported the next time
+ you poll.  In both cases you are returned to the message window from which
+ you started.
+
+
+ B) 'Reply Msg'
+ --------------
+
+ Entering of a message with 'Re:' to the current subject.
+
+ Address and subject of the current message are automatically taken over
+ into your message header and the cursor is positioned in the text area.
+ In 'LED-Options' you can specify if 'Re:' should be added to the subject in the
+ subject line.  But when five 'Re:'s are already there you should probably
+ stop adding them.  You can, of course, change the 'To:' and 'Subj:' lines
+ at any time, just point and click with the mouse.
+
+ Otherwise the same commands and functions as 'Enter Msg' apply.
+
+
+ C) 'Quote Msg'
+ --------------
+
+ Address and subject are automatically taken over into the new header lines
+ and the message text is written to the edit window and set in quotes.   If 
+ it has already been quoted, it is set in quotes again.  
+
+ Via 'LED-Options' you specify your quote type, '>' or 'XY>', and also if an
+ extra heading line is to be written at the top of you message, something 
+ like: 
+ 
+ "In a Message of <25 May 1990 ...".  
+
+ If present this line can be in either English or German.
+
+ All quoted lines are reformated to the edit window with a maximum of 75
+ characters per line.  The program tries to fill out a line as completely
+ as possible.  Use <CTRL>-<Y> to delete quoted lines you don't need and
+ leave in lines which really have meaning to what you want to say.
+
+ Otherwise the same commands and functions as 'Enter Msg' apply.
+
+
+ D) 'Quote to Netmail'
+ ---------------------
+
+ This is the same as 'Quote Msg', except that the message will be written
+ to the Netmail Area when saved.  Also the recipience's FidoNet address is
+ automatically written to the message header (as long as the Origin is
+ correct) and the 'Private' flag is set.
+
+ Otherwise the same commands and functions as 'Enter Msg' apply.
+
+
+ E) 'Change Msg'
+ ---------------
+
+ A new message will be created with the contents of the currentaly displayed
+ message and you will be put into the message editor.  When you save the 
+ message, the original message is automatically deleted (you can, of course,
+ un-delete it later).
+
+ If you use the 'Skip COMSCAM' option then a possible existing copy of the
+ original message in the Netmail Area will be deleted.  The message is
+ identified by its creation time.
+
+ Otherwise the same commands and functions as 'Enter Msg' apply.
+
+
+ F) 'Carbon Copy'
+ ----------------
+
+ With this function you can send the same message, via Netmail, to others 
+ at the same time.
+
+ At any time during your Netmail edit session you can call 'Carbon Copy'
+ and, via dialog, enter the complete first and last names of your FidoNet
+ addresses to which a message is to be sent.  You can also use the USERLIST, 
+ refer to 'Edit Msg' above.
+
+
+ G) 'Abort Msg'
+ --------------
+
+ Your message editing session is canceled and nothing is saved.  You will be
+ returned to the last active message from which you came.
+
+
+ H) 'Save Msg'
+ -------------
+
+ Your message will be saved to the end of your area file.  You will be
+ returned to the message from which you came.
+
+
+
+
+ VI. 'Block'
+ ===========
+
+ A) 'Begin/End'
+ --------------
+
+ The current line marked as Block Begin or Block End.  The line number is  
+ also displayed in the Status Line.  The selected block is displayed as
+ faded text.
+
+
+ B) 'Del marks'
+ --------------
+ 
+ Any existing block marks will be removed.  The faded text returns to normal 
+ intensity.
+
+
+ C) 'Cut'
+ --------
+ 
+ The indicated block, of the actual message, is removed and copied into an
+ internal buffer.  
+
+
+ D) 'Copy'
+ ---------
+
+ The indicated block, of the actual message, is copied into the internal
+ buffer without changing the message.
+
+
+ E) 'Paste'
+ ----------
+
+ The contents of the Block Buffer is copied into your message starting at
+ the current cursor position.  If a block is marked but hasn't been cut out 
+ or copied a 'Paste' will be processed and then a 'Copy'.
+
+ F) 'Indent'
+ -----------
+
+ Auto-Indent is turned on/off for the actual line.
+
+
+ G) 'Ext TAB'
+ ---------------
+
+ If Tabulation characters exist, they will be replaced by the number of
+ spaces indicated in LED-Options.  This is important for 'C' sources, and 
+ similar text, when they are copied into a message.
+
+
+
+
+
+ VII. 'Extras'
+ =============
+
+ A) 'LED-Options...'
+ -------------------
+ 
+ Here you select the options you want to work with.  Your options are
+ stored in the LED.OPT file and are loaded into the program when its
+ started.  If the option file doesn't exist, then default values will be
+ used.
+
+ 'Maximum Window Columns:' = The maximum width of the message window in
+                             characters per line.  The highest value is 80.
+                             But as only 76 characters can be displayed on
+                             a SM124 screen at once you have to scroll the
+                             screen to see the rest.  Its recommended to
+                             just use 76.  Messages are automatically
+                             formatted to the screen.  If a message becomes
+                             unreadable its recommended that you change the
+                             option to 80 and then redisplay the message
+                             (display previous message, display next
+                             message).
+
+ 'Maximum Edit Columns:'   = The maximum width of the edit window in
+                             characters per line.  The highest value is 75.
+
+
+ 'Edit-Window Tabsize:'    = LED aways shows TABs as spaces.  With this 
+                             option the TAB size, the number of spaces, can
+                             be set.  Every tabulator is extended by the 
+                             number in the edit box.
+
+
+ In the middle of the dialog box you'll find the basic LED parameters.  They 
+ are listed from top to bottle starting on the left side. 
+                             
+ 'Save always LED.OPT'    = When this is active all parameters in LED-Option 
+                            along with the positions and sizes of the of the 
+                            open windows are saved in the LED.OPT file when 
+                            you 'Quit' LED.
+                                                                                        
+ 'Save Dialog Position'   = When this is active the dialog positions will 
+                            be written as LED.DLG every time you 'Quit' LED.
+
+ 'Header-Cache'            = When active then LED loads the entire header
+                             file of an area into memory.  This increases
+                             the speed of all program operations.  '(HC)'
+                             is displayed in the information line of the
+                             message window when the 'Header-Cache' is
+                             active and the area in question is 'cached'
+                             (buffered).
+
+ 'Skip Scanner'            = When this option is active then every message
+                             which you enter in a Echomail Area is also 
+                             copied to the Netmail Area with its AREA line 
+                             and Origin, ready and waiting for EXPORT.  A 
+                             separate Comscan run is no longer needed.
+
+ 'Add every "Re:"'         = 'Re:' is added the subject in every REPLY or
+                             QUOTE you make when this option is active.
+                             Otherwise its added only when no 'Re:' exist
+                             in a subject line.
+
+ 'Hide "EID:..."'          = If active any existing EID Gludges in the
+                             first line of a message will be removed.
+                             When quoting a message, then generally, all
+                             ^A lines are also removed.
+
+ 'Hide next  A Line'       = All following ^A lines are removed when this
+                             option is active.
+
+ 'Show CR'                 = The CR (carriage return) character is shown
+                             when editing.
+
+ '"„" in Netmail-Area'     = When active the „ --> ae conversion in Netmail 
+                             is not performed, the normal German umlaut can
+                             be used in Netmail messages (useful only in 
+                             German speaking countries).  Normally the German
+                             umlaut is not allowed in Echomail Areas so when
+                             one is entered, the '„' key is pressed, the
+                             character is automatically replace with 'ae'.
+
+ 'Always extend Tabs'      = If a Msg contains TAB-characters they will be
+                             extended as spaces to the desired size.
+
+ 'Delete new Msg Flag'     = If active the newmsg flags will be cleared every
+                             time you quit LED. This way there won't be
+                             any newmsg flags '*' set when you start LED 
+                             again. If you import some new msgs you can see 
+                             which areas got some msgs. 
+
+  
+ On the very right side you can select if quoted lines should start with
+ the sender's initials 'XY>' or just '>'.
+
+
+ On the bottom left, you can select the text that should be written at the
+ beginning of a quoted message:
+
+
+ 'In a message...'         = If this is active then this well know header
+                             will be created in English when quoting.
+
+ 'In einer Nachricht...'   = Wenn aktiv wird beim einen Quote eine
+                             Kopfzeile in Deutsch erzeugt.
+                             (Same as the text above, except a German
+                             header is created when quoting.
+
+ '*GER/AUS/CH detection'   = This option, when active, causes 'In einer
+                             Nachrich...' to be written to the headers of
+                             quoted messages when they belong to areas
+                             with *.GER, *.AUS, or *.CH endings.
+                             Otherwise 'In a message...' will be created.
+
+ 'None'                    = If this is active then heading line text won't 
+                             be created.
+ 
+
+ On the bottom right:
+ 
+ 'USERLIST':
+ Up to four file names can be entered here, these files contain FidoNet
+ participants with the same layout as FIDOUSER.LST.  The files will be
+ search one after the other, from 1 to 4, in that order.  The user list
+ can be in any folder on your harddisk or diskette.
+ 
+ After a double clicking one of the editable fields a file selector box will
+ be displayed so that a Userlist can be selected.  Only the selected Userlist 
+ file name is shown in the LED-Option dialog box, but LED holds internally 
+ the complete file path and saves it in the LED.OPT file.  Only one file path
+ is used for all four Userlist.
+ 
+ The first list, for example, could be your FIDOUSER.LST file, the next,
+ your country's point list POINTUSE.LST and the third your own PRVTUSER.LST.
+ The last file can be created and maintained with the help of LED, refer to
+ 'Add PRVTUSER.LST' below.
+
+ With 'Save' you can save your actual configuration to the LED.OPT file.
+
+
+ B) 'Font-Options...'
+ --------------------
+
+ For Message and Edit windows, text font types and sizes can be selected.
+
+ If you don't used GDOS, only the font sizes can be selected.  Font sizes
+ are shown in 'Points', so just click on the point size you want. 
+
+ When GDOS (or AMC-GDOS) and some fonts have been loaded, 'GDOS active' (in 
+ small characters) will be shown along with the dialog box title.  You can
+ scroll through the fonts list using the arrows keys and the available font
+ sizes are then shown below.  You can select for the two cusomary LED window 
+ types, Message and Edit, separate fonts.  Although all fonts will be shown
+ for selection, only fonts with a fixed character width can be used by the
+ Edit window.  
+
+ With the 'Font Effects' you can select whether you like the marked block 
+ 'highlighted' or 'revers' and perhaps the quoted lines to appear thickened.
+
+ With 'Save' you store the currect font selection, in the file LED.OPT.
+ These values will not be overwritten when LED.OPT is saved at program end. 
+
+
+ C) 'Function Keys...'
+ ---------------------
+
+ The ten function keys can be programmed with your own little flourishes.
+ If these little nothings need more than one line then you have to end it
+ with <CTRL>-<M>, carriage return.  You can save your programmed function 
+ keys with 'Save' to the LED.KEY file.
+
+ The contents of the function keys can only be used in your message text area,
+ not in the message header.
+
+
+ D) 'Msg Header...'
+ ------------------
+
+ The 'Message Header' dialog box is displayed.
+
+ One more internal command.  This shows all information pertaining to the
+ message header structure of the message being currently shown.
+
+ You can edit the 'mailer' field, the Origin, and Destination Nodes.  On
+ top of that, you can turn the flags on and off as much as you like, these
+ changes will also be saved.
+
+ If you find a message in the Netmail Area with 'mailer[0]' thru 'mailer[2]',
+ your Bosses Node number is present, or the SENT flag is set, this is a sign
+ that the message has been exported with EXPORT.  If you set 'mailer[0]' 
+ thru 'mailer[2] manually to [0] and remove the SENT flag, the message will be 
+ exported again the next time EXPORT is started.  When you don't want a 
+ message to be sent then you just have to set 'mailer[0]' thru 'mailer[2]' 
+ to your Boss Node number.  
+
+ If you leave the dialog with 'OK/Write' then the new header will 
+ be saved, or with 'Cancel', then nothing is changed.  To be on the safe 
+ side, 'Cancel' is the default button.
+
+
+ E) 'File Request...'
+ --------------------
+
+ A corresponding BINKLEY File Request file will be created with you request.
+
+ First the Node number of the requested system has to be entered via the
+ displayed dialog box.  Then you can enter up to 12 file names which you
+ want to request, along with their passwords if needed.  Lower case 
+ characters will automatically be change to upper case characters when you 
+ save the request file.
+
+ Click on 'Make File' to save the your '*.REQ' file in the OUTBOUND
+ folder.
+
+
+ F) 'Add PRVTUSER.LST'
+ ---------------------
+
+ Write the name and address of a FidoNet user in the PRVTUSER.LST file.
+
+ When you pick this entry a small dialog box will be displayed so you can
+ confirm the sender's name, taken from the actual message.  If everything
+ is OK the name and address will be written to the PRVTUSER.LST file,
+ sorted alphabetically.  This file's layout is the same as FIDOUSER.LST.
+
+
+ G) 'Find PRVTUSER.LST'
+ ----------------------
+
+ Look up names from the PRVTUSER.LST file.
+
+
+ H) 'Msg to Sysop...'
+ ----------------
+
+ Messages to the Sysop are searched for using the last Logfile entries 
+ written by IMPORT.
+
+ After the search of the Logfile the Areachange dialog box will show only
+ those Areas which have messages addressed to the Sysop.
+  
+
+ I) 'Find String...'
+ -------------------
+ 
+ Search in the actual Message Header file for a string or a string
+ combination.
+
+ You can search for stings in the three message header lines: 'From:',
+ 'To:', and 'Subj:'.  You can combined more then one string, for example,
+ search all messages where somebody named 'Volkmar' (in 'From:') wrote to
+ somebody else named 'Bohn' (in 'To:').
+ You can also search for something written within the Text of the Msg. But
+ this search is a bit slower.
+
+ Normally the messages are searched forward of the actual message, but if
+ 'Backwards' is active then the other direction is searched.  Its
+ recommended to do you searching when the LED-Option 'Header-Cache' is
+ active, that is, only in windows where '(HC)' is shown.  Otherwise
+ searching from a disk is pretty boring.
+
+
+ J) 'Find Same'
+ --------------
+ Repeat the last search.
+
+
+
+
+ VIII. 'Help'
+ ===========
+
+ This contains three help dialog boxes with keyboard shortcuts that haven't
+ already been shown in the different menu lines:
+
+ A) 'Msg-Window'
+ B) 'Edit-Window'
+ C) 'Dialogs'
+

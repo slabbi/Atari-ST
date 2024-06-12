@@ -1,0 +1,12 @@
+arc_it.ttp
+; .C [ -Y ]
+; .L [ -L -Y ]
+; .S [ -Y ]
+=                  ; list of modules follows...
+
+PCSTART.O          ; startup code
+
+arc_it.c     [ -K -A -Y -T -G]
+
+PCSTDLIB.LIB       ; standard library
+PCEXTLIB.LIB       ; extended library

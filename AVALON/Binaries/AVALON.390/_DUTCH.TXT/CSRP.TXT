@@ -1,0 +1,110 @@
+
+31 December 1994     Centraal Shareware Registratiepunt te Amsterdam
+=========================================================================
+De met '*' gemerkte files zijn nieuwe update's.
+De met '**' gemerkte files zijn nieuwe programma's.
+=========================================================================
+Naam pakket          Naam programmer      Donatie    Land Omschrijving  
+=========================================================================
+GEM-SPOOLER 3.2      Steven van Rossen    Fl 40.--   B    Printer spooler
+
+ESS CODE 6.1         Michel Forget         15 $      CAN  Packer/unpacker
+STORM 101            Alan Page             25 $      CAN  Terminal      
+
+7UP 2.20             Michael Thaenitz      50 DM     D    Editor        
+AVALON 3.76        * Stephan Slabihoud     30 DM     D    Point-shell   
+AVALON LIGHT 3.76  * Stephan Slabihoud    included   D    Semper-shell  
+CED 1.15             Matthias Pfersdorff   30 DM     D    Editor        
+COMA 2.50            Hans J. Konzeck       99 DM     D    Fax-prog.     
+COMA 2.50            Hans J. Konzeck      169 DM     D    Fax/voice-prog.
+CONNECT 2.47         Wolfgang Wander       70 DM     D    Terminal      
+COST 1.07            Alois Felber         Small fee  D    Tel.cost      
+CQWK 2.6             Dirk Hoeschen         25 DM     D    Msg-editor    
+EGALE 2.1            David Reitter         20 DM     D    Txt/bin <> prg.
+GEMAR 2.21           Steffen Engel         80 DM     D    Streamer backup
+GEMVIEW 3.08         Dieter Fiebelkorn     43 DM     D    Viewer pic/txt
+GUCK 1.8B            Patrick Seemann       20 DM     D    Viewer txt/pic
+HSMODEM 4            Harun Scheutzow        5 DM     D    Rs-232 speeder
+IDEALIST 3.50        Christoph Bartholme   25 DM     D    Print-utility 
+JETMAIL 0.99B11      Daniel Roesen         45 DM     D    Tosser        
+LED 1.30           * Stephan Slabihoud     40 DM     D    Msg-editor
+LHA 2.31             Christian Grunenberg  30 DM     D    (Ent)packer   
+MAH-JONG 2           Jens Schulz           25 DM     D    Game          
+MIDIMAZE II          E-soft Markus Fritze  55 DM     D    Game (packman)
+PFX/AFX PACK 3.2     E-soft Markus Fritze  30 DM     D    (Ent)packer   
+PINGUIN              Reinhard Spieker     Postcard   D    Game          
+QFAX INFO 0.90       Martin Lonzen         13 DM     D    Qfax-utility  
+QFAX PAY 0.91        Martin Lonzen         13 DM     D    Qfax-utility  
+QUASI 1.01           Martin Lonzen         25 DM     D    Q-fax shell   
+RUFUS 1.41           Michael Bernards      60 DM     D    Terminal      
+RZ SZ PRG. 4.7       Michael Ziegler       40 DM     D    Z-modem utility
+SELECTRIC 1.10       Stefan Radermacher    30 DM     D    Fileselectorbox
+SEMPER 0.75          Jan Kriesten          50 DM     D    Mailer        
+STARCALL HANDBUCH    Ingo Linkweiler       10 DM     D    Terminal      
+STARCALL PROFF.      Ingo Linkweiler      104 DM     D    Terminal      
+STARCALL STANDARD    Ingo Linkweiler       40 DM     D    Terminal      
+SYSMON 1.0.9C        Karsten Isakovic      50 DM     D    System-viewer 
+TWO-IN-ONE  1.20     Gregor Duchalski      25 DM     D    Packer-shell  
+VIRENDETECTOR 3.1    Volker Soehnitz       40 DM     D    Viruskiller   
+XEDIT 2.10           Alexander Gropl       35 DM     D    Editor        
+
+STZIP 2.6            Vincent Pomey        Postcard   F    Entpacker     
+
+ANS2OCT              Folkert van Heusden  Small fee  NL   Oktopus-util  
+DIALBACK 1.0         Folkert van Heusden  Fl  5.--   NL   Bbs dial-util 
+FLOKEDIT             Folkert van Heusden  Fl 25.--   NL   Fse (bbs'n)   
+GOOD_RND             Folkert van Heusden  Fl  5.--   NL   Programm-util 
+JEKYLL 1.39B5        Vincent Partington   Fl 30.--   NL   Transfer-util 
+KILLER               Folkert van Heusden  Fl  7.50   NL   Twit msg-base 
+MARSNMGT 1.X         Folkert van Heusden  Fl 12.50   NL   Netmail-gater 
+MSX  0.011BETA       Folkert van Heusden  Fl 12.--   NL   Msx-emulator  
+PI3TOTIF             Folkert van Heusden  Fl  5.--   NL   Picture-convert
+SMPLDOOR 1.0         Folkert van Heusden  Fl  5.--   NL   Sampler       
+STADEGAS 4.63        Folkert van Heusden  Fl 10.00   NL   Picture-convert
+STIB'94            * H.J.Coonen           FL 30.--   NL   Belasting     
+TELETEKST 2          Folkert van Heusden  Fl 10.--   NL   Teletekst-util
+TOP-10               Folkert van Heusden  Fl  7.50   NL   Msg statistic 
+TWP CONVERSIE 0.8    Robert Best          Fl 36.--   NL   Tw/wp4 <> wp  
+VOTEMGR-ST 2.02      Harrie Beuvink       Postcard   NL   Vote-manager  
+WP CONVERSIE 2.7     Robert Best          Fl 36.--   NL   Tw/wp3 <> wp  
+ZAPMAIL 1.34         Arjen Wagenaar       Postcard   NL   Tosser        
+
+F-SCAN 3.00          Daron Brewood        Postcard   UK   Tel.-scanner  
+GEMBENCH 3.40        Ofir Gal               5 œ      UK   Test-utility  
+MEGA_DP2 2.12        Mike Watson          Small fee  UK   Multi-entpacker
+
+ASSASSIN 1.0         Michael F. Ellis      20 $      USA  Assign.sys-util
+BLITZ HD 1.4         Erin Monaco           15 $      USA  Hd-utility    
+FZDSTERM 2.20        Aaron Hopkins         25 $      USA  Terminal      
+PROCALC 1.0          John K.Brochu         10 $      USA  Calculator    
+SPEED OF LIGHT 3.5   Stuart Denman         30 $      USA  16 Bit c.viewer
+SUPERBOOT 8.1        Gordon W. Moore       20 $      USA  Opstart-utility
+TRIPLE YAHOO 1.0     Stuart Denman         20 $      USA  Game (yatsee) 
+
+EXPLOID              Markus Dobler        Postcard   Z    Entpacker     
+=========================================================================
+Dagkoersen bij aankoop van vreemd geld en deze dagkoersen gelden dus
+alleen voor de dag waarop ze zijn aangegeven. Raadpleeg dus voor alle
+zekerheid Teletekst even.
+
+Amerikaanse Dollar         F 1.75    t.o.v vorige koers " < "
+Canadese Dollar            F 1.33    t.o.v vorige koers " = "
+Engelse Pond               F 2.85    t.o.v vorige koers " = "
+Duitse Mark                F 1.15    t.o.v vorige koers " = "
+Franse Frank               F 0.34    t.o.v vorige koers " = "
+Zwitserse Frank            F 1.36    t.o.v vorige koers " = "
+=========================================================================
+In geval u wilt registreren voor software van nederlandse oorsprong raad
+ik u aan dit rechtstreeks te doen bij de programmeur zelf. Dit is goed-
+koper voor u, de vermeldingen zijn dus bedoeld ter uwer informatie.
+Ook de ansichtkaart kunt u natuurlijk het beste zelf versturen.
+
+Voor alle informatie over deze lijst kunt u terecht bij
+    
+     Ruud SinT  On-Line op            Bearboard BBS  010-4840224
+               
+                of via Netmail aan    2:286/503.12@fidonet
+                                     90:500/211.12@NeST
+                                    190:100/101.12@FAN
+                                     51:1002/1/12@Atarinet
+

@@ -1,0 +1,152 @@
+============================================================================
+             Von einem der Auszog, AREAS.BBS zu verstehen
+============================================================================
+Copyright Wilfried Henseler 1991 (Urfassung aus email-Magazin 'The Guide')
+Copyright Stephan Slabihoud 1993,1994
+
+
+Das AREAS.BBS File beschreibt alle aktiven Areas des jeweiligen Points oder
+Nodes. Dieses File wird von zahlreichen, unterschiedlichen Programmen
+benutzt (Editor,Export,Import,Scanner,Cruncher). Durch die verschiedenen
+AnsprÅche, die die einzelnen Programme an die Datei AREAS.BBS stellen, ist
+die Vielfalt der verwendeten Befehle sehr groû.
+
+1.  Aufbau der ersten AREAS.BBS Zeilen
+
+    Das AREAS.BBS ist ein reines ASCII-File und kann mit jedem Editor
+    bearbeitet werden. Dabei sollte das Tab-Zeichen nicht benutzt werden.
+   
+    Die erste Zeile ist ein allgemeines Origin, das immer dort eingesetzt
+    wird, wo kein anderes Origin zu einer Area angegeben wurde.
+    Diese Zeile sollte nicht lÑnger als 55 Zeichen sein, da sie spÑter
+    noch um das Wort ' * Origin ' und die Net/Node-Nummer ergÑnzt wird.
+
+    Beispiel:
+   
+        Wer keinen Point hat, ist selber schuld!
+
+    Die zweite Zeile enthÑlt die Adresse des Boss-Nodes, also des Nodes,
+    von dem man die Nachrichten 'im allgemeinen' bezieht. Die <Nodenummer>
+    hat normalerweise nur ein 2D-Format ohne Zone (xxx/yyy).
+    Bei modernen Mailprozessoren, wie JETmail und IOSmail, ist es teilweise
+    nîtig zusÑtzlich eine Zone (also z.B. "2:") und das Domain (also
+    z.B. "@fidonet.org") mit anzugegeben.
+    Hier wird bereits das Befehlskonzept der AREAS.BBS benutzt. Die Zeile
+    beginnt mit einem '-' direkt gefolgt von dem Token 'BOSSNODE='.
+    Beispiel :
+
+    -BOSSNODE=245/105                (2D-Adresse)
+    oder
+    -BOSSNODE=2:245/105              (3D-Adresse)
+    oder auch
+    -BOSSNODE=2:245/105@fidonet.org  (5D-Adresse)
+
+    "-BOSSNODE" kann aber i.d.R. entfallen. Weder IOSmail, noch JETmail
+    beachten diesen Eintrag...
+
+2.  Die Beschreibung einer AREA
+
+    Nach den ersten zwei Zeilen werden die einzelnen AREAS definiert. Dazu
+    werden, wie schon beim '-BOSSNODE', Befehlswîrter benutzt. Alle Befehle
+    kînnen verwendet oder weggelassen werden. Die Definition einer Area
+    endet immer mit der 'Pfadzeile', die als einzige _nicht_ mit einem
+    '-'-Zeichen beginnt.
+   
+    Es folgt eine Aufstellung einiger Befehlswîrter. Die Liste erhebt
+    keinen Anspruch auf VollstÑndigkeit und es gibt noch weitere Befehle,
+    insbesondere wenn man mit IOSmail oder JETmail arbeitet, die hier nicht
+    aufgelistet sind.
+    In jedem Fall muû ein Befehl mit einem '-' anfangen und ein Programm
+    sollte Zeilen ueberlesen, die mit einem solchen Zeichen, gefolgt von
+    einem 'unbekannten' Wort, beginnen.
+       
+    -Days <Tage>
+        Gibt an, wie lange die Nachrichten in der folgenden Area aufbewahrt
+        werden sollen. Wenn eine Nachricht Ñlter ist, als der in <Tage>
+        angegebene Wert, wird sie automatisch vom Cruncher gelîscht.
+        Beispiel:      -DAYS 5
+            Die Nachrichten in dieser Area werden 5 Tage gespeichert.
+   
+    -Origin <lokale Origin Zeile>
+        Diese Zeile wird _nur_ in dieser Area als Origin-Zeile unter jede
+        Nachricht gesetzt.
+        Beispiel:      -ORIGIN Hier darf gelacht werden :-)
+
+    -Local                 (Ecu/Llegada)
+    -NoExport              (JETmail)
+        Die Nachrichten in dieser Area werden nicht exportiert.
+
+    -Messages <Anzahl>     (Ecu/Llegada)
+    -MinMsgs  <Anzahl>     (JETmail,IOSmail)
+        Minimale Nachrichtenzahl in einer Area. Wenn weniger als <Anzahl>
+        Nachrichten vorhanden sind, werden keine Nachrichten gelîscht.
+
+    -Name <fake name>      (Ecu/Llegada)
+    -Pseudonym <fake name> (JETmail)
+        Pseudonym fuer eine Area festlegen. Nachrichten, die in diese Area
+        gesetzt werden, werden nicht unter dem "Sysop"-Namen sondern unter
+        <fake name> verschickt. Das ist z.B. fÅr Netze in denen 'Tarnnamen'
+        erlaubt sind oder Areas, die Pseudonyme zulassen, interessant. Im
+        FidoNet ist ein solcher <fake name> _nicht_ erlaubt!
+                                             
+    -Keep                  (Ecu/Llegada)
+    -Days 0                (JETmail)
+        Nur als gelîscht gekennzeichnete Nachrichten werden wirklich
+        physikalisch gelîscht, keine anderen.
+
+3.  Die 'Pfad'-Zeile
+
+    Nach den Befehlen folgt die Spezifikation der eigentlichen Area.
+    Diese Zeile hat das Format :
+   
+    <Pfad der Area>\<Filename> <Areaname> <Routing>
+   
+    <Pfad der Area> zeigt auf das Directory, in dem die Nachrichten
+                    gespeichert werden sollen. Es sollte sich um einen
+                    kompletten Pfad, mit Laufwerk, handeln.
+    <Filename>      ist der Name, unter dem die Area gespeichert werden soll.
+                    Es wird nur ein Filename _ohne_ Extention abgegeben.
+    <Areaname>      Dieser Name muû mit dem Name, den der Boss fuer diese
+                    Area eingetragen hat, Åbereinstimmen. Er ist bei jeder
+                    Nachricht im 'Kopf' eingetragen und durch ihn erkennen
+                    die Programme, wohin die Nachricht gehîrt.
+    <Routing>       gibt die Adresse(n) an, an die diese Area verschickt
+                    bzw. von wo sie bezogen werden soll(en). Die erste
+                    Adresse ist die Adresse der Box, die als Boss fÅr diese
+                    Area fungiert. Getrennt werden die Adressen jeweils
+                    durch Leerzeichen. (siehe auch 4.)
+
+    Beispiele:
+
+    D:\POINT\MSGS\ATAGER ATARI.GER 245/105
+            ATARI.GER wird ueber 245/105 geroutet.
+
+    D:\POINT\MSGS\STFIDO   ST_FIDO.GER          245/105 245/200 245/300
+            ST_FIDO.GER wird ueber 245/105 geroutet und gleichzeitig nach
+            245/200 und 245/300 verschickt.
+
+    Es ist ebenfalls zu beachten, daû einige Areas Åberhaupt keine
+    Routeanweisungen enthalten dÅrfen/kînnen. Das ist z.B. die sogenannte
+    'Trasharea', in der alle Nachrichten gespeichert werden, fÅr die keine
+    Area eingetragen ist.
+   
+    Ebenso kann es in einigen Konfigurationen vorkommen, daû die Mail-Area
+    vîllig fehlt. Obwohl sie eigentlich immer vorhanden sein sollte, ist
+    es aber nicht unbedingt nîtig. Diese Konfusion entstand durch zwei
+    widersprÅchliche Anleitungen und fiel zunÑchst nicht weiter auf, weil
+    die Konfigurationen auch ohne die Mail-Area funktionierten.
+    Ich empfehle die (Net-)MailArea immer als ERSTE Area anzugeben:
+
+    Beispiel:
+    
+    D:\POINT\MSGS\MAIL     MAIL     2:245/105
+
+4.  Die Angabe der <Nodes>
+
+    Im allgemeinen ist <Nodes> ein Ausdruck wie z.B. '245/105', '245/105.1'
+    oder '2:25105/1' etc.. In einigen Programmen der 'neueren Generation'
+    werden jedoch auch sogenannte 'Wildcards' zugelassen. Es kînnte also
+    auch eine Adresse als 2:245/105.* definiert sein! Dieses ist aber mehr
+    fÅr Nodes interessant. Points geben (im Normalfall) nur EINE Adresse an
+    und benutzen auch KEINE Wildcards...
+

@@ -1,0 +1,1064 @@
+@database "FidoFAQ"
+@subject "Dokumentation/Fido"
+@author "Stephan Slabihoud"
+@$VER: fidofaq.hyp 0.13 (@:"__DATE__")
+
+@options +g-s
+
+@toc Main
+
+@remark =================================================================
+
+@node Main "FidoFAQ"
+
+FFFFFFFF  IIIIII  DDDDDDDD      OOOOOO    FFFFFFFF    AAAAAA      QQQQQQ
+FFFFFFFF  IIIIII  DDDDDDDDD    OOOOOOOO   FFFFFFFF   AAAAAAAA    QQQQQQQQ
+FF          II    DD      DD  OO      OO  FF        AA      AA  QQ      QQ
+FF          II    DD      DD  OO      OO  FF        AA      AA  QQ      QQ
+FFFFFF      II    DD      DD  OO      OO  FFFFFF    AAAAAAAAAA  QQ   QQ QQ
+FFFFFF      II    DD      DD  OO      OO  FFFFFF    AAAAAAAAAA  QQ    QQQQ
+FF          II    DD      DD  OO      OO  FF        AA      AA  QQ     QQQ
+FF        IIIIII  DDDDDDDDD    OOOOOOOO   FF        AA      AA   QQQQQQQQQ
+FF Rev.13 IIIIII  DDDDDDDD      OOOOOO    FF        AA      AA    QQQQQQ QQ
+
+(c) Stephan Slabihoud Juni'96
+
+Diese Datei enthÑlt immer wieder auftauchende Fragen und deren Antworten
+zum Thema Fido mit dem Atari-ST. Ich bitte jeden Atari-Node (bzw. Node
+mit Atari-Points) diese Datei auf seinem System requestbar zu halten. Ich
+Åbernehme keinerlei Garantie fÅr die Richtigkeit der hier gegeben
+Antworten. Antworten, die nicht von mir sind, sind entsprechend mit dem
+Autor gekennzeichnet.
+
+  Binkley mit mehr als 19200 bps: Fragen Q0xx
+  öbertragungsfehler            : Fragen Q1xx
+  BTNC - Nodelist               : Fragen Q2xx
+  Binkley und Fax-Empfang       : Fragen Q3xx
+  Point-Software / Demo-Configs : Fragen Q4xx
+  Allgemeine Fragen zu Binkley  : Fragen Q5xx
+  Binkley und MagicMac          : Fragen Q6xx
+  Diverses                      : Fragen Q9xx
+@endnode
+
+@remark =================================================================
+
+@node "Binkley mit mehr als 19200 bps"
+
+###########################################################################
+         Schneller, hîher weiter... Binkley mit mehr als 19200 bps
+###########################################################################
+
+Q001) Ich mîchte Binkley mit 38400bps oder 57600bps betreiben.
+      Wenn ich es richtig verstanden habe, mu· ich bei Benutzung von
+      HSMODEM in BINKLEY.CFG "BAUD 134" einstellen, um 57600 zu erhalten;
+      die Angabe quittiert BT allerdings mit einer Fehlermeldung.
+ 
+A001) Du hast es nicht richtig verstanden ;-)
+      Du kannst direkt "38400", "57600" oder "115200" angeben, Baudraten
+      unter 300 ignoriert BT. Probiere es erst einmal mit 38400.
+
+      Bei 38400 bps muû bisher zusÑtzlich das Statement "RSVEBoard" ins
+      Configfile gesetzt werden. Auch wenn nicht mit der RSVE-Hardware
+      gearbeitet wird. Ansonsten kann es auch entfallen (ohne "RSVEboard"
+      wÅrde der Vorteiler bei 38400 bps nicht gesetzt werden).
+
+      Beim Falcon muss "Port 2" gesetzt werden - und damit der Port
+      richtig angesteuert wird, muss bei einigen Falcon-TOS's
+      FPATCH2.PRG installiert werden.
+
+Q002) Aber warum nimmt BT denn nun "Baud 38400" an und "57600" nicht?
+
+A002) Neuere BT-Version besorgen. Ab Version 3.14pl6 sind 38400, 57600,
+      76800, 115200 und 153600bps mîglich. éltere Versionen erlauben nur
+      38400bps.
+
+###########################################################################
+
+Q003) In einem Zusatzfile zu Binkley schreibst Du, da· man in BINKLEY.CFG
+      "RSVEBoard" setzen solle - klappt auch nicht (der Cookie vom HSMODEM
+      hei·t "RSVF"?!?
+
+A003) RTFM (HSMODEM). Man kann die Treiber von HSMODEM so konfigurieren,
+      dass ein "RSVE"-Cookie erzeugt wird. "RSVEboard" ist aber nur bei
+      38400 bps sinnvoll, sofern das Patchprogramm nicht schon von sich
+      aus das UCR-Register richtig setzt.
+
+###########################################################################
+
+Q004) Wie kann ich Binkley dazu bringen mit hîheren Baudraten als 19200 bps
+      zusammenzuarbeiten?
+
+A004) a) Wer den 38400 Hardware-Patch auf einem ST verwendet, kann
+         "Baud 38400" zusammen mit "Hard38400" ins Config setzen...
+
+      b) Auf einem MSTE/TT/Falcon mit installiertem Programm FAST_SER:
+         (dieses Programm konvertiert die eingestellte bps-Rate in eine
+         hîhere):
+
+         FÅr den MSTE/Falcon030 gilt:
+           KompatibilitÑt im FSERIAL.CPX =AN:
+
+         Modem 2:     Serial 2:          Original:
+         57600        57600        <-    19200
+         38400        38400        <-    9600
+         19200        19200        <-    4800
+
+         FÅr den TT gilt:
+           KompatibilitÑt im FSERIAL.CPX =AN:
+         Modem 2:     Serial 2:          Original:
+         38400        57600        <-    19200
+         76800        38400        <-    9600
+         19200        19200        <-    4800
+
+         Wer also auf einem TT sein Modem mit 38400 bps an Serial-2
+         betreiben will, stellt im Binkley.Cfg "Baud 9600" ein. Nicht 
+         MODEM.CPX von Atari benutzen, wenn FAST_SER.CPX benutzt wird!
+         Wenn beim MSTE mit Modem2/Serial2 Probleme auftauchen, so sollte
+         man probeweise das GAL UA03 gegen das GAL von Franz Sirl (siehe
+         FAST_SER v0.96) ausgetauschen.
+
+      c) Auf einem ST/MSTE/TT/Falcon mit installiertem Programm HSMODEM:
+  
+         HSMODEM mit den entsprechenden Treibern im AutoOrdner starten.
+     
+         In Binkley.Cfg das Statement "RSVEBoard" setzen, wenn mit
+         38400 bps gearbeitet wird.
+         
+         Die hîheren Baudraten sind direkt mit "Baud 38400",
+         "Baud 57600", "Baud 76800", "Baud 115200" und "Baud 153600"
+         einstellbar! Besitzt man einen ST, so muû dieser allerdings
+         fÅr 38400 bps erst umgebaut werden.
+         BINKLEY setzt die hîheren bps-Raten (also 38400 und darÅber) fÅr
+         HSMODEM wie folgt um:
+
+           "Baud xxx" im    erreichbar Åber    Original bps-Rate
+           BT-Configfile    Rsconf(x,...)      im TOS ohne HSMODEM
+         ===========================================================
+             153600            14                    75
+             115200            11                   150
+              76800            15                    50
+              57600            12                   134
+              38400            13                   110
+         ===========================================================
+
+###########################################################################
+
+Q005) Folgendes: Um 38400 hardware-maessig zu erhalten, nimmt man den
+      2.4576 MHz Takt vom MFP (PIN 18), teilt ihn durch 4 und gibt ihn an
+      PIN 7 + 10 des MFP zurueck.
+      Wenn ich den Takt nun nur durch zwei teile und den Takt am 4040
+      nicht von Pin 7 sondern von Pin 9 hole ergibt sich rein rechnerisch
+      der doppelte Takt (57600). Funktioniert das?
+
+A005) Dazu einen Ausschnitt aus den HSMODEM-Dox:
+
+      =====================================================================
+      57600Bd auf 8MHz und 16MHz 68000er Åber _MODEM1_
+
+      57600Bd ist fÅr Modem1 auf (Mega)ST(E) die magische Grenze, die auch
+      nur mit leichten Modifikationen im TOS erreicht wird. 115200Bd werden
+      wohl auch in Zukunft nur im Polling und nicht im Interruptbetrieb
+      mîglich sein.
+      Bei mir funktionieren 57600Bd auf einem 8MHz-ST mit TOS2.06. Ich bin
+      mir aber nicht sicher, ob es auch mit anderen (Ñlteren) TOS-Versionen
+      funktioniert.
+      =====================================================================
+      Die Schnittstelle Modem1 kann ohne Zusatzhardware maximal 19200Bd
+      erreichen. Daran Ñndert auch MFP.PRG nichts. Es ersetzt aber die
+      langsamen und zum Teil fehlerhaften Routinen des TOS durch schnelle
+      und hoffentlich fehlerfreie. Mit Zusatzhardware, wie (dem von mir
+      entwickelten) RSVE, RS-Speed (von Stephan Skrodzki) oder anderen
+      kînnen hîhere Datenraten realisiert werden. Z.B. erlaubt RSVE auch
+      die Einstellung von 38400, 57600 und 115200Bd. MFP.PRG sorgt dann
+      im Rahmen der Hardware-Mîglichkeiten fÅr einen wesentlich hîheren
+      Datendurchsatz (cps-Rate). Der komplette Bauplan fÅr RSVE liegt als
+      RSVE.LZH in Mailboxen, auf jeden Fall in der Maus Berlin (@B). Die
+      Fertigversion von RSVE gibt es direkt bei mir.
+      =====================================================================
+
+      Das heiût also: 38400 ist (stabil) auf einem normalen ST moeglich.
+      Bei 57600 wird es kritisch (hier ist die Leistungsgrenze des MFP).
+      Wer eine CPU-Beschleunigerkarte mit mehr als 16MHz eingebaut hat,
+      kann es einmal ausprobieren, ob die 57600 bps (bei ihm)
+      funktionieren; nur garantieren kann das aber keiner.
+
+###########################################################################
+
+Q006) Ich habe einen ST und wuerde meine Schnittstelle gerne schneller als
+      mit 19200 bps betreiben. Geht das?
+
+A006) Ja, allerdings nur mit einem kleinen Hardware-Umbau:
+
+                             +-----------------------------------+
+      +----------------------^---+   +---------------------+     |
+      |    MFP 68901         34  |   |   +-----+        +--|-----+
+      |>                         |   |   |    +^--------^--^--+  |
+      |  7 10 11  16  18         |   |   |    |16       11 10 |  |
+      +--v--v--v---v---v---------+   |   |    |> CD 4040      |  |
+         |  |  |   |   |             |   |    |1         7  8 |  |
+         +--+  |   |   +-------------+   |    +----------v--v-+  |
+         |     +---|---------------------+               |  +----+
+         |         +--------------------------------o    |
+         +------------------------------------------o|   |  <-- Umschalter
+                                                    o----+
+      Wichtig:
+      Pin 16 (MFP) von Platine abtrennen und hochbiegen!
+
+      Die Verbindungen im einzelnen:
+
+      1.) Pin  7 (MFP) und Pin 10 (MFP)     nach Umschalter - MITTE
+      2.) Pin 11 (MFP)                      nach Pin 16 (CD 4040)
+      3.) Pin 16 (MFP) (hochgebogen !)      nach Umschalter - RECHTS/OBEN
+      4.) Pin 18 (MFP)                      nach Pin 10 (CD 4040)
+      5.) Pin 34 (MFP)                      nach Pin 11 und 8 (CD 4040)
+      6.) Umschalter - LINKS/UNTEN          nach Pin 7 (CD 4040)
+
+      Funktionsweise:  Schalter oben: alles beim alten - alle ST-Baudraten
+                               unten: fest auf 38400 bps
+
+###########################################################################
+
+Q007) Ich mîchte Binkley mit 115200bps betreiben aber es klappt nicht.
+      Ich benutze die Schnittstelle MODEM2 auf meinem TT. HSMODEM ist
+      installiert!
+
+A007) Ab Binkley 3.14pl6 gilt folgendes:
+      Nicht jede Baudrate ist mit jeder Schnittstelle zu erreichen:
+
+      Standard SCC-PCLK (8MHz):
+      =========================
+      SERIAL2: 115200,57600,38400
+      MODEM2 : 153600,76800,38400
+
+      Nur MegaSTE und Falcon (nicht TT):
+      ==================================
+      MODEM2 : 153600,115200,76800,57600,38400
+
+      SCC-PCLK mit 14.745.600 Hz:
+      ===========================
+      SERIAL2: 153600,115200,76800,57600,38400
+      MODEM2 : 153600,115200,76800,57600,38400
+@endnode
+
+@remark =================================================================
+
+@node "öbertragungsfehler"
+
+###########################################################################
+                             öbertragungsfehler
+###########################################################################
+
+Q101) Ich habe sehr viele (zu viele) öbertragungsfehler.
+      Woran kann das liegen?
+
+A101) In den meisten TOS-Versionen ist das RTS/CTS-Handshaking fehlerhaft.
+      Abhilfe ist Åber eines der vielen Patchprogramme mîglich. Ein sehr
+      gutes Patchprogramm ist z.B. HSMODEM (aber auch FAST_SER und noch ein
+      paar andere)...
+
+###########################################################################
+
+Q102) Ich bekomme immer einen "Unknown ZModem"-Fehler angezeigt?
+
+A102) Hier gibt es mehrere Mîglichkeiten, die man ausprobieren sollte:
+  
+      a) Hat der Rechner einen Cache? Evtl. reicht es schon diesen
+         auszuschalten.
+
+      b) "FDbugfix" ins Binkley.Cfg setzen.
+
+      c) Die Empfangs-/Sendebuffer erhîhen; also "Rbuf 32767" bzw.
+         "TBuf 2048" in Binkley.Cfg aufnehmen bzw. mit den Werten ein
+         wenig "herumspielen"...
+
+      d) Tritt der Fehler bei nur groûen Blîcken (>1KB) auf, einmal
+         "NoZedZap" probeweise ins Configfile setzen.
+
+###########################################################################
+
+Q103) Die öbertragungsraten sind sehr schlecht.
+      Was kann ich dagegen machen?
+
+A103) a) Die Bildschirmausgabe von BT ist sehr rechenzeitintensiv. Also
+         auf jeden Fall einen Bildschirmspeeder wie NVDI installieren.
+
+      b) Kein MultiTOS verwenden. Und Binkley unter MagiX auf jeden Fall
+         im "Single Mode" starten, so daû die Bildschirmausgaben auf den
+         TOS(!) Bildschirm gehen!
+     
+      c) Wer einen Groûbildmonitor hat, der sollte mit den Environment-
+         strings "BCOLS=80" und "BROWS=25" die Grîûe des Ausgabefensters
+         von BINKLEY verkleinern. Eine Ausgabe von 160x60 Zeichen sieht
+         zwar toll aus, verbraucht aber massig Rechenzeit!
+
+      d) Wenn BT unter MultiTOS laufen soll, dann nur mit "NoFullscreen"
+         im Binkley.Cfg. Hier ist die Bildschirmausgabe zwar nicht mehr
+         so schîn, aber dafÅr um einiges schneller.
+
+      e) Wer unbedingt die "FullScreen"-Ausgabe benutzen will, sollte
+         es einmal mit "FastScreen" als Statement im Configfile
+         probieren (ab Binkley 3.14pl8).
+
+      f) Nicht "UseColors" verwenden.
+
+      g) Wer NVDI benutzt (bzw. dessen Rechner Åber die LineA-Variablen
+         verfÅgt), sollte ebenfalls das Statement "NoLineA" nicht
+         verwenden. Der Geschwindigkeitsvorteil ist zwar nur sehr minimal,
+         aber warum sollte Binkley langsamer als nîtig laufen?!?
+
+###########################################################################
+
+Q104) Irgendwie bekomme ich keinen vernÅnftige Janus-Session?
+
+A104) Wer mit 14400 bps oder hîher arbeitet, sollte folgendes im
+      Binkley.Cfg angeben:
+
+      AutoBaud
+      Baud       19200            <- oder hîher (z.B. 38400)
+      STLockBaud                  <- Wichtig!
+      JanusBaud       32767       <- Wichtig! (max.32767, nicht mehr!)
+      JanusOK         /V.42Bis    <- Je nach Modem ggf. verschieden!
+      JanusOK         /V.32Bis    <-  dito.
+      JanusOK         /ARQ/V32    <-  dito.
+
+      TIP: Anstelle zig-verschiedene JanusOK-Zeilen aufzunehmen, reicht
+           meistens eine einzige "JanusOK /" aus!
+
+###########################################################################
+
+Q105) Wie schaut es eigentlich bei MagiX 2.0 aus? Ist da noch ein
+      Schnittstellen-Patch nîtig?
+
+A105) Fuer Geschwindigkeiten >=38400 muû sowieso HSMODEM verwendet
+      werden, will man diese in Binkley direkt nutzen und nicht mit
+      Programmen wie FAST_SER umsetzen lassen; auch wenn in den
+      eigentlichen Schnittstellenroutinen kein Bug mehr ist.
+
+###########################################################################
+
+Q106) Ich polle bei einem PC-System mit FrontDoor/Binkley und bekomme eine
+      ZedZap-Session. Beim Senden des ersten Blocks stopt Binkley
+      plîtzlich uns nichts geht mehr (auûer der ESC-Taste). Was ist zu
+      tun?
+
+A106) Es handelt sich um den berÅhmt berÅchtigten FD-Bug. Ich habe diesen
+      Fehler bisher nur einmal gesehen, bei anderen taucht er regelmÑûig
+      auf. Bisher gibt es kein 100%iges Mittel dagegen:
+
+      a) "NoZedZap" ins Configfile setzen (max.1KB-Blîcke verwenden,
+         normal sind 8KB)
+      und/oder
+
+      b) "FDbugfix" ins Configfile setzen
+      und/oder
+
+      c) Ein wenig mit dem Sende-/Empfangspuffern herumspielen. Als
+         zweckmÑûig hat sich "RBuf 32767" und "Tbuf 2048" herausgestellt.
+      und/oder
+
+      d) Ab BT 3.14pl6 "NEEDTIME <millisekunden (0..1000)>" ausprobieren.
+         Aber bitte erst kleine Werte wie 10,20,50 ausprobieren, dann
+         erst grîûere wie 100 oder 200.
+      und/oder
+
+      e) "SmallWindow" ins Configfile setzen (auch hier wieder kleinere
+         Blîcke verwenden)
+
+###########################################################################
+
+Q107) Teilweise gibt es beim Versenden meiner Mail-Pakete mehrere Resends
+      (hatte ich vorher noch nie). Mein Boss fÑhrt Semper 0.74.
+
+A107) Es muû nicht immer an Binkley liegen.
+      Wenn Du auf einmal öbertragungsfehler hast, die vorher noch nicht
+      da waren, dann kînnte es auch sein, daû Dein Boss vorher mit
+      Semper 0.73 (oder einer anderen Version) gearbeitet hat.
+@endnode
+
+@remark =================================================================
+
+@node "BTNC - Nodelist"
+      
+###########################################################################
+                              BTNC - Nodelist
+###########################################################################
+
+Q201) Ich habe Probleme mit meinem Nodelistcompiler BTNC.
+      Ich kann die Nodeliste zwar Åbersetzen; aber Binkley-ST kann aus der
+      kompilierten Liste keinen Informationen herausholen.
+
+A201) 1.) BINKLEY.CFG ueberpruefen!
+          Folgende Statements muessen vorhanden sein:
+
+          a) Da man bei BTNC nicht direkt ein SessionPassword angeben kann,
+             wie z.B. bei der (alten) Version-6 Nodeliste (PARSELST), muû
+             das Password Åber das Key-Statement festgelegt werden, z.B.
+
+             Key !passwd 2:2448/2020@fidonet.org
+
+          b) Damit Binkley die BTNC-Nodelist auch benutzt:
+
+             BTNC
+
+          c) Die Dial-Uebersetzung muss Binkley vornehmen; auch dieses
+             kann BTNC nicht:
+
+             Dial 49-2041- /
+             Dial 49- 0/
+             Dial / 00
+
+             Die "2041" an die eigene Vorwahl anpassen, also z.B.
+             "Dial 49-89- /" fÅr MÅnchen, oder
+             "Dial 49-201- /" fÅr Essen.
+
+          d) Nicht vergessen anzugeben, wo die kompilierte Nodelist sich
+             befindet, z.B.:
+
+             Nodelist D:\JETMAIL\NODELIST\
+
+###########################################################################
+
+Q202) Ich benutzt BTNC und jetzt wÑhlt Binkley immer die (LÑnder-)Vorwahl
+      mit?!?
+
+A202) Wer BTNC benutzt, muû die RufnummernÅbersetzung von Binkley vornehmen
+      lassen:
+
+      FÅr Bottrop (Vorwahl: 49-2041-) sieht das z.B. wie folgt aus:
+
+      BTNC
+      Dial 49-2041- /
+      Dial 49- 0/
+      Dial / 00
+
+      "49-2041-" wird einfach abgeschnitten -> Ortsbereich
+      "49-" wird zu "0"                     -> Regional-/Fernzone
+      Bei allen anderen "00" vorsetzen      -> Ausland
+
+###########################################################################
+
+Q203) Nach BT_REF.ASC wird bei 'Dial /00' eine "00" _hintendran_
+      gesetzt ??! Ich hab's noch nicht geschafft, BT durch die letzte
+      obige Zeile (siehe Q201,Q202) alle Auslands-00-Vorwahlen
+      beizubringen.
+
+A203) Leerzeichen beachten: "[D][i][a][l][ ][/][ ][0][0]". Auch die
+      Reihenfolge der Statements ist wichtig!
+
+###########################################################################
+
+Q204) Was muss ich tun wenn ich Nodelisten bearbeiten will?
+      Ich bekomme einmal in der Woche zwei Dateien (PR24DIFF.A?? und
+      NODEDIFF.A??)
+
+A204) Zuerst benoetigst Du die komplette Nodelist und Pointlist.
+      Diese beiden Dateien kannst Du mit BTNC uebersetzen. Das Config
+      sieht wie folgt aus:
+
+      NODELIST.CFG
+      ============
+      Domain fidonet.org nodelist
+      AddList points24.* 2:24
+      MakeUserlist
+      Statistics
+      Display
+
+      Wenn Du die Pointliste nicht mitkompilieren willst (IMHO nicht
+      notwendig), dann kannst Du die Zeile mit dem "AddList" lîschen.
+      Die kompilierte NL wird z.B. von Binkley oder JetMail benutzt.
+      Die ASCII-NL (PL) darfst Du aber auf gar keinen Fall loeschen, da
+      sie noch fuer die DIFFs gebraucht wird.
+
+      Die *DIFF-Dateien beinhalten NUR die Aenderungen zu der Node- bzw.
+      Pointliste aus der Vorwoche. Wenn Du diese aktualisieren willst,
+      sorge dafuer, dass sich die NL (PL) zusammen mit dem entsprechenden
+      NL-DIFF (PL-DIFF) - das File hat eine um sieben groessere Nummer
+      als Extension - im selben Verzeichnis befindet wie COMPDIFF
+      (APPLYLST u.v.a.), welches dann z.B. mit
+        COMPDIFF nodelist.* nodediff.* clear
+      aufgerufen wird. Am Ende erhaelt man eine aktualisierte NL (PL),
+      die dann wiederum mit BTNC kompiliert werden muss.
+@endnode
+
+@remark =================================================================
+
+@node "Binkley und Fax-Empfang"
+
+###########################################################################
+                          Binkley und Fax-Empfang
+###########################################################################
+
+Q301) Wie kann ich mit Binkley Faxe empfangen?
+
+A301) Dazu hier das nîtige fÅr ein SupraFax-Modem:
+
+      AutoBaud
+      Prefix    ATDT
+      Busy      ATH1|
+      Init      v```^ATZ|~~AT+FAA=1+FDCC=1,5+FLID="Name@Telephon"|
+      Answer    AT+FDIS=1,3,0,0+FCR=1|~ATA|
+      Fax       d:\binkley\btfax.ttp -pf:\stfax\incoming\ -m
+      Afterfax  d:\binkley\faxcvt.ttp -if:\stfax\incoming\ -of:\stfax\view\
+      FaxInbound f:\stfax\incoming\
+
+###########################################################################
+
+Q302) Ich habe Probleme Faxe zu empfangen. Sobald Binkley BTFAX aufruft
+      bekomme ich immer eine Fehlermeldung "Time out in Phase B".
+
+A302) Wenn diese Meldung erscheint, so ist es fast immer das Modem, das
+      einen Datenanruf als Fax mit "Adaptive Answer" beantworten will,
+      d.h. das Modem sendet "+FCON FAX", obwohl es sich um einen einfachen
+      Daten-Connect handelt.
+
+###########################################################################
+
+Q303) Wie schaffe ich es, daû BTFAX ein Fax empfÑngt, wenn RATSoft/ST (und
+      nicht Binkley) abhebt?
+
+A303) RATSoft/ST muû BTFAX aufrufen und nicht Binkley!
+      Ich benutze folgenden Init-String in CONFIG.DAT (man muû ihn mit
+      einem Texteditor Ñndern; nicht mit dem CONFIG.PRG):
+
+      +++~~~ATZ*[OK]ATN1W2&K3+FAA=1+FCR=1+FBOR=0
+              +FDCC=1,5,0,0,0,0,0,7*[OK]AT+FLID="My Fax-ID"*[OK]
+
+      Obiges als EINE Zeile eingeben!
+
+      Damit jetzt RATSoft antwortet, editiere CNCT_STR.DAT:
+
+      ; CNCT_STR.DAT
+      ; """""""""""
+      ; Alternate Connect Strings, up to 10 entries
+      ;
+      ; FORMAT: [batch<.bat>],[string]
+      ;
+      c:\ratsoft\fax.bat,+FCON
+
+      Und FAX.BAT ruft BTFAX auf:
+
+      c:\ratsoft\btfax.ttp -q -pd:\faxes\ -d10
+@endnode
+
+@remark =================================================================
+
+@node "Point-Software"
+@alias "Demo-Configs"
+
+###########################################################################
+                              Point-Software
+###########################################################################
+
+Q401) Welche Software benîtige ich, um einen Point einzurichten?
+
+A401) Es gibt mehrere Mîglichkeiten. Aus jeder der sechs Gruppen muû
+      ein Programm gewÑhlt werden. Auûnahme: Wird Semper als Mailer
+      benutzt, so ist eine Shell nicht notwendig; allerdings gibt es
+      hierfÅr Avalon4Semper, welches von Semper direkt unterstÅtzt wird.
+
+      Gruppe 1 (Mailer)   : Binkley-Term (PD)
+                            Semper (Keyware, Demokey erhÑltlich)
+
+      Gruppe 2 (Tosser)   : JetMail (Keyware, Demokey erhÑltlich)
+                            IOSmail (PD)
+                            Ecu/Llegada (Freeware)
+
+      Gruppe 3 (Reader)   : LED (Shareware)
+
+      Gruppe 4 (Shell)    : Avalon (Shareware (leicht eingeschrÑnkt),
+                                    Demokey erhÑltlich)
+
+      Gruppe 5 (NL-Comp.) : BTNC (PD)
+                            ParselST (nicht Semper und JetMail)
+
+      Gruppe 6 (NL-Update): ApplyLst (PD)
+                            CompDiff (liegt Avalon bei)
+                            Fido-ST (PD)
+
+      Sonstiges           : Avalon4Semper (siehe Avalon)
+
+      Die Liste ist nicht vollstÑndig. Gerade im Bereich der Utilities
+      gibt es noch sehr viel mehr. Hier sollten aber auch nur die
+      wichtigsten Programme vorgestellt werden.
+
+###########################################################################
+
+Q402) Ich habe Probleme mit meinem Binkley-Setup...
+
+A402) Hier eine Demo-Config. Voraussetzung: BTNC-Nodelist, HSMODEM.
+      Eigene Adressen: 2:2448/2020@fidonet.org und 51:601/7.6@atarinet.ftn
+      (Die "(...)" nicht eingeben!)
+
+      BINKLEY.CFG
+      ===========
+      System   Das ist mein Point...
+      City     Bottrop
+      Sysop    Stephan Slabihoud
+
+      Domain   fidonet.org fidonet
+      Domain   atarinet.ftn atarinet
+
+      Address  2:2448/2020.6@fidonet.org 24818
+      Address  51:601/7.6@atarinet.ftn 16017
+
+      Key      !passwd 2:2448/2020@fidonet.org
+      Key      !passwd 51:601/7@atarinet.ftn
+
+      Hold4D                    (nicht bei Ecu/Llegada)
+      BTNC
+      Dial 49-2041- /           (Leerzeichen beachten!)
+      Dial 49- 0/
+      Dial / 00
+
+      Init     ATS10=150|~~
+      HoldOnUs *
+      Prefix   ATDP
+      Rbuf     32737
+      TBuf     1024
+      AutoBaud
+      RSVEBoard
+      Baud            38400     (max.19200 beim ST)
+      Port 2                    (1=Modem1, 2=Modem2 (TT))
+      STLockBaud
+      JanusBaud       32767     (nicht Ñndern)
+      JanusOK         /V.42Bis
+      JanusOK         /V.32Bis
+      SlowModem
+      Statuslog       D:\JETMAIL\BINKLEY.LOG
+      Nodelist        D:\JETMAIL\NODELIST\
+      Downloads       D:\JETMAIL\TRANSFER\INBOUND\
+      Hold            D:\JETMAIL\TRANSFER\OUTBOUND\
+      Netfile         D:\JETMAIL\TRANSFER\INBOUND\
+      Netmail         D:\JETMAIL\MSGS\NETMAIL
+      KnownInbound    D:\JETMAIL\TRANSFER\INBOUND.KWN\
+      ProtInbound     D:\JETMAIL\TRANSFER\INBOUND.PRO\
+      CaptureFile     D:\JETMAIL\BINKLEY.CAP
+      NoCollide
+      Unattended
+      ; NoLineA                 (falls Probleme auftauchen)
+      BoxType         1         (nur wenn ANSI-Zeichensatz installiert)
+      NiceOutBound
+      Gong
+      Loglevel        5
+
+###########################################################################
+
+Q403) Wie sieht das Config zu BTNC aus?
+
+A403) Zum Beispiel so:
+
+      NODELIST.CFG:
+      =============
+      Domain  fidonet.org  nodelist
+      Domain  atarinet.ftn atarlist
+      MakeUserlist
+      Statistics
+      Display
+
+###########################################################################
+
+Q404) Wie sieht das Config zu IOSmail aus?
+
+A404) Zum Beispiel so:
+
+      (Export: IOSMAIL.TTP -e EXPORT)
+      (Import: IOSMAIL.TTP -e IMPORT)
+      (Crunch: IOSMAIL.TTP -e CRUNCH)
+
+      IOSMAIL.CFG:
+      ============
+      #IMPORT
+      commands  -bilt
+      #ENDLABEL
+      ;
+      #CRUNCH
+      commands  -dlt
+      #ENDLABEL
+      ;
+      #EXPORT
+      commands  -csoltp
+      #ENDALL
+      ;
+      4DMsgHeader
+      RedirectNetmail
+      NiceOutput
+      NoZone
+      CompactMSGS      3
+      KeepPrivate
+      NewBinkley
+      SaveLocal
+      DefDays          14
+      MSGbuffer        256000
+      DefaultPKT       2+
+      SendAlwaysPKT
+      LogLevel         1
+      ;
+      SysOp            Stephan Slabihoud
+      Address          2:2448/2020.6 24818
+      Address          51:601/7.6 16017
+      Password         2:2448/2020 passwd # %LZHmail
+      Password         51:601/7 passwd # %LZHmail
+      ;
+      Logfile          J:\FIDO\IOSMAIL.LOG
+      Netmail          J:\FIDO\MSGS\NETMAIL
+      Outbound         J:\FIDO\TRANSFER\OUTBOUND\
+      Inbound          J:\FIDO\TRANSFER\INBOUND\
+      KnownInbound     J:\FIDO\TRANSFER\INBOUND\
+      ProtInbound      J:\FIDO\TRANSFER\INBOUND\
+      TrashArea        J:\FIDO\MSGS\BAD_MSGS
+      MailTemp         J:\FIDO\TRANSFER\OUTBOUND\TEMP\
+      PktTemp          J:\FIDO\TRANSFER\INBOUND\TEMP\
+      ;
+      LZHarchive       J:\FIDO\LHARC.TTP x a -m    ; LZH
+      ARCarchive       J:\FIDO\ARC.TTP -x -a       ; ARC
+      ZIParchive       J:\FIDO\ZIP.TTP -x -a       ; ZIP
+      ARJarchive       J:\FIDO\ARJ.TTP -x -a       ; ARJ
+      ;
+      ApplZone         51: J:\FIDO\TRANSFER\ATARINET.033\ atarinet.ftn
+      ;
+      Boss             2:2448/2020
+      Route            51:601/7 51:*
+      Route            2:2448/2020 *
+      ;
+      Arc-For   *
+      File-To   *
+
+###########################################################################
+
+Q405) Wie sieht das Config zu JetMail aus?
+
+A405) Zum Beispiel so:
+
+      CONFIG.JM:
+      ==========
+      Key             xxxxxxxxxxxxxxxxxxxx
+      ;
+      Inbound         D:\JETMAIL\TRANSFER\INBOUND\
+      SecureInbound   D:\JETMAIL\TRANSFER\INBOUND.PRO\
+      ; ^^^^^^^^^^^
+      ; Ebenfalls in Binkley.Cfg anpassen!
+      ;
+      Outbound        D:\JETMAIL\TRANSFER\OUTBOUND\
+      ;
+      ArcPack         D:\JETMAIL\ARC.TTP -a
+      ArcExtract      D:\JETMAIL\ARC.TTP -x
+      LZHPack         D:\JETMAIL\LHARC.TTP a -m
+      LZHExtract      D:\JETMAIL\LHARC.TTP x
+      LHAPack         D:\JETMAIL\LHARC.TTP a -m
+      LHAExtract      D:\JETMAIL\LHARC.TTP x
+      ZipPack         D:\JETMAIL\ZIP.TTP -a
+      ZipExtract      D:\JETMAIL\ZIP.TTP -x
+      ZooPack         D:\JETMAIL\ZOO.TTP a
+      ZooExtract      D:\JETMAIL\ZOO.TTP x
+      ArjPack         D:\JETMAIL\ARJBETA.TTP -m1 -f
+      ArjExtract      D:\JETMAIL\UNARJ.TTP x -~pe- -~g-
+      ;
+      Netmail         Mail
+      Mailbox         PrivateMailBox
+      BadMsgs         TrashArea
+      DupeMsgs        DupeArea
+      Archive         Wichtig
+      Nodelist        D:\JETMAIL\NODELIST\
+      Logfile         D:\JETMAIL\JETMAIL\JETMAIL.LOG 100
+      BinkleyLog
+      ;
+      Domain          fidonet.org fidonet Fidonet.Org
+      Domain          atarinet.ftn atarinet AtariNet.Ftn
+      ;
+      Address         2:2448/2020.6@fidonet.org 24818
+      Address         51:601/7.6@atarinet.ftn 16017
+      ;
+      Sysop           Stephan Slabihoud
+      ;
+      KnownAddress    1:* 3:* 4:* 5:* 6:*   ; (sofern nur Zone 2 benutzt wird)
+      ;
+      KeepMemory      500
+      DefPktType      FSC0039
+      ; NoSaveSeenby       (Points kînnen hiermit Speicher sparen)
+      Robots          Allfix VoteMGR
+      CheckEchoDupes
+      CheckNetDupes
+      ImportArcmail      ; (sollten nur Pointsysteme benutzen)
+      ;
+      Link            2:2448/2020@fidonet.org 24818
+      Aka             51:601/7@atarinet.ftn 16017
+      Sysop           Guenther Paczia
+      Password        passwd
+      Arcmode         LHAmail
+      PKTType         FSC0039
+      INTLMode        3D
+      ControlMode     2D
+      OutboundMode    5D
+      NetmailType     4D
+      EchomailType    4D
+      DummyPacket
+      LinkEnd
+
+      ROUTE.JM:
+      =========
+      FILE-TO     ALL
+      ROUTE-TO    2:2448/2020@fidonet.org ALL@fidonet.org
+      ROUTE-TO    51:601/7@atarinet.ftn ALL@atarinet.ftn
+      POLL        2:2448/2020@fidonet.org
+@endnode
+
+@remark =================================================================
+
+@node "Allgemeine Fragen zu Binkley"
+
+###########################################################################
+                     Allgemeine Fragen zu Binkley
+###########################################################################
+
+Q501) Wenn ich 'Fastscreen' setze, verschiebt Binkley mir die
+      Bildschirmfenster (das unterste Fenster liegt auf dem mittleren).
+
+A501) Nî, macht er nicht. Das (ohne "FastScreen') untere Fenster liegt
+      (mit 'FastScreen') jetzt in der Mitte des Bildschirms. Nur so war
+      die Geschwindigkeitserhîhung mit Hilfe eines VT52-Kommandos
+      mîglich.
+      In der "3.14pl8" kann es vorkommen, daû der gesamte Bildschirminhalt
+      um eine Zeile nach oben verschoben wird. Hier sollte mit BROWS=x der
+      Bildschirm dann um eine Zeile verkleinert werden, oder auf "3.14pl9"
+      gewartet werden.
+
+###########################################################################
+
+Q502) Wenn ich 'NoLineA' auskommentiere, lassen sich die Farben im
+      2-Color Modus nicht mehr einstellen (ich hÑtte gerne einen
+      'wei·-auf-schwarz' Rahmen). (Falcon-User)
+
+A502) Das war aber auch in den alten Versionen so. Der Falcon unterstÅtzt
+      nicht mehr die LineA-Befehle. Also 'NoLineA' ins Configfile setzen,
+      oder NVDI installieren und die LineA-Emulation einschalten.
+
+###########################################################################
+
+Q503) Wenn ich Baud 57600 einstelle, kriege ich manchmal nur 9600er-
+      Connects (statt 14400), und ab und zu kriege ich meine Post auf
+      Hold von meinem Boss nicht geschickt.
+
+A503) Also was Du als "Baud xxx" im BT-Config einstellst und was Dein
+      Modem als Connect-String zurueckliefert, hat miteinaner nichts,
+      rein gar nichts zu tun. Und das Du nur noch 9600er-Connects
+      bekommst, liegt nicht daran, daû Du Deine serielle Schnittstelle
+      mit 57600 bps betreibst.
+
+      Ein 'ab und zu'-Fehler gibt es nicht. Entweder bekommst Du NIE
+      Deine, auf Hold gesetzten, Mails, dann liegt es an Deinem Setup,
+      oder, wenn Du nur 'ab und zu' Deine Pakete bekommst, dann kînnte es
+      an Deinem Boss liegen.
+
+###########################################################################
+
+Q504) Das Fenster 'Recent Activity' ist mit "FastScreen" breiter als die
+      anderen...
+
+A504) Na und?
+
+###########################################################################
+
+Q505) Was ist mit diesem "bug": BT.TTP wird mit der Kommandozeile "BATCH"
+      aufgerufen, nimmt einen bestehenden Connect an, und soll nach
+      Beenden der Session (oder bei <ESC> fuer BBS- Aufruf) wieder beenden.
+
+A505) Dieses Verhalten ist durchaus absicht. Es wurde von Steven Green
+      implementiert um Binkley aus Forem oder TurboBoardST heraus als
+      "Backdoor" aufrufen zu koennen. Das BBS Programm //TurboBoard macht
+      das Interface zum User oder anrufenden Mailer, wenn sich ein Mailer
+      meldet wird Binkley mit Kommando "BATCH" aufgerufen...
+      (Wolfgang Zweygart)
+
+###########################################################################
+
+Q506) Wenn Binkley Mail empfÑngt und AfterMail aufruft, dann beendet sich
+      Binkley nicht wenn er aus AfterMail zurÅckkommt sondern startet sich
+      nur neu "Begin BT/ST...."?!?
+
+A506) Aftermail ist im Zusammenhang mit "batch" einfach UNSINN!!!
+      Da machen nur die Exit-Levels einen sinnvollen Effekt.
+      (Wolfgang Zweygart)
+
+###########################################################################
+
+Q507) Ich hÑtte da noch eine Frage: Wie hÑngen RBuf/TBuf und die
+      mit SETTER.TTP fÅr HSMODEM eingestellten Buffer zusammen? Wenn die
+      eine Einstellung die andere nicht beeinflusst, welches ist eine
+      gÅnstige Kombination?
+
+A507) In den TBuf/RBuf-Buffer werden die Daten geschrieben, bevor sie
+      gesendet/gelesen werden (und dadurch in den HSMODEM-Buffer
+      geschrieben/gelesen werden). Ist also so eine Art 2.Level-Cache.
+      Bringt unter HSMODEM praktisch nichts. Theoretisch sollte es egal
+      sein, wie groû dieser Buffer dimensioniert wird (er sollte aber ein
+      kompletter ZMODEM Header hineinpassen). Es hat sich aber gezeigt,
+      daû Rbuf=32767 (maximal) und TBuf=2048 i.d.R. zu empfehlen sind.
+
+###########################################################################
+
+Q508) Ich mîchte einen Point ancrashen, dessen Boss ich nicht in meiner
+      Nodeliste habe.
+
+A508) Die Telefonnummer des Nodes dieses Points muût Du im BINKLEY.CFG
+      als Key-Statement eintragen:
+
+      z.B.
+      Key %49-261-54953 2:2454/95     ; Scary MonSTer/2, Koblenz
+
+      (';' ist ein Kommentarzeichen!)
+
+      Alle Telefonnummern-Angaben sollten in der internationalen Form
+      (siehe Key-Statement) angegeben werden.
+
+      Du kannst aber auch Points, die einen Mailer laufen haben, auf diese
+      Art und Weise hinzufÅgen und dann direkt ancrashen (also ohne Umweg
+      Åber das Node(Boss)-System). Beachte: Hierzu muû das 4D-Outbound-
+      Format verwendet werden ("Hold4D").
+@endnode
+
+@remark =================================================================
+
+@node "Binkley und MagicMac"
+
+###########################################################################
+                           Binkley und MagicMac
+###########################################################################
+
+Q601) Welche Treiber fÅr die serielle Schnittstelle mÅssen im Auto-Ordner
+      sein und welche Einstellungen mÅssen die haben?
+
+A601) Das ist meine jetzige Treibersammlung:
+
+      -w---      290 29.09.95 08:23:08 mcstout.inf
+      -w---    63797 25.08.95 00:25:54 mcstout.prg*
+      -w---     5206 25.08.95 00:25:36 mcstout.rsc
+      -w---     6849 29.09.95 08:22:28 mcstout.sys
+      -w---      421 09.04.95 21:30:10 schwein.prg*
+      -w---     6849 28.09.95 16:53:18 x_macm1.prg*
+      -w---     2067 27.09.95 11:44:46 y_drvin.prg*
+      -w---    17207 27.09.95 11:44:48 z_msnd.prg*
+
+      MACM1 ist so konfiguriert:
+
+      NR6:    BIOS-Nummer 6 benutzen? (Nur fÅr einen Treiber sinnvoll.
+              Aktuelle Einstellung / current setting : Ja. / Yes.
+      USEAUX: Namenseinstellungen des MagiCMac-MenÅs benutzen?
+              Aktuelle Einstellung / current setting : Ja. / Yes.
+      INDRV:  Mac-Inputdriver Name (max. 31 Zeichen) .Bin
+      OUTDRV: Mac-Outputdriver Name (max. 31 Zeichen) .BOut
+      GNAME:  GEMDOS-Name des Treibers (max. 12 Zeichen) MODEM1
+      DTR:    Einstellung des DTR-Signals beim Treiberstart
+              Aktuelle Einstellung / current setting : Ja. / Yes.
+      MACBUF: Einstellung der MAC-Empfangspuffergrîûe in Byte.
+              Platz / place Nr.1 : 8192
+      RBL:    Einstellung der Empfangspuffergrîûe in Byte.
+              Platz / place Nr.1 : 256
+      TBL:    Einstellung der Sendepuffergrîûe in Byte.
+              Platz / place Nr.1 : 2048
+      EOP:    Mac-Schnittstelle nach erster Nutzung offen halten?
+              Aktuelle Einstellung / current setting : Ja. / Yes.
+      DIR:    SCC-Direktzugriff mîglich?
+              Aktuelle Einstellung / current setting : Ja. / Yes.
+      DCD:    GPi-Line auf MODEM vorhanden?
+              Aktuelle Einstellung / current setting : Ja. / Yes.
+      HBD:    Hohe Baudraten erlauben?
+              Aktuelle Einstellung / current setting : Ja. / Yes.
+
+      Wichtig ist aber vor allem, dass dein Modemkabel Handshake-Leitungen
+      hat. Einfachster Test: Auf Mac-Seite "Z-Term" starten,
+      "Hardware-Handshake" ankreuzen und warten. Wenn jetzt eine
+      Fehlermeldung ("CTS low Hardware-Handshake disabled") dasteht, kannst
+      du das Kabel gleich zum Haendler oder zur Loetstation tragen... 8-)
+
+      Ernsthaft - bei mir laeuft jetzt das dritte Kabel, aber das
+      funktioniert auch. Es gibt eine Reihe von Loet-Anleitungen ("wie
+      loete ich mir mein Modemkabel selbst"), davon sind aber 98% "nicht
+      ganz richtig, aber auch nicht ganz falsch"... also viel Spass beim
+      Modemkabel.
+
+      Dann noch an wichtigen Settings: Dein Modem sollte auf "ignore DTR",
+      meistens mit AT&D0 zu setzen, eingestellt sein, sonst legt es gerne
+      mal beim CONNECT auf.
+
+      Ach so, noch ganz zum Schluss: Ich habe auch noch "WeirdMac" von
+      Thorsten Pohlmann%WI2@2:2452/101.6 installiert, das bastelt etwas am
+      Soundsystem herum. (Anders Henke)
+@endnode
+
+@remark =================================================================
+
+@node "Diverses"
+
+###########################################################################
+                                 Diverses
+###########################################################################
+
+Q901) Was bedeuten die MsgFlags?
+
+A901) N = Flag in Netmails erlaubt
+      E = Flag in Echomails erlaubt
+      L = Nur bei lokalen Mails erlaubt
+
+      Name           NEL  Beschreibung
+      ==================================================================
+      Private        ++   Msg ist privat.
+      Crash          +-+  Msg soll "crash", d.h. direkt, zum EmpfÑnger
+                          gesendet werden.
+      Received       ++   Msg wurde vom EmpfÑnger empfangen. Das Flag
+                          wird von QBBS fÅr BBS-User benutzt.
+      Sent           +++  Msg wurde exportiert.
+      W/File         +-   Mit der Msg wird eine Datei mitgesendet. Der
+                          Dateiname steht im Subject.
+      InTransit      +-   Die Msg ist nicht fÅrs eigene System und wird
+                          weitergesendet.
+      Orphan         +-   Der Tosser weiss nicht, wohin diese Mail
+                          geroutet werden soll.
+      Kill/Sent      +-+  Msg wird nach dem Exportieren automatisch
+                          gelîscht.
+      Local          ++   Msg wurde auf dem eigenen System geschrieben,
+                          entweder vom Sysop, oder einem BBS-User.
+      Hold           +-+  Msg wird "auf Hold" gelegt, d.h. die muû vom
+                          EmpfÑnger abgeholt werden.
+      FRequest       +-   Die Msg ist ein FileRequest. Die Filenamen
+                          stehen im Subject-Feld durch Leerzeichen
+                          getrennt.
+      ReturnReceipt  +-   Der EmpfÑnger soll eine EmpfangsbestÑtigung
+                          zurÅcksenden.
+      IsReceipt      +-   Zeigt an, daû es sich bei dieser Msg um
+                          eine EmpfangsbestÑtigung auf "ReturnReceipt"
+                          handelt.
+      AuditRequest   +-   Fordert eine EmpfangsbestÑtigung von jedem
+                          System an, das die Msg bearbeitet.
+      Deleted        ++   Zeigt an, daû diese Msg gelîscht ist.
+
+      Name           NEL  Beschreibung
+      ==================================================================
+      Read           ++   Zeigt an, daû die Msg gelesen wurde.
+      Archive/Sent   +++  Wenn dieses Flag gesetzt ist, wird die Msg
+                          nach dem Exportieren in die ArchivArea kopiert.
+      TruncFileSent  +-+  Das File wird nach dem Senden auf 0 gekÅrzt.
+      KillFileSent   +-+  Das File wird nach dem Senden gelîscht.
+      Direct         +-+  Sende Netmail direkt zum EmpfÑnger (die Mail
+                          wird nicht geroutet).
+      ZoneGate       +-+  Sende Netmail Åber das ZoneGate.
+      HostRoute      +-+  Sende Netmail Åber den Host/Hub des EmpfÑngers.
+      Locked         ++   Anzeige, daû Msg gesperrt, d.h. kein Export,
+                          kein Crunchen, keine énderung.
+      Immediate      +-+  Sende Netmail sofort zum EmpfÑnger. Dieses ist
+                          die "hÑrtere" AusfÅhrung von "Crash".
+      Gated          ++   Markiert lokal gegatete Msgs.
+      CreateFlowFile +-   Erzeugt aus dem MsgText ein Flowfile.
+      Maus           +++  Es ist eine Maus-Msg.
+      Fixed address  +++  Der Tosser Ñndert nicht die angegebene
+                          Absenderadresse.
+
+###########################################################################
+
+Q902) Wie kann ich meinen Exporter dazu Åberreden, die Absenderadresse
+      aus den SEEN-BYs und PATHs 'rauszulassen?
+
+A902) Die Absenderadresse gehîrt dort hinein, sonst wÅrde der EmpfÑnger
+      die EchoMail nochmals an den Absender zurÅcksenden. Der Tosser
+      eines Node-Systems ist dafÅr verantwortlich, daû die Fake-SEEN-BYs
+      seiner Pointsysteme entfernt werden.
+@endnode

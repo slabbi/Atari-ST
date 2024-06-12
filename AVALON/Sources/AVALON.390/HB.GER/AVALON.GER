@@ -1,0 +1,2264 @@
+==========================================================================
+AVALON V3.7x                                   Letzte énderung: 11.07.1996
+==========================================================================
+                         (c) Stephan Slabihoud
+                     email: 2:2446/110.6@fidonet.org
+==========================================================================
+                Anleitung zur Voll- und Shareware-Version
+     (72 Zeilen/Seite davon max.65 Zeilen bedruckt, 74 Zeichen/Zeile)
+==========================================================================
+                            S H A R E W A R E
+==========================================================================
+
+Dieses Programm ist Shareware.  Wer es benutzt, der sollte sich beim Autor 
+registrieren lassen (siehe REGISTER.GER).
+
+Vergessen  Sie  nicht,  Ihren genauen email-Namen (der hinter  dem  SYSOP-
+Statement) und Ihre email-Adresse anzugeben.  Ansonsten kann ich nicht den 
+benîtigten KEY generieren.
+
+Als registrierter Benutzer bekommen Sie einen KEY zugeschickt, mit dem Sie 
+AVALON ganz einfach in die Vollversion verwandeln kînnen.
+
+Die  neueste  Version kann kostenlos bei meinem Boss oder bei  allen  AFN-
+Nodes requestet werden (siehe REGISTER.GER).
+
+Wer  lieber  die Post benutzen will,  kann AVALON  durch  Zusendung  einer 
+formatierten  Diskette  und  eines  frankierten  und  adressierten   RÅck-
+umschlags beziehen.  Wer keine Diskette und Umschlag zusenden mîchte,  der 
+kann  auch  DM  10,- (EuropÑisches Ausland und öbersee DM  15,-)  mit  der 
+Angabe  "AVALON" fÅr Diskette,  Porto und Verpackung Åberweisen  oder  zu-
+senden. Adresse nicht vergessen!!!
+
+==========================================================================
+Die Shareware-Version ist voll lauffÑhig.  Aber ab einem bestimmten  Datum 
+(kann z.B.  mit ALT+I angezeigt werden) wird hin und wieder eine  Alertbox 
+auf dem Bildschirm ausgegeben.
+Wer  eine  VerlÑngerung  des Testdatums wÅnscht,  kann  sich  mit  mir  in 
+Verbindung setzen. Ich generiere dann einen zeitlich begrenzten Key.
+==========================================================================
+
+             Anregungen und Fehlerbeschreibungen zum Handbuch
+             und Programm bitte direkt per Crashmail an mich!
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+AVALON-Anwenderhandbuch                                            Seite 2
+
+
+                    INHALT                      Seite
+                  =====================================
+                    Inhalt ....................... 2
+                    Anleitung .................... 3
+                      INSTALLATION (WICHTIG) ..... 3
+                      Binkley & Semper ........... 3
+                      Allgemeines ................ 4
+                      Die Point-Setups ........... 5
+                      Die Poll-Sessions .......... 6
+                      Programme (Find-1,Find-2) .. 6
+                      Program-Manager ............ 6
+                      Der File-Request ........... 7
+                        aus einer Fileliste ...... 8
+                        aus einer MsgBase ........ 8
+                      File-Hatch ................. 9
+                      Das Session-Setup ......... 11
+                      Der Filemanager ........... 13
+                      Find-1, Find-2 ............ 13
+                      Special ................... 14
+                      Edit areas ................ 16
+                      Areafix-Mananger .......... 17
+                      Speichern d. Einstellungen  18
+                      Das Notizbuch ............. 18
+                      Kommandozeilenbefehle...... 18
+                    Der Batchinterpreter ........ 19
+                    Das Terminal ................ 19
+                    Interna ..................... 20
+                    BIOS-Ausgabeumlenkung ....... 22
+                    Aufbau der TIC-Files ........ 23
+                    Aufbau von Filelisten ....... 23
+                    UnterstÅtzte VT-Codes ....... 24
+                    Probleme .................... 25
+                    Warnungen ................... 26
+                    Fatale-Fehler ............... 26
+                    Grenzen ..................... 26
+                    Tastaturbelegung ............ 27
+                    Historie .................... 28
+                  =====================================
+
+         ========================================================
+                              Getestet mit:
+               TOS: 1.00, 1.02, 1.04 (22.2.89 und 6.4.89), 1.06
+                    2.05, 2.06, 3.05, 3.06, 4.04
+              MTOS: 1.01, 1.04
+              KAOS: 1.2, 1.4.0, 1.4.1, 1.4.2
+             MAG!X: 2.0x
+              WINX: 2.1, 2.3g
+              NVDI: 1.xx, 2.xx, 2.5x
+          TURBO-ST: 1.8x, QUICK-ST: 2.0x
+         ========================================================
+
+            LauffÑhig in allen Auflîsungen ab 640x200 Punkten.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+AVALON-Anwenderhandbuch                                            Seite 3
+
+==========================================================================
+=                        =======================                         =
+=                        =  A N L E I T U N G  =                         =
+=                        =======================                         =
+==========================================================================
+
+AVALON  ist eine alternative Shell zur weit  verbreiteten  Tiny-Shell.  Im 
+Gegensatz  zur  Tiny-Shell,  werden jedoch bis zu  sechs  unterschiedliche 
+Point-Setups  verwaltet  und ebensoviele  unterschiedliche  Poll-Sessions; 
+weiterhin  sind einige Verbesserungen hinsichtlich des  FileRequests  vor-
+genommen  worden und es ist ein kleiner CLI implementiert  worden,  dessen 
+Batchfiles innerhalb eines SessionSetups abgearbeitet werden kînnen.
+Die  Shell  ist  speziell fÅr BINKLEY und  SEMPER  konzipiert  worden  und 
+wertet deshalb BINKLEY.CFG (Binkley) oder CONFIG.DAT (Semper) aus.
+
+
+==========================================================================
+  *** WICHTIG ***          *** INSTALLATION ***          *** WICHTIG ***
+==========================================================================
+
+Wenn Sie sich fÅr Avalon haben registrieren lassen,  so erhalten Sie einen 
+sogenannten  KEY  (SchlÅssel) zu AVALON und AVALON4SEMPER  oder  auch  nur 
+fÅr  AVALON4SEMPER.  Dieser KEY ist persînlich fÅr Sie  ausgestellt,  ohne 
+ihn arbeitet Avalon als Sharewareversion, mit ihm als Vollversion.
+Deshalb  muû  sichergestellt  sein,   daû  Ihr  Name  (hinter  dem  SYSOP-
+Statement)  in der "BINKLEY.0..5"-Datei mit dem Namen  Åbereinstimmt,  auf 
+den Avalon registriert wurde.
+
+Der  KEY wird sehr einfach installiert:  Es muû nur eine einzige Zeile  in 
+"BINKLEY.[0-5]"  oder "AVALON.KEY" (wenn mit SEMPER gearbeitet wird)  auf-
+genommen  werden.   Falls  mit  Binkley  gearbeitet  wird  und  die  Datei 
+"BINKLEY.0"  noch  nicht vorhanden sein sollte,  dann diese Zeile  in  die 
+Datei "BINKLEY.CFG" setzen.
+
+Application AVALON xxxxxxxx            (fÅr AVALON und AVALON4SEMPER)
+Application AVALONLIGHT xxxxxxxx       (nur AVALON4SEMPER)
+Application AVALONDEMO xxxxxxxx        (Demokey AVALON und AVALON4SEMPER)
+
+"xxxxxxxx" ist in diesem Fall Ihr persînlicher KEY.
+
+Falls Sie Avalon noch nicht ausgiebig testen konnten (z.B.  das  Testdatum 
+bereits  abgelaufen  sein  sollte),  so ist es mîglich  einen  Demokey  zu 
+installieren.  Hierzu benîtige ich nur Ihren Namen (der hinter dem  Sysop-
+Statement in BINKLEY.CFG).
+
+==========================================================================
+BINKLEY & SEMPER
+==========================================================================
+
+AVALON arbeitet mit jeder BINKLEY- und SEMPER-Version zusammen.
+
+Wird Semper verwendet,  so liest Avalon zusÑtzlich die Pfad- und Kommando-
+zeilenangaben  der installierten Programme,  so daû diese nicht  mehr  un-
+bedingt unter "Find-1" installiert werden mÅssen,  allerdings muû zunÑchst 
+unter  "Special"  angegeben werden,  wo die Datei "CONFIG.DAT"  zu  finden 
+ist.  Weiterhin kann Avalon Nachrichten an SEMPER senden,  wie das "Rescan 
+Outbound".  Dieses  geschieht automatisch wenn Semper parallel  zu  Avalon 
+lÑuft (z.B. unter Magix).
+
+
+
+
+
+
+
+
+
+
+
+
+AVALON-Anwenderhandbuch                                            Seite 4
+
+
+==========================================================================
+Allgemeines
+==========================================================================
+
+
+Shortcuts:
+----------
+Fast  alle  Funktionen  kînnen in Avalon auch  mit  der  Tastatur  bedient 
+werden.  Eine  Aufstellung  der  Shortcuts (Hauptdialogs)  findet  man  im 
+Anhang,  oder  man kann sich - was komfatabler ist - eine öbersicht  durch 
+Druck auf die HELP-Taste jederzeit anzeigen lassen.
+
+
+Iconify (AVALON):
+-----------------
+In  MultiTasking-Umgebungen stîrt oft der Hauptdialog.  Deshalb  kann  man 
+diesen  jetzt  durch  Anwahl des FULLERs (Button  rechts-oben  im  Window) 
+verkleinern  und  auch  wieder  vergrîûern.  Alle  Funktionen  von  AVALON 
+bleiben per MenÅleiste oder Shortcut noch zugÑnglich.
+Wird  der  FULLER  in  einem anderen  Fensterdialog  als  dem  Hauptdialog 
+angewÑhlt, so wird das Fenster nur zentriert!
+ o Funktionen noch anwÑhlbar Åber MenÅleiste oder Shortcut
+ o Fensterposition wird gespeichert
+
+
+Iconify (ICFS):
+---------------
+Wer ICFS.PRG installiert hat,  der kann (fast) alle Dialog-Fenster  ikoni-
+fizieren.  Und zwar mit:  Ctrl+SPACE,  Ctrl+Shift+SPACE,  Ctrl oder  Shift 
+oder Alternate und einem Mausklick auf den CLOSER.
+ o Keine Funktion mehr anwÑhlbar, solange wie ikonifiziert
+ o Fensterpostion wird gemÑû ICFS gesetzt
+
+
+Quit/Cancel/Exit:
+-----------------
+Soll ein Dialog verlassen werden,  so ist dieses nicht nur mit ALT-Q  oder 
+CNTRL+Q  mîglich,  sondern  oft auch mit ALT-E,  UNDO  oder  ESC!  Einfach 
+Ausprobieren ;-)
+
+
+FidoMessageProtkoll:
+--------------------
+Avalon  versteht  das FidoMessageProtokoll "(c) Jan Kriesten  und  Stephan 
+Slabihoud". Mehr Informationen findet man dazu im DEVELOP-Ordner.
+
+
+Verstecktes Feature:
+--------------------
+Unter  MultiTOS  und  MagiX kann Avalon  GEM-Programme  auch  parallel  zu 
+Avalon  starten.  Hierbei  muû  wÑhrend des  Aufrufs  (des  zu  startenden 
+Programms)  die ALTERNATE-Taste gedrÅckt gehalten werden.  Dieses  Feature 
+ist Åbrigens schon seit einigen Versionen implementiert.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+AVALON-Anwenderhandbuch                                            Seite 5
+
+==========================================================================
+Die Point-Setups
+==========================================================================
+
+Erster Aufruf von AVALON
+------------------------
+Wird  Avalon zum erstenmal gestartet,  so wird ÅberprÅft,  ob ein  System-
+ordner  (AVALON)  mit der Datei "BINKLEY.0" vorhanden  ist.  Falls  dieses 
+nicht  der  Fall  sein  sollte,  so  wird  die  momentane  Einstellung  in 
+"BINKLEY.CFG"  als  PointSetup-0 angesehen und  das  entsprechende  "*.0"-
+File  im  Ordner AVALON angelegt.  Die Datei "BINKLEY.CFG" mu·  auf  jeden 
+Fall vorhanden sein.
+
+Wird  mit SEMPER gearbeitet,  so wird nur "CONFIG.DAT" gelesen.  Wo  diese 
+Datei zu finden ist, muû jedoch in "Special" zunÑchst festgelegt werden.
+
+Arbeiten mit mehreren Point-Setups (nur mit BINKLEY mîglich)
+------------------------------------------------------------
+Jedesmal wenn AVALON gestartet wird,  wird die Einstellung in  "BINKLEY.0" 
+als  "Main-Setup" voreingestellt,  d.h.  diese Datei wird kopiert  und  in 
+"BINKLEY.CFG"  umbenannt.  (Das  aktuelle  Setup  wird  Åber  einen  Haken 
+angezeigt, sowohl in der Dialogbox, als auch in der MenÅleiste.).
+
+Wollen  Sie  noch  drei  weitere  Setups  einrichten,  so  geben  Sie  den 
+Konfigurationsfiles von Binkley die Endungen "*.1" bis "*.5".
+Diese werden dann Åber "1st" bis "5th" aktiviert.
+
+Die Point-Setups kînnen z.B. folgendermaûen verwendet werden:
+ - verschiedene Personen wollen unter EINER Pointnummer schreiben
+   (-> unterschiedliche SYSOP-Statements in den CFGs)
+ - verschiedene Personen wollen unter versch. Pointnummern schreiben
+   (-> unterschiedliche SYSOP/ADDRESS-Statements)
+ - eine Person will unter verschiedenen Pointnummern schreiben
+   (-> unterschiedliche ADDRESS-Statements)
+ - es wird bei verschiedenen Systemen gepollt/requestet
+   (-> evtl. unterschiedliche BAUD/LOCKBAUD/INIT-Statements)
+
+Wird die InfoBox,  in der das aktuelle PointSetup angezeigt wird, oder der 
+Button  "Point  setups"  angeklickt  (oder  F10  gedrÅckt),  so  wird  das 
+aktuelle   Setup   neu   geladen  und  die  InfoBox   mit   diesen   Daten 
+"aufgefrischt".  Dieses  ist  im  Normalfall nicht  nîtig.  Es  gibt  aber 
+Utilities,  die  z.B.  das SYSTEM-Statement im "BINKLEY.CFG"  durch  einen 
+zufÑllig ausgewÑhlten Text ersetzen.  Dieser wÅrde nicht angezeigt werden, 
+sondern erst durch "Redraw infobox".
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+AVALON-Anwenderhandbuch                                            Seite 6
+
+==========================================================================
+Die Poll-Sessions
+==========================================================================
+
+Um  eine der sechs Poll-Sessions zu starten,  klicken Sie auf  "*** 1 ***" 
+bis  "*** 6 ***".  Das im "Session-Setup" festgelegte  "Pollranking"  wird 
+jetzt  mit dem momentan aktiven Point-Setup abgearbeitet.  Wird  fÅr  eine 
+PollSession  immer ein ganz bestimmtes Point-Setup gewÅnscht,  so kann  im 
+Session-Setup ein Point-Setup speziell fÅr diese festgelegt  werden.  Wird 
+dann eine Session aufgerufen,  so wird zunÑchst dieses Point-Setup  herge-
+stellt, genauso, als hÑtten sie zuvor z.B. F1...F6 gedrÅckt.
+
+Soll die Session erst zu einer bestimmten Zeit stattfinden,  so kann diese 
+auch Åber " A " (AutoPoll) aufgerufen werden.  Nach Anwahl kînnen Sie  die 
+gewÅnschte Uhrzeit eingeben.  Ein Abbruch dieser Funktion ist durch  Druck 
+auf "ESC" mîglich.
+
+Poll-Sessions kînnen auch direkt, nach Start von AVALON, automatisch abge-
+arbeitet werden. NÑheres hierzu unter "Session-Setup".
+
+Sollen  alle  markierten (siehe Session-Setup)  PollSessions  abgearbeitet 
+werden,  so  kann  dieses Åber den Button "Poll-Sessions" oder  den  MenÅ-
+eintrag "Poll selected" geschehen.
+
+Eine PollSession kann Åber die Taste "Alternate" unterbrochen werden.
+
+
+
+==========================================================================
+Programme (Find-1 und Find-2)
+==========================================================================
+
+Alle  nîtigen Programme (zzgl.  sechs frei definierbare Programme)  kînnen 
+direkt  durch Klick auf den entsprechenden Button gestartet  werden.  Vor-
+aussetzung ist jedoch,  da· diese zuvor mit "Find-1" bzw.  "Find-2"  fest-
+gelegt wurden. NÑheres hierzu unter "Find-1/2" etwas spÑter im Handbuch.
+
+Wird  Semper  verwendet und ist noch keine Angabe  in  der  entsprechenden 
+Zeile  vorhanden,  so  werden  die  Angaben  aus  der  Datei  "CONFIG.DAT" 
+gelesen.
+
+
+
+==========================================================================
+Program-Manager
+==========================================================================
+
+Hier  kînnen bis zu 15 weitere Programme eingetragen werden.  Ein  Doppel-
+klick  auf  den  entsprechenden Eintrag îffnet  eine  Box,  in  der  Name, 
+Pfad/File und die Kommandozeile festgelegt werden.  Bei TOS-Programmen ist 
+eine Umlenkung der Bildschirmausgabe mîglich (nÑheres siehe  BIOS-Ausgabe-
+umlenkung).
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+AVALON-Anwenderhandbuch                                            Seite 7
+
+==========================================================================
+Der File-Request
+==========================================================================
+
+File-Requests  ("*.REQ" bzw. "*.ORT")  kînnen mit  AVALON  bequem  erzeugt 
+werden.  In der angezeigten Dialogbox kînnen bis zu 20 Dateien mit Pa·wort 
+eingetragen werden. Im oberen Kasten "Node: xxxxx/xxxxx.xxxx" wird der ge-
+wÅnschte Node eingetragen,  von dem die Files requestet werden sollen. Mit 
+"Request"  wird  das  RequestFile im  Outbound-Ordner  erzeugt.  Soll  ein 
+bereits  vorhandenes RequestFile editiert werden,  so kann die  Nodenummer 
+eingetragen und mit "Load old request" eingeladen werden.
+
+Soll  auûerhalb der eigenen Zone (oder Netzes) ein File requestet  werden, 
+so  muû  anstelle  von  "Request"  "ZoneReq"  angewÑhlt  werden.   In  der 
+folgenden Box kann die Zone,  ggf.  auch das entsprechende Domain,  einge-
+tragen  werden.  Das  RequestFile  wird im OUTBOUND-Ordner  mit  der  ent-
+sprechenden  Endung abgelegt (siehe auch  INTERNA).  RequestFiles,  welche 
+mit  "ZoneReq" erstellt wurden,  kînnen,  nach dem Speichern,  nicht  mehr 
+editiert werden.
+
+Damit man immer einen öberblick hat,  welche RequestFiles vorhanden  sind, 
+werden  bis  zu  10  vorhandene ReqFiles am  rechten  Rand  der  Dialogbox 
+angezeigt.  Diese  RequestFiles  kînnen durch Mausklick auf  einen  dieser 
+Buttons editiert und durch Doppelklick gelîscht werden.
+
+Mit "FILES" wird die Fileliste des entsprechenden Nodes requestet.
+
+Bereits  eingegebene  Files  werden durch Doppelklick  auf  den  Filenamen 
+wieder aus der Dialogbox entfernt.  Sollen alle Files entfernt werden,  so 
+kann dieses Åber "CLEAR" geschehen.
+
+Es  sind  vier Buttons vorhanden,  in denen z.B.  immer  wieder  benîtigte 
+Filelisten oder Programme eingetragen werden kînnen.
+
+Die  Buttons unter "Filelist:" dienen dazu,  immer wieder benîtigte  Node-
+adressen bzw.  Filelisten und MailAreas schnell vorwÑhlen zu kînnen. Durch 
+Doppelklick   werden  die  EintrÑge  editiert.   Um  die   anderen   File-
+listen/Mailareas zu erreichen, muû der Button "<123>" angeklickt werden.
+Es  ist  ebenfalls  mîglich,  anstelle einer Fileliste  eine  MsgArea  an-
+zugeben.  Die  Files kînnen dann direkt aus einer Mail  bequem  ausgewÑhlt 
+werden.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+AVALON-Anwenderhandbuch                                            Seite 8
+
+
+Benutzen einer Fileliste
+------------------------
+Ist  bereits  eine Fileliste vorhanden,  so kînnen Files auch  bequem  aus 
+dieser   herausgesucht  werden.   Hierzu  unter  "Filelist:"   den   Knopf 
+"F'Selector" anwÑhlen,  auf "Select from filelist" klicken und in der  er-
+scheinenden  Fileselect-Box  die Liste auswÑhlen.  Die  ausgewÑhlte  Liste 
+wird Åbrigens ebenfalls mit dem Setup (SAVE im Hauptdialog) gesichert.
+
+Wenn Sie immer wieder die gleichen Filelisten (bis zu neun)  benutzen,  so 
+kînnen  diese  auf  die freien Knîpfe  unter  "Filelist:"  gelegt  werden. 
+Hierzu gibt es zwei Mîglichkeiten:
+
+  1. Sie  klicken zweimal auf einen freien Knopf und geben Titel (der  auf 
+     dem  Knopf erscheinen soll),  Node und Pfad (Auswahl per  Doppelklick 
+     mîglich) direkt ein.
+  2. Sie wÑhlen einen freien Knopf an und klicken danach auf "Select  from 
+     filelist".  In  der Fileselector-Box kann die Fileliste  bequem  aus-
+     gewÑhlt  werden.  Der  Buttontext sollte spÑter  aber  noch  editiert 
+     werden, da dieser den Titel "? ? ?" trÑgt.
+
+In  der  Fileliste kînnen die Dateien bequem per Maus  ausgewÑhlt  werden. 
+Mit  dem  Slider  erreichen Sie schnell jede  Stelle  in  der  Liste,  der 
+Åbrigens auch Åber die Cursortasten gesteuert werden kann (Eine  öbersicht 
+bekommt man durch Druck auf HELP).  Durch Doppelklick auf einen  Filenamen 
+ist auch die Eingabe eines Paûworts zu dem File direkt mîglich.
+
+Soll  nach einem Programm/Text gesucht werden,  so erscheint  durch  Druck 
+auf  "F" eine Box,  in welcher der Suchtext eingetragen werden  kann.  Mit 
+"G" oder "N" wird die Suche fortgesetzt und mit "ESC" abgebrochen.
+
+---> Alle Einstellungen werden durch "SAVE" im Hauptdialog gesichert. <---
+
+
+
+Benutzen einer MsgBase
+----------------------
+Gibt  es  auf Ihrem Systen eine MsgArea,  in der  neue  Files  angekÅndigt 
+werden,  so  kann  diese  MsgArea  anstelle  einer  Fileliste  eingebunden 
+werden.  Die  Vorgehensweise ist hierbei genauso wie bei der  Installation 
+einer  Fileliste,  nur daû eben eine MsgArea angegeben wird.  Die  MsgBase 
+wird  OHNE Extension eingegeben.  Wird eine Extension  zusÑtzlich  benutzt 
+(HDR oder MSG), so wird diese automatisch abgeschnitten!
+
+Werden  die  Msgs  auf dem Bildschirm  angezeigt,  so  gilt  nun  folgende 
+Tastenbelegung:
+
+         <,> = Eine Nachricht zurÅck/weiter
+         v,^ = In der Nachricht vor/zurÅck scrollen
+       ALT+Q = Fertig (auch per UNDO mîglich)
+      Ctrl+Q =   "
+Zifferntaste = Springe zu einer bestimmten Nachricht
+
+Mit  einem  Einfachklick kann ein bestimmtes File selektiert  werden  (die 
+Selektion wird nicht dauerhaft angezeigt!) und mit einem Doppelklick  wird 
+die Adresse,  von der requestet werden soll,  geÑndert. Im Normalfall wird 
+die  Adresse aus der MSGID ermittelt,  fehlt diese aber,  oder  soll  eine 
+andere  Adresse verwendet werden,  so ist diese énderung Åber  Doppelklick 
+mîglich.
+
+---> Alle Einstellungen werden durch "SAVE" im Hauptdialog gesichert. <---
+
+
+
+
+
+
+
+
+
+AVALON-Anwenderhandbuch                                            Seite 9
+
+==========================================================================
+File-Hatch
+==========================================================================
+
+Hiermit kînnen Files gehatched,  d.h. zu einem beliebigen Node verschickt, 
+werden.
+
+Unter "File:" wird das gewÅnscht File eingetragen;  mit einem  Doppelklick 
+auf diese Zeile ist die Auswahl Åber den File-Selector mîglich.
+
+"Node:" gibt an,  an wen das File gesendet werden soll.  Hierbei wird  die 
+4D-Adressierung  unterstÅtzt,  wenn  unter  MenÅpunkt  "Special"  die  4D-
+Adressierung  zugelassen wurde.  Unter "Sysop" kann der EmpfÑngername  an-
+gegeben werden;  unterlÑût man dieses, so wird in das TIC-File bzw. in die 
+Mails "Sysop" eingesetzt.
+
+Mit  "Send:"  wird  festgelegt,  wie  die  Datei  versendet  werden  soll: 
+"Normal",  "Crash",  "Hold"  oder "Direct".  Im normalen Pointbetrieb  ist 
+aber nur "Normal" und "Crash" wichtig.
+
+Wenn  das  File  nicht nur einfach verschickt  werden  soll,  sondern  der 
+EmpfÑnger  noch eine Nachricht erhalten soll,  so kann dieses mit  "Report 
+in" festgelegt werden.  "Netmail" versendet eine Netmail an den EmpfÑnger, 
+"Report 1" und "Report 2" jeweils eine Echomail in der angegeben Area.
+
+Damit  AVALON diese Msgs erzeugen kann,  muû man den Pfad  und  Dateinamen 
+der  MsgBase definieren.  Hierzu reicht ein Doppelklick auf "Netmail"  und 
+"Report  x".  In der Dialogbox kann auch ein Name fÅr  die  Echomail-Areas 
+angegeben werden, der anstelle von "Report n" angezeigt wird.
+
+Unter  "Desc:"  kann dem File noch eine Beschreibung  mitgeben  und  unter 
+"Area:"  die  Filearea angeben,  in der der Sysop  das  File  einsortieren 
+sollte.
+
+Es gibt mehrer Arten Dateien zu versenden:
+  1. Erlaubt der EmpfÑnger,  Files zu ticken, kann ein entsprechendes TIC-
+     File mit "TIC" erzeugt werden.  Hierbei muû noch das TIC-Paûwort  fÅr 
+     die  entsprechende  Filearea angegeben werden.  Wenn das  File  auto-
+     matisch ein anderes File,  welches bereits in der Filearea  vorhanden 
+     ist,  ersetzen  soll,  kann das zu ersetzende File unter  "Replaces:" 
+     angegeben werden.  Als Point kann man hiermit Files in eine spezielle 
+     Area direkt uploaden.
+  2. Das  File  kann  zusammen  mit einer  Mail  versendet  werden  (File-
+     Attach).  Dieses  wird durch Anwahl von  "Mail&File"  erreicht.  Auch 
+     hier  kînnen die gleichen Angaben wie beim TIC-File  gemacht  werden; 
+     diese  sind in der erzeugten Mail aufgefÅhrt.  Als Point kann man  so 
+     einem  anderen  Point schnell ein File  senden.  Wenn  der  EmpfÑnger 
+     nicht  Point beim selben Node ist,  so sollte (muû) das File  "crash" 
+     verschickt werden!
+  3. Soll  das  File nur verschickt werden (also ohne TIC  und  nicht  als 
+     Mail  mit File),  dann kann "None" angewÑhlt  werden.  Trotzdem  kann 
+     auch  hier eine Netmail und/oder Echomail erzeugt  werden.  Das  File 
+     bleibt im Inbound-Ordner des EmpfÑngers "hÑngen".
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+AVALON-Anwenderhandbuch                                           Seite 10
+
+
+Da  es  umstÑndlich  ist,   jedesmal  das  Paûwort,   die  Area  und   den 
+EmpfÑnger(name)  einzugeben,  kînnen  diese Angaben auf  die  "Defaults:"-
+Buttons  gelegt werden.  Mit einem Doppelklick (auf einen dieser  Buttons) 
+kînnen die Angaben editiert werden.
+
+Mit "Send" wird das File versendet und ggf.  die Netmail und das  TIC-File 
+erzeugt.  Alle Angaben der "Default"-Buttons und der aktuelle Node und das 
+Paûwort,  sowie die Wahl "Report in" und "TIC","None","Mail&File",  werden 
+mit "Save" im Hauptdialog gespeichert.
+
+Soll  das File an einen Node in einer anderen Zone oder  anderem  Netzwerk 
+versendet werden, so ist dieses Åber "ZoneSend" mîglich.
+
+Avalon  kann  3D-  (mit Fakenet) oder 4D-TIC-Files  erzeugen  (siehe  auch 
+"Special" und Anhang).
+
+Die  von  Avalon erzeugten HatchMails kînnen mit einem  Vorspann  versehen 
+werden.  Hierzu  muû nur eine Textdatei mit Namen "AVALON.HTC" im  System-
+ordner  von Avalon erzeugt werden.  Dieser Text wird vor den  eigentlichen 
+Text, den Avalon erzeugt, in die Mail eingesetzt.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+AVALON-Anwenderhandbuch                                           Seite 11
+
+==========================================================================
+Das Session-Setup
+==========================================================================
+
+Hiermit wird das aus der Tiny-Shell bekannte Poll-Ranking eingestellt.
+
+Die  Reihenfolge der gewÑhlten Programme wird in der mittleren  Box  ange-
+zeigt.  Soll ein Programm hinzugefÅgt werden, so mu· nur der entsprechende 
+Button  angeklickt  werden.  Mit  "Other" kînnen  noch  beliebige  weitere 
+Utilities,  die  nicht  in "Find-1" oder "Find-2"  definiert  wurden,  in-
+stalliert werden.  Programme die Åber die Buttons eingefÅgt  werden,  sind 
+mit  einem Pfeil (vor der Nummer) gekennzeichnet.  Mit "Del one" wird  das 
+zuletzt installierte,  mit "Del all" alle Programme gelîscht.  Durch Klick 
+auf  einen  Programmnamen erscheint eine Box,  mit der  die  Kommandozeile 
+geÑndert  und ggf.  das Programm entfernt oder ein neues eingefÅgt  werden 
+kann (siehe auch unten).
+
+Die  Option  "Wait" veranla·t den Rechner,  nach jedem  Programm  (wÑhrend 
+einer  Session),  auf einen Tastendruck zu warten.  Soll nur  nach  einem, 
+oder  auch mehreren,  Programmen angehalten werden,  so kann dieses  durch 
+Anwahl  des entsprechenden KÑstchens "Wait" (rechts neben  dem  Filenamen) 
+geschehen.  Ein  Abbruch der Poll-Session ist wÑhrend der Pause  Åber  ESC 
+mîglich.
+
+Ist  "No Mail" aktiv,  so wird "No mail imported!" angezeigt,  wenn  keine 
+Mail  importiert  wurde.  Die Session wird durch Anwahl von  "Exit"  abge-
+brochen bzw.  durch "Continue" fortgesetzt.  Wichtig: Damit diese Funktion 
+korrekt  funktioniert,  muû der Mailer,  d.h.  Binkley entweder unter  dem 
+Namen  "BINKLEY?.???" oder "BT??????.???" vorhanden sein.  Es werden  auch 
+(sofern installiert) der KnownInbound- und Protected-Inbound ÅberprÅft.
+
+Wenn eine Session direkt,  nachdem die Shell gestartet wurde, abgearbeitet 
+werden soll,  so kann "AutoStart" angewÑhlt werden.  Beim nÑchsten  Aufruf 
+von  AVALON  werden alle Sessions (1-6) bei denen die  Option  "AutoStart" 
+gesetzt  ist,  automatisch  hintereinander  gestartet.  Wird  wÑhrend  des 
+Starts   von   AVALON  "Alternate"  gedrÅckt   gehalten,   so   wird   der 
+"AutoStartPoll" nicht ausgefÅhrt.  Dieses ist auch der Fall,  wenn  AVALON 
+das Kommando "NoAutoStart" Åbergeben wird.
+
+Man kann zusÑtzlich zwei Zeitbereiche angeben,  in denen diese  AusfÅhrung 
+mîglich ist.  Werden beide Felder freigelassen,  so wird die entsprechende 
+Session immer gestartet,  wenn z.B.  "23:00-24:00" eingetragen wird,  dann 
+wird der AutoStart nur beachtet,  wenn die Shell zwischen 23.00 und  24.00 
+Uhr  gestartet wird.  Es sind auch Eingaben wie "23:00 -  06:00"  mîglich. 
+Die   Zeitbeachtung  wird  ausgeschaltet,   wenn  AVALON   der   Parameter 
+"Override" Åbergeben wird.
+
+Es  kînnen  beliebige Sessions markiert werden,  die spÑter  alle  hinter-
+einander abgearbeitet werden.  Dieses geschieht Åber die Option  "Select". 
+Alle  Sessions bei denen diese Option gesetzt wird,  werden  durch  Aufruf 
+von  "Poll selected" (in der MenÅleiste) oder den  Button  "Poll-Sessions" 
+(im HauptmenÅ) abgearbeitet.
+
+Soll  fÅr eine Session immer ein bestimmtes Point-Setup  gelten,  so  kann 
+dieses  Åber  die Buttons "Main-Setup",  "1st"  bis  "5th"  voreingestellt 
+werden.  Mit  "No Setup" wird diese Voreinstellung wieder  rÅckgÑngig  ge-
+macht und das aktuelle Setup beim Poll benutzt.
+
+In  AVALON ist ein eigener kleiner Batchinterpreter implementiert  (siehe: 
+Der  Batchinterpreter).  Batchdateien  mÅssen  mit "Batch"  in  die  Poll-
+Session  eingebunden  werden.  Die Dateiendung "BAT"  ist  zwar  voreinge-
+stellt,  aber  nicht Pflicht.  Eingebundene Batchdateien werden mit  einem 
+"+" (vor der Nummer) angezeigt.
+
+
+
+
+
+
+
+AVALON-Anwenderhandbuch                                           Seite 12
+
+
+Eine PollSession kann mehrmals hintereinander abgearbeitet werden.  Hierzu 
+muû  nur  "Loop"  angewÑhlt werden und unter  "Loops:"  die  entsprechende 
+Anzahl eingetragen werden (bei einer NULL wird die Session,  genau wie bei 
+der  EINS,  einmal  durchlaufen).  Manchmal  ist  es  sinnvoll,  wenn  die 
+Schleife (Session) vorzeitig beendet wird.  Um dieses zu erreichen kann zu 
+jedem  Programm eine "ErrorLevel" angegeben werden,  bei der  die  Session 
+dann beendet wird (liefert das Programm diesen Fehlercode zurÅck,  so wird 
+die  Schleife  vorzeitig beendet).  Vorraussetzung fÅr die  Benutzung  des 
+Errorcodes ist die Anwahl von "Loop".
+
+Wenn es sich um ein TOS- oder TTP-Programm handelt,  ist es  mîglich,  die 
+Ausgaben ins Avalon-Window umzuleiten.  Hierzu muû nur das KÑstchen rechts 
+neben  dem Programmnamen mit der öberschrift "Redirect"  angewÑhlt  werden 
+(siehe auch "BIOS-Ausgabeumlenkung").
+
+Jeder Session kann ein Name gegeben werden.  Dieser kann editiert  werden, 
+wenn der entsprechende Session-Button doppelt angeklickt wird.
+
+Sollen die Kommandozeilen der einzelnen Programme geÑndert werden,  so ist 
+dieses mîglich,  wenn auf das entsprechende Programm in der mittleren  Box 
+geklickt wird.  Ist das Programm Åber einen Button installiert worden,  so 
+kann  gewÑhlt werden,  ob die Kommandozeile "Global" geÑndert  wird,  d.h. 
+die énderung wirkt sich auf alle PollSessions,  sowie die Kommandozeile in 
+"Find-1/2" aus,  oder "Local",  d.h.  nur an dieser Stelle wirkt sich  die 
+énderung aus.  Allerdings kann dann dieses Programm nicht mehr Åber "Find-
+1/2" verÑndert werden.
+
+Eine gerade ablaufende PollSession kann Åber die Taste "Alternate"  unter-
+brochen werden!
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+AVALON-Anwenderhandbuch                                           Seite 13
+
+==========================================================================
+Der Filemanager
+==========================================================================
+
+Mit  "Filemanager"  wird der in AVALON implementierte  Filemanager  aufge-
+rufen. In dem PopUp-MenÅ sind bisher folgende Funktionen vorhanden:
+
+  COPY     - Kopiert eine oder mehrere Dateien.
+  MOVE     - Verschiebt eine oder mehrere Dateien.
+  DEL      - Lîscht eine oder mehrere Dateien.
+  RENAME   - Umbenennen  einer  Datei.  Mit "RENAME" kînnen  Dateien  auch 
+             gleichzeitig  verschoben  werden;  hierzu muû sich  das  Ziel 
+             aber auf demselben Laufwerk befinden.
+  INFO     - Anzeige der File-Info (Wildcards sind erlaubt!).
+  SHIP     - Harddisk parken.
+  VIEW     - Aufruf  eines  Text/Grafikviewers (muû  in  Find-1installiert 
+             werden).
+  TERMINAL - MiniTerminal aufrufen. Mehr dazu unter "Terminal".
+  SYSTEM   - Ausgabe einer kleinen Systeminfo.
+  OUTBOUND - Ausgabe einer Outbound-Info.
+  MSGBASE  - Ausgabe einer Info Åber die MsgBase.
+
+Die  Wildcards  "*" und "?" kînnen beliebig  eingesetzt  werden.  Bei  den 
+Kopier/Verschiebe-Befehlen  wird als Ziel nur ein Pfad auf den  Zielordner 
+verlangt. Umbenennen, wÑhrend des kopierens, ist nicht mîglich.
+
+Jede  Funktion  kann  durch Anwahl  von  "ABBRUCH"  jederzeit  abgebrochen 
+werden.
+
+Jede  Funktion  kann  auch  durch Druck auf  die  Taste  mit  dem  Zeichen 
+ausgewÑhlt werden,  der hinter dem Namen angegeben ist, es ist dabei egal, 
+ob mit oder ohne Control, Alternate oder Shift.
+
+
+
+==========================================================================
+Find-1, Find-2
+==========================================================================
+
+Hier werden alle benîtigten Programme eingetragen.  Durch einen Doppelkick 
+auf einen Fileeintrag wird eine Fileselect-Box aufgerufen,  die die  Pfad-
+eingabe erleichtert.
+
+Die  sechs Utilities sind frei definierbar.  Hier kann zusÑtzlich (zu  dem 
+Pfad  und  der Kommandozeile) noch der Name angegeben  werden,  unter  dem 
+diese auf der OberflÑche erscheinen sollen.
+
+Es  kînnen auch Avalon-Batchdateien installiert  werden.  Die  Dateiendung 
+muû in diesem Fall ".BAT" sein.
+
+Wird der Button "Redirect" angewÑhlt UND handelt es sich um ein TOS-  oder 
+TTP-Programm,  so  versucht Avalon die Ausgaben in sein Window  umzulenken 
+(siehe auch "BIOS-Ausgabeumlenkung").
+
+Unter "Viewer" (Find-1) kann ein Text/Grafikviewer (z.B.  GUCK, LOOK o.a.) 
+eingetragen werden (siehe auch Filemanager).
+
+Wenn  nicht der eingebaute AREAS.BBS-Editor verwendet  werden  soll,  kann 
+unter "AreaEditor" ein externer AREAS.BBS-Editor eingebunden werden  (z.B. 
+AREAMAST.PRG im Lieferumfang von JETmail).
+
+
+
+
+
+
+
+
+
+
+AVALON-Anwenderhandbuch                                           Seite 14
+
+==========================================================================
+Special
+==========================================================================
+
+Normalerweise   werden   die  Dateien   "AREAS.BBS",   "BINKLEY.CFG"   und 
+"CONFIG.DAT" in dem Ordner erwartet,  aus dem auch AVALON gestartet wurde. 
+Hier kann man nun fÅr diese einen eigenen Pfad festlegen.  Wenn sich  z.B. 
+AVALON  im  Ordner "E:\FIDO\" befindet und Binkley  in  "E:\BINKLEY\",  so 
+kann unter "BINKLEY.CFG:" z.B.  "E:\BINKLEY\" oder "..\BINKLEY\" angegeben 
+werden.
+
+Die  Dateien  "BINKLEY.[0-5]"  werden immer  im  Systemordner  von  Avalon 
+abgelegt.  Nur  die  jeweilige Kopie ("BINKLEY.CFG") wird  im  angegebenen 
+Ordner abgelegt.
+
+Die  Festlegung  der Netmail ist fÅr den Areafix-Manager  und  File-Ticker 
+notwendig. Weiterhin ist es mîglich, die Setup-Namen frei zu wÑhlen.
+
+Die  Infobox  kann  mit "None" abgeschaltet und  mit  "Normal"  und  "Max" 
+werden  alle  (die  ersten 12) Zeilen (bei  "Max"  incl.  Kommentare)  aus 
+BINKLEY.CFG/CONFIG.DAT angezeigt.
+
+Sollen  im  "Edit  areas"-Dialog neue  HDR-  und  MSG-Dateien  automatisch 
+angelegt  bzw.  gelîscht  werden,  so kann dieses  Åber  "MsgBaseChecking" 
+eingeschaltet werden.
+
+Soll  nach Programmende noch auf einen Tastendruck gewartet  werden,  wenn 
+ein  Programm Åber die Auswahlbuttons im Hauptdialog gestartet  wurde,  so 
+muû  "Wait  for  keypress  (direct  start)"  angewÑhlt  werden.  Wenn  die 
+Ausgaben jenes Programms in ein Window erfolgen sollen,  so ist  "Redirect 
+output (direct start)" anzuwÑhlen (siehe auch "BIOS-Ausgabeumlenkung").
+
+Wenn  mehrere Programme gleichzeitig laufen,  ist das Avalon-Window  evtl. 
+hinderlich.  Deshalb  kann  der Hauptdialog mit  "Main  dialogbox"  ausge-
+schaltet werden.  Wenn auch dieses kleinere Window noch stîren sollte,  so 
+kann man mit "no icon" das window nochmals verkleinern.
+
+Wenn  die  Windows immer an denselben Positionen  erscheinen  sollen,  und 
+nicht  in  der Mitte des Bildschirms,  so kînnen diese mit  "Save  dialog-
+positions" am Programmende automatisch gesichert werden.
+
+Ab  Binkley  V3.00  kann  ein  neues  Filenamen-Format  verwendet   werden 
+(Statement  "IOS" oder "HOLD4D" im  BINKLEY.CFG),  welches  erlaubt,  eine 
+Pointnummer beim Filerequest anzugeben.  Mit dem Schalter "4D-FileRequest" 
+wird  dieses  neue  Format verwendet.  Avalon kann  3D-  und  4D-TIC-Files 
+erzeugen.  Mit "Send 3D-TICs" wird die Fakenet-Adresse ins TIC-File einge-
+tragen.
+
+Wenn im "Session-Setup" bei einer Session "AutoStart" angewÑhlt  wird,  so 
+startet  diese im Normallfall direkt nach dem Start von Avalon.  Wenn  man 
+noch  eine Mîglichkeit haben mîchte,  diese abzubrechen (also  nicht  Åber 
+die Alternate-Taste),  dann wird mit "Delay AutoStart" eine Dialogbox  fÅr 
+ca.  fÅnf Sekunden angezeigt.  Mit "ESC" wird die Session sofort gestartet 
+und  mit irgendeiner Taste abgebrochen.  Diese  Wartezeit  entfÑllt,  wenn 
+Avalon mit dem Parameter "NoDelay" gestartet wird.
+
+Einige  TOS-Versionen zeichnen die Dialogbox zweifach.  Falls  dieses  bei 
+Ihnen der Fall sein sollte,  "Smart redraw" einschalten.  Mit "Snap  text-
+windows" werden die Textwindows gesnapped,  d.h. die Textausgaben erfolgen 
+ein wenig schneller (aber wirklich nur ein wenig)...
+
+
+
+
+
+
+
+
+
+
+AVALON-Anwenderhandbuch                                           Seite 15
+
+
+Wird  "Ask  for  AREAS.BBS/DAREAS.BBS" angewÑhlt,  wird  beim  Aufruf  von 
+"Edit areas"  und  "Areafix" gefragt,  ob die  AREAS.BBS  oder  DAREAS.BBS 
+editiert werden soll. Normalerweise wird nur AREAS.BBS editiert.
+
+Wenn  die  "F'Hatch"- bzw.  "Areafix"-Mails nach  dem  Versenden  gelîscht 
+werden sollen, dann kann dieses Åber "K/Sent" eingestellt werden.
+
+Soll  Avalon  KEINE Line-A Routinen benutzen,  so ist  "No  Line-A"  anzu-
+wÑhlen. Vorsicht! Anmerkungen unter "BIOS-Ausgabeumlenkung" beachten!
+
+Mit "Always center textwindows" wird erreicht,  daû das Terminal-,  Batch- 
+und Redirect-Window immer in der Mitte des Bildschirms erscheint.
+
+Wenn  die vertikale Auflîsung mehr als 672 Punkte betrÑgt,  kann  man  mit 
+"Big  windows  (vert.>=672 points)" erreichen,  daû  in  der  FileRequest-
+Auswahlbox  und im AreafixManager 20 EintrÑge mehr angezeigt  werden.  Ist 
+die Auflîsung geringer, wird dieser Schalter ignoriert.
+
+Die in den Windows benutzte Fontgrîûe ist mit "Fontsize" frei wÑhlbar.
+
+Bisher war die Bildschirmausgabe ziemlich langsam,  wenn TOS-Programme  im 
+AVALON-Window abliefen.  Mit "Buffer screen output" kann man das ganz  nun 
+beschleunigen (ca.30% bis 300%).  Avalon gibt dann nicht mehr Zeichen  fÅr 
+Zeichen aus, sondern immer gleich mehrere auf einmal.
+Wichtig:  Kompilierte GFA-BASIC Programme kommen damit nicht zurecht, wenn 
+Befehle wie INPUT usw.  benutzt werden.  Auch andere Programme,  die einen 
+Text von der Tastatur einlesen wollen,  laufen u.U. nicht korrekt. Binkley 
+und JETmail laufen ohne Probleme mit dieser Funktion;  und zur Freude  der 
+TT-User:  Wird  Binkley nun im Fenster gestartet,  so werden die  gleichen 
+cps Werte erreicht, wie ohne Window!
+
+Mit  "Base36  outbound  style" wird  AVALON  dazu  gebracht,  als  Ordner-
+Extension das Base36-Format zu verwenden, anstelle des HEX-Formats.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+AVALON-Anwenderhandbuch                                           Seite 16
+
+==========================================================================
+Edit areas
+==========================================================================
+
+Die (D)AREAS.BBS kann hierÅber geÑndert werden.  Die ersten zwei  Eingabe-
+felder bestimmen das Default-Origin und den Default-Boss.
+
+Im  mittleren Kasten werden die gewÅnschten Areas eingetragen.  Sind  drei 
+Eingaben gemacht worden,  so wird Åber "Insert" (oder RETURN) die  Eingabe 
+der  nÑchsten Area ermîglicht.  Mit "Save" wird das neue (D)AREAS.BBS  ge-
+sichert.  Der  Pfad  kann  auch  Åber  den  FileSelector  bestimmt  werden 
+(Doppelklick auf die Zeile PATH).
+
+Sollen EintrÑge eingefÅgt oder entfernt werden,  so ist dieses Åber  "INS" 
+bzw.  "DEL"  mîglich.  Bei  "DEL" fragt AVALON nach  "Delete  old  message 
+base":  "Cancel"=Nichts machen, "No"=Eintrag entfernen, MsgBase wird nicht 
+gelîscht,  "Delete"=Eintrag entfernen und MsgBase lîschen.  Eine Area wird 
+nur  dann Åbernommen,  wenn sowohl ein Name,  alsauch ein  Pfad  angegeben 
+wurde.  Eine  neue MsgBase (MSG/HDR-Datei) kann automatisch  erzeugt  bzw. 
+gelîscht werden (siehe auch "Special").
+
+Wird  "Days 0" angegeben,  so wird "-DAYS 0" auch  gespeichert;  wird  das 
+Feld  freigelassen,  so  wird  keine  "-DAYS" Zeile  fÅr  diese  Area  ge-
+speichert.
+
+Einige  Im-/Exporter  erlauben weitere "-xxxxx"-Angaben  in  (D)AREAS.BBS. 
+Diese  kînnen  Åber  "EXT" geÑndert  werden.  Maximal  sind  acht  weitere 
+Angaben  erlaubt.  Avalon stellt zwei Statements zur  VerfÅgung,  die  den 
+internen Areafix-Manager steuern (siehe auch Areafix-Manager):  "-Fixname" 
+und "-Fixpassword".
+
+FÅr  Nodes  ist  es  wichtig,  daû auch die  Points  in  der  (D)AREAS.BBS 
+angegeben werden,  die fÅr eine Area eingetragen sind.  Dieses zusÑtzliche 
+Angabe kann Åber "N/P" editiert werden.
+
+Mit  "Search"  kann eine Area gesucht werden (praktisch  bei  vielen  Ein-
+trÑgen). Die Suche beginnt immer an der aktuellen Position.
+
+
+Beispiel:
+=========
+Eine Area TEST.GER,  die unter E:\TESTAREA gesichert ist,  und Åber  245/8 
+bezogen  wird,  soll an die Points .11 und .13,  sowie 123/4.5  exportiert 
+werden. In der AREAS.BBS wird folgende Zeile erwartet:
+
+E:\TESTAREA           TEST.GER      245/8 .11 .13 123/4.5
+
+Im  Dialog wird unter Node nur "245/8"  angezeigt.  Die  ".11 .13 123/4.5" 
+kann  Åber  "N/P" geÑndert werden.  Die beiden  Zeilen  im  entsprechenden 
+Dialog  werden  mit einem Leerzeichen direkt hinter der  Node  Angabe  an-
+gehÑngt.
+
+
+Externer (D)AREAS.BBS-Editor:
+=============================
+
+Soll  ein  externer  Editor benutzt werden,  so kann  dieser  in  "Find-1" 
+definiert  werden.  Als Kommandozeile wird "Pfad\(D)AREAS.BBS"  Åbergeben, 
+d.h. man kann auch einen Texteditor installieren.
+
+
+
+
+
+
+
+
+
+
+
+AVALON-Anwenderhandbuch                                           Seite 17
+
+==========================================================================
+Areafix-Manager
+==========================================================================
+
+Avalon hat einen eingebauten Areafix-Manager.  Hiermit kînnen sehr  leicht 
+Msgs fÅr den Areafix des Bosses erzeugt werden.  Es werden alle Areas  der 
+AREAS.BBS  (wahlweise  auch DAREAS.BBS) angezeigt.  Durch Klick  auf  eine 
+Area,  kann diese abgemeldet ("-") oder angemeldet ("+") werden.  Wird ein 
+"*" angezeigt,  so wird die Area ebenfalls angemeldet und gleichzeitig  in 
+"(D)AREAS.BBS"  mit  aufgenommen.  In  der Dialogbox  bietet  Avalon  ent-
+sprechende  Standarddaten an,  die noch vor der Aufnahme  in  (D)AREAS.BBS 
+verÑndert werden kînnen.
+
+Mit  "Areafix"  wird die Mail zum Areafix erzeugt,  es muû  nur  noch  das 
+Areafix-Paûwort eingegeben werden.
+
+ZusÑtzlich  wird  noch der Inhalt der Datei "AVALON.LST" aus  dem  AVALON-
+Systemordner zur Auswahl angeboten.  Diese Datei ist zeilenweise aufgebaut 
+und  enthÑlt  pro Zeile,  entweder nur den Areanamen oder  Areanamen  plus 
+Adresse.  Mit  "LINK" oder "NODE" kann die Defaultadresse,  mit  "AREAFIX" 
+der Areafixname (Default:  Areafix) und mit "PASSWORD" das Areafixpassword 
+(Default:  keines) geÑndert werden.  Mit "REM" wird eine  Bemerkungszeile, 
+die  in der Auflistung mit ausgegeben wird,  angegeben  (max.20  Zeichen). 
+";"  kennzeichnet eine Bemerkungszeile,  die nicht in der  Box  ausgegeben 
+wird.
+
+z.B.   HARDWARE.GER 2:2401/103     -> Mail an Areafix 2:2401/103
+       ELEKTRONIK.GER              -> Mail an Areafix des Bosses
+       NODE 90:400/404             -> Boss ab sofort 90:400/404
+       MUSIK.GER                   -> Mail an Areafix 90:400/404
+       REM Areas fÅr Allfix        -> Bemerkungszeile
+       AREAFIX Allfix              -> Areafix heiût nun "Allfix"
+       PASSWORD passwd             -> Paûwort ist nun "passwd"
+       PINBALL.GER                 -> Mail an Allfix mit "passwd"
+
+Wird die Adresse weggelassen,  so wird die Defaultadresse aus  Binkley.Cfg 
+genommen  (diese  kann  mit "LINK"  oder  "NODE"  geÑndert  werden).  Eine 
+TastenÅbersicht fÅr diesen Dialog wird mit HELP ausgegeben.
+
+Die  Statements  "AREAFIX"  und "PASSWORD" haben ein  équivalent  fÅr  die 
+Datei (D)AREAS.BBS:  "-Fixname" und "-FixPassword".  Benutzt man z.B.  nur 
+den  ALLFIX  fÅr alle in der AREAS.BBS gelisteten Areas,  so kann  in  der 
+ersten  Area unter "EXT" das Statement "-Fixname ALLFIX"  (ggf.  auch  mit 
+Paûwort) eingefÅgt werden. Dieses ist dann fÅr alle weiteren Areas aktiv.
+
+Wichtig: Wenn nîtig, kann bei "NODE/LINK" ein Domain angehÑngt werden.
+
+=> Der AreaFix-Manager kann auch als FileFix-Manager verwendet werden! <=
+
+Es  werden  fÅhrende  Kontrollzeichen,  die der Areafix  in  seiner  Liste 
+zurÅcksendet, von Avalon nicht beachtet:
+=========================================
+List of all areas. (*) aktiv areas.
+
+  ETECHNIK.GER
+* INFORMATIK.GER
+* MODEM.GER
+[...]
+=========================================
+Sternchen  (*) werden Åbersprungen,  ebenso wie ein paar  andere  Zeichen. 
+Ein (%) wird angezeigt, da Befehle meist mit einem (%) beginnen.
+
+
+
+
+
+
+
+
+
+AVALON-Anwenderhandbuch                                           Seite 18
+
+==========================================================================
+Speichern der Einstellungen
+==========================================================================
+
+Alle Einstellungen ("Point-Setup",  "Find-1",  "Find-2",  "Special", Nodes 
+beim FileRequest und Filelisten) werden Åber "SAVE" gespeichert.
+
+
+==========================================================================
+Das Notizbuch
+==========================================================================
+
+Mit  UNDO  wird das Notizbuch aufgerufen.  Hier  kînnen  kleinere  Notizen 
+abgelegt werden.
+
+Mit  "Clear" werden alle EintrÑge gelîscht,  mit "Reload" wird  eine  alte 
+Notiz wieder geladen, "FormFeed" gibt einen Seitenvorschub auf dem Drucker 
+aus und "Print" druckt den Inhalt der Notizseite aus.
+
+"Cancel"  beendet  den  Dialog ohne  die  énderungen  zu  sichern,  "Save" 
+sichert den aktuellen Inhalt in der Datei "AVALON.TNB".
+
+
+==========================================================================
+Kommandozeilenbefehle
+==========================================================================
+
+Man kann Avalon Åber die Kommandozeile einige Kommandos Åbergeben:
+
+NoAutoBatch  - AUTOEXEC.BAT  wird nicht ausgefÅhrt (falls  vorhanden;  den 
+               gleichen Effekt bewirkt die linke Shifttaste).
+NoAutoStart  - AutoStartSessions werden nicht ausgefÅhrt (gleicher  Effekt 
+               wie das GedrÅckthalten von Alternate).
+NoDelay      - Die   fÅnf  Sekunden  Wartezeit  wird  unterdrÅckt   (falls 
+               eingestellt in "Special").
+Override     - Die Zeitbereiche zum AutoStart werden nicht beachtet.
+Batch:<file> - Es wird die Batchdatei <file> direkt nach der  AUTOEXEC.BAT 
+               gestartet.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+AVALON-Anwenderhandbuch                                           Seite 19
+
+==========================================================================
+=               D e r   B A T C H - I N T E R P R E T E R                =
+==========================================================================
+
+Da das Kapitel Åber den Batchinterpreter schon sehr lang wurde,  ist es in 
+die Datei "BATCHCLI.GER" ausgelagert worden.
+
+
+
+==========================================================================
+                               Das Terminal
+==========================================================================
+
+Avalon hat ein kleines Terminalprogramm eingebaut.  Dieses Terminal bietet 
+im Gegensatz zu vielen anderen keine besonderen Features,  evtl.  noch den 
+VT-52 und VT100 (teilweise) Emulator.
+Gedacht ist dieses Terminal hauptsÑchlich dazu,  schnell einmal das  Modem 
+umzukonfigurieren, ohne erst ein Terminalprogramm starten zu mÅssen.
+Die  Baudrate wird aus BINKLEY.CFG genommen,  sie kann aber auch  noch  im 
+Terminal verÑndert werden.
+
+Folgende Tastenkombinationen sind erlaubt:
+
+     UNDO -  Beendet das Terminal.
+     HELP -  Tastaturbelegung.
+      F 1 -  Logfile  anschalten.  Alle  weiteren Ausgaben werden  in  die 
+             Datei   mitprotokolliert,    die   unter   "CaptureFile"   im 
+             BINKLEY.CFG  angegeben wurde.  Fehlt diese  Angabe,  so  wird 
+             "AVALON.LOG" im Avalon-Verzeichnis angenommen.
+      F 2 -  Beendet die Logfile-Ausgabe.
+      F 3 -  Lîsche Logfile.
+      F 4 -  Volles  Echo ein (Voreinstellung) oder aus.
+             Wenn  ATE1 beim Modem gesetzt ist,  gibt das Modem  ein  Echo 
+             zurÅck,  so muû der Rechner selber die Zeichen nicht mehr auf 
+             dem Bildschirm ausgeben (Echo full).
+             Wenn  das Modemecho mit ATE0 ausgeschaltet wurde,  mÅûte  man 
+             die Zeichen "blind" eingeben. Damit man dieses nicht braucht, 
+             kann man "Echo half" anwÑhlen.
+      F 5 -  VT100, VT52 oder TTY Emulation. Voreingestellt ist VT52.
+             VT100 kann nur benutzt werden, wenn das Terminal im Window
+             liegt.
+      F 6 -  Seriellen Port wechseln (Default: ST komp./Modem-1).
+      F 7 -  Sende ein File per ZModem.
+      F 8 -  Empfange ein File per ZModem.
+      F 9 -  Zeige File mit Emulation.
+      F10 -  Sende Sysopname.
+     sF 1 -  ZeilenÅberlauf an/aus (Default: aus)
+     SF 6 -  Baudrate verÑndern.
+
+Window  stellt  ca.  79x23  Zeichen dar.  Wird  Avalon  in  einer  hîheren 
+Auflîsung  als 640x400 gestartet,  so wird das Terminalwindow  automatisch 
+auf 80x25 Zeichen gesetzt.
+
+Als  ZModem-Protokoll  muû GSZRZ (Autor:  Michael Ziegler)  als  Accessory 
+installiert sein ("GSZRZACC.ACC").
+Als Kommandozeile Åbergibt Avalon:
+    senden: "-sz -M filename"
+ empfangen: "-rz -M -d -P path" (path=NETFILE aus BINKLEY.CFG)
+
+Es werden alle VT52-Codes (auûer Textfarben) emuliert. Die VT100-Emulation 
+ist nicht vollstÑndig implementiert (siehe Anhang).
+
+
+
+
+
+
+
+
+
+AVALON-Anwenderhandbuch                                           Seite 20
+
+==========================================================================
+                              I N T E R N A
+==========================================================================
+
+BINKLEY.CFG
+-----------
+AVALON  wertet immer "BINKLEY.CFG" aus.  Diese Datei  wird  folgendermaûen 
+von  AVALON  erzeugt:  Je  nach aktiven PointSetup  wird  "BINKLEY.0"  bis 
+"BINKLEY.5"  kopiert als "BINKLEY.CFG".  Wird AVALON  gestartet,  so  wird 
+"BINKLEY.0" als "BINKLEY.CFG" kopiert (MainSetup).
+
+Die Dateien "BINKLEY.[0-5]" werden immer im Avalon Systemordner  abgelegt. 
+Nur  die jeweilige Kopie "BINKLEY.CFG" wird in dem  Ordner  abgelegt,  der 
+unter  "Special"  definiert wurde (im selben wie AVALON,  wenn  eine  ent-
+sprechende Angabe fehlt).
+
+Folgende  Statements  mÅssen vorhanden sein,  da sie von  AVALON  benîtigt 
+werden (z.B. beim Anlegen von REQ-Files etc.):
+
+HOLD         Pfad                       NETFILE      Pfad
+SYSOP        Sysopname                  ADDRESS      Adresse
+BAUD         Modemgeschwindigkeit       STATUSLOG    Binkley-Logfile
+
+Weiterhin  werden  noch KNOWNINBOUND  und  PROTINBOUND  ausgewertet,  wenn 
+diese vorhanden sind.  Statuslog wird NUR dazu benutzt,  um im Batchinter-
+preter mit "LOG" einen Text ins Logfile schreiben zu kînnen!
+
+Das  Statement NETMAIL wird nur dann ausgewertet,  wenn in "Special"  noch 
+keine Netmail angegeben wurde.
+
+Im  HOLD-Verzeichnis werden die Request-Files angelegt.  Wird ein  Request 
+mit "ZoneReq" gesichert,  so wird an den Outbound-Ordner die Zone als HEX-
+Zahl angehÑngt (z.B. fÅr Zone 10-> E:\FIDO\OUTBOUND.00A).
+
+Im  NETFILE-Ordner wird ÅberprÅft,  ob Mail empfangen wurde  (siehe  auch: 
+Session-Setup "No Mail"). SYSOP wird fÅr den KEY benîtigt.
+
+WICHTIG:     Der  Pfad  auf das  Inbound/Outbound-Verzeichnis  sollte  mit 
+             einem Backslash enden. Zum Beispiel:
+
+HOLD         E:\FIDO\OUTBOUND\
+NETFILE      E:\FIDO\INBOUND\
+
+Im  CaptureFile  werden  die  Terminalausgaben  mitprotokolliert.  Vorein-
+gestellt ist "AVALON.LOG".
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+AVALON-Anwenderhandbuch                                           Seite 21
+
+
+
+CONFIG.DAT
+----------
+Avalon  wertet  "CONFIG.DAT" aus.  Es ist nicht mîglich  auf  ein  anderes 
+PointSetup umzuschalten, da dieses fÅr Semper nicht erforderlich ist.
+
+Folgende Statements werden ausgewertet:
+
+OUTBOUND     Pfad                       INBOUND      Pfad
+SYSOP        Sysopname                  ADDRESS      Adresse
+SPEED        Modemgeschwindigkeit       STATUSLOG    Binkley-Logfile
+
+Weiterhin  werden  noch  KNOWNINBOUND,  PROTECTINBOUND  und  FAKENET  aus-
+gewertet,  wenn diese vorhanden sind.  Statuslog wird NUR dazu benutzt, um 
+im Batchinterpreter mit "LOG" einen Text ins Logfile schreiben zu kînnen!
+
+Das  Statement NETMAIL wird nur dann ausgewertet,  wenn in "Special"  noch 
+keine Netmail angegeben wurde.
+
+
+AVALON1.CFG und AVALON2.CFG
+---------------------------
+Das  AVALON-Konfiguarationsfile ist  aufwÑrtskompatibel,  d.h.,  erscheint 
+eine  neue  Version von AVALON,  so kann das  alte  AVALON.CFG  Åbernommen 
+werden.  Die  jetzigen Programmversionen verarbeiten alle  Konfigurations-
+files von der V3.40 an.  Wer noch ein Ñlteres Konfigurationsfile  besitzt, 
+sollte  dieses mit Avalon V3.4x (oder V3.1x) zunÑchst in ein  hîheres  V3-
+Format   konvertieren.   Avalon   lieût   AVALON1.CFG   und   AVALON2.CFG, 
+Avalon4Semper lieût nur AVALON2.CFG.
+
+
+AVALON.WPX
+----------
+Diese Datei enthÑlt die gespeicherten Windowpositionen von AVALON.
+
+
+AVALON.WPS
+----------
+Diese Datei enthÑlt die gespeicherten Windowpositionen von AVALON4SEMPER.
+
+
+AVALON.HTC
+----------
+Diese  Datei  enthÑlt  den Text,  der öber jede erzeugte  Mail  des  File-
+Hatchers gesetzt wird.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+AVALON-Anwenderhandbuch                                           Seite 22
+
+==========================================================================
+                          BIOS-Ausgabeumlenkung
+==========================================================================
+
+Die  Ausgabeumlenkung geschieht durch das Umbiegen der  Vektoren  "_o_con" 
+($586) und "_o_rawcon" ($592).
+
+Ist die Option "Do not use LineA" im "Special"-Dialog nicht aktiviert,  so 
+benutzt  Avalon auûerdem die "negativen" LineA-Variablen "v_cur_xy[]"  und 
+"v_cel_mx/my".
+Diese  werden entsprechend der Grîûe des  Avalon-Windows  angepaût,  damit 
+Programme  wie  Binkley,  die die TOS-Bildschirmsgrenzen  Åber  diese  er-
+fragen,  korrekt arbeiten kînnen.  GFA-Basic-Programme benutzen (z.B.  bei 
+jeder   Eingabe  mit  "INPUT")  "v_cur_xy[]"  um  die  Cursorposition   zu 
+erfragen.  Damit diese Programme auch an der richtigen  Bildschirmposition 
+ausgeben, updated Avalon "v_cur_xy[]".
+
+Wichtig:
+========
+Es gibt mehrere Arten zur Ausgabeumlenkung in Avalon:
+
+1.)  Sollen TOS-Programme,  welche Åber einen Batch gestartet werden, ihre 
+     Ausgaben in ein Window tÑtigen, so geschieht dieses erst dann, wenn
+     a) im Batch das Kommando "REDIRECT=ON" angegeben wird,
+     b) der  Batch in einer Session eingebunden ist.  Dort kann  Åber  den 
+        Button  "redirect"  ebenfalls bestimmt werden,  daû  die  Ausgaben 
+        umgelenkt werden.
+     c) die  Batchdatei  in "Find-1/2" installiert  ist.  Auch  hier  kann 
+        angegeben werden, ob die Ausgaben umgelenkt werden sollen.
+
+2.)  Sollen TOS-Programme und TOS-Programme in Batchdateien,  die Åber die 
+     Auswahlbuttons "*.BAT",  "*.TOS" oder "*.TTP" gestartet werden,  ihre 
+     Ausgaben  ins Avalon-Window legen,  so ist "redirect  output  (direct 
+     start)" in "Special" anzuwÑhlen.  Dieser Button sorgt auch dafÅr, daû 
+     TOS-Programme in der AUTOEXEC.BAT ihre Ausgaben ins Window umlenken.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+AVALON-Anwenderhandbuch                                           Seite 23
+
+==========================================================================
+                       Aufbau der AVALON-TIC-Files
+==========================================================================
+
+Avalon kann 3D- und 4D-TIC-Files erzeugen.
+
+4D-TIC-File:
+=============
+Area TIC-AREA                                         - Name der Filearea
+Origin 2:2401/103.6                                   - Absender (1)
+From 2:2401/103.6                                     - Sender (2)
+To Sysop,2:2401/200                                   - EmpfÑnger
+File FILENAME                                         - Filename (3)
+Replaces FILENAME                                     - Filename (3)
+Size 1000                                             - Filegrîûe
+Desc DESCRIPTION                                      - Beschreibung
+CRC 12345678                                          - Checksumme
+Created by AVALON V3.20 by Stephan Slabihoud          - TIC erzeugt von...
+Path 2:2401/103.6 736546632 Tue May 04 21:17:12 1993  - Path
+Seenby 2:2401/103.6                                   - Der Absender
+Seenby 2:2401/200                                     - Der EmpfÑnger
+Pw PASSWORD                                           - Paûwort zur Area
+
+3D-TIC-File:
+=============
+Area TIC-AREA
+Origin 2:2401/103.6
+From 2:11103/6
+To Sysop,2:2401/200
+File FILENAME
+Replaces FILENAME
+Size 1000
+Desc DESCRIPTION
+CRC F8B2CE8E
+Created by AVALON V3.20 by Stephan Slabihoud
+Path 2:11103/6 736546644 Tue May 04 21:17:24 1993
+Seenby 2:11103/6
+Seenby 2:2401/200
+Pw PASSWORD
+
+ (1) Das "Origin" gibt den Absender des Files an,  der das File als erstes 
+     in die Filearea gesetzt hat.
+ (2) "From" ist das System, von dem man das File empfangen hat.
+ (3) "Filename" ist der Name der Datei OHNE Pfad.  Einige Ticker  erlauben 
+     es,  ein  bereits vorkommendes File durch dieses ersetzen zu  lassen. 
+     Welche  (Wildcards  sind  erlaubt!)  Files  durch  dieses  neue  File 
+     ersetzt werden sollen, wird Åber "Replaces" festgelegt.
+
+==========================================================================
+                          Aufbau von Filelisten
+==========================================================================
+
+Der  FileRequest ist in der Lage,  verschiedene Filelistenformate zu  ver-
+arbeiten.  Die  Listen  sollten (bzw.  mÅssen) wie folgt  aufgebaut  sein, 
+damit Avalon den Programmnamen daraus extrahieren kann:
+
+<white spaces>FILE                 | Filename ohne Extension oder Magic
+<white spaces>FILE.EXT             | Filename mit Extension
+<white spaces>FILE    .EXT         | Filename mit Extension (12 Zeichen)
+
+Es wird also nur vorausgesetzt,  daû der Filename in der ersten Spalte  zu 
+finden  ist  (davor kînnen beliebige  Sonderzeichen  stehen  [Leerzeichen, 
+ASCII>=128]) und der komplette Filename nicht lÑnger als 12 Zeichen ist.
+
+
+
+
+
+
+
+AVALON-Anwenderhandbuch                                           Seite 24
+
+==========================================================================
+                          UnterstÅtzte VT-Codes
+==========================================================================
+
+VT52:
+=====
+Es werden alle Atari-VT52-Codes unterstÅtzt, auûer "ESC b" und "ESC c".
+
+VT100-Codes:
+============
+CSI H     - Cursor (0/0)
+CSI y;x H - Setze Cursor
+CSI y;x f -   "     "
+
+CSI<n>A - Cursor rauf                   CSI<n>B - Cursor runter
+CSI<n>C - Cursor rechts                 CSI<n>D - Cursor links
+CSI<n>R - Scroll rauf                   CSI<n>S - Scroll runter
+
+CSI s   - Cursorposition sichern        CSI u   - Cursorposition setzen
+ESC 7   - Cursorposition sichern        ESC 8   - Cursorposition setzen
+CSI<n>M - Zeile lîschen                 CSI<n>L - Zeile einfÅgen
+ESC M   - "Reverse Index"               ESC D   - "Index"
+
+CSI 0 J - Lîsche Schirm ab Cursor       CSI 0 K - Lîsche Zeile ab Cursor
+CSI 1 J -   "       "   bis Cursor      CSI 1 K -   "       "  bis Cursor
+CSI 2 J -   "       "                   CSI 2 K -   "       "
+
+CSI ?7h - Zeilenumbruch an              CSI ?7l - Zeilenumbruch aus
+
+CSI<s>m - Setze Effekte
+ESC<n>E - CR+LF
+ESC c   - Terminal-Reset
+
+
+CSI<s>m-Effekte:
+================
+ 1 - Fett an                            21 - Fett aus
+ 3 - Kursiv an                          23 - Kursiv aus
+ 4 - Unterstrichen an                   24 - Unterstrichen aus
+ 5 - Blinken an (hier: Hell an)         25 - Hell aus
+ 7 - Invers an                          27 - Invers aus
+ 8 - Abgedunkelt an (hier: Outline an)  28 - Outline aus
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+AVALON-Anwenderhandbuch                                           Seite 25
+
+==========================================================================
+                             P R O B L E M E
+==========================================================================
+
+GUCK       - GUCK  kann  ohne  weiteres  als  Textviewer  benutzt  werden. 
+             Leider  benutzt  GUCK die Funktion SHEL_WRITE  um  den  Text-
+             editor nachzuladen.  Unter Avalon kommt es dann zu  folgendem 
+             Problem:  GUCK  zeigt die Datei korrekt an,  wird  dann  aber 
+             "Ctrl+E" gedrÅckt,  um den Texteditor zu starten,  landet man 
+             wieder  im  Hauptdialog.  Wird jetzt Avalon Åber  "Quit"  be-
+             endet, so wird der Texteditor im Desktop gestartet.
+
+TOS 3.0x   - Unter TOS 3.0x und TOS 4.0x  kann  Avalon auf eine Funktions-
+TOS 4.0x   - taste (mit Applikation anmelden) gelegt werden.  Hierbei  muû 
+             aber   beachtet   werden,   daû  das   DefaultDirectory   auf 
+             "Applikation"  (nicht  "Window") und  Parameter  auf  "Voller 
+             Pfad"  (nicht "Filename") gestellt wird.  Wird  dieses  nicht 
+             getan, findet Avalon ggf. nicht seine Konfigurationsdateien.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+AVALON-Anwenderhandbuch                                           Seite 26
+
+==========================================================================
+                            W A R N U N G E N
+==========================================================================
+
+AVALON reagiert empfindlich gegen VerÑnderungen in seinem  Konfigurations-
+file.  Da ich in C nur begrenzt Speicherplatz reserviert habe zur Aufnahme 
+der einzelnen Zeilen,  dÅrfen die Pfade und Kommandozeilen auf gar  keinen 
+Fall  per Hand verlÑngert werden,  um z.B.  eine lÑngere Kommandozeile  zu 
+einem Programm zu erhalten.
+
+==========================================================================
+                       F A T A L E  -  F E H L E R
+==========================================================================
+
+"TOS: memory request failed"
+  TOS  war  nicht  in der Lage  einen  angeforderten  Speicherbereich  zur 
+  VerfÅgung zu stellen. Die entsprechende Funktion wird nicht ausgefÅhrt.
+"AES: wind_create/delete failed"
+  Es ist ein Fehler in den Windowroutinen vorhanden.  Bitte diesen  Fehler 
+  dem Programmautor umgehend mitteilen.
+"AES: appl_init failed"
+  Aus  irgendeinem  Grund konnte Avalon  nicht  beim  AES-Programm-Manager 
+  angemeldet werden.
+
+==========================================================================
+                              G R E N Z E N
+==========================================================================
+
+ Session-Setups                : max.   6 (Namen frei wÑhlbar)
+ Files pro Session             : max.  12 (beliebig viele öber Batchfiles)
+ Point-Setups (nur Binkley)    : max.   6 (Namen frei wÑhlbar)
+ Areas in AREAS.BBS            : max. 500 (dynamisch)
+ Areas im AreafixManager       : max.7500 (dynamisch)
+ Files pro Request             : max.  20
+ Filelisten/Msgbases           : max.  27 (vorwÑhlbar)
+ LÑnge der Fileliste           : unbegrenzt
+ LÑnge der Batchfiles          : unbegrenzt
+ Labels pro Batchfile          : max. 100
+ Max.LÑnge der Labels          : max.  20
+ Seitenweises DurchblÑttern
+ einer Fileliste von 600 KByte : ca. 30 Sekunden (auf einem TT mit NVDI)
+ Suchen eines Filenamens in
+ einer 600 KB Fileliste        : 0 bis 8 Sekunden (auf einem TT mit NVDI)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+AVALON-Anwenderhandbuch                                           Seite 27
+
+==========================================================================
+                     T A S T A T U R B E L E G U N G
+==========================================================================
+
+Tastenbelegung einfach:
+-----------------------
+  HELP - Zeige Tastenbelegung
+  UNDO - Notizbuch aufrufen
+     0 - Poll markierte ("selected") Sessions
+     n - Starte Poll n  (1<=n<=6)
+    F1 - WÑhle Main-Setup
+    F2 -   "    1st-  "
+         [...usw...]
+    F6 -   "    5th-  "
+
+Tastenbelegung mit Control:
+---------------------------
+     n - Starte Utility n  (1<=n<=6)
+     B - Mailer
+     C - Cruncher
+     E - Export
+     F - Filemanager
+     I - Import
+     M - MsgEditor
+     P - Program-Manager
+     Q - Quit AVALON
+     S - Scanner
+     T - TxtEditor
+     X - Terminal
+     * - ICONIFY
+
+Tastenbelegung mit Alternate:
+-----------------------------
+     n - AutoPoll n  (1<=n<=6)
+     A - Edit areas
+     B - Execute *.BAT
+     E - Hatch file
+     F - Find-1 (Programme)
+     G - Execute *.PRG
+     H - Find-2 (Utilities)
+     I - Info
+     M - Areafix-Manager
+     O - Session-Setup
+     P - Special
+     Q - Quit AVALON
+     R - Request file
+     S - Save Config
+     T - Execute *.TOS
+     U - Execute *.APP
+     V - Execute *.*
+     Z - Execute *.TTP
+
+Tastenbelegung im Filemanager:
+------------------------------
+     C - Copy             D - Delete
+     I - Info             M - Move
+     R - Rename           S - Ship (Harddisk parken)
+     T - Terminal         V - View
+     O - Outbound-Info    Y - System-Info
+     A - MsgBase Info
+
+Aktiv nach "Ctrl+F" bzw. F'Manager angewÑhlt.
+
+
+
+
+
+
+
+
+AVALON-Anwenderhandbuch                                           Seite 28
+
+==========================================================================
+                                 HISTORIE
+==========================================================================
+
+     V0.0x - erste Testversionen (irgendwann 1990).
+     V0.xx - BETA-Testversionen.
+     V1.00 - Frei wÑhlbares Setup fÅr jede Session.
+             Ein Bug beseitigt ("Del one" und "Del all" funktionieren).
+     V1.10 - EinfÅgen von Areas an beliebiger Stelle mîglich.
+     V1.11 - diverse Optimierungen.
+     V1.12 - weitere Optimierungen.
+AFN  V1.20 - Zwei Auswahlbuttons fÅr spezielle F'Requests.
+     V1.21 - F'Req-Auswahlbox blÑttert jetzt korrekt 10K vorwÑrts.
+             Jetzt 60K weniger Speicherplatzverbrauch (nur noch ca.100K).
+             Optische korrekturen (z.B. PointSetups Buttons hell, wenn
+             nicht belegt). CLEAR im F'Request. "Redraw infobox".
+             F'RequestBox zeigt jetzt 70 Zeichen pro Eintrag an, "?" in
+             "Find programs" durch Doppelklick ersetzt, Im F'Req werden
+             bereits requestete Files (;) unterdrÅckt.
+AFN  V1.30 - énderungen in "Find programs" wirken sich jetzt auf die
+             einzelnen Poll-Sessions aus, Suchfunktion fÅr die Fileliste,
+             Anzeige der Fileliste auf 72 Zeichen/Zeile erweitert.
+AFN  V1.40 - Vorerst letzte Version, die Åber das AFN geschickt wurde.
+AFN  V1.41 - Bîser Fehler beim Laden von AVALON.CFG beseitigt, der sich
+             in V1.40 eingeschlichen hatte.
+     V2.00 - Von GFA-BASIC jetzt nach C Åbersetzt.
+     V2.01 - Kleinere Optimierungen.
+     V2.02 - RSC Bestandteil von AVALON. Speicherbedarf nur noch ca.80KB.
+     V2.03 - CFGs dÅrfen lÑnger als 10K sein.
+     V2.10 - Spezielle Festlegungen in "Special".
+     V2.11 - Dialogboxenaufbau korrigiert.
+     V2.12 - Weiûer Bildschirm bei "TOS" und "TTP", sonst graues Desktop.
+             Fehlermeldung, wenn Fileliste nicht vorhanden. Utility-2
+             wird korrekt im Session-Setup angezeigt. Variablenverwaltung
+             geÑndert. Redraw der Pointauswahl korrigiert.
+     V2.13 - 4KByte weniger Speicherverbrauch, Anzeige beim Session-Setup
+             verbessert. Bug in der öbergabe der Kommandozeile behoben
+             (Bei Programmen, die mit "Other" installiert wurden).
+AFN  V2.20 - Batchinterpreter implementiert.
+     V2.21 - EXISTn, CHDIR, X: implementiert.
+     V2.22 - Bug in Kopierroutine entfernt; ECHO, RENAME implementiert.
+     V2.23 - Kleinere Korrektur in "Edit Areas", DIR implementiert.
+     V2.24 - Einige kleinere Optimierungen; JUMP, DUMMYFILE implementiert.
+     V2.25 - SCOPY/SMOVE,NOTEXIST/NOTEXISTn; einige Optimierungen.
+AFN  V2.26 - Diverse kleinere Optimierungen. Handbuch Åberarbeitet.
+     V2.27 - Kleinerer Bug in "Special" eleminiert; Programmstruktur
+             geÑndert; EXIT,ENDOFAVALON implementiert.
+     V2.30 - Radikale énderungen im Bildschirmaufbau; ERRORENDOFAVALON.
+     V2.31 - Bildschirmhandling geÑndert (F'Request); Kopierroutine im
+             Batchinterpreter geÑndert; Batchinterpreter komplett
+             Åberarbeitet (Fehlerauswertung).
+     V2.32 - Jetzt drei Auswahlbuttons im F'Req, Verbesserungen in "Find
+             programs", einige Optimierungen.
+     V2.40 - Wahl zwischen "<=BT2.40", ">=BT2.41", "NoInfo".
+AFN  V2.41 - kleinere Optimierungen; Wahl "MaxInfo".
+     V2.50 - Filemanager implementiert.
+     V2.51 - optische Verbesserungen; LineA entfernt.
+     V2.52 - FileInfo implementiert.
+AFN  V2.53 - Tastaturabfrage optimiert.
+AFN  V2.60 - "EXT" in "Edit areas", Zone in AREAS.BBS. KEYWARE.
+     V2.61 - SHELL,SHOWM,HIDEM implementiert. In "Find programs" kînnen
+             auch Batchdateien angegeben werden.
+             
+
+
+
+
+
+
+
+AVALON-Anwenderhandbuch                                           Seite 29
+
+
+
+AFN  V2.70 - Notebook implementiert. ZoneFileRequest mîglich.
+             Automatisches anlegen der HDR/MSG-Dateien. SWITCH <n>.
+             Vier Auswahlbuttons im F'Request. 77 Zeichen im F'Request.
+             Sicherheitsabfrage bei QUIT geÑndert. Sechs Sessions und
+             Pointsetups. Sechs frei wÑhlbare Utilities. Loop-Modus fÅr
+             jede Session. "*.APP" und "*.*" implementiert. "ErrorLevel"-
+             Exit fÅr jedes Programm pro Session. "EXIT" fÅr CLI
+             implementiert. "Find-1" fÅr Programme und "Find-2" fÅr
+             Utilities. 12 Files pro Session. Namen fÅr SessionSetups.
+             "Wait for keypress" in "Special". Filemanager per Tastatur
+             bedienbar. "Select" im SessionSetup. Defaultbuttons im
+             F'Request-Dialog fÅr Nodes und Filelisten. Viewer.
+AFN  V2.71 - Filelistenverwaltung verbessert. "GOTO","IFERRx","CLRERR"
+             fÅr CLI. BREAK in Batchdateien erlaubt. Kleineres Problem in
+             Zusammenhang mit Let'em'Fly behoben.
+AFN  V2.80 - Filelistenverwaltung erweitert. Wenn "Alternate" wÑhrend des
+             Programmstarts gedrÅckt, dann kein AutoStartPoll.
+             Unterbrechung einer laufenden Poll-Session Åber "Alternate".
+AFN  V2.81 - Kleinerer Bug in "Edit Areas" beseitigt ("INSERT"-Button
+             nicht mehr immer Åber RETURN anwÑhlbar). Nun auch fÅr
+             "SYSOP 2.11"-Filelisten geeignet. 10ner-Block wird nun auch
+             ausgewertet. "Edit Areas" erlaubt die Angabe von Domains.
+AFN  V2.82 - Kleinere Optimierungen. ECHO=ON/OFF. AUTOEXEC.BAT (die Ab-
+             arbeitung kann mit der linken Shift unterdrÅckt werden).
+             Die Bildschirmdarstellung in der mittleren ST-Auflîsung
+             erfolgt nun farbig.
+AFN  V2.83 - Auswahl des Pfads in "Edit areas" Åber Fileselector mîglich
+             (Doppelklick auf Pfadzeile).
+AFN  V2.90 - Nicht belegte Buttons werden jetzt hell dargestellt. Info-
+             Anzeige geÑndert. "MaxInfo" zeigt jetzt auch die Bemerkungs-
+             zeilen an. ">=2.41" entspricht "MaxInfo" in den Versionen
+             <=2.83. "Ship","Bell","Gong","Waittime","Open","Append",
+             "Close","Write","Day?","Weekday?","Getkey" implementiert.
+             Es darf ein beliebiger Ordner fÅr die Dateien "*.x"
+             angegeben werden. Verbesserte Suche nach Filenamen. Kleine
+             Verzîgerung beim Autostart einer Session. Mîglichkeit eines
+             zeitlich begrenzten Keys eingebaut. Setup-Namen frei wÑhlbar.
+AFN  V3.00 - Dialoge jetzt im Window. Hauptdialog abschaltbar.
+             Dialogpositionen werden auf Wunsch gesichert.
+             Kommandozeilen im Session-Setup nachtrÑglich editierbar.
+             4D- und 5D-FileRequest mîglich. Kleines Terminal eingebaut.
+AFN  V3.10 - Files kînnen gehatched werden. Es werden wahlweise TIC-Files,
+             Netmails und Echomails erzeugt. 200 EintrÑge in AREAS.BBS
+             erlaubt. RequestFiles kînnen nun einfacher gelîscht werden.
+             KNOWNINBOUND und PROTINBOUND werden ggf. ausgewertet.
+             Verbesserte  FormDo-Routine  im  WindowDialog.
+             VT52/TTY-Emulation in Terminal wÑhlbar. Es kînnen bis zu
+             zwei Zeitbereiche fÅr eine AutoStartSession angegeben werden.
+             "GEM","NOGEM" implementiert.
+AFN  V3.11 - "Smart Redraw" in Spezial implementiert. Kleiner Bug-Fix.
+             MultiTOS dÅrfte jetzt keine "Memory violation" mehr
+             ausgeben.
+AFN  V3.20 - Ein externer AREAS.BBS-Editor kann in "Find-1" definiert
+             werden. BugFix in FORM-DO-Routine und HatchRoutine. Es kann
+             auch die DAREAS.BBS editiert werden (Wahl in "Special").
+             Window-Redraw nochmals geÑndert. Hatch-Window nun Åber
+             Tastatur bedienbar. Sysopname kann beim Filehatch angegeben
+             werden.
+
+
+
+
+
+
+
+
+
+
+AVALON-Anwenderhandbuch                                           Seite 30
+
+
+
+AFN  V3.30 - Netmail kann auch in "Special" definiert werden.
+             Areafix-Manager implementiert. "Infobox <=2.40" entfernt.
+             "F'Hatch" bzw. "Areafix" Mails kînnen mit dem "K/Sent"-
+             Status versehen werden ("Special"). Pfade in "Special"
+             Åber Doppelklick einstellbar. Zwei Statements fÅr Areafix-
+             Manager in (D)AREAS.BBS: "-Fixname" und "-Fixpassword".
+             AVALON.LST erlaubt die Statements "LINK"/"NODE","PASSWORD",
+             "AREAFIX","REM" und ";". SHIP nun Åber XHDI (auch fÅr TT).
+             Slider verbessert. Bugfix in "Load Request" in
+             Zusammenhang mit 4D-Adressen. "RENAME" im Batchinterpreter
+             verbessert, "GEM" und "NOGEM" entfernt. Terminal und
+             Batchinterpreter kînnen in ein Window gelegt werden.
+             Serieller Port kann im Terminal geÑndert werden.
+             "REDIRECT=ON/OFF" implementiert. TOS-Programme kînnen im
+             Avalon-Window ablaufen. "Redirect output" in "Special".
+             Max.500 EintrÑge in der AREAS.BBS. Programme kînnen in eine
+             PollSession eingefÅgt werden. "HELP"-Seite im Terminal.
+             Terminal erlaubt ZModem-Transfer Åber GSZRZACC. Die benutzen
+             LineA-Variablen kînnen ggf. abgeschaltet werden. Textwindows
+             kînnen gesnapped werden. VT100 teilweise implementiert.
+AFN  V3.31 - Einige Optimierungen. AreafixManager erlaubt jetzt 2000
+             EintrÑge. Kleiner BugFix: "redirect" in "Find-1/2".
+             DAREAS.BBS wird nun korrekt verarbeitet. "EXT" erlaubt nun
+             65 Zeichen pro Eintrag (vorher 45). Weitere VT100 Befehle
+             und "F9-Show file" im Terminal implementiert. "!FILE",
+             "!AREA","!SUBJECT","!FLAGS","!FROM","!SEND","!BASE",
+             "!CONVERT=ON|OFF","PRINT" im Batchinterpreter eingebaut.
+             Weitere VT100-Codes implementiert. "sF1-Wrap an/aus".
+AFN  V3.32 - "Always center textwindows" eingebaut. Avalon sollte jetzt
+             auch mit alternativen Fileselektoren klarkommen.
+AFN  V3.40 - "LOG" im Logfile implementiert. "EXEC" erlaubt jetzt KÅrzel
+             bei bereits installierten Programmen. Neun Filelisten werden
+             jetzt direkt verwaltet, dafÅr "Select node:" entfernt.
+             Laden einer "Description" ist mîglich. Statement NETMAIL
+             in Binkley.Cfg wird jetzt ausgewertet. "!FILESELECT"
+             erlaubt das AuswÑhlen per Fileselector. "FILESELECT [n]"
+             eingebaut. Hiermit wird ein Filename in einem der
+             Parameter 0 bis 9 abgelegt. Die Parameter kînnen mit "%%n"
+             in jedem anderen Befehl verwendet werden. "CUTEXTENSION [n]"
+             schneidet die Extension und "CUTPATH [n]" den Pfad im
+             Parameter n ab. "*filename*" in "!SUBJECT" nicht mehr
+             erlaubt, dafÅr aber "%filename%","%file%","%ext%". Avalon
+             erlaubt jetzt einige Kommandozeilenbefehle: "NoAutoBatch",
+             "NoAutoStart","NoDelay","Override","Batch:".
+AFN  V3.50 - FHatch: Leerzeichen am Anfang/Ende der Description werden
+             entfernt. Pfad wird ÅberprÅft, wenn neue Areas an AREAS.BBS
+             angehÑngt werden. (Shift)Home springt zum Listenanfang/-ende
+             in der Listenanzeige. Kopieren von Files viermal schneller.
+             Slider perfektioniert. Neuer Button "Big windows" in Special.
+             Zu requestende Files kînnen direkt in einer Mail selektiert
+             werden! Es kînnen nun 27 anstelle von nur 9 Filelisten
+             verwaltet werden. Es werden nur noch Konfigfiles ab V3.30
+             geladen! HatchMails kînnen mit einem Vorspann versehen
+             werden ("AVALON.HTC"). "Edit areas" modifiziert (die Zone
+             wird nicht mehr getrennt eingegeben). Alle von Avalon
+             benîtigten Dateien werden jetzt aus dem Ordner AVALON
+             geladen (auch "*.[0-5]"). "FILES" lîscht nicht mehr alle
+             EintrÑge.
+
+             (weiter auf der nÑchsten Seite)
+
+
+
+
+
+
+
+
+AVALON-Anwenderhandbuch                                           Seite 31
+
+
+
+-->  V3.50 - Einige Optimierungen. "-DAYS 0" wird in AREAS.BBS gesichert.
+             Environment-Variable "TOSRUN" wird (auf Wunsch) beachtet!
+             "CHDIR" setzt nun auch das entsprechende Laufwerk, wenn es
+             angegeben wurde.
+AFN  V3.51 - Fontgrîûe nun frei wÑhlbar. Infotext Åberarbeitet.
+             Temporary-Key unterdrÅckt "Please register"-Box.
+AFN  V3.52 - Neue Funktion "Systeminfo" in Filemanager.
+             Slider bei groûen Boxen korrigiert. TheBox-Support entfernt,
+             dafÅr wird jetzt SEMPER unterstÅtzt. NetworkRequest/-Hatch
+             verbessert. Avalon erkennt jetzt das DefaultDomain.
+             Redraw-Routinen wieder geÑndert. Terminal kann Åber die
+             MenÅleiste aufgerufen werden. AVALON.WPS heiût nun
+             AVALON.WPX. Der Key kann auch in AVALON.KEY eingetragen
+             werden. Avalon sendet Nachrichten an Semper.
+             "Use window for..." entfernt.
+AFN  V3.53 - Wird "Days 0" angegeben, so wird "-DAYS 0" auch gespeichert;
+             wird das Feld freigelassen, so wird keine "-DAYS" Zeile fÅr
+             diese Area gespeichert. Die neue Funktion "Outbound-Info"
+             zeigt die Files an, die sich noch im Outboundverzeichnis
+             befinden. Windowroutinen sollten jetzt auch unter ST-Medium
+             korrekt laufen. Avalon-Logo fÅr ST-Medium neu gezeichnet.
+             "Save" im Hauptdialog wurde nicht immer neu gezeichnet.
+             REM im Areafix erlaubt 20 Zeichen. Befehle kînnen an einen
+             Areafix gesendet werden.
+AFN  V3.60 - Internes Terminal kann Åber ALT-X aufgerufen werden und ist
+             in der Bildschirmausgabe ca.150% schneller. Fehler in der
+             Speicherverwaltung korrigiert. "Outbound-Info" bombte bei
+             zuvielen EintrÑgen. Anzeige sortiert und erweitert.
+             "no icon" in Special implementiert. Meldung, wenn Avalon ein
+             zweitesmal gestartet wird. AreaFix-Manager verbessert.
+AFN  V3.61 - COMPDIFF gibt jetzt die benîtigte Zeit aus (speziell auf
+             Wunsch von Florian ;-)). Wird im Hauptdialog der FULLER
+             angewÑhlt, so wird der Hauptdialog von Avalon verkleinert
+             (ICONIFY) oder wieder geîffnet. Denselben Effekt hat
+             CNTRL+"*" (auf dem Zehnerblock). Es werden im Terminal jetzt
+             alle 15 Baudraten unterstÅtzt.
+AFN  V3.62 - FileHatch-Area darf nun 35 Zeichen lang sein. Ein "Program-
+             Manager" erlaubt es, 15 weitere Programme zu installieren.
+             "N/P" in "Edit areas" wieder anwÑhlbar.
+AFN  V3.63 - Bugfixes: Es wurde immer angezeigt, daû eine énderung im
+             Programm-Manager vorkam, wenn Avalon beendet wurde.
+             Redirect im Programm-Manager war nicht anwÑhlbar.
+             Dialogpositionen werden wieder gesichert (funktionerte nicht
+             in der 3.62). Slider im AreafixManager wird beim Suchen nun
+             mitgefÅhrt. "-Originalecho" wird nicht mehr als
+             "-Origin lecho" interpretiert. DTE-Rate wird im Terminal
+             korrekt angezeigt. Erstinstallation vereinfacht. Die
+             Darstellung der Icons sollte jetzt in jeder Auflîsung korrekt
+             sein. Avalon verursachte einen "Function call error" unter
+             WINX. OutboundInfo zeigt Inhalt von Flowfiles mit an.
+AFN  V3.70 - MAKEUSERLIST,APPLYDIFF,SPLIT,INPUT,PRESET,TIME?,DATE?,WECHO,
+             %%e,MONTH?,YEAR?,HOUR?,MINUTE?,ECHO=FULL,@ implementiert.
+             SystemInfo kann Åber RETURN verlassen werden.
+             Bugfix: Redirect-Status im Programm-Manager wird nun
+             zurÅckgesetzt. TOSRUN wieder entfernt. AVALON4SEMPER
+             speichert die Window-Positionen in AVALON.WPS.
+
+
+
+
+
+
+
+
+
+
+
+
+AVALON-Anwenderhandbuch                                           Seite 32
+
+
+
+AFN  V3.71 - Avalon4Semper kann jetzt auch einzeln registeriert werden.
+             Avalon und Avalon4Semper sind jetzt im Konfigurationsfile
+             voll kompatibel zueinander. Fehler bei der Environment-
+             Åbergabe behoben. Fehler beim Aufruf von Batchdateien in
+             Poll-Sessions behoben. CONVERT und CONVERT4D fÅr Batchcli.
+             "Search" in Edit-Areas eingebaut.
+AFN  V3.72 - Tastaturabfrage nochmals an MultiTOS angepasst. Neuer
+             Schalter: "Buffer screen output". EXTRACT implementiert.
+             Bugfix: Sliderbug bei Filelisten grîûer 2.4MB.
+             "!CONVERTTEARLINE=ON|OFF" implementiert. ICFS support.
+AFN  V3.73 - "FileManager->MsgBase" implementiert. AreafixManager wertet
+             nun Adressen hinter Areanamen besser aus. AreafixManager
+             verwaltet nun bis zu 7500 Areanamen (wird jetzt auch
+             angezeigt). Zwei kleine Bugfixes.
+FAN  V3.74 - "Replaces" im TIC-File wird nur noch erzeugt, wenn es auch
+             benîtigt wird. Origin-Adress im TIC wird jetzt nach dem
+             "best match" Verfahren ermittelt.
+FAN  V3.75 - BugFix in FileHatch: In der 3.74 wurde bei Mail&File eine
+             falsche Absenderadresse eingesetzt.
+FAN  V3.76 - "!Converttearline" funktioniert nun.
+FAN  V3.77 - Neues Base36-Format fÅr Ordner wird unterstÅtzt ("Base36
+             outbound style").
+
+       AFN - Diese Programmversionen wurden offiziell Åber das AFN
+                (Atari-File-Network) im Fidonetz verteilt.
+       FAN - Diese Programmversionen wurden offiziell Åber das FAN
+                      (Free-Atari-Network) verteilt.
+

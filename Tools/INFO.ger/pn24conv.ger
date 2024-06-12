@@ -1,0 +1,86 @@
+==========================================================================
+ PN24CONV V1.x                                  Letzte énderung: 25.11.93
+==========================================================================
+                          (c) Stephan Slabihoud
+==========================================================================
+                            S H A R E W A R E
+==========================================================================
+
+                  Sharewarebedingungen: siehe AVALON.TXT
+
+==========================================================================
+
+             Anregungen und Fehlerbeschreibungen zum Handbuch
+             und Programm bitte direkt per Crashmail an mich!
+
+
+
+INTRO:
+======
+Es  gibt speziell fÅr Points in der 24-Region eine  3D-Pointlist,  in  der 
+jedes System aufgefÅhrt ist.
+
+Zur  öbersetzung gibt es viele Utilities;  das bekannteste Utility  dÅrfte 
+wohl PN24USER von GÅnther Paczia sein.  Dieses erzeugt eine Userliste  fÅr 
+den  MsgReader LED.  Leider kann dieses nur 5000  Systeme  Åbersetzen,  es 
+werden  nur Points (keine Node-Systeme) ausgegeben und es kann nicht  alle 
+PointlisteintrÑge korrekt auswerten.
+
+PN24CONV  kann  unbegrenzt viele EintrÑge verwalten,  erkannt  auch  Node-
+Systeme  und  bearbeitet alle EintrÑge korrekt.  Weiterhin kann  eine  4D-
+Pointlist Åbersetzt werden.
+
+
+
+AUFRUF:
+=======
+Der Aufruf von PN24CONV ist denkbar einfach:
+
+PN24CONV <s|l> <src> <dst> [<zone>]
+
+
+  <s>  -  Erzeuge Liste im "Short"-Format.  Es werden keine  ÅberflÅssigen 
+          Leerzeichen in die Userliste eingefÅgt.
+  <l>  -  Erzeuge Liste im "Long"-Format.
+
+<src>  -  Die Pointliste (z.B. "C:\FIDO\POINTS24.*").
+
+<dst>  -  Die Userliste fÅr LED (z.B. "C:\FIDO\PN24USER.LST").
+
+<zone> -  Es wird die Zone <zone> vor jede Ausgabe gesetzt (optional).
+
+
+INTERNA:
+========
+
+Die Pointliste darf unbegrenzt viele EintrÑge beinhalten.
+Die Ausgabeliste wird nicht sortiert wie bei PN24LIST.
+
+Aufbau der 3D-Pointlist:
+========================
+Host,<-1->,<net/node>,<-2->,<name>,...
+,<point>,<-3->,<-2->,<name>,...
+[...]
+
+Aufbau der 4D-Pointlist:
+========================
+Boss,<zone:net/node>
+,<point>,<-3->,<-2->,<name>,...
+[...]
+
+Nicht benutzte EintrÑge:
+========================
+<-1-> - Fakenet
+<-2-> - Ort
+<-3-> - System
+
+
+
+HISTORIE:
+=========
+ V1.0 -  Erste offizielle Version.
+ V1.1 -  4D-Pointlisten kînnen Åbersetzt werden.
+ V1.2 -  Zone kann angegeben werden.
+ V1.3 -  Ein paar kleine Optimierungen.
+ V1.4 -  Ein wenig schneller.
+

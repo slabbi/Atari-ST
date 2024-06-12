@@ -1,0 +1,25 @@
+
+Version 1.14
+
+ Port  Bconmap   Computer   Chip    Remark
+==================================================
+ (1)    -         ST       ST-MFP   Modem
+--------------------------------------------------
+  1     6         TT       ST-MFP   Modem-1
+  2     7         TT       SCC-B    Modem-2
+  3     8         TT       TT-MFP   Serial-1 (*)
+  4     9         TT       SCC-A    Serial-2
+--------------------------------------------------
+  1     6         STE      ST-MFP   Modem-1
+  2     7         STE      SCC-B    Modem-2
+  3     8         STE      SCC-A    Serial-2
+--------------------------------------------------
+  2     7         Falcon   SCC-B    Modem-2 (**)
+==================================================
+  (*) not usable for Binkley
+ (**) with FPATCH2
+
+You must not set "Port 1" when using a normal ST. When using a Falcon
+set "Port 2".
+
+St.Slabihoud 1993,1994

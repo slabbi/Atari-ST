@@ -1,0 +1,84 @@
+072000300070000144000006000014000
+11
+21
+F0000000001
+9[........................................................]0110
+Ä==========================================================================
+PN24CONVV1.xx                                LastChanges:25Nov93
+==========================================================================
+(c)StephanSlabihoud
+==========================================================================
+SHAREWARE
+==========================================================================
+
+ForsharewaredetailsrefertoAVALON.TXT
+
+==========================================================================
+
+Ifyouhaveanyideasandbugreportsdirectedatmanualandprogram,
+pleasesendthemdirectlyandpercrashmailtome!
+
+
+
+INTRO:
+======
+
+Youcanrequestalistwithallpointsofthe24-regioncalled24-
+pointlist.
+
+TherearemanyutilitiestocompilethislistforexamplePN24USERby
+GÅntherPaczia.ThiscreatesauserlistfortheMsgReaderLED.Butitcan
+onlycompileamaximumof5000systems,noinformationaboutnodeswill
+becreatedandsomesystemswillnotbeconverted.
+
+PN24CONVallowsyoutocompileaunlimitednumberofsystemsandall
+entrieswillbeconvertedcorrectly.Alsoa4D-Pointlistcanbe
+converted.
+
+
+HowtostartPN24CONV:
+======================
+
+PN24CONV<s|l><src><dst>[<zone>]
+
+<s>-Createauserlistintheshortformat.
+<l>-Createauserlistinthelong(morehumanfriendly)format.
+<src>-Thepointlist(e.g."C:\FIDO\POINTS24.*").
+<dst>-TheuserlistfortheLED(e.g."C:\FIDO\PN24USER.LST").
+<zone>-Addzone<zone>tooutput(optional).
+
+
+
+ÄINTERNA:
+========
+
+Thenumberofpointsystemsisunlimited.
+Theoutputisnotsorted(PN24LISTcreatesasortedlist).
+
+3D-pointlistformat:
+====================
+Host,<-1->,<net/node>,<-2->,<name>,...
+,<point>,<-3->,<-2->,<name>,...
+[...]
+
+4D-pointlistformat:
+====================
+Boss,<zone:net/node>
+,<point>,<-3->,<-2->,<name>,...
+[...]
+
+Notusedentries:
+=================
+<-1->-Fakenet
+<-2->-City
+<-3->-System
+
+
+History:
+========
+V1.0-Firstofficialversion.
+V1.1-4D-pointlistscanbecompiled.
+V1.2-Addzonetooutput.
+V1.3-Alittlebitoptimized.
+V1.4-Alittlebitfaster.
+

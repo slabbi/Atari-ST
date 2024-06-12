@@ -1,0 +1,93 @@
+  öbersicht der momentan vorhandenen MsgFlags
+
+      N = Flag in Netmails erlaubt
+      E = Flag in Echomails erlaubt
+      L = Nur bei lokalen Mails erlaubt
+
+      Standardflags:
+
+      Name           NEL  Beschreibung
+      ==================================================================
+@symbol i Private
+      Private        ++   Msg ist privat.
+@symbol i Crash
+      Crash          +-+  Msg soll "crash", d.h. direkt, zum EmpfÑnger
+                          gesendet werden.
+@symbol i Received
+      Received       ++   Msg wurde vom EmpfÑnger empfangen. Das Flag
+                          wird von QBBS fÅr BBS-User benutzt.
+@symbol i Sent
+      Sent           +++  Msg wurde exportiert.
+@symbol i W/File
+      W/File         +-   Mit der Msg wird eine Datei mitgesendet. Der
+                          Dateiname steht im Subject.
+@symbol i InTransit
+      InTransit      +-   Die Msg ist nicht fÅrs eigene System und wird
+                          weitergesendet.
+@symbol i Orphan
+      Orphan         +-   Der Tosser weiss nicht, wohin diese Mail
+                          geroutet werden soll.
+@symbol i Kill/Sent
+      Kill/Sent      +-+  Msg wird nach dem Exportieren automatisch
+                          gelîscht.
+@symbol i Local
+      Local          ++   Msg wurde auf dem eigenen System geschrieben,
+                          entweder vom Sysop, oder einem BBS-User.
+@symbol i Hold
+      Hold           +-+  Msg wird "auf Hold" gelegt, d.h. die muû vom
+                          EmpfÑnger abgeholt werden.
+@symbol i FRequest
+      FRequest       +-   Die Msg ist ein FileRequest. Die Filenamen
+                          stehen im Subject-Feld durch Leerzeichen
+                          getrennt.
+@symbol i ReturnReceipt
+      ReturnReceipt  +-   Der EmpfÑnger soll eine EmpfangsbestÑtigung
+                          zurÅcksenden.
+@symbol i IsReceipt
+      IsReceipt      +-   Zeigt an, daû es sich bei dieser Msg um
+                          eine EmpfangsbestÑtigung auf "ReturnReceipt"
+                          handelt.
+@symbol i AuditRequest
+      AuditRequest   +-   Fordert eine EmpfangsbestÑtigung von jedem
+                          System an, das die Msg bearbeitet.
+@symbol i Deleted
+      Deleted        ++   Zeigt an, daû diese Msg gelîscht ist.
+
+
+      Erweiterte Flags:
+
+      Name           NEL  Beschreibung
+      ==================================================================
+@symbol i Read
+      Read           ++   Zeigt an, daû die Msg gelesen wurde.
+@symbol i Archive/Sent
+      Archive/Sent   +++  Wenn dieses Flag gesetzt ist, wird die Msg
+                          nach dem Exportieren in die ArchivArea kopiert.
+@symbol i TruncFileSent
+      TruncFileSent  +-+  Das File wird nach dem Senden auf 0 gekÅrzt.
+@symbol i KillFileSent
+      KillFileSent   +-+  Das File wird nach dem Senden gelîscht.
+@symbol i Direct
+      Direct         +-+  Sende Netmail direkt zum EmpfÑnger (die Mail
+                          wird nicht geroutet).
+@symbol i ZoneGate
+      ZoneGate       +-+  Sende Netmail Åber das ZoneGate.
+@symbol i HostRoute
+      HostRoute      +-+  Sende Netmail Åber den Host/Hub des EmpfÑngers.
+@symbol i Locked
+      Locked         ++   Anzeige, daû Msg gesperrt, d.h. kein Export,
+                          kein Crunchen, keine énderung.
+@symbol i Immediate
+      Immediate      +-+  Sende Netmail sofort zum EmpfÑnger. Dieses ist
+                          die "hÑrtere" AusfÅhrung von "Crash".
+@symbol i Gated
+      Gated          ++   Markiert lokal gegatete Msgs.
+@symbol i CreateFlowFile
+      CreateFlowFile +-   Erzeugt aus dem MsgText ein Flowfile.
+@symbol i Maus
+      Maus           +++  Es ist eine Maus-Msg.
+@symbol i "Fixed address"
+      Fixed address  +++  Der Tosser Ñndert nicht die angegebene
+                          Absenderadresse.
+@symbol i MultipleCC
+      MultipleCC     +-   "CarbonCopies" werden vom Tosser erzeugt.

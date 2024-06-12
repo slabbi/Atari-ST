@@ -1,0 +1,19 @@
+BBS_INFO.TTP         ; name of executable program is topmost window
+.C [ -Y ]
+.L [ -L -Y ]
+.S [ -Y ]
+=                  ; list of modules follows...
+
+PCXSTART.O         ; startup code
+
+BBS_INFO.C   [ -K ]       ; compile topmost window
+
+; PCBGILIB.LIB       ; BGI library
+PCSTDLIB.LIB       ; standard library
+
+PCEXTLIB.LIB       ; extended library
+PCTOSLIB.LIB       ; TOS library
+PCGEMLIB.LIB       ; AES and VDI library
+; PCLNALIB.LIB
+
+;>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<

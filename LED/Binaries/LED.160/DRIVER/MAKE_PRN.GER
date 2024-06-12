@@ -1,0 +1,47 @@
+MAKE_PRN     DruckerTreiber-Compiler fr den LED    (c) St.Slabihoud 1996
+=========================================================================
+
+Dieses Programm bersetzt *.PN Dateien in LED.PRN. Der Aufruf erfolgt mit:
+
+  MAKE_PRN <treiber.pn>      z.B. MAKE_PRN default.pn
+
+Dieses Aufruf erzeugt eine Datei LED.PRN, die im LED-Konfigurationsordner
+stehen mu. Fehlt die Datei, findet keine šbersetzung statt.
+
+Wer einen Treiber fr einen bestimmten Drucker geschrieben hat, m”chte mir 
+den Source bitte zusenden. Ich lege ihn dann dem LED-Paket bei.
+
+
+Format der *.pn Dateien:
+------------------------
+;
+; Source des Standard-DruckerTreibers fr den LED 1.43  (c) St.Slabihoud
+;
+; Konvertiert:      Nach:
+;  Pfeil rauf        '^'
+;  Pfeil links       '<'
+;  Pfeil rechts      '>'
+;
+; Jeder Eintrag hat folgendes Format:
+;  <original zeichen>, <char1> [, <char2> [...]]
+;
+; Bis zu elf "chars" sind erlaubt (die maximale Anzahl der Eintr„ge pro 
+; Zeile ist also zw”lf). Das ist genug fr alle Konvertierungen. Werte 
+; k”nnen Dezimal, Octal (0...) oder in Hex (0x...) angegeben werden.
+;
+0x01, 0x5e
+0x03, 0x3e
+0x04, 0x3c
+;
+; Folgende Eintr„ge sind Optional (k”nnen also ganz weggelassen werden):
+;
+; Linker Rand
+LEFTMARGIN,0
+;
+; Drucker-Initialisation (max.11 Eintr„ge)
+INIT,27,64
+;
+
+
+Der 16. bis 23. Eintrag haben eine besondere Bedeutung: Hiermit werden die 
+Steuercodes fr Unterstrichen/Fett/Kursiv/Invers-AN bzw. AUS festgelegt.

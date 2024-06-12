@@ -1,0 +1,21 @@
+casio_sf.prg       ; name of executable program is topmost window
+.C [ -P -K -G -Y ]
+; .L [ -L -Y ]
+; .S [ -Y ]
+=                  ; list of modules follows...
+PCSTART.O          ; startup code
+
+casio_sf.c         ; compile topmost window
+form_run.c
+diverse.c
+transkey.c
+dtronoff.s
+cookie.c
+vars.c
+resource.c  [ -M ]
+
+PCSTDLIB.LIB       ; standard library
+PCEXTLIB.LIB       ; extended library
+PCTOSLIB.LIB       ; TOS library
+PCGEMLIB.LIB       ; AES and VDI library
+

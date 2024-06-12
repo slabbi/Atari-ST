@@ -1,0 +1,28 @@
+
+öbersicht der unterstÅtzten Rechner. Getestet bisher: ST,TT,STE,Falcon
+
+Version 1.14
+
+ Port  Bconmap   Rechner   Chip    Bezeichnung
+==================================================
+ (1)    -         ST       ST-MFP   Modem
+--------------------------------------------------
+  1     6         TT       ST-MFP   Modem-1
+  2     7         TT       SCC-B    Modem-2
+  3     8         TT       TT-MFP   Serial-1 (*)
+  4     9         TT       SCC-A    Serial-2
+--------------------------------------------------
+  1     6         STE      ST-MFP   Modem-1
+  2     7         STE      SCC-B    Modem-2
+  3     8         STE      SCC-A    Serial-2
+--------------------------------------------------
+  2     7         Falcon   SCC-B    Modem-2 (**)
+==================================================
+  (*) unbrauchbar fÅr Binkley
+ (**) mit FPATCH2
+
+Beim ST kann die Angabe "Port 1" entfallen. Beim Falcon muû "Port 2"
+gesetzt werden. Dieses hat aber nur Sinn, wenn FPATCH2 installiert ist
+und somit die Funktion "Bconmap(7)" den richtigen Port anspricht.
+
+St.Slabihoud 1993,1994

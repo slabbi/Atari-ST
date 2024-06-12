@@ -1,0 +1,1559 @@
+@node "Begriffserkl„rungen"
+
+Die folgenden Begriffserkl„rungen sind aus verschiedenen Dokumenten
+zusammengetragen worden, von denen ich aber nicht mehr genau wei, woher
+berall. Zum Teil sind diese Erkl„rungen auch schon wieder mehrmals
+berarbeitet worden. Begriffe aus dem Internet sind entsprechend 
+gekennzeichnet.
+
+Hinweis: Ich habe die Begriffe absichtlich nicht in den Index
+         bernommen, da diese nur sekund„r mit dem LED im Zusammenhang 
+         stehen. Dadurch ist der Index noch etwas berschaubarer.
+
+Inhalt:
+
+    [Andere]
+
+    [A] [B] [C] [D] [E] [F] [G] [H] [I] [J] [K] [L] [M]
+
+    [N] [O] [P] [Q] [R] [S] [T] [U] [V] [W] [X] [Y] [Z]
+    
+    Funktionsweise des FidoNetzes
+    Pointsoftware
+    Was ist ein 'Point'?
+    Aufbau einer Nachricht (Kludges)
+    Was sind 'TIC-Files'?
+@endnode
+
+
+@node "Pointsoftware"
+   Welche Software ist n”tig fr ein Point-System?
+
+   Die drei Grundfunktionen eines Point-Systems sind die Verbindung mit 
+   der FidoNet-Mailbox, Ent- und Verpacken von Nachrichten und deren 
+   Verwaltung. Diese Funktionen werden von Mailer, Mail-Prozessor und 
+   Editor bernommen.
+
+   Hier ein vereinfachtes Diagramm zum Verdeutlichen des Ablaufes und des 
+   Zusammenspiels der Software:
+
+            +--------------+
+            |    Mailer    |
+            +--------------+
+                   |   |
+            +--------------+
+            |     Mail     |---------+
+            |  Prozessor   |         |
+            +--------------+         |
+                   |                 |
+            +--------------+ +---------------+
+            |    Editor    | | neue Messages |
+            +--------------+ +---------------+
+                   |                 |
+                   +-----------------+
+
+   Als Beispiele fr Mailer-Software seien BinkleyTerm, Semper oder 
+   FrontDoor (PC) genannt. In der MS-DOS-Umgebung ist fr den Betrieb des 
+   Mailers ein bestimmter Low Level-Treiber notwendig, der die 
+   hardwarenahe Steuerung der seriellen Schnittstelle bernimmt. Solche 
+   Treiber sind als "FOSSIL"-Treiber bekannt. "FOSSIL" steht in diesem 
+   Zusammenhang fr "Fido/Opus/SEAdog Standard Interface Layer". Popul„re 
+   Treiber in der DOS-Welt sind X00.SYS, BNU.COM oder OPUSCOM.COM.
+   Aber auch der Atari ben”tigt meistens einen Hardwaretreiber (z.B. 
+   HSMODEM, RS232ENC etc.), da in einigen Versionen des Betriebssystems 
+   TOS ein Bug im RTS/CTS-Handshake vorhanden ist.
+
+
+   Wichtigste Aufgabe des Mail-Prozessors ist es, die komprimierten 
+   Nachrichten-Pakete, die nach der Verbindung mit der Mailbox ("WaZoo 
+   session") im dafr reservierten Subdirectory ("inbound") gelandet sind, 
+   zu entpacken, entsprechend den Konferenznamen ("area names") in die 
+   dafr reservierten Files zu verteilen ("toss") und die Verweise und 
+   Bezge ("reply links") zwischen Nachrichten gleichen Betreffs 
+   ("Subject:") herzustellen ("maint"). Bekannte Mail-Prozessoren in der 
+   DOS-Welt sind ConfMail, TosScan, FastEcho und Qmail; auf dem Atari 
+   JetMail, IOSmail, ECU/LLegada. Zum Ver- und Entpacken der Nachrichten 
+   ben”tigt der Mail-Prozessor noch zus„tzlich ein entsprechendes 
+   Hilfsprogramm ("utility"). Die bekanntesten Programme dieser Art sind 
+   "ARC", "ZIP", "Zoo", "ARJ" und "LHarc".
+
+   Mit dem Editor werden Nachrichten gelesen und geschrieben, ausgedruckt, 
+   im ASCII-Format exportiert und gel”scht. Die meisten Editoren bieten 
+   zus„tzliche Features wie "Verschieben" einer Nachricht von einem in ein 
+   anderes Area ("move"), Weiterleiten einer Nachricht in ein anderes Area 
+   und/oder an einen anderen Teilnehmer ("forward") und das Aufteilen 
+   einer Nachricht an mehrere Teilnehmer ("carbon copy"). MsgEd, Sirius, 
+   OpEd und der FrontDoor-Editor sind die gebr„uchlichsten Editoren auf 
+   dem DOS-Sektor; LED ist der bekannteste MsgReader auf dem Atari.
+
+   Werden neue Messages exportiert, ist die Ablaufreihenfolge umgekehrt: 
+   Files werden nach neuen Messages durchsucht ("scan"), an die am 
+   jeweiligen Echo-Area partizipierenden Nodes weitergeleitet, komprimiert 
+   und im dafr reservierten Subdirectory ("outbound") bereitgestellt. 
+   Aufgabe des Mailers ist es jetzt, in regelm„áigen Abst„nden zu 
+   berprfen, ob Messages weiterzuleiten sind und ob zum aktuellen 
+   Zeitpunkt ein Anruf erwnscht ist.
+@endnode
+
+@node "Was ist ein 'Point'?"
+  Was ist ein 'Point'?
+
+  Ein Point-System ist die komfortabelste M”glichkeit, mit einer 
+  FidoNet-Mailbox Nachrichten und Files auszutauschen. Neue Nachrichten 
+  werden in gepackter Form vom Point bei der Mailbox abgeholt. Sie 
+  k”nnen jederzeit gelesen werden; offline, in aller Ruhe und ohne die 
+  Telefongebhren zu strapazieren. Antworten und neue Nachrichten werden 
+  mit einem speziellen Editor (hier: LED) geschrieben. Dieser Editor 
+  bietet meistens die M”glichkeit, Texte aus anderen Programmen im 
+  ASCII-Format zu bernehmen. Die Nachrichten werden gepackt, wieder an 
+  die Mailbox geschickt, dort in die entsprechenden Nachrichtenbereiche 
+  aufgeteilt und den anderen Online-Anrufern, Points und 
+  FidoNet-Mailboxen zur Verfgung gestellt.
+
+  FidoNet-Mailboxen, die fr Online-Anrufer offen stehen - es gibt auch 
+  sogenannte "Mail Only-Nodes" - reservieren pro Tag eine bestimmte 
+  Zeitspanne, in der sie ausschlieálich fr andere FidoNet- Systeme 
+  erreichbar sind ("National Mailing Hour"). In dieser "Zone Mailing 
+  Hour", wie sie neuerdings genannt wird, werden Online-Anrufer nicht in 
+  die Mailbox gelassen. Point-User sind davon nicht betroffen, denn ihre 
+  Software identifiziert sich beim Verbindungsaufbau als FidoNet-System.
+
+  Warum die Bezeichnung 'Point'?
+
+  Die Software eines Point-Systems wird oft in gleicher oder „hnlicher 
+  Form von FidoNet-Mailboxen verwendet. FidoNet-Mailboxen sind in einer 
+  Liste ("nodelist") aufgefhrt, die w”chentlich aktualisiert wird 
+  ("nodediff"). FidoNet-Mailboxen mssen bestimmte Mindestauflagen 
+  erfllen, um in die Nodelist aufgenommen zu werden, z.B. 
+  Erreichbarkeit innerhalb einer bestimmten Zeit, meist Zugang fr 
+  Online-Anrufer usw. Point-Systeme haben diese Auflagen nicht zu 
+  erfllen, sie haben nur einen "User" - ihren Betreiber - und sind 
+  auch nicht in der Nodelist enthalten, sondern werden als "Anh„ngsel" 
+  eines Fido-Nodes gekennzeichnet: 2:310/2.2 bedeutet Point 2 von Node 2 
+  aus Network 310, Europa.
+@endnode
+
+@node "Was sind 'TIC-Files'?"
+     Tick war das erste Programm zum gesteuerten Verteilen von Files.
+     
+     Gesteuert heit, in einer Filearea (vergleichbar einer 
+     Echomailarea) ein File an jeden zu versenden, der die jeweilige 
+     Filearea bestellt hat.
+     
+     Das geschieht im Allgemeinen in Filenetzen wie DVNet, WINnet, 
+     VIRnet, SDNet, SDSnet und PDNet, denen sich manche Sysops 
+     anschliessen, um laufend mit aktueller PD und Shareware versorgt 
+     zu werden.
+     
+     Im TKxxxxxx.TIC File stehen u.a. die Informationen:
+     
+     Area     FileArea Name
+     Origin   Ursprungs-Adresse
+     From     Adresse des Systems von dem das .TIC kam
+     File     Name des Files, das verschickt (ticked) wird
+     Desc     Beschreibung des Files
+     CRC      Prfsumme des Files
+     Replaces welches File durch dieses ersetzt werden soll
+     Created  Programm, das das .TIC File erstellte
+     Path     welchen Weg das File bisher nahm
+     Seenby   Wer es auerdem noch bekommen hat
+              (meist unvollst„ndig)
+     Pw       das Pawort, mit dem die jeweilige Filearea
+              abgesichert ist
+     
+     Tick sortiert dann das erhaltene File je nach Konfiguration in 
+     ein Directory ein und bernimmt die Beschreibung des Files in die 
+     Filebase.
+     
+     Das heit, das Dir zugesandte Programm befindet sich anschlieend 
+     dort, wo Du es haben wolltest, ohne da Du einen Fingerstreich 
+     tun mut.
+     
+     Aber nur wenn alles richtig installiert ist. :-)
+@endnode
+
+@node "Aufbau einer Nachricht (Kludges)"
+     Absender, Empf„nger, Betreff usw. stehen im MsgHeader (zum 
+     Teil hexadezimal codiert) und sollen hier unbercksichtigt 
+     bleiben. Wer sich genauer dafr interessiert, kommt um das 
+     Studium der entsprechenden FTS's sowie FSC's nicht rum.
+
+
+       (E) = Erlaubt in Echomail
+       (N) = Erlaubt in Netmail
+     (E/N) = Erlaubt in Echomail und Netmail
+
+
+     Sichtbare Lines:
+     
+     AREA: (E)
+     
+     Der erste Eintrag im Textteil einer Echomail ist der 'AREA:' 
+     Eintrag, hinter dem unmittelbar der Name des Echos folgt (z.B. 
+     AREA:FIDOGUIDE.GER). Der Echomailprocessor sortiert die 
+     verschiedenen Msgs anhand dieses Eintrags in die richtige Area. 
+     Nachdem die Msg importiert ist, wird der AREA:-Eintrag nicht mehr 
+     im Editor zu sehen sein, da er normalerweise vom Tosser entfernt 
+     wird.
+     
+     
+     Tearline (E)
+     
+     besteht aus 3 dashes ('-') und kann auerdem Angaben zur Software 
+     enthalten, die diese Msg verarbeitet hat. Die Tearline darf 35 
+     Zeichen nicht berschreiten, besser ist es, sie unter 25 Zeichen 
+     zu halten. Die Tearline steht unmittelbar vor der Originline.
+     
+     
+     Originline (E)
+     
+     Die "origin line" ist so etwas wie eine Visitenkarte des 
+     Point-Systems oder der Mailbox. Anhand der "origin line" ist es 
+     m”glich, den Ursprung einer Echomail-Message zu identifizieren. Der 
+     Inhalt dieser Zeile kann zum Teil vom Point- bzw. Mailbox-Betreiber 
+     selbst beeinfluát werden, andere Elemente sind fix vorgegebener 
+     Bestandteil. Eine "origin line" kann z.B. so aussehen:
+
+     --- JetMail V1.00
+      * Origin: Do you like Pizza? (2:240/123)
+
+     Die "origin line" wird entweder vom Editor, vom Mail-Prozessor oder 
+     von der BBS-Software nach einer "tear line" (---) am Ende einer 
+     Nachricht angefgt. Meistens ist nach den drei Bindestrichen 
+     ("dashes") der "tear line" noch der Name des Mail-Prozessors oder 
+     des Editors vermerkt. Die "origin line" besteht aus " * Origin: ", 
+     dem Namen des Point-Systems bzw. der Mailbox, einem (optionalen) 
+     mehr oder weniger originellen Begleittext, und - getrennt durch 
+     Leerzeichen und Klammern - der FidoNet-Adresse des Systems, von dem 
+     die Message stammt.
+
+     "origin lines" sollten nicht l„nger als insgesamt 70 Zeichen sein 
+     und nur Zeichen aus dem Bereich zwischen 20 hex und 7E hex 
+     enthalten; also z.B. keine Rechner-spezifischen Umlaute, Grafik- 
+     oder Sonderzeichen. Die Maximall„nge betr„gt 79 Zeichen.
+     
+     
+     SEEN-BY (E)
+     
+     "SEEN-BY lines" bezeichnen die Adressen der FidoNet-Systeme, an die 
+     diese Nachricht gleichzeitig weitergeschickt wurde. Sie enthalten 
+     in einer oder mehreren mit "SEEN-BY" beginnenden Zeilen die 
+     numerisch aufsteigend sortierten FidoNet-Adressen jener Systeme, 
+     bei denen diese Message zum Lesen oder zur weiteren Verteilung 
+     bereit steht. Ein Beispiel:
+
+     --- JetMail V1.00
+      * Origin: Do you like Pizza? (2:240/123)
+     SEEN-BY: 2/231 31/0 310/1 2 3 4 8 9 10 11 12 13 14
+     SEEN-BY: 313/1 2 316/1 2 507/1
+
+     "310/1 2 3" usw. in obigem Beispiel bedeutet, daá im Network 310 
+     die Nodes 1 bis 14 die Message "gesehen" haben. Aus dem Network 313 
+     und 316 haben Node 1 und Node 2 die Message bekommen; im Network 
+     507 Node 1.
+
+     Beim Importieren ("toss") von Echomail-Messages wird berprft, ob 
+     die Adresse des importierenden Systems in den "SEEN-BY lines" 
+     enthalten ist. Sie sollte bereits dort stehen, denn beim 
+     Exportieren ("scan") werden die FidoNet-Adressen dieser Systeme 
+     eingefgt, die an jenem Echomail-Area beteiligt sind, aus dem diese 
+     Message stammt.
+
+     Die oben gezeigten Origin-Lines sind alle Beispiele fr Messages 
+     aus einem FidoNet-Node. Hier eine korrekte Origin-Line, die aus 
+     einem Point-System stammt:
+
+     --- TosScan '286
+      * Origin: Got'ya (2:310/2.2)
+     SEEN-BY: 2/231 31/0 310/1 2 3 4 8 9 10 11 12 13 14
+     SEEN-BY: 313/1 2 316/1 2 507/1
+
+     Und hier eine andere Origin-Line eines Point-Systems:
+
+     --- FD 2.00
+      * Origin: Netz/17 is coming (2:9100/4)
+     SEEN-BY: 2/231 31/0 310/1 2 3 4 8 9 10 11 12 13 14
+     SEEN-BY: 313/1 2 316/1 2 507/1 9100/4
+
+     Das erste Beispiel zeigt, wie eine Point-Adresse in einer 
+     Origin-Line aussieht. Im zweiten Beispiel wird eine mangelhafte 
+     Installation der Point-Software sichtbar, und zwar ein Fehler in 
+     der Konfiguration des Mail-Prozessors. Der Grund: Points bekommen 
+     eine "Pseudo-Adresse" innerhalb von FidoNet.
+
+     Der Betreiber der FidoNet-Mailbox, die Point-User mit Nachrichten 
+     versorgt, vergibt fr sein privates Pointnetz eine Phantasienummer, 
+     die aber auáerhalb seines FidoNet-Nodes nicht "sichtbar" werden 
+     darf. Ist die Mail-Prozessor-Software sowohl beim FidoNet-Node 
+     ("bossnode") als auch beim Point-System korrekt installiert, wird 
+     diese Phantasienetznummer unterdrckt. Diese private Pointnetz- 
+     Nummer muá deshalb unterdrckt werden, weil nie sichergestellt ist, 
+     daá ein anderer FidoNet-Sysop fr sein privates Pointnetz nicht die 
+     gleiche Netznummer verwendet. Darum ist es normalerweise auch 
+     verp”nt, daá Point-Systeme Matrix-Mail unter Umgehung ihres 
+     Bossnodes direkt an den Empf„nger-Node senden.
+
+     In Deutschland wird „hnlich dem Nodediff-File ein zentrales 
+     "Pointnet" w”chentlich aktualisiert und an alle heimischen FidoNet- 
+     Nodes geschickt, die Points untersttzen. Soferne jeder Sysop 
+     dieses Pointnet in seine Nodelist einbaut, sollten doppelte 
+     Pointnet-Nummern theoretisch nicht vorkommen und jeder deutsche 
+     Point bei jedem deutschen FidoNet-Node bekannt sein.
+
+     Es gibt immer noch Mailprozessoren, die eine Msg beim Importieren 
+     nach dem Auftreten einer SEEN-BY Zeile abschneiden. Deshalb sollte 
+     sie nicht mitgequotet werden. Wenn ein Quote der SEEN-BY 
+     unerl„sslich ist, sollte sie abgewandelt werden (z.B. in $EEN-BY). 
+     In den SEEN-BY's werden die Systeme aufgefuehrt, die diese Msg 
+     erhalten haben. Allerdings ist diese Auflistung aus technischen 
+     Grnden praktisch nie vollst„ndig.
+     
+
+     Unsichtbare Lines:
+     
+     Alle unsichtbaren Eintr„ge werden durch die Verwendung von Ctrl-A 
+     (0x01) vor dem Eintrag quasi versteckt. Man spricht deshalb auch 
+     von hidden lines. Oft werden diese Eintr„ge auch als 
+     'kludge-lines' bezeichnet.
+     
+     
+     ^ACHARSET: oder ^ACHRS: (E/N)
+     
+     Gibt an, welcher Zeichensatz zum Erstellen der Msg verwendet 
+     wurde.
+     
+     
+     ^AEID: (E)
+     
+     wird zum Dupechecking (also zum Auffinden von doppelten Msgs) 
+     verwendet.
+     
+     
+     ^AFMPT (N)
+     
+     Zeigt an, dass die Msg von einem Pointsystem kommt.
+     
+     
+     ^AINTL (N)
+     
+     Wird eigentlich nur bei interzonalen Netmails gebraucht. Besteht 
+     aus der Zieladresse und der Absenderadresse im 3d-Format und 
+     erm”glicht es der Software, die Msg richtig ans Ziel zu bringen.
+     
+     
+     ^AMSGID: (E/N)
+     
+     Wird zum Dupechecking und zur Verkettung verwendet.
+     
+     
+     ^APATH: (E)
+     
+     Die Pathline enth„lt alle Systeme ber die die  Msg geroutet 
+     wurde, soweit die bei den verschiedenen Systemen verwendete 
+     Software die Pathline untersttzt. Es laet sich damit also der 
+     Weg, den die Msg nahm, nachverfolgen. Allerdings ist der Path 
+     immer 2d, das heit, es fehlen die Zoneangaben.
+     
+     
+     ^APID: (E/N)
+     
+     Die Product-ID gibt Auskunft ber die zum Erstellen oder 
+     Bearbeiten der Msg verwendete Software.
+     
+
+     ^AREPLY: (E/N)
+     
+     Wird bei Antworten auf eine Msg erzeugt und besteht aus der Msgid 
+     der Ursprungsmsg. Damit ist es m”glich, eine Verkettung nach  
+     FSC-9  durchzufhren, die das Auffinden der ursprnglichen Msg 
+     erleichtert.
+     
+     
+     ^ASPLIT (E)
+     
+     Zeigt an, da die Msg aufgrund ihrer Gr”sse in mehrere Teile 
+     zerlegt wurde.
+     
+     
+     ^ATOPT (N)
+     
+     Zeigt an, da die Msg fr ein Pointsystem bestimmt ist.
+     
+     
+     ^AVIA (N)
+     
+     Zeigt alle Systeme, ber die die Netmail geroutet wurde. (soweit 
+     die jeweils verwendete Software via-lines untersttzt)
+@endnode
+
+@node "Funktionsweise des FidoNetzes"
+     Am Anfang gab es im Fido eine festgelegte Stunde, zu der jeder 
+     Mailer empfangsbereit sein mute. Die gibt es auch heute noch. 
+     Obwohl es manchem wie ein Anachronismus vorkommen mag, hat diese 
+     Stunde (die ZMH) doch noch ihre Berechtigung. Es gibt n„mlich 
+     immer noch L„nder, in denen sich  die  Telefongebhren  nicht 
+     nach den zustande gekommenen Verbindungen berechnen. Dort wird 
+     die Gebhr teilweise schon dann f„llig, wenn  gew„hlt wird.
+     Unabh„ngig davon, ob eine Verbindung zustande kam oder nicht. Um 
+     es aber weltweit jedem System zu erm”glichen, andere Systeme mit 
+     einer relativ groen Wahrscheinlichkeit erreichen zu k”nnen, sind 
+     alle Fido-Nodes verpflichtet, w„hrend dieser ZMH weder Echomail- 
+     noch Filetransfer zuzulassen, sowie eine evtl. vorhandene Mailbox 
+     fr ihre User zu sperren.
+     
+     Damit w„re schon der erste Aspekt von Fido abgehandelt. Netmail 
+     kann also w„hrend der ZMH direkt an den Empf„nger geschickt 
+     werden.
+     
+     Aufgrund  der Kostenstruktur in Deutschland hat diese Methode bei 
+     uns allerdings keine groe Bedeutung mehr. Netmail wird im 
+     Regelfall entweder sofort direkt an den Empf„nger geschickt 
+     (crash), oder eben geroutet.
+     
+     Was ist aber jetzt dieses omin”se Routing?
+     
+     Routing an sich bedeutet nichts anderes, als da die Netmail von 
+     einem Node zum n„chsten geschickt wird, bis sie beim Empf„nger 
+     angekommen ist.
+     
+     Es ist sicher leicht einzusehen, da das ohne eine gewisse 
+     Organisation nicht geht. Diese Organisation geschieht im Fido 
+     durch eine baumartige Topologie.
+     
+                                 Host
+                                  |
+             |--------------------|--------------------|
+             |                    |                    |
+             |                    |                    |
+             |                    |                    |
+            Hub A                Hub B                Hub C
+             |                    |                    |
+      |------|------|      |------|------|      |------|------|
+      |      |      |      |      |      |      |      |      |
+      |      |      |      |      |      |      |      |      |
+      |      |      |      |      |      |      |      |      |
+     Node    Node   Node   Node   Node   Node   Node   Node  Node
+      X                            Y                          Z
+     
+     Wenn also nun Node X eine geroutete Netmail an Node Z schickt, 
+     wird diese vom Node zum Hub geschickt, der sie an den Host 
+     weiterleitet. Der Host wei nun, da Node Z unter Hub C h„ngt und 
+     schickt sie beim n„chsten Poll von Hub C an diesen mit. Hub C 
+     leitet sie wiederum weiter an Node Z, der bei ihm pollt.
+     
+     Eine Netmail, die an andere Nets/Regions/Zones geht, wird 
+     ebenfalls nach diesem Schema geroutet.
+     
+     Anzumerken bleibt lediglich noch, da es natuerlich auch beliebig 
+     Querverbindungen geben kann (und tats„chlich gibt), die nach 
+     Absprache auch benutzt werden k”nnen. Wenn z.B. Node X und Node Z 
+     eine bestehende Verbindung zu Node Y haben, ist es u.U. sinnvoll, 
+     die Netmail ber diesen zu routen, da dieser Weg krzer ist.
+     
+     Es ist praktisch nicht m”glich (und auch nicht beabsichtigt) ein 
+     umfassendes Routing-Schema fr die Region zu entwerfen. Ich hoffe 
+     aber, da das Prinzip aus obigem Beispiel deutlich wurde.
+     
+     Der zweite Faktor, der m”glicherweise der Kl„rung bedarf, ist 
+     Echomail. Als Echomail bezeichnet man ”ffentliche Mail in 
+     verschiedenen, nach Themen geordneten Areas. Auch hier gilt im 
+     Prinzip das fr Netmail gesagte, allerdings mssen Host und Hub, 
+     die die Netmail weiterleiten, nicht gleichzeitig auch der 
+     'Lieferant' fr Echomail sein.
+     
+     Grunds„tzlich ist jeder Node frei in seiner Entscheidung, von wem 
+     er welche Echomail-Areas beziehen will.
+     
+     Wenn wir von der oben stehenden Skizze ausgehen, wird eine 
+     Echomail, die bei Node X geschrieben wurde, an Hub A geschickt, 
+     der sie dann an alle angeschlossenen Nodes (natrlich auch an den 
+     Host) weiterleitet. Voraussetzung hierbei ist allerdings, da der 
+     betreffende Node die Area auch bezieht. (Im Fido gibt es, im 
+     Gegensatz zu anderen Netzen) keine Areas, die bezogen werden 
+     mssen. Jeder Node bezieht also nur die, deren Inhalt ihn 
+     interessiert.
+     
+     Jeder Node verteilt also jede Echomail, die sein System erreicht, 
+     an alle an diese Area angeschlossenen Nodes, die bei ihm diese 
+     Area pollen oder bei denen er diese Area pollt.
+@endnode     
+
+@node "[Andere]"
+     *C
+     --
+     abgekrzte Schreibweise fr die diversen Coordinators
+     des FidoNet. NC (NetworkCoordinator), RC (RegionCoordinator),
+     ZC (ZoneCoordinator), IC (InternationalCoordinator). Ihre
+     Aufgaben und Befugnisse sind in der Policy definiert.
+
+     
+     *EC
+     ---
+     abgekrzte Schreibweise fr die diversen EchomailCoordinators.
+     NEC, REC, ZEC. Aufgaben und Befugnisse sind in der Echopolicy
+     geregelt.
+
+
+     @
+     -
+     der 'Klammeraffe' (auch 'alpha' oder 'kaufm„nnisches A' wird als
+     (engl.) 'at' gelesen. Er wird h„ufig bei Adre- oder Domainangaben 
+     verwendet und kann - je nach Zusammenhang - mit 'in', 'bei' oder 
+     'von' bersetzt werden.
+
+
+     2U2
+     ---
+     Teil des "YooHoo"-Handshakes, mit dem zwei FidoNet-Systeme einander 
+     identifizieren. Der anrufende Node sendet "YooHoo", der antwortende 
+     Node schickt "2U2" als Best„tigung.
+
+
+     3d/4d/5d Adresse
+     ----------------
+     eine normale Adresse besteht aus mindestens 3 Teilen. N„mlich
+     Zone:Network/Node. Sofern noch eine Pointnummer dazukommt,
+     spricht man von 4d (4-dimensionaler) Adressierung, kommt noch
+     ein Netzdomain hinzu, dann spricht man von 5d Adressierung.
+@endnode
+
+@node "[A]"
+     Adresse
+     -------
+     [FidoNet- oder Matrix-Adresse] eindeutige numerische Kennzeichnung 
+     eines FidoNet-Nodes im Format Zone:Net/Node.Point
+
+
+     Adressenformat
+     --------------
+     eine Adresse setzt sich zusammen aus Zone, Network, Node und ggf.
+     Point. Meistens kann man anhand des Network auch auf die Region
+     schlieen, dies mu aber nicht immer der Fall sein.
+     Beispiel fr eine Adresse:
+     2:246/60.0
+     |  |   | |
+     |  |   | +----- Point (0 = Boss)
+     |  |   +------- Node
+     |  +----------- Network (die ersten beiden Ziffern = Region)
+     +-------------- Zone
+     Zu beachten ist die Form mit ' :  /  . '
+     
+
+     AKA
+     ---
+     Abkrzung fr 'also known as' (auch bekannt als).
+     Damit werden normalerweise weitere Adressen eines Systems
+     bezeichnet.
+
+
+     ARC
+     ---
+     ursprnglich von System Enhancement Association (SEA) entwickeltes 
+     Programm zur Kompression und Dekompression von Files; wurde zum 
+     Synonym fr Ä auch mit Hilfe anderer Programme Ä komprimierte 
+     Files. Nach einem Rechtsstreit zwischen SEA und PKware ("PKarc") im 
+     Sommer '88 hat ARC an Sympathie eingebát und wird derzeit kaum 
+     mehr verwendet.
+
+
+
+     ARCmail
+     -------
+     Synonym fr komprimierte Nachrichten-Pakete; ist nicht eindeutig 
+     Indikator fr die Bentzung von ARC. Wird auch als compressed mail 
+     bezeichnet.
+
+     Areafix
+     -------
+     Hilfsprogramm, das der Sysop eines FidoNet-Nodes zur automatischen 
+     nderung seiner Echomail-Verteilerliste verwenden kann.
+
+
+     ASCII
+     -----
+     American Standard Code for Information Interchange. 
+     Standardisierter 7-Bit-Zeichensatz; definiert die Codierung der 
+     Zeichen 00 hex bis 1F hex, die Ziffern 0 bis 9, die Buchstaben A 
+     bis Z bzw. a bis f, Interpunktions- und Sonderzeichen.
+@endnode     
+
+@node "[B]"
+     Backbone
+     --------
+     (Rckgrat); Das System, auf dem, innerhalb eines bestimmten
+     Bereiches, die Echomail zentral zusammenl„uft. Also praktisch
+     der 'Hauptechomailserver'.
+
+     
+     BackBoneRing (BBR)
+     ------------------
+     hnlich dem Backbone, nur da bei dieser Topologie die Echo-
+     mail auf mehreren Hauptsystemen zusammenl„uft, und zwischen
+     diesen ausgetauscht wird. Also eine Art 'Zusammenschlu mehrerer
+     kleiner Backbones'.
+     
+     
+     BBS
+     ---
+     "Bulletin Board System"; auch Mailbox genannt.
+
+
+     BinkleyTerm
+     -----------
+     sehr popul„res Mailer-Programm fr fast alle Rechnersysteme. 
+     (Ur)Autoren: Bob Hartman, Vince Perriello und Allan Applegate ("The 
+     Binkley Trio").
+
+
+     Bit Stream
+     ----------
+     der imagin„re Strom, der uns via elektronischer Kommunikation ber 
+     alle Grenzen und Kontinente hinweg verbindet ("cu on the 
+     bitstream").
+
+
+     Bombing Run
+     -----------
+     Geroutete Carbon Copies an eine Vielzahl von Empf„ngern oder
+     direkte Netmail'bombardements' von einem Node an einen anderen.
+     Bombing Runs werden in der Regel als excessively annoying
+     behaviour empfunden, und k”nnen fr den absendenden Node zum
+     Ausschlu aus dem Fidonet fhren.
+     
+     
+     Boss (BossSystem)
+     -----------------
+     ein Boss ist ein Node mit Points.
+
+
+     Busy
+     ----
+     Besetzt-Zeichen des Telefon, wird vom Modem im Klartext an die 
+     Software gemeldet.
+@endnode     
+
+@node "[C]"
+     Carbon Copy (CC:)
+     -----------------
+     Automatisches Verteilen einer Netmail an mehrere Empf„nger.
+     Damit mu eine Netmail, die an verschiedene Empf„nger gehen
+     soll, nur einmal geschrieben werden und jeder Empf„nger erh„lt
+     ein genaues Duplikat des Originals. (carbon copy = Durchschlag).
+     
+
+     Carrier
+     -------
+     Tr„gerfrequenz des Modems, auf die die zu bertragenden Signale 
+     moduliert werden.
+
+
+     CM (continuous mail)
+     --------------------
+     Ein Nodelist-Flag. Zeigt an, da das System in der Lage ist, 24 
+     Stunden am Tag Mail anzunehmen. (CM bedeuted nicht Crashmail und 
+     steht mit Crashmail auch nur indirekt im Zusammenhang.)
+     
+
+     Complaint (formal c., official c.)
+     ----------------------------------
+     offizielle Beschwerde gegen einen anderen Node, wenn dieser gegen
+     die Policy verstoen hat, bzw. wenn sein Benehmen als
+     'excessively annoying' empfunden wurde.
+     
+     Connect
+     -------
+     wird vom Modem an die Software gemeldet, sobald eine Verbindung 
+     hergestellt ist.
+
+
+     cps
+     ---
+     characters per second; im Zeitalter von High Speed-Modems ist eine 
+     pr„zisere Angabe der effektiven šbertragungsgeschwindigkeit durch 
+     cps als durch Angabe der Baudrate m”glich.
+
+
+     Crash (Crashmail)
+     -----------------
+     ist Netmail, die direkt an den Empf„nger gesendet wird.
+     Vorteil: schnell, sicher.
+     Nachteil: teuer.
+
+     
+     Crossposting (X-posting, XC:)
+     -----------------------------
+     Automatisches Verteilen einer Nachricht in mehreren Areas.
+     Sollte nur sehr sparsam verwendet werden, da unn”tige XC:'s in
+     der Regel Unmut bei den Empf„ngern hervorrufen.
+@endnode
+
+@node "[D]"
+     Down
+     ----
+     das "Auáer-Betrieb-Sein" eines Nodes.
+
+
+     Downlink
+     --------
+     System, an das Msgs weitergeleitet und von dem Msgs geschickt
+     werden. Points sind zwar eigentlich Downlinks, werden aber selten
+     so bezeichnet.
+
+
+     Dox
+     ---
+     lautmalerisch fr "documentations", die meist jedem Softwarepaket 
+     beiliegende Gebrauchsanleitung.
+@endnode     
+
+@node "[E]"
+     Echomail
+     --------
+     Mailboxen aus verschiedenen Netzwerken nehmen an Nachrichten- 
+     Konferenzen zu bestimmten Themen teil. Die Nachrichten eines 
+     Sachgebietes (Nachrichtenbereich, "Area") werden von der 
+     Mailbox-Software paketiert, zum Zweck der schnelleren šbertragung 
+     komprimiert und automatisch an die n„chsten Nodes geschickt, die an 
+     diesem Area teilnehmen ("geechot"). Damit ist es m”glich, z.B. mit 
+     Menschen aus mehreren Staaten und unter Umst„nden aus verschiedenen 
+     Kontinenten elektronisch ber bestimmte Sachgebiete Nachrichten 
+     auszutauschen, zu konferieren. Echomail-Nachrichten sind 
+     grunds„tzlich ”ffentlich, d.h. sie k”nnen von jedem Teilnehmer 
+     gelesen werden.
+     Der Begriff "Echomail" wurde 1986 von Jeff Rush, einem 
+     FidoNet-Sysop, gepr„gt. Jeff Rush schrieb die erste fr FidoNet 
+     verwendbare Echomail-Software.
+
+
+     Echopolicy (Echopol)
+     --------------------
+     die Echopolicy regelt alles, was mit Echomail zu tun hat. Sie 
+     erg„nzt die Worldpolicy.
+     
+
+     Efficiency
+     ----------
+     Angabe fr die tats„chlich erreichte Geschwindigkeit bei Mail- oder 
+     File-Transfers. Ungef„hr 100% efficiency sind gegeben, wenn 
+     Baudrate/10 und cps identisch sind.
+
+
+     EMSI
+     ----
+     Elektronic Mail Standard Identification. Ein Verfahren, mit dem
+     Mailer untereinander die Informationen austauschen, die zum
+     Aufbau einer Session n”tig sind.
+     
+
+     Event
+     -----
+     Ereignis; in diesem Zusammenhang: geplanter Punkt im t„glichen 
+     Ablauf der Mailer- oder BBS-Software. Mit Hilfe von events wird das 
+     "Verhalten" der Mailer-Software gesteuert, z.B. zu welcher Zeit 
+     Anrufe durchgefhrt werden, Online-Anrufer im BBS erlaubt sind usw.
+
+
+     Excessively annoying behaviour
+     ------------------------------
+     berm„ssig st”rendes Benehmen anderen Nodes gegenber. Kann
+     zum Ausschlu aus dem FidoNet fhren.
+     
+
+     Excommunication
+     ---------------
+     Ausschlu eines Nodes aus dem FidoNet aufgrund eines Verstosses
+     gegen die Policy.
+@endnode     
+
+@node "[F]"
+     Fakenet
+     -------
+     ein Fakenet ist eine nach Fido-Struktur aufgebaute Adresse, die
+     ein Boss fr seine Points verwendet, sofern die verwendete
+     Software keine 4d-Adressierung beherrscht.
+     
+
+     FAQ
+     ---
+     Frequently asked questions. Fragen, die immer wieder gestellt
+     werden, werden mit den Antworten in einem Text zusammengefat.
+     Dieser wird dann regelm„ig ver”ffentlicht.
+     
+
+     Fido
+     ----
+     im ursprnglichen Sinn: der amerikanische Hunde-Archetyp, 
+     vergleichbar mit dem "Flocki" unserer Breiten. Tom Jennings 
+     verwendet diesen Namen fr seine BBS-Software.
+
+
+     FidoNet
+     -------
+     ein Zusammenschlu von derzeit etwa 35.000 Nodes, die
+     untereinander meist in hierarchischer Topologie Netmail und
+     Echomail austauschen und dadurch weltweit Kontakte und
+     Informationsaustausch zwischen Usern erm”glichen. Die Zahl der
+     ber FidoNet erreichbaren User ist nicht einmal
+     ann„herungsweise sch„tzbar, da die meisten Nodes Mailboxen
+     betreiben, deren Useranzahl h”chst unterschiedlich ist, und da
+     es ungez„hlte Gateways in sehr viele andere Netze gibt.
+     
+
+     FidoNews / Fnews
+     ----------------
+     Die 'Fido-Zeitung' (in englischer Sprache). Erscheint w”chentlich
+     und beinhaltet Beitr„ge zu allen m”glichen Themen. Die Themen
+     sind nicht zwangsl„ufig auf Fido beschr„nkt.
+     Einfach mal reinschauen.
+     
+
+     File Attach
+     -----------
+     "Beilage" einer FidoNet-Message in Form eines Files. "file 
+     attaches" sind i.d.R. nur bei Matrix-Messages m”glich, die direkt 
+     (nicht geroutet) an den Bestimmungs-Node gesandt werden.
+     Im LED auch als "With/File" bzw. "W/File" bezeichnet.
+
+
+     Flame
+     -----
+     Nachricht mit beleidigendem Inhalt. K”nnen, wenn sie in einer
+     Echomail-Area geschrieben werden, zum Ausschlu aus der Area
+     fhren. Sollten auch in Netmail vermieden werden.
+     (einfachstes Hausmittel zur Vermeidung: langsam bis Hunderttausend
+     z„hlen, wenn die Wut danach noch nicht verraucht ist, erstmal
+     drber schlafen.)
+     
+
+     FOSSIL
+     ------
+     Fido/Opus/SEAdog Standard Interface Layer; Low-Level Treiber fr
+     die serielle Schnittstelle. Wird von nahezu allen (DOS-)Mailern
+     ben”tigt. G„ngige Fossils: X00.SYS und BNU.COM
+     
+
+     FSC
+     ---
+     Vorschl„ge fr technische Verfahrensweisen. Vorstufe zum FTS.
+     Kann von jedem erstellt werden. Werden auch oft schon verwendet,
+     bevor ein FSC zum FTS gemacht wird, da es sich dabei meist um
+     einen sehr langwierigen Proze handelt. Stellt allerdings keine
+     'Normung' wie die FTS dar.
+     
+
+     FTP
+     ---
+     File Transfer Protocol. Filebertragungs-Protokoll zwischen
+     zwei Rechnern; wird im weltumspannenden INTERNET oder in lokalen
+     Netzen eingesetzt, die TCP/IP benutzen. "Anonymous FTP" wird von
+     einigen tausend INTERNET-Rechnern angeboten, als M”glichkeit,
+     dort Files abzurufen, auch wenn man auf dem entsprechenden Rechner
+     keinen Benutzereintrag besitzt. Um sich per Anonymous FTP Files
+     abrufen zu k”nnen, ist ein Zugang zum INTERNET Voraussetzung,
+     der in Europa meistens nur an Universit„ten vorhanden ist.
+     (im Gegensatz dazu vgl.: UUCP).
+
+
+     FTS
+     ---
+     FidoNet Technical Standard. Legen verbindlich die technischen
+     Anforderungen an Fido-Software fest. Werden vom FTSC in Kraft
+     gesetzt.
+     
+
+     FTSC
+     ----
+     FidoNet Technical Standard Comitee. Setzt sich zusammen aus
+     Programmierern von FidoNet-Software. Verabschiedt FTS' und nimmt
+     FSC's entgegen.
+@endnode     
+
+@node "[G]"
+     Gateway
+     -------
+     šbergang von einem Netz in ein anderes (z.B. FidoNet <->
+     MausNet). N„heres zu Gateways kann dem 'GATeway Orientierungs
+     Ratgeber' von Michael Keukert entnommen werden, der als
+     'GATOR??.*' in vielen Boxen zu finden ist.
+     
+
+     Groupmail
+     ---------
+     ein Konzept der Echomailverteilung, bei dem die einzelnen
+     Nachrichten zuerst an einen Moderator geschickt werden, der sie
+     dann selektiert und ausgew„hlte Nachrichten in die Area
+     einspeist. Die Einfhrung von Groupmail ist im FidoNet bisher
+     aus verschiedenen Grnden bereits mehrmals gescheitert.
+@endnode     
+
+@node "[H]"
+     Hold
+     ----
+     Nachrichten und Files, die fr ein anderes FidoNet-System bestimmt 
+     sind, werden nicht weitergeschickt, sondern bis zum n„chsten Anruf 
+     des Empf„ngers bereitgehalten. Sie stehen im Hold-Status im 
+     Outbound-Subdirectory des Senders.
+
+
+     HOP (Internet)
+     --------------
+     Eine von mehreren Filebertragungen, die in einem Datennetz
+     n”tig sind, um ein File von Punkt A zu Punkt B zu bermitteln.
+     "Ein Artikel ist ber 5 Hops gelaufen" bedeutet, da eine
+     Nachricht ueber fnf News-Server gewandert ist, bis sie am
+     Ziel war, und damit also fnf Hpfer ("Hops") gemacht hat.
+
+
+     Host
+     ----
+     die oberste Ebene in einem Network. Nimmt Netmail fr das
+     Network an und leitet sie an die entsprechenden Hubs weiter.
+     
+
+     Hub
+     ---
+     ein Hub ist die n„chste Ebene in der Struktur des FidoNet. An
+     einen Hub sind mehrere Nodes angeschlossen, er bernimmt fr
+     die angeschlossenen Nodes die Aufgaben eines Netmail-Verteilers.
+
+
+     Hydra
+     -----
+     Ein BiModem-Protokoll, der es erlaubt gleichzeitig Mailpakete zu 
+     versenden und zu empfangen. Laut Spezifikation k”nnte man 
+     gleichzeitig auch noch Chatten (einen Dialog per Tastatur fhren), 
+     dieses wird aber von fast keinem Mailer untersttzt.
+@endnode     
+
+@node "[I]"
+     I-GATE (I/O-Gate)
+     ----------------
+     Regional Inbound Gateway; zentrale Stelle fr den Austausch von
+     Netmail mit anderen Regions. Netmail fr andere Regions wird
+     also ans eigene I-GATE geroutet von dort an die I-GATES der
+     verschiedenen Regions bertragen. Die Benutzung von IGATES
+     ist natrlich optional.
+     
+
+     IFNA
+     ----
+     International Fido Network Association. Administrative 
+     Dachorganisation von FidoNet mit Sitz in Honolulu und St. Louis.
+
+
+     IMHO
+     ----
+     Abkrzung fr 'in my humbly opinion' (meiner bescheidenen
+     meinung nach) oder auch 'in my honest opinion' (meiner ehrlichen
+     meinung nach).
+@endnode
+
+@node "[J]"
+     Janus
+     -----
+     Ein „lterer BiModem-Protokoll, der u.a. in BinkleyTerm verwendet 
+     wird. Er erlaubt gleichzeitig Mailpakete zu versenden und zu 
+     empfangen.
+@endnode
+
+@node "[K]"
+     Kludgelines (Kludges)
+     ----------------------
+     Optionale Steuer-/Verarbeitungsanweisungen im Messagetext, die
+     n”tig wurden, um neue M”glichkeiten nutzen zu k”nnen, die im
+     ursprnglichen Format einer Message nicht bercksichtigt
+     waren. (z.B. FMPT, TOPT, CHRS, ...)
+@endnode     
+
+@node "[L]"
+     LINK
+     ----
+     Verbindung zwischen Systemen mit Hilfe von šbertragungs-
+     protokollen/Mailern (z.B. UUCP, ...-Protokoll, Modem)
+@endnode     
+
+@node "[M]"
+     Magicnames (Magic)
+     ------------------
+     ein Magicname ist ein einfach zu merkender Name, der bei einem
+     Request verwendet werden kann um ein bestimmtes File anzufordern.
+     Die g„ngigsten Magics sind 'FILES' und 'NEW'oder 'NEWFILES'. mit
+     'FILES' erh„lt man bei den meisten Systemen eine Liste aller
+     Requestbaren Dateien, 'NEWFILES' bringt normalerweise eine
+     Liste aller neuen Dateien, die beim Zielsystem verfgbar sind.
+     Die Magics werden vom jeweiligen Sysop vergeben und sind (bis
+     auf obige Ausnahmen, die einen Quasi-Standard darstellen) sehr
+     unterschiedlich. Allerdings ist kein Sysop verpflichtet, Magics
+     einzurichten.
+     
+     
+     MAIL
+     ----
+     Mitteilungen von einem User im Netz an einen anderen User, der
+     auch bei demselben oder einem anderen System sein kann. Im
+     Gegensatz zu Echomail sind diese nicht ”ffentlich!
+
+
+     Mailer
+     ------
+     ein Mailer ist ein Programm, das es dem Benutzer erm”glicht, mit
+     anderen Mailern automatisch Verbindung aufzunehmen und
+     Nachrichten und/oder Files auszutauschen. G„ngige Mailer sind
+     zur Zeit: Binkley Term, FrontDoor, D'Bridge, Trapdoor, Yuppie.
+     
+     
+     Mailprocessor (Echomailprocessor, Tosser)
+     -----------------------------------------
+     Sortiert die neu angekommenen Messages in die Messagebase
+     (tossen) und bereitet die eigenen Messages zum Versenden vor
+     (scannen). Derzeit verbreitete Tosser:
+     DOS: Scantoss, Tosscan, Imail, Fmail, Fastecho u.a.
+     ATARI: JetMail, IOSmail, ECU/LLegada, Import/Export/COMSCAN u.a.
+     
+     
+     Mail-Only (MO)
+     --------------
+     Mail-Only Systeme sind Nodes, die keine Mailbox betreiben,
+     sondern nur aus einem Mailer bestehen. Anrufe von Online-Usern
+     bei solchen Systemen sind deshalb zwecklos.
+     
+     
+     Message Header
+     --------------
+     fixer Bestandteil einer FidoNet-Message. Enth„lt die Felder 
+     "From:", "To:", "Subject:", Datum, Uhrzeit, Origin- und 
+     Destination-Node und diverse Attribute (auch MsgFlags, z.B. 
+     Private, Kill/Sent, Recv'd, InTransit, Crash, Hold etc.)
+
+
+     Message Reader
+     --------------
+     Mit dem "Message Reader" werden Nachrichten gelesen und 
+     geschrieben, ausgedruckt, im ASCII-Format exportiert und gel”scht. 
+     Die meisten Editoren bieten zus„tzliche Features wie "Verschieben" 
+     einer Nachricht von einem in ein anderes Area ("move"), 
+     Weiterleiten einer Nachricht in ein anderes Area und/oder an einen 
+     anderen Teilnehmer ("forward") und das Aufteilen einer Nachricht an 
+     mehrere Teilnehmer ("carbon copy"). MsgEd, Sirius, OpEd und der 
+     FrontDoor-Editor sind die gebr„uchlichsten Editoren auf dem 
+     DOS-Sektor; LED ist der bekannteste MsgReader auf dem Atari.
+
+
+     Message Thread
+     --------------
+     Kette von sinngem„á zusammengeh”renden Nachrichten mit gemeinsamen 
+     Thema oder "Subject:"-Feld ("this is a reply to #23", "see #50", 
+     "part of a conversation" usw.)
+
+
+     Moderator
+     ---------
+     Achtet darauf, da in 'seiner' Echomail-Area die Rules
+     eingehalten werden. Bei Verst”ssen kann er den Ausschlu des
+     betreffenden Nodes von der Area veranlassen.
+@endnode     
+
+@node "[N]"
+     Netmail (Matrix)
+     ----------------
+     Netmails sind nicht-”ffentliche Nachrichten die von einem User
+     an einen anderen gerichtet ist. Sie ist nicht privat, da jeder
+     Node, der die Netmail routet, sie theoretisch lesen kann.
+     
+     
+     Network (Net)
+     -------------
+     ein Network ist ein Zusammenschlu von Nodes. Gem„ Policy
+     sollte ein Network einen bestimmten geographischen Bereich
+     abdecken. Jedes Network besteht aus einem Host, Hubs je nach
+     Bedarf, und einer unterschiedlichen Anzahl von Nodes. In
+     Deutschland gibt es derzeit etwa 15 Networks.
+     
+     
+     NEWSREADER (Internet)
+     ---------------------
+     Ein "Message Reader" frs Internet.
+
+
+     NNTP (Internet)
+     ---------------
+     Network News Transfer Protocol: ein Protokoll (meistens auf der 
+     Basis von TCP/IP) zur šbertragung von NEWS-Artikeln, welches h„ufig 
+     in lokalen Netzwerken oder Wide-Area-Networks (z.B. bei 
+     Verbindungen zwischen Universit„ten) Verwendung findet (als 
+     Alternative zu UUCP).
+
+
+     Node
+     ----
+     ein Node ist unterste Ebene in der Struktur des FidoNet. Points
+     eines Node sind zwar von der Art der Adressierung noch unter dem
+     Node einzuordnen, jedoch sind sie nicht Bestandteil des FidoNet,
+     sondern, ebenso wie User, Teilnehmer.
+     
+     
+     Nodediff
+     --------
+     Textfile, der spezielle Steueranweisungen fr ein Editier-Programm 
+     enth„lt. Dieses Programm aktualisiert w”chentlich mit Hilfe der 
+     Nodediff-Files die Nodelist. Wird ab Freitag nachmittag in 
+     komprimierter Form an die FidoNet-Nodes verteilt. Die Extension der 
+     Nodediff-Files besteht aus ".A" und zwei Zahlen, mit denen die 
+     Woche bezeichnet wird, fr die der jeweilige Nodediff-File gltig 
+     ist.
+
+
+     Nodelist
+     --------
+     die Nodelist ist das 'Telefonbuch' des FidoNet. In ihr sind die
+     Telefonnummern und FidoNet-Adressen aller Nodes weltweit
+     aufgefhrt. Die Nodelist (oder ein Auszug daraus) wird vom
+     Mailern ben”tigt, um mit anderen Systemen Kontakt aufnehmen zu
+     k”nnen.
+     Nodelisteintr„ge:
+     Mar. 90 ~ 7.000
+     Jan. 92 ~14.000
+     Okt. 92 ~19.000
+     Jan. 93 ~21.500
+@endnode
+
+@node "[O]"
+     Offline Reader (QWK-Reader)
+     ---------------------------
+     sind Programme, die es einem Onlineuser erm”glichen, sich
+     Messages aus den verfgbaren Areas online zu komprimieren und
+     anschlieend zu bertragen, sowie von ihm geschriebene Messages
+     an die Box zu schicken.
+     Vorteil: Installations eines Points ist nicht n”tig.
+     Nachteil: l„ngere Onlinezeit, Messages sind evtl. unvollst„ndig
+     
+     
+     Off Topic
+     ---------
+     eine Nachricht oder ein Teil einer Nachricht, die vom Thema her
+     nicht in die Area pat, in die sie geschrieben wurde.
+@endnode     
+
+@node "[P]"
+     Policy (Worldpolicy, P4)
+     ------------------------
+     die Policy (derzeit aktuell v. 4.07) stellt quasi die 'Satzung' des
+     FidoNet dar.
+     
+     
+     Point
+     -----
+     ein Point ist ein User, der sich seine Nachrichten mit Hilfe
+     eines Mailers von seinem Boss abholt und sie zuhause in Ruhe
+     liest und beantwortet. Die Bezeichnung 'Point' kommt von der Art
+     der Adressierung. Er bekommt eine eigene Pointnummer, die,
+     getrennt durch einen Punkt, an die Adresse des Boss geh„ngt
+     wird.
+     
+     
+     Pointnet
+     --------
+     Liste aller deutschen Points im Nodelist-Format. Wird w”chentlich 
+     an die meisten deutschen Nodes verteilt.
+
+
+     Poll (pollen)
+     -------------
+     Anruf, der von einem FidoNet-System get„tigt wird, auch wenn 
+     momentan keine Nachrichten oder Files zu senden sind. šblicherweise 
+     "pollt" der Point den Bossnode in regelm„áigen Abst„nden, um fr 
+     ihn bereitliegende neue Nachrichten abzuholen. Bei automatisch 
+     ("unattended") arbeitenden FidoNet-Systemen werden polls zu 
+     bestimmten Zeitpunkten meistens ber events gesteuert.
+
+
+     POSTING
+     -------
+     Das Absenden einer Nachricht. Manchmal auch die Nachricht selbst.
+
+
+     POSTMASTER (Internet)
+     ---------------------
+     Ein User einer Site, der fr den gesamten Mail (evtl. auch 
+     News-Verkehr) verantwortlich zeichnet. Bei Problemen an ihn wenden.
+
+
+     PROTOKOLL
+     ---------
+     Ein Protokoll besteht aus Vereinbarungen, die festlegen, wie 
+     Computer untereinander kommunizieren sollen, damit diese sich 
+     'verstehen'. Beispiele von Protokollen sind z.B. X-Modem, Y-Modem 
+     oder NNTP.
+@endnode     
+
+@node "[Q]"
+     Quote
+     -----
+     Antwort auf eine bestimmte Message, die einen Teil der 
+     Original-Message in zitierter Form enth„lt. "Quote lines" sind 
+     meistens durch das Zeichen ">" am Zeilenbeginn gekennzeichnet
+
+
+     QWK-Reader (Offline-Reader)
+     ---------------------------
+     sind Programme, die es einem Onlineuser erm”glichen, sich
+     Messages aus den verfgbaren Areas online zu komprimieren und
+     anschlieend zu bertragen, sowie von ihm geschriebene Messages
+     an die Box zu schicken.
+     Vorteil: Installations eines Points ist nicht n”tig.
+     Nachteil: l„ngere Onlinezeit, Messages sind evtl. unvollst„ndig
+@endnode
+
+@node "[R]"
+     Region
+     ------
+     eine Region ist in Europa i.d.R. identisch mit einem Staat. Sie
+     besteht normalerweise aus mehreren Networks.
+     Deutschland ist Region 24.
+     
+
+     Reply
+     -----
+     ist eine Antwort auf eine Nachricht. (Echo- oder Netmail-Reply)
+     
+
+     Request (Freq, Filerequest)
+     ---------------------------
+     ein Filerequest ist ein Download mit Hilfe eines Mailers. Der
+     Filerequest erm”glicht es, ein File bei einem anderen System
+     downzuloaden, ohne sich in die Box einloggen zu mssen. Das
+     Zielsystem mu allerdings Requests erlauben, was nicht bei
+     allen Systemen der Fall ist.
+     
+
+     RFC (Internet)
+     --------------
+     Kurzform von 'Request for comment' - Beschreibungen von 
+     Protokollspezifikationen und anderen DeFacto-Standards im INTERNET. 
+     Alle Dokumente sind mit einer laufenden Nummer versehen. [Beispiel: 
+     RFC822 - Standard for the format of ARPA INTERNET text messages]
+     Vergleichbar mit FSC im FidoNet.
+
+
+     ROT13
+     -----
+     Eine Kodierung, bei der alle Buchstaben um 13 Zeichen rotiert 
+     werden. Beispiele: a->n, b->o, n->a, p->c, ...
+     Wird verwendet, damit Nachrichten, von denen sich einige Leute 
+     angegriffen fhlen k”nnten, nicht sofort lesbar sind, so da sich 
+     diese Leute hinterher nicht ber die Nachricht beschweren k”nnen, 
+     da sie ihn ja schlielich dekodiert und nicht "aus Versehen" 
+     gelesen haben.
+
+
+     Routen (routing)
+     ----------------
+     nennt man das Versenden von Netmail, wenn sie nicht direkt zum
+     Empf„nger geschickt wird, sondern ber Zwischenstationen geht.
+     Vorteil des Routens: es kostet den Absender weniger als
+     Crashmail. Nachteil: es dauert l„nger, Netmail kann verloren
+     gehen, andere Sysops k”nnen die Netmail lesen.
+     
+
+     RTFM
+     ----
+     Abkrzung fr 'read the fucking manual'. Eine nicht unbedingt
+     b”se gemeinte Aufforderung, im Handbuch nachzulesen.
+     
+
+     Rules
+     -----
+     die Regeln, die fr fast alle Echomail-Areas existieren und an
+     die sich jeder zu halten hat, der in einer Area schreiben will.
+     Sie werden vom jeweiligen Moderator aufgestellt.
+@endnode     
+
+@node "[S]"
+     Signature
+     ---------
+     aus den uucp-Netzen stammende 'Unterschrift' unter den eigenen
+     Nachrichten, oft mehrere Zeilen lang. Signatures sind im FidoNet
+     nicht gern gesehen (in manchen Areas sogar explizit verboten), da
+     hier die Originline die Aufgabe der Signature erfllt.
+
+
+     SITE (Internet)
+     ---------------
+     Schwer zu bersetzender Begriff. (grob: Standort)
+     In Zusammenh„ngen mit News zu verstehen als "Rechner, der am 
+     News-System teilnimmt". Sites mssen aber nicht am News-System 
+     teilnehmen, um Sites zu sein. Bestimmte Sites empfangen nur Mail. 
+     Bestimmte Sites nehmen nicht am Netz teil. Manchmal ist eine Site 
+     mehrere Hosts, meistens einer. Oft meint man Host, wenn man Site 
+     sagt.
+
+
+     Snail Mail
+     ----------
+     ["Schneckenpost"] Jargonbezeichnung fr eine Zusendung auf dem 
+     normalen Postweg.
+
+
+     Smiley
+     ------
+     gebr„uchliche Mittel zur Verdeutlichung von Ironie, Sarkasmus,
+     Entt„uschung, usw. Die gebr„uchlichsten: :-) und :-( (Zum Lesen
+     den Kopf um 90 Grad nach links neigen). Existieren in den
+     verschiedensten Variationen.
+
+     
+     SPOOLING (Internet)
+     -------------------
+     In einem UUCP-Netz geschieht die šbertragung der Auftr„ge bzw. 
+     Files meistens asynchron, d.h. die Files mssen zwischengespeichert 
+     werden. Diesen Akt bezeichnet man als 'spooling'.
+
+
+     Sysop
+     -----
+     Betreiber einer Mailbox im allgemeinen, hier: eines Fido-Net- 
+     Systems (BBS oder Point).
+@endnode     
+
+@node "[T]"
+     Thread
+     ------
+     Bezeichnung fr eine Reihe von Msgs zu einem bestimmten Thema.
+     
+
+     Tossen
+     ------
+     Einsortieren von neuen Messages in die Messagebase. Wird vom
+     Mailprocessor durchgefhrt.
+
+
+     TRAFFIC
+     -------
+     Menge an Information, die ber die Links fliesst.
+@endnode
+
+@node "[U]"
+     Uplink
+     ------
+     System von dem Messages abgeholt werden und an das die eigenen
+     Messages geschickt werden. Bei Points ist Uplink synonym zu Boss.
+
+
+     User
+     ----
+     Online-Anrufer eines BBS. Als Wortspiel in Anlehnung an "looser" 
+     oft auch als "luser" bezeichnet.
+
+
+     UUCICO (Internet)
+     -----------------
+     ("Youuu see, I see; Ohhhh"):
+     Ein Programm, das UUCP-Verbindungen herstellt und die Auftr„ge bzw. 
+     Files bertr„gt (-> die niedrigste Ebene des UUCP-Netzes).
+     {g,f,e,d,g,x,z}-Protokoll:
+     Bestimmte Protokolle, die der uucico zur eigentlichen šbertragung
+     der Auftr„ge und Files (uucp,news,uuxqt) benutzt. Sie stellen 
+     nur reine File-Transfer-Protokolle dar.
+
+
+     UUCP (Internet)
+     ---------------
+     Unix-to-UNIX-CoPy: ein Mechanismus zum Kopieren von Dateien 
+     zwischen unterschiedlichen Rechnern (News,Site) mittels seriellen 
+     Verbindungen.
+
+
+     UUXQT (Internet)
+     ----------------
+     Ein Programm, das die mit uucico empfangenen Auftr„ge/Files 
+     interpretiert und somit die n„chsth”here Ebene des UUCP-Netzes 
+     darstellt. Es wird von uucico aufgerufen...
+@endnode     
+     
+@node "[W]"
+     WaZoo
+     -----
+     [WaZoo session] Bezeichnung fr eine Verbindung zweier FidoNet- 
+     Systeme nach Opus-Stil.
+@endnode
+
+@node "[X]"
+     XModem
+     ------
+     sehr weit verbreitetes File Transfer-Protokoll von Ward 
+     Christiansen.
+@endnode
+
+@node "[Y]"
+     YModem
+     ------
+     weit verbreitetes File Transfer-Protokoll.
+
+
+     YooHoo
+     ------
+     wird vom anrufenden FidoNet-System als Beginn des (WaZoo-) 
+     Handshakes gesendet. Das angerufene System antwortet mit "2U2".
+@endnode
+
+@node "[Z]"
+     ZCC
+     ---
+     Zone Coordinator Council. Oberstes 'Gremium' des FidoNet, besteht
+     aus den 6 ZC's und dem IC.
+
+     
+     ZedZap/ZedZip
+     -------------
+     Bezeichnung fr eine WaZoo-Session, in der mit ZModem-Protokoll 
+     ARCmail und Files ausgetauscht werden (ZedZap max 8KB Bl”cke, 
+     ZedZip max 1KB Bl”cke).
+
+
+     ZMH (Zone Mailing Hour)
+     -----------------------
+     ist die Zeit, in der jeder Fido-Node fr Anrufe anderer Nodes
+     offenstehen mu. W„hrend dieser Zeit drfen keine User in der
+     Box zugelassen werden. Auerdem darf kein Filerequest und kein
+     Echomailaustausch stattfinden. Die ZMH ist exklusiv fr den
+     Austausch von Netmail reserviert.
+     Sie dauert in Europa von 2:30 - 3:30 GMT (entspricht 3:30 - 4:30
+     Mitteleurop„ischer Zeit, bzw. 4:30 - 5:30 Mitteleurop„ischer
+     Sommerzeit)
+
+     
+     ZModem
+     ------
+     sehr leistungsf„higes und effizientes File Transfer-Protokoll von 
+     Chuck Forsberg (Omen Technologies). Durch plop unterbrochene 
+     ZModem-Transfers k”nnen an der "Bruchstelle" ohne Datenverlust bei 
+     neuerlichem Anruf fortgesetzt werden. Wurde erstmals in der 
+     Opus-Software verwendet.
+
+
+     Zone
+     ----
+     im FidoNet gibt es derzeit sechs Zonen.
+     Zone 1: Nordamerika
+     Zone 2: Europa
+     Zone 3: Ozeanien
+     Zone 4: Lateinamerika
+     Zone 5: Afrika
+     Zone 6: Asien
+     
+     Eine Adresse mit einer gr”eren Zonennummer geh”rt nicht zum
+     FidoNet, sondern in eines der unz„hligen Netze, die auf
+     Fido-Technik basieren.
+     
+
+     Zonegate
+     --------
+     ein Zonegate ist die zentrale Stelle, die fr eine Zone den
+     Netmailaustausch mit anderen Zonen (ber deren Zonegate)
+     erledigt.
+@endnode
+
+@node "Schreiben von Msgs"
+     Schreiben von Msgs
+
+     Diese šberschrift mag unn”tig erscheinen: kann doch jeder von uns 
+     lesen und schreiben. Ein Blick in die Echomail-Areas zeigt aber, daá 
+     die Kultur des Schreibens von Messages zumindest in Deutschland noch 
+     sehr unterentwickelt ist.
+
+     Messages sollten blicherweise l„nger als eine oder zwei Zeilen sein. 
+     Auch wenn die tats„chliche Message nur eine Zeile lang ist, so kostet 
+     sie doch 512 bis 32768 Bytes Platz auf dem Speichermedium. Ein 
+     Gedanke, der in der "L„nge" einer Zeile ausdrckbar ist, bedarf der 
+     šberprfung, ob er wirklich durch diverse an der Echomail 
+     teilnehmende FidoNet-Mailboxen und Point-Systeme verbreitet werden 
+     soll.
+
+     Kurze, klare und pr„gnante S„tze schreiben; nicht mit Leerzeilen 
+     sparen. Es ist eine gute Angewohnheit, pro Absatz nur einen 
+     bestimmten Gedanken zu verfolgen. Unleserliche Nachrichten, m”gen sie 
+     auch noch so bemerkenswerten Inhalt haben, werden mit gr”áerem 
+     Widerstreben gelesen als solche, die sich einer klaren, 
+     bersichtlichen Form bedienen.
+
+     Umlaute und Sonderzeichen vermeiden. Auch wenn PC-/MS-DOS das 
+     Standard-Betriebssystem der heutigen Zeit ist und man der Meinung 
+     ist, daá ohnehin nur unvernnftige Zeitgenossen Rechner mit anderen 
+     Betriebssystemen verwenden: es ist eine grobe Unh”flichkeit, in 
+     Echomail-Areas Umlaute, Sonder- und Grafikzeichen zu schreiben. 
+     Anders ist die Sachlage in Fidomail-Messages: wenn man weiá, daá der 
+     Empf„nger der Message einen Rechner mit identischem Zeichensatz 
+     verwendet, spricht nichts dagegen, alle m”glichen Zeichen 
+     einzusetzen.
+
+     Zwischen dem Anteil der eigenen Antwort und dem Anteil an zitiertem 
+     Text sollte ein gewisses gesundes Verh„ltnis bestehen; sicherlich ist 
+     es in den wenigsten F„llen notwendig, die ganze Message, auf die sich 
+     die Antwort beziehen soll, zu zitieren. Wahrscheinlich reicht es aus, 
+     zwei oder drei markante S„tze in der eigenen Antwort zu zitieren. 
+     Absolut unn”tig ist das komplette Wiederholen der Original-Message in 
+     klusive Origin- und SEEN-BY-lines und manch anderer, hinter einem 
+     CTRL-A-Zeichen (^A) versteckten Informationen ("kludges").
+
+     Ein weiteres Zeichen von Message-Kultur ist die sinnvolle Verwendung 
+     des "Subject:"-Feldes im Header einer Message. Bei allen Editoren ist 
+     es m”glich, im Zuge einer Antwort ein unter Umst„nden nicht glcklich 
+     gew„hltes "Subject:" zu „ndern. Wie kommen hunderte von Lesern dazu, 
+     fr Nachrichten Geld und Speicherplatz zu opfern, bei denen zwischen 
+     "Subject:" und dem eigentlichen Inhalt der Message wenig oder gar 
+     kein Zusammenhang besteht?
+
+     Auch gilt es zu bedenken, ob die Message, die man soeben zu schreiben 
+     beabsichtigt, wirklich in diesem Echo-Area angebracht ist.
+
+     Nachrichten wie
+
+            "Hallo Klaus. Danke fr die Info. Ich konnte gestern
+             nicht, darum rufe ich Dich morgen an."
+
+     sollten als private Message via Matrix-Mail gesandt werden und nicht 
+     als Echomail-Message, die ihren Weg durch einige -zig Rechner nimmt.
+
+     Die besseren Mailbox-Programme verhindern von sich aus, daá in 
+     Echo-Areas private Nachrichten geschrieben werden k”nnen; anders die 
+     Editoren, die ein Point-System einsetzt. Eine private Message in 
+     einem Echo-Area bereitet dem Sysop der Mailbox zus„tzliche Arbeit, 
+     sie wieder zu "entprivatisieren".
+
+     Ein bestimmtes Sachgebiet (ein Echo-Area) sollte nur Nachrichten 
+     enthalten, die tats„chlich zum Thema des jeweiligen Areas geh”ren. 
+     Will man dem Schreiber einer Message eine private Antwort via 
+     Matrix-Mail schicken, findet man dessen FidoNet-Adresse in der 
+     Origin-Line seiner Nachricht. Bevor eine Antwort auf eine Frage 
+     geschrieben wird, sollte man sich die Mhe machen, alle bisher 
+     vorhandenen Nachrichten des Areas zu lesen; unter Umst„nden wurde die 
+     gestellte Frage schon von jemand anderen beantwortet.
+
+     Die meisten Echo-Areas, die ber mehr als ein Land verteilt werden, 
+     sind in englischer Sprache gehalten. Daá in jedem Area die richtige 
+     Sprache verwendet wird, ist genauso Bestandteil der elektronischen 
+     H”flichkeit wie der Verzicht auf Umlaute und nationale oder 
+     rechnerspezifische Sonderzeichen.
+
+     Immer wieder entflammende "Diskussionen" ueber Rechtschreibfehler 
+     oder orthographische Unzul„nglichkeiten sind nicht sehr sinnvoll. 
+     Jeder Schreiber einer Nachricht wird sich bestimmt um korrekte 
+     Schreibweise bemhen und Nachsicht fr andere aufbringen, denen unter 
+     Umst„nden Tippfehler passieren. Fr viele Menschen ist Englisch nicht 
+     die Muttersprache; in englischsprachigen Echo-Areas Zurechtweisungen 
+     ber die richtige Verwendung englischer Vokabel auszuteilen tr„gt mit 
+     Sicherheit nicht dazu bei, sich bei seinen Gespr„chspartnern beliebt 
+     zu machen. Meistens sind solche Messages Ausdruck fr 
+     unterschwelligen rger, der fairerweise in direkten Matrix-Messages 
+     offen und ehrlich ausgetragen werden sollte.
+
+     Bei gewissen Messages empfiehlt es sich, vor Beantwortung erst mal 
+     besser eine Nacht zu schlafen. Sollte die Wut ber eine Message nicht 
+     zu d„mpfen sein ist es oft sehr heilsam, eine erbitterte, b”se, 
+     beleidigende und direkte Nachricht ("flame") zu verfassen und sie 
+     nach einiger Zeit zu l”schen, anstatt sie abzusenden. Zu bedenken 
+     ist, daá harte Worte meistens mehr Probleme schaffen, als sie l”sen; 
+     auch sollte man versuchen, einer Person nichts anderes zu schreiben, 
+     als man der gleichen Person in einem Raum mit anderen Leuten sagen 
+     wrde.
+@endnode

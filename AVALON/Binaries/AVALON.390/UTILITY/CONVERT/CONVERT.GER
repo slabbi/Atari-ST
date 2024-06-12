@@ -1,0 +1,82 @@
+==========================================================================
+ CONVERT V1.x                                    Letzte énderung: 10.08.94
+==========================================================================
+                          (c) Stephan Slabihoud
+==========================================================================
+                            S H A R E W A R E
+==========================================================================
+
+                  Sharewarebedingungen: siehe AVALON.TXT
+
+==========================================================================
+
+             Anregungen und Fehlerbeschreibungen zum Handbuch
+             und Programm bitte direkt per Crashmail an mich!
+
+
+
+INTRO:
+======
+Es  gibt speziell fÅr Points in der 24-Region eine  3D-Pointlist,  in  der 
+jedes System aufgefÅhrt ist.
+
+Zur  öbersetzung gibt es viele Utilities;  das bekannteste Utility  dÅrfte 
+wohl PN24USER von GÅnther Paczia sein.  Dieses erzeugt eine Userliste  fÅr 
+den  MsgReader LED.  Leider kann dieses nur 5000  Systeme  Åbersetzen,  es 
+werden  nur Points (keine Node-Systeme) ausgegeben und es kann nicht  alle 
+PointlisteintrÑge korrekt auswerten.
+
+CONVERT  kann  unbegrenzt viele EintrÑge  verwalten,  erkannt  auch  Node-
+Systeme  und  bearbeitet alle EintrÑge korrekt.  Weiterhin kann  eine  4D-
+Pointliste oder sogar eine Nodeliste Åbersetzt werden.
+
+
+
+AUFRUF:
+=======
+Der Aufruf von CONVERT ist denkbar einfach:
+
+CONVERT <p|n> <src> <dst> [<zone>]
+
+
+  <p>  -  öbersetzt eine Pointliste (3D- oder 4D-Format).
+  <n>  -  öbersetzt eine Nodeliste.
+
+<src>  -  Die Point-/Nodeliste (z.B. "C:\FIDO\POINTS24.*").
+
+<dst>  -  Die Userliste fÅr LED (z.B. "C:\FIDO\PN24USER.LST").
+
+<zone> -  Es  wird die Zone <zone> vor jede Ausgabe gesetzt (optional  nur 
+          fÅr Pointliste).
+
+
+INTERNA:
+========
+
+Die Node-/Pointliste darf unbegrenzt viele EintrÑge beinhalten.
+Die Ausgabeliste wird nicht sortiert.
+
+Aufbau der 3D-Pointlist:
+========================
+Host,<-1->,<net/node>,<-2->,<name>,...
+,<point>,<-3->,<-2->,<name>,...
+[...]
+
+Aufbau der 4D-Pointlist:
+========================
+Boss,<zone:net/node>
+,<point>,<-3->,<-2->,<name>,...
+[...]
+
+Nicht benutzte EintrÑge:
+========================
+<-1-> - Fakenet
+<-2-> - Ort
+<-3-> - System
+
+
+
+HISTORIE:
+=========
+ V1.0 -  Erste offizielle Version.
+

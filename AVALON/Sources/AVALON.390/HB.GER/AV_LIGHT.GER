@@ -1,0 +1,19 @@
+AV_LIGHT.PRG
+============
+
+Ab V3.30 gibt es AVALON-Light. Diese Version wurde in einigen Punkten
+"abgespeckt", damit auch Points mit Speichermangel Avalon evtl. noch
+einsetzen k”nnen. Allerdings konnte ich nur wenige KB einsparen. Ich hoffe
+daž dieses ausreicht.
+
+Folgende Funktionen sind in der Light-Version nicht vorhanden:
+
+ - Das Terminal
+ - Der Filemanager
+ - Der File-Hatcher/Ticker (F'Hatch)
+ - Keine "!xxx"-Befehle im Batchinterpreter
+ - Kein Notebook
+ - Windowpositionen werden nicht gespeichert
+ - Keine "N/P"-Erweiterung in "Edit areas"
+
+St.Slabihoud

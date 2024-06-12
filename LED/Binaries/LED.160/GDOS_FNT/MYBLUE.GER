@@ -1,0 +1,29 @@
+Dieser Font ist keine Freeware, sondern darf nur mit einer registrierten
+LED- oder AVALON-Version benutzt werden.
+
+
+MYBLUE.FNT ist ein GDOS-Font, welcher fr AVALON und LED (und Binkley)
+hervorragend geeignet ist. Im Binkley.Cfg sollte (bei installiertem
+Font) "BoxType 1" (oder h”her) angegeben werden.
+
+
+Der Font sollte als Systemfont (z.B. unter NVDI) installiert werden:
+====================== ASSIGN.SYS ======================
+PATH=C:\GEMSYS\
+
+01p SCREEN.SYS   ; ebenso fr alle weiteren Aufl”sungen
+SYSTEM.FNT
+s MYBLUE08.FNT
+s MYBLUE09.FNT
+s MYBLUE10.FNT
+MYBLUE20.FNT
+========================================================
+
+
+Die Vorteile:
+ - ANSI-Zeichensatz
+ - etwas kleinere Zeichen => bessere Lesbarkeit der Schrift 
+   in den Dialogboxen
+
+
+                       (c) 1992,1994,1995 Stephan Slabihoud

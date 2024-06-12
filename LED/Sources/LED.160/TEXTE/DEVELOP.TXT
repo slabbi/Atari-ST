@@ -1,0 +1,366 @@
+
+Dieses File beinhaltet wichtige Developer-Informationen und énderungen,
+die ich gerne in den nÑchsten Versionen vornehmen mîchte. Bitte teilt
+mir Eure Meinung Åber die geplanten énderungen mit!
+
+Dieses ist keine komplette ToDo-Liste, sondern gibt nur die énderungen
+wieder, die ich nicht ohne positive RÅckmeldung vornehmen mîchte!
+
+
+
+                    Teil I  - Geplante énderungen
+                    Teil II - Developer Informationen
+
+
+
+========================================================================
+                            T E I L   I
+========================================================================
+
+énderung 1)
+
+  - Da es immer noch kein vernÅnftiges 5D-Header-Format
+    existiert, habe ich mich dazu entschlossen in den
+    nÑchsten LED-Versionen folgendermaûen vorzugehen:
+    In dem Feld "mailer[6]" werde ich die Nummer der
+    "Address"-Zeile abspeichern, die zu der angegebenen
+    Absenderadresse paût. Steht dort eine "0", so konnte LED
+    die passende "Address"-Zeile nicht finden (ermitteln),
+    oder die "Address correction" wird vom User nicht
+    benutzt.
+    Dieses Feature ist bereits im LED 1.26 implementiert, nur
+    noch nicht "freigeschaltet", da JetMail leider abstÅrzt,
+    wenn in dem Feld etwas ungleich "0" steht.
+    Beispiel:
+      Address   2:2446/110.6@fidonet.org
+      Address   51:601/7.6@atarinet.ftn
+      Address   90:400/410@nest.ftn
+      Address   90:400/404.6@nest.ftn
+    Schreibe ich jetzt eine Msg unter 90:400/410, so wird
+    "mailer[6] = 3" gesetzt.
+    Zwar darf dann vor dem nÑchsten Export-Vorgang die Reihenfolge der
+    "Address"-Zeilen nicht verÑndert werden, aber IMHO kann man damit
+    ganz gut leben.
+
+énderung 2) ===> Wird so bleiben, wie es ist! <===
+
+  - Wird ein gequoteter Text editiert, so werden die Quotes ggf.
+    fett dargestellt. Das ist im Prinzip auch OK. Wenn nun aber dieser
+    Text editiert wird, so wird wieder die normale Darstellung
+    verwendet. Da dieses nicht zu Ñndern ist, mîchte ich, wenn man
+    sich im EditWindow befindet, grundsÑtzlich nur die normale
+    Darstellung verwenden und nur beim Lesen der Msg sollen Quotes
+    ggf. wieder Fett dargestellt werden.
+
+énderung 3) ===> Eingebaut in der 1.28 und somit erledigt! <===
+
+  - Die Funktion "Skip Scanner" hindert mich daran, die Forward-Funktion,
+    sowie einige weitere Routinen, neu zu schreiben.
+    Ich habe vor diese Funktion ganz zu entfernen:
+    Konsequenz: - LED wird kleiner (ca. 20kb und nachdem einige Funktionen
+                  neu geschrieben worden sind: ca. 10kb mehr).
+                - Alte Soft (BYE, EXPORT) funktionieren nicht mehr, da
+                  der LED eine in einer Echomail geschriebene Mail nicht
+                  mehr automatisch in die Netmail kopiert.
+                - Neue Soft (JetMail, IOSmail, ECU/LLegada) sind davon
+                  nicht betroffen.
+
+énderung 4)
+
+  - LED soll NUR noch das eigene Konfig-File lesen. Wenn es wirklich mal
+    ein allgemeines Konfig-File fÅr mehrere Programme geben solle, dann
+    auch dieses.
+
+énderung 5)
+
+  - Der LED solte auch Msg>64kb schreiben kînnen. Dieses ist aufgrund des
+    alten MsgBase-Headers z.Zt. nicht mîglich. Abhilfe wÅrde ein neues
+    Header-Format schaffen, oder eine Erweiterung des alten, welche
+    wenigestens zum Teil kompatibel sein wÅrde.
+    
+    Mein Vorschlag wÑre die beiden Felder
+      uword   wProcessed;    /* uword mailer[7] */
+      uword   wSize;
+    zu einem Feld "ulong lSize" zusammenzufassen. Tools, die davon nichts
+    davon wissen, wÅrden zu lange Msgs wie bisher behandeln (LED scheibt
+    bis zur Version 1.25 immer die "LÑnge mod 2^16" in das Feld Size!).
+
+    Tosser wie IOSmail, ECU und ACS wÅrden wie bisher nur einen Teil
+    der Msg exportieren (genauer: Size mod 2^16) und den Rest nicht
+    beachten. LED 1.26 schreibt bei zu langen Msgs jetzt immer den
+    Wert 65534 in das Feld Size, so daû wenigstens immer die ersten 64kb
+    exportiert werden.
+
+    Utilities, die das Feld "mailer[7]" bzw. "wProcessed" fÅr eigene
+    Zwecke verwenden, dÅrften dann nicht mehr benutzt werden, da LED
+    sonst eine falsche MsglÑnge bekommen wÅrde. Zwar ist es mîglich ein
+    weiteres Flag (XF_LONGMSG) zu definieren, welches anzeigt, daû nun
+    "mailer[7] und wSize" zusammen ein Langwort enthalten, damit der LED
+    Msgs<64kb korrekt lesen kann, auch wenn irgendein Utility "mailer[7]"
+    verÑndert hat, aber bei Msgs>64kb gÑbe es dennoch Probleme, so daû
+    ich hier auf ein weiteres Flag lieber verzichten mîchte.
+    
+    Da JetMail "wProcessed" benîtigt, wÅrde ich Vorschlagen, "wProcessed"
+    ggf. auf "mailer[6]" zu verlagern, wobei énderung 1) entfallen muû.
+
+    Vielleicht ist der Sinn von Msg>64KB nicht sofort einsichtigt. Wer
+    allerdings Mails (Files) aus dem UseNet Åber ein Gate als UUEcode
+    bezieht, weiû wovon ich rede ;-)
+
+énderung 6)
+
+    Momentan benîtigt die Userliste ziemlich viel Speicher, wenn sie
+    komplett eingelesen wird. Ich kînnte die Userliste ca. 30 bis 50%
+    platzsparender einlesen, allerdings wÅrde dieses auch ca. 10% mehr
+    Zeit kosten.
+    Anstelle von 2MB wÅrden also nur 1.0 bis 1.4MB benîtigt werden und
+    anstelle von 4 min. (TT) brÑuchte der LED dann 4 1/2 min.
+
+
+========================================================================
+                            T E I L   I I
+========================================================================
+
+Document: AFTS-000
+  Status: Version 1 Release 2, Official
+    Date: 17.01.1995
+
+List of existing AFTS (Atari-Fido-Technology-Standard) documents:
+
+  AFTS-000  Index of all AFSC documents (this document)
+  AFTS-001  New header format for local msg bases (XHD)
+  AFTS-002  Extended outbound and flow file format
+  AFTS-003  Old headerformat with 5D extension (HDR)
+
+List of existing AFTP (Atari-Fido-Technology-Proposal) documents:
+
+  AFTP-001  Proposal: New package format (also send to FSC)
+
+
+Members of AFSC (Atari-Fido-Standard-Committee) in alphabetical order:
+
+  Kriesten, Jan (2:244/4344, 90:400/1002)
+  Roesen, Daniel (2:2454/114, 90:400/602)
+  Slabihoud, Stephan (2:2446/110.6, 90:400/410)
+  Spilker, Joerg (2:243/6007, 90:400/100)
+
+
+<EOF>
+
+========================================================================
+
+/*
+**  Document: AFTS-003   Old headerformat with 5D extension
+**    Status: Version 1 Release 2, Official
+**      Date: 30.01.1995
+**  Proposal: St.Slabihoud
+**
+**  This file descripes the <*.HDR> headerfile format used by most
+**  fido software.
+*/
+
+#ifndef __FIDO__
+#define __FIDO__
+
+typedef
+  struct HEADERtag             
+    { char    sFrom[36];           /* User who created msg (0-terminated)  */
+      char    sTo[36];             /* User who may read msg (0-terminated) */
+      char    sSubject[72];        /* Subject (0-terminated)               */
+      char    sDate[20];           /* Date/Time string of message          */
+      ulong   lDate;               /* Date when msg was imported (UTC)     */
+      ulong   lStart;              /* Start offset of message              */
+      ulong   _reserved_1;         /* res. by AFSC (was QBBS reply link)   */
+      uword   wFlags;              /* Message flags                        */
+
+      ulong   lMsgidcrc;           /* LED comment ^MSGID crc               */
+      ulong   lReplycrc;           /* LED comment ^REPLY crc               */
+      uword   wMFlags;             /* Maus message flags (XF_MAUSMSG set)  */
+      uword   wXFlags;             /* Extended message flags               */
+      uword   _reserved_3;         /* wAddress: Origin address (1)         */
+      uword   wProcessed;          /* bitfield used by JetMail             */
+
+      uword   wSize;               /* Length of msg                        */
+
+      ulong   _reserved_2;         /* res. by AFSC (was QBBS: Reads/Cost)  */
+
+      uword   wFromZone;           /* Zone of sender                       */
+      uword   wFromNet;            /* Net...                               */
+      uword   wFromNode;           /* Node...                              */
+      uword   wFromPoint;          /* Point...                             */
+      uword   wToZone;             /* Zone of receiver                     */
+      uword   wToNet;              /* Net...                               */
+      uword   wToNode;             /* Node...                              */
+      uword   wToPoint;            /* Point...                             */
+    } HDR_HEADER;
+
+/*
+** (1) Description of "wAddress"
+**
+** LED stores in the lower byte the number of the "Address"-line used
+** for the origin address. e.g. (BINKLEY.CFG or LED.CFG)
+**   Address   2:2446/110.6@fidonet.org
+**   Address   51:601/7.6@atarinet.ftn
+**   Address   90:400/410@nest.ftn
+**   Address   90:400/404.6@nest.ftn
+** Writing a mail with the origin address 90:400/410 sets "wAddress=3".
+** "wAddress" is zero when LED could not find the correct address or the
+** msg was not written on your own system (e.g. move msg, move msg with
+** forward).
+** WARNING: Do not change the addresses in your config before all mail
+** was scanned. Otherwise a wrong address could be taken by the tosser.
+** The upper byte of "wAddress" is reserved and should be zero.
+*/
+
+/*
+** Flags: wProcessed
+** Write to AFSC for others...
+*/
+
+#define PROC_JETMAIL            (1U << 0)
+#define PROC_AU_MSGCHECK        (1U << 1)
+#define PROC_AU_FILEMGR         (1U << 2)
+#define PROC_CHARMODIFY         (1U << 3)
+#define PROC_CONNECTR           (1U << 4)
+#define PROC_DOORMAIL           (1U << 5)
+#define PROC_ARCED              (1U << 6)
+#define PROC_FIFO               (1U << 7)
+
+/*
+** Flags: wFlags
+*/
+
+#define F_PRIVATE               (1U << 0)
+#define F_CRASH                 (1U << 1)
+#define F_RECEIVED              (1U << 2)
+#define F_SENT                  (1U << 3)
+#define F_FILEATTACH            (1U << 4)
+#define F_INTRANSIT             (1U << 5)
+#define F_ORPHAN                (1U << 6)
+#define F_KILLSENT              (1U << 7)
+#define F_LOCAL                 (1U << 8)
+#define F_HOLD                  (1U << 9)
+#define F_RESERVED              (1U << 10)
+#define F_FILEREQ               (1U << 11)
+#define F_RETRECREQ             (1U << 12)
+#define F_ISRETREC              (1U << 13)
+#define F_AUDITREQ              (1U << 14)
+#define F_DELETED               (1U << 15)
+
+/*
+** Flags: wXFlags
+** Write to FTSC for others...
+*/
+
+#define XF_READ                 (1U << 0)
+#define XF_ARCHIVSENT           (1U << 1)
+#define XF_TRUNCFILESENT        (1U << 2)
+#define XF_KILLFILESENT         (1U << 3)
+#define XF_DIRECT               (1U << 4)
+#define XF_ZONEGATE             (1U << 5)
+#define XF_HOSTROUTE            (1U << 6)
+#define XF_LOCK                 (1U << 7)
+#define XF_MAUSMSG              (1U << 8)
+#define XF_GATED                (1U << 9)
+#define XF_CREATEFLOWFILE       (1U << 10)
+#define XF_RESERVED11           (1U << 11)
+#define XF_RESERVED12           (1U << 12)
+#define XF_SIGNATURE            (1U << 13)
+#define XF_IMMEDIATE            (1U << 14)
+#define XF_FIXEDADDRESS         (1U << 15)
+
+/*
+** Flags: wMFlags
+** Write to ATSC for others...
+*/
+
+#define MF_NICHTGELESEN         (1U << 0)
+#define MF_NOTREAD              (1U << 0)
+#define MF_ZURUECK              (1U << 1)
+#define MF_RETURN               (1U << 1)
+#define MF_BEANTWORTET          (1U << 2)
+#define MF_ANSWERED             (1U << 2)
+#define MF_GELESEN              (1U << 3)
+#define MF_READ                 (1U << 3)
+#define MF_WEITER               (1U << 4)
+#define MF_CONTINUE             (1U << 4)
+#define MF_MAUSNET              (1U << 5)
+#define MF_ANGEKOMMEN           (1U << 6)
+#define MF_RECEIVED             (1U << 6)
+#define MF_GATEWAY              (1U << 7)
+#define MF_KOPIERT              (1U << 8)
+#define MF_COPIED               (1U << 8)
+#define MF_MAUSTAUSCH           (1U << 9)
+#define MF_UNBEKANNT            (1U << 10)
+#define MF_UNKNOWN              (1U << 10)
+#define MF_INTERESTING1         (1U << 11)
+#define MF_INTERESTING2         (1U << 12)
+#define MF_VERERBEN             (1U << 13)
+#define MF_HEREDITARY           (1U << 13)
+
+#endif
+
+
+
+Format of date/time string of message in sDate[20] (ascii format):
+
+  DAY [ ] MONTH [ ] JEAR [ ][ ] HOUR [:] MINUTE [:] SECOND [0]
+        
+    DAY: [00] ... [31]
+  MONTH: [Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec]
+   JEAR: [00] ... [99]
+   HOUR: [00] ... [23]
+ MINUTE: [00] ... [59]
+ SECOND: [00] ... [59]
+
+
+
+Calculation of Msgidcrc (and Replycrc):
+
+  ===== SOURCE =======================================================
+  ulong get_msgid(...)
+  { static word count;
+    byte crc_msgid[256],msgid[256];
+    byte *cp;
+    ulong msgidcrc;
+
+    sprintf(msgid,"\x1MSGID: %s %8.8lx\n",
+                        mergeaddr(zone,net,node,point,domain),
+                        time(NULL)+count);
+    [...]
+    strcpy(crc_msgid,msgid+8);
+    cp=strchr(crc_msgid,'\n');
+    cp=EOS;
+    msgidcrc = crc32str(crc_msgid);
+
+    count++;
+    return(msgidcrc);
+  }
+  ====================================================================
+
+
+
+Calculation of 32-BIT ANSI X3.66 CRC checksum:
+
+  ===== CRC-32 Tab removed (see FTSC for more information) ===========
+  The polynomial is
+  X^32+X^26+X^23+X^22+X^16+X^12+X^11+X^10+X^8+X^7+X^5+X^4+X^2+X^1+X^0
+
+  static ulong crc_32_tab[] = { /* CRC polynomial 0xedb88320 */
+     0x00000000L, 0x77073096L, [...], 0x5a05df1bL, 0x2d02ef8dL };
+
+  ===== SOURCE =======================================================
+  #define UPDC32(octet, crc) \
+               (crc_32_tab[((crc) ^ (octet)) & 0xff] ^ ((crc) >> 8))
+
+  unsigned long crc32str(char *s)
+  { register ulong crc32;
+    crc32 = 0xFFFFFFFFL;
+    while (*s)
+      crc32 = UPDC32((int) *s++, crc32);
+    crc32 = ~crc32;
+    return (crc32);
+  }
+  ====================================================================
+
+<EOF>

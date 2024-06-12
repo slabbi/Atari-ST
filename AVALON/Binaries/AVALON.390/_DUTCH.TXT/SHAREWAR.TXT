@@ -1,0 +1,244 @@
+ 
+
+       Inhoud statuten Shareware Registratiepunt te Amsterdam.
+       -------------------------------------------------------
+
+       Wij schrijven een september negentiendrieennegentig.
+
+
+
+       VERKLARING der BEGRIPPEN
+       ====================================================================
+       
+       1. Onder programmeur wordt verstaan de ontwikkelaar of maker van 
+          software waarvan de programmatuur onder het doel van de stichting 
+          valt.
+       2. Onder gebruiker wordt verstaan degene die gebruik wil maken van
+          deze software op een zodanige wijze dat dit buiten de zogenaamde 
+          testperiode van de programmeur valt.
+       3. Onder testperiode wordt verstaan die periode, welke vooraf door 
+          de programmeur is bepaald voor gebruik of testdoeleinden van de 
+          ontwikkelde software.
+       4. Onder bestuur wordt verstaan de beheerder en de personen die met
+          een controle-functie belast zijn.
+       5. Onder donatie wordt verstaan de verschuldigde kosten voor de 
+          software zoals die vooraf door de programmeur zijn vastgesteld 
+          plus eventuele kosten die gemaakt dienen te worden om deze 
+          betaling aan de programmeur mogelijk te maken.
+       6. Onder donateur wordt verstaan de betaler van de donatie welke tot
+          doel heeft de ontwikkeling van de software door de programmeur te
+          ondersteunen. De donateur wordt geacht in Nederland woonachtig te
+          zijn. 
+       7. Onder 'NET-MAIL' wordt verstaan een geschreven priv‚-tekst welke
+          gericht gestuurd of verspreid wordt door computersytemen en in 
+          Fidonet zijn verenigd.
+       8. Onder bestuur wordt verstaan de leden van de stichting.
+
+
+       NAAM EN ZETEL
+       ====================================================================
+
+       Artikel 1.
+       ----------
+       De stichting draagt de naam "Centraal Shareware Registratiepunt".
+       Zij is gevestigd in de gemeente Amsterdam. Daarbij zijn er nog twee
+       Steunpunten gevestigd elders in het land.
+
+
+       DOEL
+       ====================================================================
+
+       Artikel 2.
+       ----------
+       De stichting heeft ten doel de belangen te behartigen van program-
+       meur en gebruiker van z.g. Shareware en Keyware, hierna te noemen 
+       "Software" in de meest ruime zin des woords.
+       Het begrip "software" beperkt zich tot alleen die software welke 
+       bedoeld is voor gebruik in samenwerking of onder het TOS-besturings
+       systeem van de firma Atari.
+
+
+       MIDDELEN
+       ====================================================================
+
+       Artikel 3.
+       ----------
+       De stichting tracht haar doel te verwezenlijken door:
+
+        1. Kontakten te leggen tussen de programmeur en gebruiker van soft-
+           ware.
+        2. Alle andere  wettige middelen  welke aan het doel bevordelijk 
+           kunnen zijn.
+        3. De kosten die betaling van deze software met zich meebrengt 
+           zoals boekings- transaktie- en bijzondere kosten bij betalingen 
+           naar het buitenland zo laag mogelijk te houden.
+
+
+       DUUR
+       ====================================================================
+
+       Artikel 4.
+       ----------
+        1. De stichting is aangegaan voor een onbepaalde tijd.
+        2. Het stichtingsjaar valt samen met het kalenderjaar.
+        3. Het eerste  stichtingsjaar eindigd op  eenendertig december, 
+           negentienhonderddrieennegentig.
+
+
+       LIDMAATSCHAP
+       ====================================================================
+
+       Artikel 5.
+       ----------
+        1. De stichting kent geen leden of aspirant-leden.
+
+       Artikel 6.
+       ----------
+        1. De stichting wordt beheerd door 
+
+                           Ruud SinT              fido 2:280/506.2
+
+        2. De stichting wordt gecontroleerd door
+                              
+                           Peter Habing           fido 2:280/506.24
+                           Ronald de.Wit          fido 2:280/506.15
+        
+        3. De rekeningen ten behoeve van donatie's van gebruikers van
+           software zijn:
+                           Postgiro 85513         t.n.v. Ruud Sint
+                           VSB bank 83.01.57.328  t.n.v. Ruud Sint
+
+       Artikel 7.
+       ----------
+        1. De betalingen van de gebruiker van software richting programmeur
+           dient bij vooruitbetaling te geschieden door overmaking van de
+           verschuldigde kosten op een van te voren bepaalde rekening welke
+           onder beheer staat van de stichting en dient te allen tijden
+           vergezeld te gaan van de naam van de donateur en de naam van
+           de software en het versie nummer daarvan waarvoor de donatie
+           bedoeld is.
+
+       Artikel 8.
+       ----------
+           Onder betalingen worden verstaan de kosten van de software 
+           inclusief de kosten bij aankoop van vreemd geld plus een
+           bijdrage in de verzendkosten c.q. telefoonkosten die de stichting
+           moet maken bij betaling aan de programmeur van die software of
+           het behartigen van de belangen van de gebruiker.
+           Deze verzendkosten, telefoonkosten zullen nooit meer bedragen
+           dan twee gulden en vijftig cent.
+           Bovenbedoelde kosten worden slechts een maal berekend per
+           donateur voor hetzelfde programma. Dit houdt in dat als de
+           programmeur de shareware-betaling aanpast aan de huidige c.q.
+           nieuwste versie van datzelfde programma en de donateur vrij-
+           willig die aanvullende bijdrage via de stichting wil gaan
+           voldoen omdat hij reeds geregistreerde donateur is, de stichting
+           deze donateur vrijwaart van bovenbedoelde kosten a twee gulden
+           en vijftig cent. De kosten voor aankoop van vreemd geld zullen
+           uiteraard wel meetellen. 
+           De kosten voor aankoop van vreemd geld zijn afhankelijk van
+           de hoogte van het bedrag dat op dat moment door de banken
+           berekend wordt.
+           De totale kosten van de donatie zullen vooraf met de donateur
+           afgesproken worden door middel van z.g. 'NET-MAIL'.
+           De donateur verplicht zich de verschuldigde kosten van regi-
+           stratie voor software binnen 7 dagen op vermelde rekening van
+           de stichting te doen overmaken.
+           
+
+       GELDMIDDELEN
+       ====================================================================
+
+       Artikel 9.
+       ----------
+        1. De stichting heeft geen winstoogmerk.
+        2. De geldmiddelen van de stichting kunnen ten hoogste bestaan uit;
+                a. Donatie's;
+                b. Andere baten;
+        3. Deze geldmiddelen worden te allen tijden weer aangewend met als
+           doel het bevorderen van de ontwikkeling van software zoals die
+           in artikel 2 bedoeld wordt.
+
+
+       BESTUUR
+       ====================================================================
+
+       Artikel 10.
+       -----------
+        1. Het bestuur van de stichting is voor onbepaalde tijd.
+
+       Artikel 11.
+       -----------
+        1. Het Bestuur is belast met het besturen der stichting.
+        2. Het aangaan van handelingen, waarmee de betalingen van software
+           gemoeit gaan.
+        3. Het behandelen van eventuele klachten, aan welke zijde dan ook.
+
+
+        ALGEMENE VERGADERINGEN
+        ====================================================================
+
+       Artikel 12.
+       -----------
+        1. Er worden geen vergaderingen belegd.
+
+
+       REKENING EN VERANTWOORDING
+       =====================================================================
+
+       Artikel 13.
+       -----------
+        1. Iedere gebruiker die gebruik heeft gemaakt van bemiddeling door
+           de stichting kan rekening en verantwoording vragen.
+        2. Eventuele kosten daaruit voortvloeiende zijn voor rekening van
+           de aanvrager en dienen vooruit voldaan te worden. 
+        3. Onder eventuele kosten wordt verstaan de kosten voor kopi‰en van
+           bank c.q. giro-afschriften en te verwachten telefoonkosten. 
+
+
+       STATUTENWIJZIGING
+       =====================================================================
+
+       Artikel 14.
+       -----------
+        1. Wijziging van de statuten kan slechts plaats hebben na een 
+           besluit van het bestuur van de stichting en dient met algemene
+           stemmen aanvaard te zijn.
+   
+
+       Artikel 15.
+       -----------
+        1. De statutenwijzing treedt niet eerder in werking dan nadat 
+           daarvan melding is gemaakt in echomail.
+        2. De bestuurders zijn verplicht een authentiek afschrift van de 
+           wijziging en de gewijzigde statuten te sturen aan allen die
+           in het verleden reeds gebruik hebben gemaakt van de bemiddeling
+           van de stichting.
+
+       ONTBINDING EN VEREFFENING
+       =====================================================================
+
+       Artikel 16.
+       -----------
+        1. Behoudens het bepaalde in artikel 50 van boek 2 van het Burgelijk
+           Wetboek wordt de stichting ontbonden door een besluit daartoe 
+           van het gehele bestuur.
+        2. Bij gebreke van het quorum kan ongeacht het aantal stemmen van
+           het bestuur tot ontbinding van de stichting worden besloten aan
+           het einde van een kalendermaand volgende op een algemene bekend-
+           making van dit besluit in echomail.
+        3. De stichting verplicht zich alle, tot dat tijdstip lopende ver-
+           plichtingen, na te komen.           
+        4. In stukken en aankondigingen die van de stichting uitgaan moeten
+           aan haar naam worden toegevoegd de woorden "in liquidatie".
+
+
+
+
+   (Getekend):  Ruud Sint       Centraal punt     fido 2:280/506.2
+                 "    "                           fido 2:285/503.12
+                                               technet 111:319/202
+                Ronald de.Wit   Steunpunt         fido 2:280/506.15
+                Peter Habing    Steunpunt         fido 2:280/506.24
+                  "     "       Duits adres       fido 2:243/6207.51
+

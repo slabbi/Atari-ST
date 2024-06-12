@@ -1,0 +1,65 @@
+==========================================================================
+ COMPDIFF V1.xx                                   Last Changes: 16 Apr 94
+==========================================================================
+                          (c) Stephan Slabihoud
+==========================================================================
+                            S H A R E W A R E
+==========================================================================
+
+                For shareware details refer to AVALON.TXT
+
+==========================================================================
+
+    If you have any ideas and bug reports directed at manual and program,
+            please send them directly and per crashmail to me!
+
+
+
+INTRO:
+======
+For  every point-/nodelist a difference file is  published  weekly.  Using 
+this utility allows you to make your old point- or nodelist up-to-date.
+
+It is possible to apply more than one diff file to the orignal list.
+
+
+How to start COMPDIFF:
+======================
+
+COMPDIFF <list> <diff> [clear]
+
+<list>  -  The point-/nodeliste (e.g. "C:\FIDO\NODELIST.*").
+<diff>  -  The Diff-file (e.g. "C:\FIDO\NODEDIFF.*").
+
+clear   -  ALWAYS delete original list and diff.
+           (Do not recognize crc errors!)
+
+
+Example:
+========
+
+COMPDIFF c:\fido\nodelist.* c:\fido\nodediff.* clear
+
+
+INTERNA:
+========
+Errorlevels:
+
+0 - OK              Old list and Diff-file deleted
+1 - CRC-Error       Old list and Diff-file NOT deleted
+                    (Will be deleted when using "clear"!)
+2 - Parameter       To many/few parameters
+3 - Nodelist        Nodelist not found
+6 - Error           Nodelist created, but not checked
+7 - Day number      Day number could not be found in Diff-file
+8 - Error           Unknown error
+9 - File error      A file cound not be opened
+
+
+
+History:
+========
+ V1.0 - First official version.
+ V1.1 - Calculate used time (Hi Florian ;-))
+ V1.2 - Nodelistcheck improved.
+

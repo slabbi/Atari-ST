@@ -1,0 +1,888 @@
+                                               Letzte énderung: 18.08.1994
+
+==========================================================================
+=               D e r   B A T C H - I N T E R P R E T E R                =
+==========================================================================
+
+
+Bei den gekennzeichneten (!) Befehlen kînnen Wildcards ("*" und "?") 
+benutzt werden.
+Die mit einem (*) gekennzeichneten Befehle liefern einen RÅckgabewert 
+(Errorlevel), oder werten diesen aus.
+
+
+Wichtige Hinweise:
+------------------
+Der Interpreter wurde speziell fÅr den Pointbetrieb geschrieben und weist 
+deshalb einige Besonderheiten auf:
+
+ 1.) Die Batchdatei wird NICHT abgebrochen, wenn ein Fehler auftritt 
+     (z.B. wenn eine nicht vorhandene Datei versucht wird zu kopieren). 
+     Es wird zwar eine Fehlermeldung auf dem Bildschirm ausgegeben, diese 
+     kann aber i.d.R. ignoriert werden. Kritische Fehler (falsche Pfad-
+     angaben u.Ñ.) und Meldungen (PAUSE), werden invers hervorgehoben.
+ 2.) Bei Beginn der Abarbeitung einer Batchdatei, ist das Laufwerk und 
+     der Pfad auf das Laufwerk bzw. den Pfad gesetzt, in dem die 
+     Batchdatei zu finden ist.
+ 3.) Groû-/Kleinschreibung wird bei den Befehlen nicht beachtet.
+ 4.) Ein BREAK (Unterbrechung) der Batchdatei ist Åber "ESC" mîglich.
+ 5.) Ist die Ausgabe auf ECHO=FULL geschaltet, so kann man die Ausgabe 
+     einzelner Zeilen unterdrÅcken, indem man dem Kommando ein "@" vor-
+     anstellt.
+
+
+AUTOEXEC.BAT:
+-------------
+Noch bevor die AutoPoll-Sessions beim Start von AVALON abgearbeitet 
+werden, gibt es die Mîglichkeit eine Batchdatei mit Namen AUTOEXEC.BAT 
+automatisch ausfÅhrten zu lassen. Hierzu muû diese Datei im Avalon-
+Systemordner vorhanden sein.
+Wenn diese Datei nicht ausgefÅhrt werden soll, so ist wÑhrend des Starts 
+von AVALON die LINKE SHIFT-Taste gedrÅckt zu halten, oder man Åbergibt 
+Avalon den Parameter "NoAutoBatch".
+
+Eine beliebige andere Batchdatei kann ebenfalls Åber die Kommandozeile 
+definiert werden: "Batch:PFAD\BATCH.BAT" (z.B. "Batch:E:\TEST\POLL.BAT).
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Der Batchinterpreter                                              Seite 02
+
+
+     Bearbeitung von Dateien .................................. 3
+       COPY, MOVE, SCOPY, SMOVE
+       RENAME
+       DEL
+       TYPE, PRINT
+       DUMMYFILE
+       SPLIT
+     Starten von Programmen ................................... 4
+       EXEC, DEXEC
+       REDIRECT=ON|OFF
+     Verzeichnis- und Laufwerksbefehle ........................ 4
+       DIR
+       CHDIR
+       X:
+     öberprÅfungs- und Sprungbefehle .......................... 5
+       EXIST, EXISTn, NOTEXIST, NOTEXISTn
+       JUMP
+       IFERR=, IFERR<, IFERR>, IFERR#
+       :label, GOTO
+     Funktionen, die direkt ERRORLEVEL beeinflussen ........... 6
+       CLRERR
+       DAY?, MONTH?, YEAR?, WEEKDAY?, DATE?
+       HOUR?, MINUTE?, TIME?
+       GETKEY
+     Erzeugen von Textdateien ................................. 6
+       OPEN, APPEND
+       WRITE
+       CLOSE
+     Textdateien in eine Area setzen .......................... 7
+       !FILE
+       !FILESELECT
+       !AREA
+       !BASE
+       !FLAGS
+       !SUBJECT
+       !CONVERT=ON|OFF
+       !CONVERTTEARLINE=ON|OFF
+       !FROM
+       !SEND
+     Befehle, die direkt die Parameter beeinflussen ........... 8
+       FILESELECT
+       CUTEXTENSION, CUTPATH
+       INPUT, PRESET
+       CONVERT, CONVERT4D
+     Node-/Pointlist Bearbeitung .............................. 9
+       APPLYDIFF
+       MAKEUSERLIST
+       EXTRACT
+     Sonstige Befehle ......................................... 10
+       PAUSE
+       CLS
+       REM, ";"
+       ECHO, WECHO, ECHO=OFF|ON
+       EXIT
+       EndOfAvalon, ErrorEndOfAvalon
+       SHELL
+       HIDEM, SHOWM
+       SWITCH
+       SHIP
+       BELL, GONG
+       WAITTIME
+       LOG, LOGn
+     Beispiele ................................................ 12
+
+
+
+
+
+
+Der Batchinterpreter                                              Seite 03
+
+
+
+Bearbeitung von Dateien:
+========================
+
+!-)  COPY <quelle> <zielpfad>
+!-)  MOVE <quelle> <zielpfad>
+
+          COPY kopiert einzelne oder mehrere Dateien, MOVE verschiebt 
+          sie. Die Befehle erlauben es nicht, eine Datei umzubenennen. 
+          Wird eine Datei als Zieldatei angegeben, so wird diese 
+          ignoriert. Der Zielpfad muû mit einen "\" enden. Alle 
+          gefundenen Quelldateien werden nach <zielpfad> kopiert bzw. 
+          verschoben.
+
+!-)  SCOPY <quelle> <ziel>
+!-)  SMOVE <quelle> <ziel>
+
+          SCOPY kopiert einzelne Dateien, MOVE verschiebt sie. Die Befehle 
+          kopieren bzw. verschieben immer nur EINE Datei. Zwar ist es 
+          erlaubt, Wildcards im Filenamen der Quelle anzugeben, es wird 
+          aber nur die zuerst gefundene nach <ziel> kopiert, wobei die 
+          Datei evtl. gleichzeitig umbenannt wird. Als <ziel> muû immer 
+          eine Datei angegeben werden; ein einfacher Pfad wie bei 
+          COPY/MOVE reicht hier nicht aus!
+
+     (S)COPY/MOVE kopieren auch Dateien, die die LÑnge NULL haben. Wird 
+     versucht eine Datei mit der LÑnge NULL zu kopieren, so wird eine 
+     Warnung auf dem Bildschirm ausgegeben, der Kopiervorgang aber aus-
+     gefÅhrt.
+
+--)  RENAME <altdatei> <neudatei>
+
+          éndert den Dateinamen EINER Datei bzw. verschiebt eine oder 
+          mehrere Dateien.
+          Dateien kînnen nur dann verschoben werden, wenn der Zielordner 
+          sich auf demselben Laufwerk befindet, z.B.
+            RENAME D:\JETMAIL\INBOUND\*.* D:\DOWNLOAD\
+          Wichtig ist der letzte Backslash im Zielpfad!
+          GegenÅber MOVE hat RENAME den Vorteil, daû nur der Dateiname 
+          umgetragen wird und nicht die gesamte Datei kopiert werden muû. 
+          Der Geschwindigkeitsvorteil ist hierbei enorm, da eine beliebige 
+          Datei, egal welcher Grîûe, innerhalb von Sekundenbruchteilen 
+          verschoben wird.
+
+!-)  DEL <datei>
+
+          Lîscht eine oder mehrere Dateien.
+
+!-)  TYPE <datei>
+
+          Zeigt eine oder mehere Dateien seitenweise auf dem Bildschirm 
+          an.
+
+!-)  PRINT <datei>
+
+          Druckt eine oder mehrere Dateien auf dem Drucker aus, wenn 
+          dieser Online ist.
+
+--)  DUMMYFILE <datei>
+
+          Legt eine Dummy-Datei mit der LÑnge von NULL-Bytes an.
+
+
+
+
+
+
+
+
+Der Batchinterpreter                                              Seite 04
+
+
+
+!*)  SPLIT <file> <bytes> <lines>
+
+          Teilt eine Datei in Einzeldateien auf.
+            <file>  - Die gewÅnschte Datei
+            <bytes> - max.LÑnge in Bytes (oder 0)
+            <lines> - max.LÑnge in Zeilen (oder 0)
+          Errorlevels:
+            0-OK
+            2-Fehlender Parameter
+            9-Fehler beim ôffnen eines Files
+
+
+
+Starten von Programmen:
+=======================
+
+-*)  EXEC <prog> [<cmd>]
+
+          Startet ein Programm <prog> mit dem Kommando <cmd>.
+          Soll ein Programm mit EXEC gestartet werden, welches bereits in 
+          "Find-1/2" installiert wurde, so kann anstelle des Files und 
+          der Kommandozeile auch eines der folgenden KÅrzel verwendet 
+          werden:
+            EXPORT, IMPORT, CRUNCH, SCAN, MSGEDIT, TXTEDIT, MAILER,
+            TERMINAL, UTIL1, UTIL2, UTIL3, UTIL4, UTIL5, UTIL6
+          Das funktioniert aber nur dann, wenn unter diesen KÅrzeln KEIN 
+          Batchfile installiert ist!
+
+!*)  DEXEC <file> <prog> [<cmd>]
+
+          Wie EXEC, lîscht aber anschlieûend <file>, wenn der RÅckgabe-
+          code von <prog> gleich NULL ist. (Wildcards fÅr <file> sind 
+          erlaubt).
+
+--)  REDIRECT=ON
+
+          Avalon versucht alle BIOS-Ausgaben, also alle Ausgaben, die ein 
+          mit "EXEC" oder "DEXEC" gestartetes TOS-Programm tÑtigt, in 
+          sein Window umzulenken.
+
+--)  REDIRECT=OFF
+
+          Die Ausgaben erfolgen wieder auf dem TOS-Bildschirm.
+
+
+Verzeichnis- und Laufwerksbefehle:
+==================================
+
+!-)  DIR [[<pfad\>]<datei>]
+
+          Ausgabe des Inhaltsverzeichnisses.
+
+--)  CHDIR [<x:>]<pfad>
+
+          Wechselt das Verzeichnis und ggf. das Laufwerk.
+
+--)  X:
+
+          Wechselt das aktuelle Laufwerk.
+
+
+
+
+
+
+
+
+
+Der Batchinterpreter                                              Seite 05
+
+
+
+öberprÅfungs- und Sprungbefehle:
+================================
+
+!-)  EXIST <datei>
+
+          öberpÅft, ob <datei> vorhanden. Wenn ja, weiter beim nÑchsten, 
+          ansonsten ÅbernÑchsten Befehl.
+
+!-)  EXISTn <datei>
+
+          Wie EXIST, Åberspringt aber n Zeilen, wenn <datei> nicht vor-
+          handen ist. Wird '0' angegeben, so werden 10 Zeilen Åber-
+          sprungen (EXIST1 entspricht somit EXIST).
+
+!-)  NOTEXIST <datei>
+
+          Das GegenstÅck zu EXIST.
+
+!-)  NOTEXISTn <datei>
+
+          Das GegenstÅck zu EXISTn.
+
+--)  JUMP <n>
+
+          öberspringt die nÑchsten <n> Zeilen.
+
+-*)  IFERR= <level> <label>
+-*)  IFERR< <level> <label>
+-*)  IFERR> <level> <label>
+-*)  IFERR# <level> <label>
+
+          Wenn der RÅckgabewert gleich, kleiner, grîûer bzw. ungleich 
+          <level> ist, so wird zur Sprungmarke <label> gesprungen.
+
+--)  :label
+
+          Definiert eine Sprungmarke unter den Namen <label>. Sprung-
+          marken dÅrfen maximal 20 Zeichen lang sein.
+
+--)  GOTO <label>
+
+          Setzt die AusfÅhrung der Batchdatei bei Marke <label> fort.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Der Batchinterpreter                                              Seite 06
+
+
+
+Funktionen, die direkt ERRORLEVEL beeinflussen:
+===============================================
+
+-*)  CLRERR
+
+          Lîscht ERRORLEVEL (setzt ERRORLEVEL=0).
+
+-*)  DAY?, MONTH?, YEAR?
+
+          Ermittelt die Tageszahl (1..31), den Monat (1..12) oder das 
+          Jahr (19xx). RÅckgabe in ERRORLEVEL.
+
+-*)  WEEKDAY?
+
+          Ermittelt den Wochentag. ERRORLEVEL wird auf einen Wert 
+          zwischen 0 und 6 gesetzt (0=Montag,1=Dienstag,...).
+
+-*)  DATE?
+
+          RÅckgabe des Datums in ERRORLEVEL (JJJJMMTT).
+
+-*)  HOUR?, MINUTE?
+
+          RÅckgabe der Stunde (0..23) und Minute (0..59) in ERRORLEVEL.
+
+-*)  TIME?
+
+          Ermittelt heutiges Datum. RÅckgabe in ERRORLEVEL (HHMM).
+
+-*)  GETKEY
+
+          Wartet auf einen Tastendruck und liefert den ASCII-Code in 
+          ERRORLEVEL zurÅck.
+
+
+
+Erzeugen von Textdateien:
+=========================
+
+-*)  OPEN <datei>
+
+          ôffnet eine Datei. Eine Vorhandene Datei wird hierbei gelîscht. 
+          (ERRORLEVEL=0 bedeutet KEIN Fehler).
+          Es kann immer nur EINE Datei mit OPEN/APPEND geîffnet werden.
+
+-*)  APPEND <datei>
+
+          ôffnet eine Datei. Die Daten werden im Gegensatz zu OPEN an eine 
+          bestehende Datei angehÑngt (ERRORLEVEL=0 bedeutet KEIN Fehler).
+          Es kann immer nur EINE Datei mit OPEN/APPEND geîffnet werden.
+
+-*)  WRITE [<text>]
+
+          Schreibt einen Text in die zuvor geîffnete Datei.
+
+-*)  CLOSE
+
+          Schlieût die geîffnete Datei.
+
+
+
+
+
+
+
+
+
+
+Der Batchinterpreter                                              Seite 07
+
+
+
+Textdateien in eine Area setzen:
+================================
+
+!-)  !FILE <filename>
+
+          Definiere zu sendendes File.
+
+!*)  !FILESELECT
+
+          Wie "!FILE", aber Auswahl per Fileselector.
+          (ERRORLEVEL: 0=OK, 1=File nicht gefunden, 2=Abbruch)
+
+--)  !AREA <areaname>
+
+          Definiere eine (Echo-)area. Diese muû in der AREAS.BBS vor-
+          handen sein.
+
+--)  !BASE <msgbase>
+
+          Definiere eine MsgBase. Anstelle des Areatag (siehe "!AREA") 
+          kann hier direkt die MsgBase angegeben werden (OHNE Extension).
+
+--)  !FLAGS <flags>
+
+          Mailflags festlegen ("Local" wird immer gesetzt).
+          Flags: [P] Private, [C] Crash, [S] Sent, [H] Hold
+                 [W] Send-With-File, [K] Kill-If-Sent
+                 "P" MUû in der Netmail gesetzt werden.
+          Beispiel:  Netmail: !FLAGS PK
+                    Echoarea: !FLAGS
+
+--)  !SUBJECT <subject>
+
+          Das Subject der Mail.
+          Im Befehl "!SUBJECT" sind folgende Parameter erlaubt:
+           %filename% - Filename ohne Extension (der konvertierten Datei)
+           %file%     -    "     mit     "        "        "         "
+           %ext%      - Extension als Zahl (oder 0, wenn die Extension
+                        nicht als Zahl auswertbar ist).
+
+--)  !CONVERT=ON|OFF
+
+          Hiermit kann die Umlautkonvertierung ein- bzw. ausgeschaltet 
+          werden. StandardmÑûig ist sie ausgeschaltet.
+
+--)  !CONVERTTEARLINE=ON|OFF
+
+          Wenn eine Zeile mit drei "-"-Zeichen anfÑngt, denken einige 
+          Exporter, daû der Text zu Ende ist (Tearline). Mit diesem 
+          Befehl wird das dritte "-" von Avalon automatisch in ein "!" 
+          konvertiert.
+
+--)  !FROM <addr> <name>
+
+          Die Adresse und der Name des Absenders.
+
+--)  !SEND <addr> <name>
+
+          Hiermit wird die Mail an <name> mit der Adresse <addr> erzeugt.
+
+
+
+
+
+
+
+
+
+Der Batchinterpreter                                              Seite 08
+
+
+
+Befehle, die direkt die Parameter beeinflussen:
+===============================================
+
+     Die Parameter werden mit %%n angesprochen (0<=n<=9) und kînnen in 
+     JEDEM Befehl verwendet werden. %%e liefert die letzte ERRORLEVEL als 
+     Dezimalzahl.
+
+!*)  FILESELECT [n]
+
+          Belegt einen Parameter mit einem Filenamen. Fehlt die Angabe 
+          von "n", wird 0 genommen (0<=n<=9).
+          (ERROLEVEL: 0=OK, 1=File nicht vorhanden, 2=Abbruch)
+
+--)  CUTEXTENSION [n]
+
+          Schneidet die Extension im Parameter n ab.
+
+--)  CUTPATH [n]
+
+          Schneidet den Pfad im Parameter n ab.
+
+--)  INPUT [n [text]]
+
+          Eingabe eines Textes von der Tastatur. Der Text wird im 
+          Parameter n abgelegt. Als Eingabeaufforderung wird <text> aus-
+          gegeben. (0<=n<=9; fehlt n, so wird Parameter 0 genommen).
+
+--)  PRESET [n [text]]
+
+          Belegt Parameter n mit <text> vor. (n<=n<=9; fehlt n, so wird 
+          Parameter 0 genommen)
+
+--)  CONVERT4D [n [addr]]
+--)  CONVERT [n [addr]]
+
+          Konvertiert eine Adresse in einen 3D- oder 4D-Filenamen und legt 
+          diesen in Parameter n ab.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Der Batchinterpreter                                              Seite 09
+
+
+
+Node-/Pointlist Bearbeitung:
+============================
+
+!*)  APPLYDIFF <nl> <diff> [clean]
+
+          HÑngt ein Diff-File an eine Node- oder Pointliste an.
+              <nl> = Nodelist (z.B. "D:\NODELIST.*")
+            <diff> = Diff-File (z.B. "D:\NODEDIFF.*")
+          Wird "clean" mit angegeben, so wird das Diff-File anschlieûend 
+          gelîscht.
+          Errorlevels:
+            0-Alles OK
+            1-Falsche CRC (neue NL wurde erzeugt)
+            2-Fehlender Parameter
+            3-Nodelist nicht gefunden
+            6-Fehler beim Anlegen des TMP-Files
+            7-Tagesnummer nicht gefunden
+            9-Fehler beim ôffnen eines Files
+
+!*)  MAKEUSERLIST <typ> <lst> <out> [<zone>]
+
+          Erzeugt eine Userliste fÅr den LED aus einer 3D-/4D-Pointlist 
+          oder Nodelist.
+            <typ> = Listentyp (p=Pointliste (3D oder 4D), n=Nodeliste)
+            <lst> = 3D-/4D-Pointlist, Nodelist (z.B. "D:\POINTS24.*")
+            <out> = Name der Userliste (z.B. "D:\PN24USER.LST")
+           <zone> = Optional (nur Pointliste):
+                    ErgÑnze "<zone>:" in der Userliste.
+          Errorlevels:
+            0-OK
+            2-Fehlender Parameter
+            9-Fehler beim ôffnen eines Files
+
+!*)  EXTRACT <nodelist> <output> [<region1> [<region2> ...]]
+
+          Hiermit kann eine Nodelist verkleinert werden. Es kînnen bis 
+          zu 50 Regionen angegeben werden, aus denen die verkleinerte 
+          Nodeliste bestehen soll. Fehlt die Angabe einer Region, so wird
+          eine Liste mit allen RCs erzeugt.
+
+          Errorlevels:
+            0-OK
+            2-Fehlender Parameter
+            9-Fehler beim ôffnen eines Files
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Der Batchinterpreter                                              Seite 10
+
+
+
+Sonstige Befehle:
+=================
+
+--)  PAUSE
+
+          Wartet auf einen Tastendruck.
+
+--)  CLS
+
+          Bildschirm lîschen.
+
+--)  REM <text>
+--)  ; <text>
+
+          Bemerkungszeile (wird ignoriert).
+
+--)  ECHO [<text>]
+
+          Ausgabe einer Textzeile auf dem Bildschirm.
+
+--)  WECHO [<text>]
+
+          Ausgabe einer Textzeile auf dem Bildschirm ohne Zeilenvorschub.
+
+
+--)  ECHO=OFF|ON|FULL
+
+          ECHO=OFF: Es werden nur noch Fehlermeldungen ausgegeben.
+          ECHO=ON : Ausgabe weiterer Informationen. Nur bei: !SEND,SWITCH,
+                    WEEKDAY?,OPEN,APPEND,DEXEC,(S)COPY/MOVE,DEL,TYPE,PRINT,
+                    RENAME,WAITTIME
+          ECHO=FULL:wie ECHO=ON und es wird jede Batchzeile ausgegeben.
+          Default ist ECHO=ON.
+
+--)  EXIT [<n>]
+
+          Beendet die Batchdatei mit Fehlercode <n>. Wird kein <n> 
+          definiert, so wird 0 zurÅckgeliefert.
+
+--)  EndOfAvalon
+
+          Beendet AVALON mit dem Errorcode 0.
+
+--)  ErrorEndOfAvalon <n>
+
+          Beendet AVALON mit dem Errorcode n.
+
+--)  SHELL [<cmd>]
+
+          Startet eine Shell Åber "_shell_p" mit dem Kommando <cmd>.
+
+--)  HIDEM
+--)  SHOWM
+
+          Maus verstecken (nÅtzlich, wenn TOS-Programme aufgerufen 
+          werden) bzw. Maus wieder anschalten.
+
+--)  SWITCH <n>
+
+          Wechselt zu Point-Setup <n> (0<=n<=5). Nur fÅr Binkley-Setup.
+
+
+
+
+
+
+
+
+Der Batchinterpreter                                              Seite 11
+
+
+
+--)  SHIP
+
+          Harddisk parken. Es werden alle GerÑte am ASCI,SCSI und IDE-
+          Port geparkt.
+
+--)  BELL
+--)  GONG
+
+          Ausgabe von Signaltînen.
+
+-*)  WAITTIME <HH:MM:SS>
+
+          Wartet bis <HH:MM:SS>. Abbruch Åber eine beliebige Taste.
+          RÅckgabewert: 0=Zeit erreicht, ansonsten Tastencode.
+
+--)  LOG <text>
+
+          Schreibt <text> in Binkley's Logfile.
+
+--)  LOGn <text>
+
+          Wie LOG, aber anstelle des "!" am Zeilenanfang kann ein anderes 
+          Zeichen benutzt werden (0=! 1=* 2=+ 3=: 4=#, 5=Leerzeichen).
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Der Batchinterpreter                                              Seite 12
+
+
+
+Beispiele:
+==========
+
+MOVE H:\FIDO\INBOUND\NODE_BRD.* H:\FIDO\LIST\
+
+     Verschiebt alle "NODE_BRD.*", falls vorhanden, ins LIST-Verzeichnis.
+
+
+TYPE H:\FIDO\INBOUND\*.RSP
+DEL H:\FIDO\INBOUND\*.RSP
+
+     Zeigt alle Respondfiles an und lîscht diese anschlieûend.
+
+
+CHDIR \FIDO\INBOUND
+EXIST LISTE.TXT
+DEL LISTE.TXT
+
+     Lîscht LISTE.TXT, falls vorhanden (kann auch ohne EXIST erfolgen, 
+     nur wird dann eine Meldung ausgegeben).
+
+
+EXIST2 readme.txt                  |    NOTEXIST2 readme.txt
+ECHO readme.txt existiert!         |    ECHO readme.txt fehlt!
+JUMP 1                             |    JUMP 1
+ECHO readme.txt fehlt!             |    ECHO readme.txt existiert!
+
+     Beide Beispiele ÅberpÅfen, ob "readme.txt" vorhanden ist.
+
+
+DEXEC nodediff.* arc.ttp x nodediff.*
+
+     Ermittelt Namen von NODEDIFF.* (NODEDIFF.A67). Anschlieûend wird 
+     NODEDIFF.* mit ARC.TTP ausgepackt und NODEDIFF.A67 gelîscht. Die 
+     ausgepackte Datei NODEDIFF.267 kann dann z.B. verschoben werden mit:
+       MOVE NODELIST.* E:\FIDO\LIST\
+
+
+DUMMYFILE \FIDO\OUTBOUND\00F50008.FLO
+
+     Es wird eine Datei mit Namen "00F50008.FLO" angelegt, die die LÑnge 
+     NULL besitzt.
+
+
+EXIST files.lzh
+DEXEC files.lzh \fido\lharc.ttp x -m files.lzh e:\fido\list\ *.*
+
+     Auspacken einer Fileliste FILES.LZH in den Ordner E:\FIDO\LIST\
+
+
+ECHO Abbruch mit irgendeiner Taste
+WAITTIME 12:30
+IFERR= 0 weiter
+EXIT
+:weiter
+
+     Wartet bis 12:30 bis mit der Batchdatei weitergemacht wird. Abbruch 
+     mit jeder beliebigen Taste.
+
+
+
+
+
+
+
+
+
+
+Der Batchinterpreter                                              Seite 12
+
+
+
+WEEKDAY?
+IFERR# 6 weiter
+APPEND 09610067.REQ
+WRITE NEWFILES
+CLOSE
+:weiter
+
+oder
+
+WEEKDAY?
+IFERR# 6 weiter
+CONVERT 0 2401/103
+APPEND %%0.REQ
+WRITE NEWFILES
+CLOSE
+:weiter
+
+     Beide Beispiele erzeugen jeden Sonntag ein File zum Requesten der 
+     Fileliste "NEWFILES" von 2401/103.
+

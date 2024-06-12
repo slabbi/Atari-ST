@@ -1,0 +1,11 @@
+extern int	msg_base(char *areaname);
+extern void msg_area(char *area);
+extern void msg_convert(char *txt);
+extern void msg_converttear(char *txt);
+extern void msg_filename(char *filename);
+extern int	msg_fileselect(void);
+extern void msg_subject(char *subject);
+extern void msg_from(char *txt);
+extern void msg_to(char *txt);
+extern void msg_flags(char *flags);
+extern int	msg_send(int echo);

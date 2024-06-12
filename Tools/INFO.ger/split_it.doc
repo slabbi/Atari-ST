@@ -1,0 +1,81 @@
+072000300070000144000006000014000
+11
+21
+F0000000001
+9[..........................................................]0110
+Ä==========================================================================
+SPLIT-ITV1.x                                Letzteénderung:25.11.93
+==========================================================================
+(c)StephanSlabihoud
+==========================================================================
+SHAREWARE
+==========================================================================
+
+Sharewarebedingungen:sieheAVALON.TXT
+
+==========================================================================
+
+AnregungenundFehlerbeschreibungenzumHandbuch
+undProgrammbittedirektperCrashmailanmich!
+
+
+
+INTRO:
+======
+
+ManchmalsindTextfilesvielzulangfÅreineMsg.MitSPLIT-ITkînnen
+dieseTextfilesinkleinereTeilezerlegtwerdenundz.B.mitFILE2MSG
+versendetwerden.
+
+
+
+ÄAUFRUF:
+=======
+DerAufrufvonSPLIT-ITistdenkbareinfach:
+
+SPLIT_IT<file><maxbytes><maxlines>
+
+<file>-File,welchesaufgeteiltwerdensoll.DieeinzelnenTeile
+tragendieExtension"*.xxx"(xxx=NummerdesTeils).
+
+<maxbytes>-MaximaleAnzahlderBytes,dieeinTeilenthaltensoll
+(ca.Wert),oder"0",wennnichtnachBytesaufgeteilt
+werdensoll.
+
+<maxlines>-MaximaleAnzahlvonZeilen,dieeinTeilenthaltensoll(+2
+Kopfzeilen),oder"0",wennnichtnachZeilenaufgeteilt
+werdensoll.
+
+Beispiele:
+==========
+
+SPLIT_ITE:\TEST.TXT60000
+
+DerTextwirdinTeilezuje6000Bytezerlegt.
+
+SPLIT_ITE:\TEST.TXT0100
+
+     DerTextwirdinTeilezuje100Zeilenzerlegt.
+
+SPLIT_ITE:\TEST.TXT6000100
+
+DerTextwirdinTeilezuje100Zeilen,jedochnichtmitmehrals
+6000Byte,zerlegt.
+
+
+
+INTERNA:
+========
+
+DerTextdarfunbegrenztvieleZeilenenthalten.
+
+
+
+HISTORIE:
+=========
+V1.0-  ErsteoffizielleVersion.
+V1.1-BugFix.Etwasschneller.
+V1.2-AnstelleeinerKopfzeilewirdeineFuûzeileerzeugt.
+V1.3-BugFix.NummerierungderFuûzeilenunkorrekt:-(
+V1.4-Einwenigschneller.
+

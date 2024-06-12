@@ -1,0 +1,65 @@
+==========================================================================
+ BBS-INFO v1.3x                                    Last Changes: 08 Mar 94
+==========================================================================
+                          (c) Stephan Slabihoud
+==========================================================================
+                            S H A R E W A R E
+==========================================================================
+
+                For shareware details refer to AVALON.TXT
+
+==========================================================================
+
+       If you have any ideas directed at manual or program, please 
+               send them directly and per crashmail to me!
+
+
+
+INTRO:
+======
+
+Want to have a statistic about your messagebase? <What for? - Hey, 
+I'm  only the translator of this manual...>
+
+No Problem! BBS-INFO gives you statistical information about all areas you 
+receive.
+
+
+
+
+START:
+======
+
+Another it's-so-simple-to-start product:
+
+BBS_INFO sysop [file] [>[>]logfile]
+
+sysop                 Your FIDO name (the one from the message header).
+
+[file]                Where  is AREAS.BBS?  Give the whole filename  (with 
+                      path-information)  if AREAS.BBS is not in  the  same 
+                      folder  as BBS-INFO.  Otherwise,  forget about  this 
+                      parameter.
+
+[logfile]             If you hate screen outputs, give a logfilename where 
+                      the statistic is written to.
+
+
+
+EXAMPLE:
+========
+
+
+BBS_INFO "Stephan Slabihoud" e:\fido\areas.bbs    | Screen output
+
+BBS_INFO "Stephan S" e:\fido\areas.bbs >>logfile  | Append to logfile
+
+
+
+HISTORY:
+=========
+ V1.00 -  First official version
+ V1.10 -  Messages FROM: and TO: the sysop are counted, too.
+ V1.20 -  Maximum of 500 areas (100 before).
+ V1.30 -  Maximum of areas unlimited now.
+

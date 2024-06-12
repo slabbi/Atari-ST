@@ -1,0 +1,38 @@
+Hi
+
+Hab das Prob im Griff :-))
+
+SCCA_CNT  EQU   0xFFFFFA35      ;stecc
+SCCB_CNT  EQU   0xFFFFFA31      ;stecc
+
+Die Adr. sind bei Haruns Kiste nicht mit denen im TT oder STe identisch.
+
+Aszug aus seinen Dokus.
+
+Adressen des SCC
+ErklÑrung         bei ST_ESCC   bei TT/MegaSTE/Falcon
+ControlRegisterA   $FFFFFA35       $FFFF8C81
+DataRegisterA      $FFFFFA37       $FFFF8C83
+ControlRegisterB   $FFFFFA31       $FFFF8C85
+DataRegisterB      $FFFFFA33       $FFFF8C87
+
+Abfrage des DSR-Signals
+$FFFFFA39: Bit3 DSRA, Bit2 DSRB
+
+(Im MegaSTE, TT und Falcon liegt der Kanal A wirklich vor dem Kanal B, da
+muû wohl die Adreûleitung A2 (geht an A//B) negiert sein.)
+
+Dem SCC fehlen EingÑnge fÅr RING und DSR, aber er hat je Port ein im
+Asynchronbetrieb frei nutzbares Pin, das hier als Eingang RING
+verwendet wird. Das DSR-Signal wird Åber das GAL gefÅhrt und kann mit
+Lesezugriffen auf Adresse $FFFFFA39 (und als Nebeneffekt *B, *D, *F)
+erfragt werden. DSRA liegt auf Bit3 und DSRB auf Bit2, die anderen
+Bits sind bedeutungslos.
+
+Takt PCLK des SCC
+Ideal ist eine Frequenz von 14745600Hz, da daraus alle Baudraten genau
+erzeugt werden kînnen. Es ergeben sich folgende hohe Baudraten:
+230400, 153600, 115200, 92160, 76800, 65829, 57600.
+
+
+Gruss Stefan

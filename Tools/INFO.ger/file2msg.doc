@@ -1,0 +1,138 @@
+072000300070000144000006000014000
+11
+21
+F0000000001
+9[..........................................................]0110
+Ä==========================================================================
+FILE2MSGV1.4x                                  Letzteénderung:02.04.94
+==========================================================================
+(c)StephanSlabihoud
+==========================================================================
+SHAREWARE
+==========================================================================
+
+Sharewarebedingungen:sieheAVALON.TXT
+
+==========================================================================
+
+AnregungenundFehlerbeschreibungenzumHandbuch
+undProgrammbittedirektperCrashmailanmich!
+
+
+
+INTRO:
+======
+HabenSiesichauchschonoftdarÅbergeÑrgert,daûSiez.B.die
+ankommendenRespond-FileserstnachverlassenderShelllesenkînnen?
+OderwollenSieTextfilesanandereweiterleiten?
+Wennja,dannistFILE2MSGgenaudasrichtigeUtilityfÅrSie.
+
+FILE2MSGkonvertiertbeliebigeTextdateienindasFido-MessageBaseFormat,
+welchesz.B.vomLEDbenutztwird.DieseDateienkînnendannmitLED
+bequemgelesenwerden.
+
+
+
+
+Ä
+AUFRUF:
+=======
+DerAufrufvonFILE2MSGistdenkbareinfach:
+
+FILE2MSG<file><msgbase><addr>[<from><dest-addr><to><subj><mode>]
+
+
+<infile>  -Hierwird/werdendieDatei(en)angegeben,diekonvertiert
+werdensoll(en).
+
+<msgbase>-DiesesteiltFILE2MSGmit,inwelcheMsgBasediekonver
+tierte(n)Datei(en)geschriebenwerdensollen.DieAngabe
+muûOHNEExtension(genauwieinderAREAS.BBSerfolgen).
+
+<address>-IhreFido-Adresse(4d).
+
+DiekonvertierteOriginal-Dateiwirdanschlieûendgelîscht.
+
+DieNachrichtbekommtfolgendenKopf:
+===========================================
+From:File2MsgVx.xx   LocalSentPvt
+To:Sysop
+Subj.:<infile>
+===========================================
+
+FÅrNodesistesoftwichtig,FilesanPointsweiterzuleiten.Hierzu
+kînnenFile2MsgweitereParameterÅbergebenwerden:
+
+<from>-IhrName(derName,derunter"From:"erscheinensoll).
+<dest-addr>-DieZieladresse(4d).
+<to>-DerAdressat("To:").
+<subject>-DasSubject.
+           WennalsSubject"*filename*"angegebenwird,sowirdder
+NamedesFilesalsSubjectbenutzt.
+   <mode>-0=MsgbekommtdieFlags"Sent","Private"und"Local",
+d.h.siewirdnichtexportiert.
+               1=MsgbekommtnurdasFlag"Local",d.h.siewirdbeim
+nÑchstenExporterlaufexportiert(diesenModusbei
+Echomailsbenutzen).
+               2=MsgbekommtdieFlags"Local"und"Private",d.h.sie
+wirdexportiert(diesenModusbeiNetmailsbenutzen).
+               3=Msgbekommt"Local","Private"und"KillSent".
+               4=Msgbekommt"Local","Private"und"Crash".
+               5=Msgbekommt"Local","Private","KillSent"und"Crash".
+
+WerdendieseAngabengemacht,sowirddasOriginalfileNICHTmehrge
+lîscht(evtl.sollesjanochanweiterePersonengesendetwerden).
+
+
+
+Achtung:
+========
+LEDkannnurDateienanzeigen,diekÅrzerals32768Bytessind.FILE2MSG
+konvertiertzwarFilesbiszueinerLÑngevon65535Bytes,dieseskann
+aberbeimjetzigenLEDnochnichtausgenutztwerden.
+
+
+
+
+
+ÄBEISPIELE:
+==========
+
+FILE2MSGE:\FIDO\INBOUND\*.RSPE:\FIDO\MSGS\SYSTEM2:2401/53.6
+
+-AlleRespond-FileswerdenindieArea(MsgBase)SYSTEMgeschrieben.
+
+
+FILE2MSGE:\FIDO\INBOUND\LISTE.LSTE:\FIDO\MSGS\NETMAIL2:4711/80.0
+
+  -DieDatei"LISTE.LST"wirdindieNETMAILgeschrieben.
+
+
+FILE2MSGE:\TEXT.TXTE:\FIDO\MSGS\NETMAIL2:2401/53.6
+ "StephanSlabihoud"2:245/8.0"PeterKaszanics""InfoÅberAvalon"2
+
+-DerText"TEXT.TXT"wirdinderNetmailabgelegtundbekommt
+folgendenHeader:
+     ======================================================
+From:StephanSlabihoudon2:2401/208.6LocalPvt
+     To:PeterKaszanicson2:245/8
+Subj.:InfoÅberAvalon
+======================================================
+DieNachrichtkannnunexportiertwerden.
+
+
+
+HISTORIE:
+=========
+
+V1.00 -  ErsteoffizielleVersion.
+ V1.10-Konvertierungbiszu1000%schneller.
+V1.20-Konvertierungnunfehlerfrei.
+V1.30-WeitereOptionen.
+V1.40-MSGIDwirdhinzugefÅgt.
+V1.41-  WeitereMsg-Flagsmîglich.
+V1.42-  PIDimplementiert.
+V1.43-*filename*alsSubject.
+V1.44-Kleineénderungen.
+V1.45-Sommerzeitwirdjetztbeachtet.
+

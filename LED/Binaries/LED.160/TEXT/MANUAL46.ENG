@@ -1,0 +1,2355 @@
+
+                              LED 1.46
+
+                       A FidoNet Message Editor
+
+
+
+        All versions of this program before 1.23 were written by
+                  Roland Bohn and Volkmar Wieners.
+
+     All versions from 1.23 on were written by Stephan Slabihoud
+
+
+                     Manual edited by Antony Lacey
+
+                          September 20th, 1996
+
+         LED is shareware, please support the shareware concept.
+
+If you have any comments about the program, please contact the author, 
+Stephan Slabihoud by Netmail or in ST_FIDO.GER , N.SUP.LED, or 
+A.SUP.LED.
+
+Notes about this Manual.
+------------------------
+
+If you have any comments about the manual or the HyperText guide, please 
+contact the editor, Antony Lacey at 90:102/146 or in the N.SUP.LED or 
+A.SUP.LED (Atarinet) Echoes. E-mail on algy@allatsea.demon.co.uk
+
+The Hypertext file contains the same information as the Manual. I 
+decided to do both as some people prefer a manual, and some the .HYP 
+file. Now you can use whichever you prefer.
+
+=========================================================================
+
+   The manual covers version 1.46 of LED. 
+   
+   It does not fully cover earlier versions of the program, and 
+   some of the options described in it may not be available in previous 
+   versions of LED.
+
+Please Note:    
+
+i)   In this manual all key presses are enclosed in < > brackets, 
+where more than one key is needed they are placed next to each other 
+e.g <ALT><A> means ALTERNATE and A key must be pressed together.
+
+ii)  The left/right arrow keys below the help button are shown as <-, 
+-> and the up and down arrow keys will be called cur up and cur down.
+
+iii) Menu Options with '...', e.g 'About...' after them indicate that 
+a Dialog Box/Window will be opened or the File Selector will be shown. 
+Options without this will execute immediately.
+
+New features in this version of LED are marked [NEW] so you can 
+find them easily.
+
+
+1) General Information.
+-----------------------
+
+   Led is an editor for FidoNet messages for the Atari ST & Falcon 
+range of computers. It allows you to read, edit and write messages 
+which are imported / exported by your mailer software. 
+   If you are not familiar with your mailer software, please consult 
+the documents that came with it as this manual deals only with LED.
+
+2) Files Needed.
+----------------
+
+   To use LED you must have the following files ... (LED will not run 
+without these files).
+    
+      LED.PRG           The program file 
+      LED.RSC           The resource file. This can be placed in the
+                        same folder as LED.PRG or in the LED system
+                        folder.
+      LED.CFG, or       Binkleyterm's or LED's own configuration file.
+      BINKLEY.CFG       LED looks for LED.CFG, or BINKLEY.CFG. 
+                        LED.CFG must be placed in the LED system
+                        folder.
+      AREAS.BBS         List of areas, This should already exist with 
+                        your mailer software. IOSmail/Jetmail/Marsmail 
+                        etc.
+      LED.LNG           This is the language file. It contains the 
+                        text for all the dialog boxes etc. 
+      
+   You may also use the following files ... 
+   
+      LED.SCT           A file containing a list of Shortcut text for 
+                        use with CONTROL-F1 feature. This list can be 
+                        changed using an ASCII text editor. See 
+                        the example in the Help menu section.
+      LED.FLN           A file containing Footlines to use with the 
+                        Random Footline feature. See Appendix E 
+                        for the file format.
+      LED.NIC           A file containing nicknames. Available for 
+                        Registered users only. See Appendix F for 
+                        more information on this feature.
+                         
+
+   LED will also create the following files if needed ... 
+   
+      LED.FKY           This contains any text programmed into the 
+                        function keys and is generated when the list 
+                        is saved.
+      LED.NEW           This contains the last-read pointers for each 
+                        area and the new/unread/to sysop message 
+                        pointers. This can be edited by an ASCII text 
+                        editor if desired.
+      LED.OPT           This contains LED options, number and position 
+                        of open windows, and fonts selected when LED 
+                        exits. If it doesn't yet exist, it will be 
+                        created by LED and can be saved on every exit 
+                        if desired.
+      LED.DLG           Contains the co-ordinates of the flying 
+                        dialogues.
+      LED.LOG           If there are problems, this log will be 
+                        created.
+      LED.PRN           This is a printer driver for LED and allows 
+                        character conversion when printing. If this 
+                        file is not present LED will use GDOS for 
+                        printing. 
+                        
+                  Note: If this file is missing or if not all of the 
+                        text effects are defined, then no text effects
+                        can be printed.
+                        This will be shown in the Sysyem Report.
+                        
+                        
+NOTE: LED expects to find all but the following files in a Directory 
+      named LED. 
+
+      LED.NEW may be in the LED directory or in the same directory as 
+              the AREAS.BBS file. If it is in the LED directory, 
+              IOSMail, Jetmail etc. will not update this file.
+              From Jetmail 0.99beta21 on, Jetmail can use it in the 
+              LED folder as well. 
+      LED.LOG may be in a different directory as long as this is 
+              defined in LED.CFG using Logfile. 
+             
+You can now keep the LED folder in various places. These are as 
+below, with the highest priority at the top :-
+
+    a) As defined by the Environment LED 
+    e.g  LED=D:\FIDOSOFT\CONFIGS\LED 
+    (this MUST have the folder name at the end)
+    
+    b) As defined by the Environment FIDOCONFDIR (as now used by 
+    Binkleyterm and Jetmail) 
+    e.g FIDOCONFDIR=D:\FIDOSOFT\CONFIGS
+    (The LED folder will need to be inside the CONFIGS folder)
+    
+    c) When $FIDOCONFDIR does not exist, LED tries to find its 
+    config folder in .\CONFIG
+    
+    d) If none of the above are defined, LED looks a folder 
+    called LED in the directory where it was started from. 
+    
+3) Starting the program.
+------------------------
+
+   If LED cannot find the configuration file(s), the langauge 
+file,  or AREAS.BBS it will not run. They .CFG must be in the LED 
+folder, but AREAS.BBS can be in a seperate directory as long as it 
+is specified in the .CFG file by the MAILERPATH command, or 
+defined with the environment setting MAILER or BINKLEY.
+   If you are having problems with Binkley's configuration file, 
+please read the Binkley documentation. 
+   If you are having problems with LED.CFG please see Appendix C at 
+the end of this manual.
+
+   Double click on LED.PRG and the program will open a window showing 
+the last read message. If it is the first time the program has run, no 
+window will be open.
+
+   The first open window will be a Message Window and can be scrolled, 
+resized as necessary using the sliders/size box etc. as a normal GEM 
+window. More about this window later.
+
+
+4) Menu Functions.
+------------------
+
+   Next to most menu options there is a keyboard shortcut option 
+shown. They are included in the descriptions below next to the menu 
+choice.
+ 
+   e.g <CTRL><I> (Control and I keys together) will show information 
+about LED.
+
+I) LED.
+=======
+
+   a) About...        <CTRL><I>
+
+   This is a short information box about LED and includes an option to 
+add your registration Key. Running LED without the key will restrict the use
+of some features. It also adds a delay when starting and ending LED. 
+
+      Support the Shareware concept, register your copy of LED.
+
+
+   b) ACCESORIES.
+
+      Start these as you would normally from the GEM desktop. 
+
+
+II) File.
+=========
+
+   a) Read ASCII...   <ALT><R>
+
+   Import an ASCII text file to the current cursor position in an 
+Edit Window only. When selected the file selector will be shown to 
+choose the file.
+
+
+  b) Write ASCII...  <ALT><W>
+
+   One or more messages can be written to a file in ASCII format. A 
+dialog box is displayed where you can choose/change the message 
+number(s) to be exported in this way. Click on OK and the file 
+selector will be shown to choose the destination path/name. The text 
+will include header information as shown below:-
+
+
+Msg #11 / 1-14  Time: 28 Mar 95  01:26:12
+From: Antony Lacey on 90:102/146
+To  : Stephan Slabihoud on 90:400/410
+Subj: Led 1.27
+---------[FidoNetmail]-----------------------------------------------
+Hiya Stephan,
+
+   I forgot to mention in my previous message ....
+
+
+   If a block of text has been selected, this can be written 
+instead of the whole message.
+
+   
+   c) Append ASCII... <ALT><A>
+
+   The message(s) chosen will be appended to an existing ASCII file 
+with the header information as above intact for each message. The file 
+selector will be shown to choose the destination file on the first 
+occasion, but if a file has already been chosen then the message will 
+automatically be appended to the previously selected file.
+
+   A block can be chose in the same way as for Write ASCII.
+
+
+   d) Read Binary...
+   
+   This will read a binary file (uue-coded) into the current 
+message at the current cursor position. The maximum file size is approx.
+48 Kb. The file selector will be called to select the file.
+
+   Remember! Too big and your messages may not be exported.
+
+
+   e) Write Binary...
+
+   This will write a uuencoded message to be written to your disk 
+as a binary file. The file selector will be called to select the 
+path to write the file to. 
+
+   If the message is split over several messages, a Dialog box 
+will ask if you want to add further uuencoded messages or abort 
+the process.
+ 
+
+   f) Write Plain...  <SHIFT><ALT><W>
+
+   The message(s) will be written to an ASCII file the same as Write 
+ASCII except the header information will not be included. Example:- 
+
+Hiya Stephan,
+
+   I forgot to mention in my previous message ....
+
+
+   This can be useful if you want to export a message which has been 
+split into several parts, or UUE coded messages. The fileselector is 
+shown to choose the destination path/file.
+
+
+   g) Append Plain... <SHIFT><ALT><A>
+
+   The same as Append ASCII except again no message header information 
+   is written.
+
+
+   h) Read Clipboard  <ALT><L>
+
+   When in an Edit Window, text from the clipboard will be inserted at 
+the present cursor position. 
+
+
+   i) Write Clipboard <ALT><B>
+
+   The current message will be written to the clipboard. Any program 
+which uses the clipboard can then use the message text.
+
+
+   j) TOS Shell       <ALT><Z>
+
+   Start the TOS shell which is defined in LED.CFG. This must also 
+   be defined by the Environment variable SHELL for this to work 
+   correctly. 
+
+
+   k) Execute...      <ALT><E>
+
+   When selected the file selector will be shown and any TOS or GEM 
+program can be run. When you have finished with the chosen program LED 
+will start again automatically and read the configuration file.
+   This means you can change the configuration file with a 
+text-editor, save it, and when LED starts again it will use any 
+changes straight away provided the text editor was run in the above 
+manner.
+
+
+   l) Quit             <CTRL><Q>
+
+   This will exit LED and return to the desktop.
+
+   If the Rescue Lastread switch is set (see under Options) the LED 
+will save all the new/unread/msg to sysop pointers for each area to 
+LED.NEW before quitting. If the file does not exist, LED will create 
+it.
+   If the save always LED.OPT switch is set, the number of open 
+windows, their positions, the selected fonts and all other options 
+will be saved to LED.OPT. Again, if the file doesn't exist, LED will 
+create it.
+
+
+III) Area.
+==========
+
+
+   a) Open...          <CTRL><O>
+
+   Open a Message Window. This will show the Arealist Dialog 
+box/Window depending on which you use, (See under Options) from where 
+you can choose the area to be opened.
+
+   The Arealist Dialog box will list the areas as defined in your 
+AREAS.BBS file. (See Appendix A for AREAS.BBS information). The 
+areas will be listed in columns of fifteen areas, and sixty on one 
+page. If you have more than 60 areas, a second page will be used 
+for extra areas, a third for over 120 etc.
+   To choose the area you want to view, use the cursor keys or the 
+mouse. A left click on the mouse, or <RETURN> will select the 
+highlighted area and open a Message Window for that area. The cursor 
+keys will wrap at the end of rows and columns, so if you move the 
+cursor to the bottom of a column and press <cur down> again, the 
+cursor will move to the top of the next column.
+   With over 60 areas, there will be a small right arrow in the bottom 
+right of the Dialog Box pointing to the next page. Click on this with 
+the mouse, or use <SHIFT>< -> > to move to the next page. If you have 
+more than 120 areas, the middle page(s) will have a right and left 
+arrow. Just click with the mouse or use <SHIFT>< -> > or <SHIFT>< <- > 
+to move between the pages.
+   The Arealist Window is similar except all the areas are in one 
+column. If you have '...use description' on in the Options, then the 
+description as defined in AREAS.BBS will be shown next to each area. 
+Using <SHIFT><cur up/cur down> will move up and down the areas, or use 
+the mouse on the scroll bars in the window.
+
+The following keys may be used in the Arealist Window / Dialog box:
+(Options marked * are ONLY available in the Window, NOT the dialog box)
+
+<UNDO>                      - Close Window
+<CLR HOME>                  - Start of list
+<SHIFT><CLR HOME>           - End of list
+<RETURN>                    - Select highlighted Area
+<cur up/cur down>           - Line up/down
+< <-/-> >                   - Line left/right (up/down in window)
+<BACKSPACE> *               - Scroll window up
+<SPACE> *                   - Scroll window down
+<SHIFT><cur up/cur down>    - Scroll window up/down
+<SHIFT>< <-/-> >            - Scroll window left/right
+
+<CTRL><A> *               - Change area
+<CTRL><I> *               - Info about LED
+<CTRL><O> *               - Open another area
+<CTRL><P> *               - Print Arealist
+<CTRL><Q> *               - Quit LED
+<CTRL><U> *               - Close Window
+<CTRL><W> *               - Cycle through open windows
+
+<ALT><B>  *               - Write Arealist to Clipboard
+<ALT><C>  *               - Change Msg
+<ALT><E>  *               - Execute external Program
+<ALT><J>  *               - Select Windows in Options menu
+<ALT><N>  *               - Select Quotes in Options menu
+<ALT><O>  *               - Select Switches in Options menu
+<ALT><S>  *               - Save options
+<ALT><U>  *               - Search for a User
+<ALT><Y>  *               - Select User Lists in Options menu
+<ALT><Z>  *               - Execute Shell
+<ALT><Fn> (F1 to F10) *   - Execute Shell Fn
+<ALT><8>                  - 8 point font
+<ALT><9>                  - 9 point font
+<ALT><0>                  - 10 point font
+
+  In the Arealist Dialog box, if you press a letter <a-z> the next 
+area starting with that letter will be selcted, in the Arealist 
+Window you can do the same, but also if you then type another 
+character any area starting with both will be selected. 
+
+e.g If you press N, any area starting with N will be highlighted, 
+<TAB> will switch to the next area starting with N .... now press 
+. and the first area starting with N. will be highlighted, again 
+<TAB> will go to the next one ...
+
+You can only have four windows open at any one time, and if you try to 
+open a fifth, you will see a dialog box advising you there are no more 
+windows available. Close one or more and try again.
+   If there is already a window open for the area you choose, it will 
+be made the active window, another window will not be opened.
+
+   If you have four windows open, you can still use the Arealist 
+Window and MsgList window as these are seperate to the four windows 
+mentioned above!
+
+
+   At the top of the Message Window is the Status or Information line. 
+This shows information about Options selected from within LED. It is 
+divided into five 'boxes' by the | character.
+
+
+   In the left box will be one or more of the following in brackets ...
+
+First will be:
+
+   HC   This will show if the Header Cache is selected in the Options
+        menu.
+
+Then one of the following 3:
+
+   RC   Will show if the Recognise ^CHRS kludge is set. 
+   
+   MI   Will show if the Convert MIME style is set.
+
+   RM   Will show if both Recognise ^CHRS and Convert MIME style 
+        are set.
+        
+Then lastly:
+        
+   TE   Will show if Text Effects are being used.
+
+
+   In the second box it will show one of three things.
+
+   i)   Original Msg  if this is the only message or first in a thread.
+
+   ii)  Reply to: xxx where xxx is the number of any messages (it may
+        include more than one message) that this message is a reply to.
+
+   iii) ?  if the original message has been deleted from your message 
+        base.  
+
+   In the third box the number of the current message will be shown in 
+   bold text. This box will also contain the numbers of any messages 
+   to the same person in the current thread.
+
+   In the fourth will be Replies: along with the number of any replies 
+   to the current message.
+
+   In the last will be one of two things.
+
+   i)  Start of Messages. This is the first message in this area. 
+       There may be deleted messages in the message area before the 
+       current message, but these are not taken into account.
+
+   ii) End of Messages. This is the last message in this area. Again, 
+       any deleted messages will not be counted.
+
+   If you click the left mouse button on one of the message numbers 
+   (apart from the current message) you will move to that message.
+
+   Pressing help in the Message Window will show the LED.HYP file.
+
+In the Message Window the following Key combinations can be used:- 
+(NUM indicates keys on the number keypad)
+
+<-,->                     - previous/next Msg
+<p>,<n>                   - previous/next unread Msg
+cur up/cur down           - line up / down
+<1 - 9>                   - goto msg nnnn (NOT from the number 
+                            keypad)
+NUM <->,<+>               - prev/next area
+NUM <*>                   - next area with new Msg
+NUM </>                   - next area with unread Msg
+<#>                       - next area with Msg to sysop
+NUM <(>,<)>               - prev/next Comment (Msg with same subject)
+NUM <CNTRL><(>,<CNTRL><)> - prev/next original Msg
+NUM <1>                   - previous unread Msg
+NUM <2>                   - first Comment from Original Msg
+NUM <3>                   - next unread Msg
+NUM <4>                   - previous Comment
+NUM <5>                   - first message of this thread
+NUM <6>                   - next Comment
+NUM <8>                   - Original Msg
+
+<ESC>                     - Reread Msg header
+<RETURN>                  - Display next Msg
+<SPACE>                   - Display next Msg
+<BACKSPACE>               - Display previous page
+<CLR HOME>                - Goto Top of Msg
+<HELP>                    - Call ST Guide
+<UNDO>                    - Redraw MsgWindow
+<cur up/cur down>         - Cursor up/down one line
+< <-/-> >                 - Display previous/next Msg
+<SHIFT><cur up/cur down>  - Screen up/down one page
+<SHIFT>< <-/-> >          - Screen left/right
+<SHIFT><J>                - Quote to area
+<SHIFT><T>                - Quote Msg
+<SHIFT><X>                - Toggle the Locked flag
+<SHIFT><CLR HOME>         - Goto End of Msg
+<SHIFT><ALT><A>           - Append Plain
+<SHIFT><ALT><H>           - Edit Header
+<SHIFT><ALT><W>           - Write Plain
+
+<CTRL><A>                 - Change area
+<CTRL><E>                 - Enter Msg
+<CTRL><F>                 - Foreward Msg
+<CTRL><G>                 - Goto Msg
+<CTRL><H>                 - Delete Flags
+<CTRL><I>                 - Info about LED
+<CTRL><J>                 - Quote to another area
+<CTRL><K>                 - Set Flags
+<CTRL><L>                 - List Messages (in Dialog or Window as set)
+<CTRL><M>                 - Move Msg
+<CTRL><N>                 - Quote to Netmail (native language)
+<CTRL><O>                 - Open another area
+<CTRL><P>                 - Print Message
+<CTRL><Q>                 - Quit LED
+<CTRL><R>                 - Reply to Msg
+<CTRL><T>                 - Quote Msg in reply
+<CTRL><U>                 - Close Window
+<CTRL><W>                 - Cycle through open windows
+<CTRL><RETURN>            - Kill current Msg
+<CTRL><F1>                - Show Schortcut file (LED.SCT)
+<CTRL><F2>                - Short MsgInfo
+<CTRL><F3>                - Delete all messages in the current area
+<CTRL><F4>                - Select Command Dialog
+<CTRL><F5>                - Change Sysop Name
+<CTRL><F6>                - Sort Headerfile by date (this area only)
+<CTRL><F7>                - Print Msg with Formfeed
+<CTRL><F8>                - Set Lastread pointer to maximum (this area only)
+<CTRL><F9>                - Set ALL Lastread pointers to maximum
+<CTRL><F10>               - Delete all unread / to sysop flags
+
+<ALT><A>                  - Append ASCII
+<ALT><B>                  - Write to Clipboard
+<ALT><C>                  - Change Msg
+<ALT><E>                  - Execute external Program
+<ALT><F>                  - Find string
+<ALT><G>                  - Find next (string as defined in Alt F)
+<ALT><H>                  - Edit Header Flags
+<ALT><J>                  - Select Windows in Options menu
+<ALT><N>                  - Select Quotes in Options menu
+<ALT><O>                  - Select Switches in Options menu
+<ALT><P>                  - Add to user list
+<ALT><S>                  - Save options
+<ALT><U>                  - Search for a User
+<ALT><W>                  - Write ASCII
+<ALT><Y>                  - Select User Lists in Options menu
+<ALT><Z>                  - Execute Shell
+<ALT><Fn> (F1 to F10)     - Execute Shell Fn
+<ALT><1>                  - Toggle MIME recognition
+<ALT><2>                  - Show Text attributes (text effects on/off)
+<ALT><3>                  - Recognise ^CHAR kludge
+<ALT><4>                  - Show ^MSGID / ^REPLY / ^REPLYTO
+<ALT><5>                  - Show ^EID / ^PID / ^TID
+<ALT><6>                  - Show ^PATH 
+<ALT><7>                  - Show ^SEENBY 
+<ALT><8>                  - Show Comment Tree
+<ALT><9>                  - 9 point font
+<ALT><0>                  - 10 point font
+<ALT><RETURN>             - Kill all messages with the same subject
+                            or by the same person
+
+   If you double click on a word/filename contained in a message 
+(e.g in the File Find echoes) then LED will now ask you if this is 
+to be entered into the file request box (see Extras menu) or searched
+for in the HyperText file.
+
+   If you press and hold <ALT> and click on an address, a Dialog 
+box will show you information about that address, i.e the Sysop's 
+name, System name, Place, Phone number and nodelist flags.
+   If the address is an unlisted Point address, then the Boss 
+system's information will be shown.
+
+   If you press and hold <CTRL> and click on a word, LED will 
+search the LED.SCT and display all matches in a Dialog box. 
+
+
+   b) Change...         <CTRL><A>
+
+   This will show the Arealist and allows you to choose a new area. 
+Once chosen, it will show any messages in the new area in the existing 
+active window.  In effect, it closes the previous area and opens the 
+new, but only uses one window.
+
+
+   c) Cycle...          <CTRL><W>
+
+   This will show each of the open windows in turn. If there are less 
+   than two open windows the option is disabled.
+
+
+   d) Close...          <CTRL><U>
+
+   This will close the current active window. This is the same as 
+   clicking on the GEM Close box in the top left of the window.
+
+
+   MagiC / Multi-Tos iconification is supported. To Iconify the 
+   Top window use <ALT><CTRL><SPACE>, and to Iconify ALL windows, 
+   use <SHIFT><ALT><CTRL><SPACE>.
+
+IV) Message.
+============
+
+   All these options relate to the currently active Message Window or 
+   Area. If there are no open areas, all of the options are disabled.
+
+   a) List           <CTRL><L>
+
+   This will show the Msglist Window/Dialog Box depending on which you 
+have chosen (See Options). It is a list of all the messages in the 
+current area.
+   A list of items will be shown ... '#:' message number, 'From:', 
+'To:', and 'Subject:'.
+   On the left side of the window/box are arrows that indicate if a 
+message is to or from the sysop. An inverted arrow pointing right is 
+to, an arrow pointing left is from the sysop.
+   Messages which have been deleted are shown in faded characters and 
+cannot be selected with the mouse. You can select them with the cursor 
+keys though, and once selected, if you press return, the message will 
+be restored and shown.
+   To choose a message, select it with the cursor keys or mouse, then 
+press return.
+
+The following keys can be used in the Messagelist window/Dialog box :-
+(Options marked * are ONLY available in the Window, NOT the dialog box)
+
+<ESC>                       - Update of all flags (new/unread/to sysop)
+<UNDO>                      - Close Window
+<CLR HOME> *                - Start of list
+<SHIFT><CLR HOME> *         - End of list
+<RETURN>                    - Select Msg (undelete killed msg)
+<CTRL><RETURN> *            - Kill Msg
+<cur up/cur down>           - Line up/down
+< <-/-> > *                 - Line up/down
+NUM <-/+> *                 - Line up/down
+<BACKSPACE> *               - Scroll window up
+<SPACE> *                   - Scroll window down
+<SHIFT><cur up/cur down> *  - Scroll window up/down
+<SHIFT>< <-/-> > *          - Scroll window left/right
+NUM <1>                     - previous Msg
+NUM <2>                     - first Comment from Original Msg
+NUM <3>                     - next Msg
+NUM <4>                     - previous Comment
+NUM <5>                     - first message of this thread
+NUM <6>                     - next Comment
+NUM <8>                     - Original Msg
+
+
+<CTRL><A> *               - Change area
+<CTRL><G> *               - Goto Msg
+<CTRL><I> *               - Info about LED
+<CTRL><O> *               - Open another area
+<CTRL><P> *               - Print Message
+<CTRL><Q> *               - Quit LED
+<CTRL><U> *               - Close Window
+<CTRL><W> *               - Cycle through open windows
+<CTRL><RETURN>            - Kill current Msg
+
+<ALT><B>  *               - Write to Clipboard
+<ALT><C>  *               - Change Msg
+<ALT><E>  *               - Execute external Program
+<ALT><F>  *               - Find string
+<ALT><G>  *               - Find next (string as defined in Alt F)
+<ALT><J>  *               - Select Windows in Options menu
+<ALT><N>  *               - Select Quotes in Options menu
+<ALT><O>  *               - Select Switches in Options menu
+<ALT><P>  *               - Add to user list
+<ALT><S>  *               - Save options
+<ALT><U>  *               - Search for a User
+<ALT><Y>  *               - Select User Lists in Options menu
+<ALT><Z>  *               - Execute Shell
+<ALT><Fn> (F1 to F10) *   - Execute Shell Fn
+<ALT><8>                  - 8 point font
+<ALT><9>                  - 9 point font
+<ALT><0>                  - 10 point font
+
+   The mouse can also be used with the scroll bars as normal to scroll
+through the messages.
+
+
+   b) Goto...           <CTRL><G>
+
+   Displays a Dialog Box in which you can choose which number message 
+to go to. Enter the number of the message and click on OK or press 
+return. If you enter a number which is lower than the first message 
+available, you will be taken to the first available message. If you 
+enter a number higher than the last available message, you will be 
+taken to that message instead.
+   You can call this Dialog Box from a Message Window by pressing any 
+number on the keyboard number block.
+
+
+   c) Foreward...       <CTRL><F>
+
+   Displays a Dialog box which allows you to input the name and 
+address of some-one who you wish to foreward the current message to. 
+You can search in any of the Userlists defined in the Options menu if 
+needed. When you have the correct name/address click on OK or press 
+return, and the message will be sent to the recipient next time you 
+export your messages.
+
+
+   d) Move...           <CTRL><M>
+
+   With this function you can move, or copy, one or more messages into 
+another area.
+
+   A Dialog Box is displayed which is similar to the Arealist Dialog 
+Box, but has a few extra choices. At the top there are From: and To: 
+boxes which should have the present message number in. If you want to 
+move a different message, or several messages, just change the numbers 
+in these boxes. [ <ESC> will delete the numbers ]
+
+   At the base of the box there are two boxes :-
+
+'Keep Copy':       Normally, the message will be moved to the chosen 
+                   area and the existing message will be deleted. If 
+                   you choose this option a copy of the message will 
+                   stay in the original area.
+
+'Foreward':        The message gets a new recipient. After you choose 
+                   the new area, a Dialog Box is shown where you can 
+                   input their name, and if the message is to be sent 
+                   by Netmail, the new address as well. 
+
+
+   e) Print             <CTRL><P>
+
+
+   The currently displayed message will be sent to the printer. You 
+can choose wether to have form feed on or off, (See Options) and you 
+can use <CTRL><F7> to print with form feed if you normally have this 
+switched off.
+   If the printer is not on-line then a Dialog Box will be shown to 
+warn you.
+
+
+   f) Set Flag...       <CTRL><K>
+
+   A Dialog box will be shown which allows you to set any of the 
+following Flags for the current message :-
+
+ Deleted         Crash           HostRoute
+ Kill/Sent       Hold            Locked
+ InTransit       Orphan          Received
+ Private         Archive Sent    ReturnReceipt
+ Read            TruncFileSent   IsReceipt
+ Sent            KillFileSent    AuditRequest
+ Local           Direct          MausMsg
+ WithFile        Zonegate        FixedAddress
+
+
+   g) Del Flag...       <CTRL><H>
+
+   The same as Set Flag except it deletes the chosen Flags.
+
+
+V) Edit.
+========
+
+   All of these options, except enter message, relate to the current 
+message. Each will open an Edit Window in which you can enter/change 
+the contents of a message.
+
+
+   a) Enter Msg         <CTRL><E>
+
+   Write a message in the currently selected area. the From: line will 
+already contain your name as entered in the configuration file.
+
+The following keys/combinations are available in the Edit Window :-
+
+
+<ESC>                     - Cut/Paste Line
+<TAB>                     - Tab across line
+<RETURN>                  - New line
+<DELETE>                  - Delete character under cursor
+<BACKSPACE>               - Delete character to the left of cursor
+<INSERT>                  - Insert/Overwrite
+<CLR HOME>                - Goto Top of Msg
+<HELP>                    - Call ST Guide with the word under the cursor
+<UNDO>                    - Undeletes the last deleted line of text.
+<cur up/cur down>         - Cursor up/down one line
+< <-/-> >                 - Cursor left/right
+<SHIFT><cur up/cur down>  - Screen up/down one page
+<SHIFT>< <-/-> >          - Start/End of line
+<SHIFT><CLR HOME>         - Goto End of Msg
+<SHIFT><ALT><W>           - Hard format paragraph (until empty line)
+<SHIFT><ALT><Y>           - Hard delete paragraph (until empty line)
+<SHIFT><DELETE>           - Delete with wrapping
+
+<CTRL>< <-/-> >           - Word left/right
+<CTRL><B>                 - Begin/end of Block
+<CTRL><C>                 - Copy Block
+<CTRL><D>                 - Delete Block Marks / Hide Block
+<CTRL><F>                 - Clear Buffer
+<CTRL><I>                 - Info about LED
+<CTRL><K>                 - Add line to buffer
+<CTRL><O>                 - Open another area
+<CTRL><Q>                 - Quit LED
+<CTRL><S>                 - Save Msg
+<CTRL><U>                 - End Edit (Shows a Dialog Box for Abort/Save)
+<CTRL><V>                 - Paste Block
+<CTRL><W>                 - Cycle through open windows
+<CTRL><X>                 - Cut Block
+<CTRL><Y>                 - Delete one line
+<CTRL><Z>                 - Abort Msg (Shows a Dialog Box first)
+<SHIFT><CTRL><Z>          - Abort Msg without Dialog box
+<CTRL><DELETE>            - Delete one word
+<CTRL><F1>                - Use Shortcut file (LED.SCT)
+<CTRL><NUM><0-9>          - Block Graphics
+<SHIFT><NUM><0-9>         - Other Block Graphics
+
+<ALT><D>                  - Edit To: line
+<ALT><E>                  - Hard format paragraph
+<SHIFT><ALT><E>           - Soft format paragraph
+<ALT><F>                  - Find string
+<ALT><G>                  - Find next (string as defined in Alt F)
+<ALT><I>                  - Indent On/Off
+<ALT><J>                  - Select Windows in Options menu
+<ALT><K>                  - Select F-Keys in Options menu
+<ALT><L>                  - Read from clipboard
+<ALT><M>                  - Select Fonts in Options menu
+<ALT><N> (NetMail Only)   - Edit Address
+<ALT><O>                  - Select Switches in Options menu
+<ALT><Q>                  - File Request
+<ALT><R>                  - Read ASCII text
+<ALT><S>                  - Edit Subject
+<ALT><T>                  - Expand Tabs
+<ALT><U>                  - Search for a User
+<ALT><V> (NetMail Only)   - Edit Msg Flags
+<ALT><W>                  - Soft format paragraph (until <cr>)
+<ALT><X>                  - Carbon Copy message
+<ALT><Y>                  - Undelete line
+<ALT><NUM><0-9>           - Enter Ascii-Code for Hi-Ascii char
+
+<Fn>         (F1 to F10)  - Insert text as defined in Options F-Keys 1
+                            to 10.
+<SHIFT><Fn>               - Insert text as defined in Options F-Keys 11
+                            to 20.
+
+
+   Firstly, you need to enter the name of the person who the message 
+is to be sent to.
+
+   In Netmail if you press <RETURN> without entering any name you can 
+choose a name from your PrivateUserList. Use <SHIFT><cur up/cur down> 
+to scroll through the list and <cur up/cur down> to select the name 
+you want.
+Press <RETURN> to select the name highlighted and the name and address 
+will appear on the To: field.
+   There are four ways to enter a name manually :-
+
+   1) Enter the initials of your recipient. Press <RETURN> and LED 
+      will search the Userlist(s) (as defined under Options). If the 
+      name is found a Dialog Box will be shown with the name and Node 
+      number in. If LED finds more than one match then a Dialog box 
+      will list the choices. Use the scroll bars to move up and down, 
+      and the cursor keys or the mouse to select the name you want. 
+      Click on Ok and the name and Node number will be input into the 
+      To: field in your Msg.
+      
+      Eg. "SS" will find Stephan Slabihoud and all his addresses
+      and also anyone else with the same initials, and their addresses.
+      Note the lack of space between the initials!
+
+   2) Enter an abbreviation of the first and last name of the recipient.
+      e.g
+
+      Ste Sla        (The space is important and MUST be included)
+
+      will look for Stephan Slabihoud but also Steven Slater (if there 
+      were both in the userlist). ONLY the first match will be shown.
+      
+      Other options are :-
+      
+      S S      ( the first match with these initials )
+      S Slab   ( the first match with initial S and Slab beginning 
+               the surname)
+
+   3) Enter the last name only (minimum 3 characters) of the 
+      recipient. The Dialog box will again be shown if there is more 
+      than one choice.
+
+
+   In an EchoMail area, pressing <RETURN> will enter 'All' as the name 
+or else input the name manually. You can use either of the two methods 
+above to search for a name but the Node number will not be shown. 
+Simply enter the name or initials then click on the name and LED will 
+search the UserList(s) as in NetMail.
+
+   Secondly you need to input a Subject. Just type in whatever the 
+subject is to be and press <RETURN>.
+
+   Now you will be in the message editor. Type in your message and 
+when you have finished press <CTRL><S> to save it or use Save Msg in 
+the Edit menu.
+
+   Pressing <ALT> and a number on the Numberpad will allow you to 
+enter the ASCII value of hi-ascii characters. A Dialog box will 
+be shown to enter the number into. Pressing rturn will enter the 
+character at the current cursor position.
+
+   If you want to change the name of the person it is to be sent to, 
+or the Subject, click on the line with the left mouse button and a 
+Dialog Box will be shown for you to alter the details.
+
+NOTE: In the Netmail area, the PRIVATE flag is automatically set.
+
+   Also in the Netmail area only, if you press <ALT><V> then you will 
+be able to change the Message Flags, e.g send Crash or with a file 
+attached. 
+
+   The following flags can be set from this Dialog Box:-
+   
+   Private, Crash, WithFile (File Attach), Hold, KillFileSent, 
+   Direct, Immediate, KillSent, ArchivSent, Multiple CC (Carbon 
+   Copy), ReturnReceipt, FixedAddress, AuditRequest.
+
+   You can abort the message at any time and it will not be saved. A 
+saved message will be sent the next time you export your mail and 
+then Poll.
+
+   If you have the text effects set (See Options) you can change the 
+text attributes in messages you send. You can make text bold, italic, 
+or underlined. To do this you must use on of the following characters 
+before AND after the word(s) you wish to change :-
+
+*            bold
+/            italic
+_ <SHIFT><-> underlined
+#            inverse
+
+   Any text in between these characters will be changed when you save 
+the message (the effect is not visible in the Edit Window). So you can 
+use this to change a whole line of text, but the second character must 
+be used or else the text will not change.
+   You cannot use the effects over more than one line, so if you want 
+two lines underlined for example, you must use the _ at the beginning 
+and the end of each line to be changed.
+
+   Example ....
+
+   This *is* a _sentence_
+
+      would appear with the word 'is' in bold, and the word 'sentence' 
+      underlined.
+
+   The text effects can be combined in one sentence, so putting ...
+
+      This */is a sentence/*
+
+      would appear withe the words 'is a sentence' in italics AND 
+      underlined
+
+
+   b) Reply Msg          <CTRL><R>
+
+   Reply to the current message on the same subject.
+
+   The address and subject of the current message are automatically 
+entered into your reply and the cursor is positioned in the text area. 
+You can choose wether to add 'Re:' to the subject line to indicate a 
+reply (See Options).
+
+   Other than this the Edit Window is the same as for 'Enter Msg'
+
+
+   c) Quote Msg          <CTRL><T>
+
+   This is the same as 'Reply Msg' except you can quote the text of 
+the original message along with your reply.
+   You can choose wether to use '>' or 'XY>' in the quoted lines(See 
+Options), or wether to add a heading line such as :-
+
+   "In a Message of 27th March 1995  ..."
+
+   All quoted lines will be reformatted in the Edit Window. LED will 
+try to fill out a line as completely as possible, but the line length 
+can be altered. (See Options). 
+
+   If the quoted message contains the Origin line of the originator, 
+and you have not deleted it, a Dialog box will ask you to confirm if
+it is to left in or deleted before the message is saved.
+
+   Other than this the Edit Window is the same as for 'Enter Msg'
+
+
+   d) Quote to Netmail   <CTRL><N>
+
+   This is identical to to 'Quote Msg' except the message will be 
+written to the Netmail area when saved. Also the recipients address is 
+added in the To: line (as long as the Origin is correct) and the 
+Private flag is set.
+
+   Other than this the Edit Window is the same as for 'Enter Msg'
+
+
+   e) Quote to Area      <CTRL><J>
+
+   As 'Quote to Netmail' except the AreaList will be shown first for 
+you to choose which area the message will be written to when saved.
+
+   Other than this the Edit Window is the same as for 'Enter Msg'
+
+
+   f) Change Msg         <CTRL><C>
+
+   A new message will be created with the contents of the current 
+message and you will be put into the message editor. When you save the 
+message the original will be deleted.
+
+   Other than this the Edit Window is the same as for 'Enter Msg'
+
+
+   g) Carbon Copy        <ALT><X>
+
+   Only available in Netmail, this allows you to send copies to many 
+recipients while only having to type the message once. You will be 
+shown a Dialog Box where you can enter the names of whoever you wish 
+to send the message to, and the UserList option can be used in the 
+same way as for Entering a message.
+   You can use this at any time during editing of a Netmail.
+   
+   You can make a list of names with addresses if you use this 
+feature often. In the above Dialog box, after entering all the 
+names/addresses click on Save to save the list as a CCL (Carbon 
+Copy List) file. The next time you need to use the same list, just 
+click on load and you have the same list. 
+
+   It is also possible to make your own list using a Text Editor 
+and adding the names and addresses of those you wish to Carbon 
+Copy mail to. E.g
+
+Stephan Slabihoud                        90:400/410
+Antony Lacey                             90:102/146
+
+   (Just an example of course!)
+   
+   You can now merge lists. After loading the first list, click on 
+load again, choose the list and then select Merge. 
+
+
+   h) Abort Msg          <CTRL><Z>
+
+   Your editing session is aborted and the edited message is not 
+saved. You will be returned to the message from which you entered your 
+editing session.
+
+
+   i) Save Msg           <CTRL><S>
+
+   Your message will be saved as the last message in the current area, 
+and you will be returned to the message from which you entered your 
+editing session.
+
+
+VI) Block.
+==========
+
+   These functions are only available when you are in an Edit Window.
+
+
+   a) Begin/End          <CTRL><B>
+
+   The current line will be marked as Block Begin, or if one already 
+exists as Block End. The line number is displayed in the Status Line. 
+The selected block is displayed in faded text.
+   It is also possible to mark the block by using the mouse. To do 
+this, press and hold the right mouse button, click the left button to 
+begin the block, then the right button to end the block.
+
+
+   b) Del Marks          <CTRL><D>
+
+   Any existing block marks will be removed. Any faded text will 
+revert to normal display.
+
+
+   c) Cut                <CTRL><X>
+
+   The currently selected block will be copied to an internal buffer, 
+and removed from the message being edited.
+
+
+   d) Copy               <CTRL><C>
+
+   The currently selected block will be copied to an internal buffer, 
+but the message being edited will not be changed.
+
+
+   e) Paste              <CTRL><V>
+
+   The contents of the internal buffer will be placed into the message 
+being edited, beginning at the cursor position.
+   If a block has been marked, but not 'Cut' or 'Copied' then the 
+selected block will be copied to begin at the cursor position.
+
+
+   f) Indent             <ALT><I>
+
+   Auto-indent is turned on/off. Auto indent allows you to set a 'left 
+margin'. To use the auto-indent feature, switch it on in the Edit 
+Window, use the <SPACE> or <TAB> key to move the cursor a few spaces 
+to the right, now press <RETURN>. The cursor only returns to the next 
+line below the current cursor position (i.e NOT to the first column).
+   The cursor will return to this position each time you press 
+<RETURN> until auto-indent is turned off.
+   When this is in use, the word Indent will show in the menu bar 
+of the edit window.
+
+   With this turned on you can now add 'quote initials' automatically. 
+E.g typing AL> will add this to the start of each line when Return is
+pressed. Also if you edit a line with these and the line is word 
+wrapped, the initials will be added to the beginning of the new line
+automatically..
+
+   g) Ext TAB            <ALT><T>
+
+   If Tabs exist, they will be replaced by the number of spaces set in 
+the 'Window...' option under Options.
+   You can use this to alter text imported as ASCII into a message.
+
+
+  h) <CTRL><K>   Append a line of text to the buffer. You may add more 
+               than one line to the buffer and use <CTRL><V> to paste 
+               them all into a message.
+
+
+  i) <CTRL><F>   Clears the buffer. Any cut/copied block or line from
+               <CTRL><K> will be lost.
+               
+               Not very useful unless you have been using very large
+               blocks!
+
+
+
+VII) Options.
+=============
+
+   Here is where you set the Options you wish to use in LED. These are 
+saved in the LED.OPT file, then loaded in each time LED starts. If 
+this doesn't exist then LED uses default values.
+
+
+   a) Switches...        <ALT><O>
+
+
+     i) Save always LED.OPT
+
+      Save the options into LED.OPT file every time LED quits. This 
+      saves the window positions and sizes. 
+      
+      It means that if you have changed some of the Options while 
+      using LED, they will be kept for the next time you run the 
+      program.
+      
+      You may want to switch this off if you have had problems and now 
+      have everything working ok.
+
+
+     ii) Save Dialog Positions.
+
+      Saves the positions of the Dialog Boxes when exiting LED. The 
+      positions are saved to the LED.DLG file.
+
+
+     iii) Header Cache (HC)
+
+      When active, LED will load the header (.HDR) file of the current 
+      area into memory. This increase the speed of program operations. 
+      (HC) is displayed on the left of the Status Line in the Message 
+      Window when Header-Cache is active.
+
+
+     iv) Rescue Lastreads
+
+      This will save the Lastread pointers when you exit an area, 
+      instead of only when you exit LED. This means they are updated
+      to the last area even if the system crashes.
+
+
+     v) AreaList Window.
+
+      You can choose to have the AreaList in a window instead of it's 
+      Dialog Box with this option. In the window the areas are listed 
+      in one column, instead of in multiple columns as in the Dialog 
+      Box. 
+
+
+     vi) ...show description. (With AreaList window only)
+
+      This will show the description of the area as entered in the 
+      -Desc flag in AREAS.BBS. If you have no description entered then 
+      it will be left blank in the AreaList Window.
+
+
+     vii) ...autoclose window. (With AreaList window only)
+
+      Closes the Arealist window as soon as you have selected an area.
+
+
+     viii) MsgList Window.
+
+      You can choose to have the MessageList in a window instead of 
+      it's Dialog Box with this option. In the window the areas are 
+      listed in one column, instead of in multiple columns as in the 
+      Dialog Box. 
+      
+      It is still possible to use the MessageList Dialog Box with this
+      option on, just use <CTRL><SHIFT><L>. 
+
+
+     ix) ...autoclosewindow.
+
+      The MsgList Window will be closed automatically when a window 
+      has been selected.
+
+
+     x) ...use Comment-Tree (With MsgList window only)
+
+      Shows the messages using the comment tree to sort the replies so 
+      they appear with the original message. If this option is not
+      active then the list will appear in numerical order only.
+
+
+     xi) Always use ^REPLYTO
+
+      LED will use the ^REPLYTO statement in the message header with 
+      this switch on. It will set the correct destination address in 
+      the message and sets the correct name of the gate in the To: 
+      line of the message.
+
+
+     xii) Always use ^REPLYADDR
+
+      LED uses the ^REPLYADDR statement in the message header. This 
+      will create "To: internet destination email-address" in the 
+      first msg line.
+
+      Note: REPLYTO sets the ADDRESS/NAME OF THE GATE in the msg 
+      header, REPLYADDR creates the "To: address" line used for 
+      internet addressing through the gate.
+
+
+     xiii) Netmail address correction.
+
+      This allows you to send a NetMail with a certain address (if you 
+      have more than one Zone address for instance). This has been 
+      tested with JetMail beta 11 (and higher) but may not work with 
+      other mail tossers.
+      This feature will not normally be needed. If you have only ONE 
+      address for each Zone then it will be better to leave it off. 
+      When the 'Fixed Address' flag is set (see <ALT><V>) and this 
+      option is active, then the current message will be sent with the 
+      address input with the message.
+
+      NOTE: You must check yourself that the correct origin is used.
+
+
+     xiv) ...set 'FIXED_ADDRESS' flag
+
+      This only works if you have the above option active. It sets the 
+      Fixed_Address flag automatically in every NetMail message. You 
+      must make sure that you have the correct origin in the message 
+      yourself. E.g .... if your main address is FidoNet, and you send 
+      a Netmail to someone in NeST, you will need to change the origin 
+      from Fido to NeST yourself, otherwise it will remain the Fido 
+      address.
+
+      This flag instructs the mail tosser to leave the Origin address 
+      as it is and not to alter it.
+
+      (Only Jetmail will handle this at the moment)
+
+
+     xv) Hide ^MSGID/REPLY{TO}
+
+      Hide the MsgID and Reply/To header information. Makes the 
+      message text clearer.
+
+
+     xvi) Hide ^PID/TID/EID
+
+      Hide the PID/TID/EID header information. Makes the message text 
+      clearer.
+
+
+     xvii) Hide other ^A lines.
+
+      Hide the ^PATH lines. This hides the routing information of the 
+      message and makes the end of the message text clearer.
+
+
+     xviii) Hide SEEN_BYs
+
+      Hide the SEEN-BY information in all messages.
+      
+
+     xix) Always extend Tabs
+
+      With this switch set, when you import any ascii text file, any 
+      TAB characters will be automatically extended to the number of 
+      spaces set in the 'Window...' option in the Options menu.
+
+
+     xx) Delete new Msg flag.
+
+      LED will delete all NewMsg Flags when it exits. When started 
+      again there will be no '*' shown in the Arealist Window.
+
+
+     xxi) Add Re:
+
+      Will add Re: to the beginning of the subject line when you reply
+      to a message.
+
+
+     xxii) ...'Re^n' style
+
+      If your reply is to a message with Re: already in the subject
+      line, this will add 'Re^2 instead of Re: Re: ... if there is
+      already a number in the subject line, then this will be
+      incremented by 1. E.g reply to Re^4 would be Re^5 etc.
+
+
+     xxiii) Text Effects (/*-)
+
+      This switches the text effects on and off. These can be used 
+      when replying to messages, and will show any existing text 
+      effects in the current message.
+
+
+     xxiv) ...also on printer.
+
+      If you have the LED.PRN file you can have text effects shown when
+      printing the current message. This allows you to switch the 
+      feature off if you don't wish to use it.
+
+
+     xxv) Use GDOS for printing
+      
+      Use GDOS for printing out your messages. With this selected, 
+      the LED.PRN file is not needed.
+      
+      Charcter conversions for the printer are not supported when 
+      using GDOS. With the option off, the printing will use the 
+      LED.PRN file and the printer font.
+
+
+     xxvi) Add FormFeed
+
+      This will send a formfeed character at the end of a message 
+      when when printing using <CTRL><P>. This option is ignored 
+      if the above option is selcected.
+
+
+     xxvii) Smart Redraw
+
+      This suppresses some window redraws.
+
+
+     xxviii) Show 'CR'
+
+      Will show any carriage returns (new lines) in a message.
+
+
+     xxix) Show cursor position
+
+      This shows the position of the cursor in an Edit Window, 
+      after the 'Indent' if that is in use. It is shown as (x/y) 
+      where x is the row and y is the column in the window.
+
+
+     xxx) GEM infoline. 
+      
+      Some people dislike LED's own infoline in the MsgWindow, refered 
+      to as the Status Line . 
+      
+      Now you can tell LED to use the original GEM-Infoline in that 
+      window. This switch will be active when LED is restarted. 
+      
+      Note: When using the original GEM infoline you might not be able 
+      to click on the msg number in the infoline to select a msg. If 
+      so click under the msg number. 
+      
+      The actual msg number is displayed '*n*', where n is the 
+      number of the present message.
+
+
+     xxxi) „ in Netmail-area.
+
+      When active, the „ to ae conversion will not be done, so 
+      allowing the umlaut to be used in Netmail messages. Normally 
+      when the „ key is pressed, ae is automatically substituted.
+
+
+     xxxii) „ in EchoMail-Area.
+
+      When active, the „ to ae conversion will not be done, so 
+      allowing the umlaut to be used in Echomail messages. Normally 
+      when the „ key is pressed, ae is automatically substituted.
+
+
+
+     xxxiii) Recognize ^CHRS (switchable with ALT+7 in MsgWindow)
+
+      Recognises the Charset kludge in messages. This allows other 
+      character sets to be used such as French, German, Italian, 
+      Portugese, Spanish, Swedish or Uk. Also Latin-1, IBMPC and ASCII 
+      character sets may be converted.
+      
+
+     xxiv) Convert MIME style
+
+
+     xxxv) Random Footline.
+      
+      This switches the random footline (Taglines) for ALL areas 
+      except those with the flag -NoRandomFootline in your AREAS.BBS 
+      file. You can add random footlines to individual areas by 
+      leaving this switch off and adding -RandomFootline to each area 
+      you want it to be active for in AREAS.BBS. 
+      (See Appendix A for how to use the flag).
+
+
+     xxxvi) Deadkeys
+
+      This allows you to use umlauts etc. in echomail messages. When 
+      the keys are selected, then if you press that key it will not be 
+      shown. But if the following key will allow it then it will put 
+      the corresponding character above/below that letter.
+  
+      e.g if you have the " set in Deadkeys .... when you press the " 
+      it will not be shown, but if you then press the letter a you 
+      will get the „ character.
+      
+      If you press " then w you will see "w as there is no such 
+      character as a w with an umlaut.
+
+      [Hint ... , works with c and / with o  !!]
+
+
+     [NEW]      
+     xxxvii) 'ž' (ATARI-ST Font)  
+
+     When this switch is enabled, LED uses ascii code 158 for the 
+     'ž' and creates a "CHRS: ATARIST 2" kludge. Otherwise LED 
+     uses ascii code 225 for the 'ž' and creates a (compatible) 
+     "CHRS: IBMPC 2" kludge.
+     This switch should normally be DISABLED.
+
+
+   b) Window...           <ALT><J>
+
+   A Dialog box will be shown with the following options:-
+
+      i) Maximum Window Columns
+
+      Here you can set how many columns you use in a Message Window. 
+      Any change will only take effect when the window is redrawn or 
+      changed.
+
+
+      ii) Maximum Edit Columns
+
+      Here you can set how many columns you use in a Edit Window. As 
+      with the Message Window, any change will only show when the 
+      window is redrawn or changed.
+
+
+      iii) Edit-Window Tabsize.
+
+      Set the number of spaces you want a TAB character to be replaced 
+      with. You can choose between 1 & 9. Useful for when ASCII 
+      text is imported into your message.
+
+
+   c) Quote...            <ALT><N>
+
+   A dialog box will open to let you choose how your replies will look.
+
+
+   i) Prefix:
+
+   You can choose how the quoted message will be shown, with just a 
+'>' at the beginning of each line, or with 'XY>', where XY is replaced 
+with the initials of the sender.
+
+
+   ii) Topline:
+
+   When quoting messages, you can get LED to add a line to the 
+beginning of the message automatically.
+   Here you choose what language this will be in, English, German, 
+detect which, or none at all if you don't want to use this feature.
+   On the right hand side are options you can use to add names etc. to 
+this line. So if you wish to use the senders name in the top line of 
+your reply you can put '%f %F' ( as the original was from them) on the 
+text line and LED will replace this with the correct name each time it 
+uses this line.
+   You can use the following options:
+
+   %f   Sender's first name
+   %F   Sender's last name
+   %a   Sender's address
+   %t   Recipient's first name (recipient of ORIGINAL message)
+   %T   Recipients last name
+   %o   Sender's complete name
+   %O   Recipients complete name
+   %d   Date in format 14 Apr 95
+   %D   Date in format 14.04.95
+   %v   Version number of LED
+   %z   Time 21:13:45
+   %a   Area e.g N.SUP.LED (of the ORIGINAL message)
+   %s   Subject
+   %n   Text of Function Key n (as defined in Options menu), e.g %1 =
+        text of F1. n may be any number from 1 to 20.
+   %v   The version number of LED
+   %i   Will use any nickname defined in LED.NIC instead of %f 
+        (i.e the first name will be shown instead of %f)
+   %I    Will use any nickname defined in LED.NIC instead of %t 
+        (i.e the first name will be shown instead of %t)
+   
+
+   iii) Set cursor:
+
+   This will place the cursor on the first line of the quoted part of 
+the original message.. Without this set, the cursor will be placed at 
+the beginning of the topline of the message. Not very useful unless 
+you want to change your Topline all the time.
+
+
+   iv) Free Editable:
+
+   Instead of using the text in the Topline box, you can use your own 
+text as entered in the lines at the bottom of the Dialog Box.
+
+
+   v) No Topline in Netmail:
+
+   This will suppress the Topline when quoting in the Netmail area.
+
+
+   vi) No compression: 
+
+   This will prevent LED from removing spaces in Quoted lines .. e.g 
+
+If the original message contains the following lines:
+
+This is an example
+           ^^^^^^^  (This line is the one that is affected) 
+
+Normal Quoting would show this:
+
+XY> This is an example
+XY>         ^^^^^^^    
+(Note it is not underneath the word 'example', but shifted to the left).
+
+With the No Compression feature turned on it will look like this: 
+
+XY> This is an example
+XY>            ^^^^^^^  (it is now positioned correctly).
+
+
+   1.Line: Native / 2.Line: Native to area:
+
+   Here you can define the text used when quoting to messages in your 
+native language. This is active when the Topline option 'In einer 
+Nachrict...' is selected.
+   The second line is different text used for when quoting to another 
+area, or to Netmail. At present it only works when quoting from an 
+EchoMail area, not from Netmail, from Netmail line 1 is used.
+   There are 2 seperate lines to allow the use of the original area 
+name to be added when quoting to other areas. Of course you would not 
+want this in all messages.
+
+   2.Line: English / 2.Line: English to area:
+
+   The same as above only these are used when the 'In a message...' 
+Topline option is set. Makes it easier to quote in Echomail areas that 
+accept English only. (If you don't normally speak English that is!)
+
+ 
+
+   d) Comment...
+
+   This opens an additional Dialog Box that allows you to choose the
+following options.
+
+   i) Show Comment link in info Line. ( also <ALT><3> will switch this)
+
+      Turns the comment tree information on and off. If it is on 
+      then the information will be shown in the Status Line at the 
+      top of a Message Window. The comment tree shows if the 
+      current message is linked to any others.
+
+  ii) NumPad keys in comment tree mode.
+
+       Allows you to use the keys on the number pad to follow the 
+       comment tree. The following keys are available in this 
+       mode:
+
+       <1>                     - previous Msg
+       <2>                     - first Comment from Original Msg
+       <3>                     - next Msg
+       <4>                     - previous Comment
+       <5>                     - first message in this thread
+       <6>                     - next Comment
+       <8>                     - Original Msg
+
+
+ iii) Comment tree uses Mailer [0 - 3]
+
+        This allows LED to use the comment tree information from 
+        the Mailer fields in the Msg header (i.e not the Qbbs 
+        fields). This must be used when you are using a 'new' mail 
+        tosser such as IOSMail or JetMail.
+
+
+  iv) Complete messagebase scan 
+  
+        This will ensure the Comment Tree is constructed properly 
+        even when a reply is found before the Original message. 
+        This will make LED run slower and shouldn't normally need 
+        to be used.
+
+
+
+   e) Userlist...      <ALT><Y>
+
+        This will open a Dialog Box which will allow you to choose up 
+to six userlists to search for names etc. You may have your own list 
+(usually PRVTUSER.LST) with frequently used names/addresses in and you 
+may also use a list generated by a nodelist complier (e.g FIDOUSER.LST 
+from BTNC).
+        Double click on a line with the mouse and the fileselector 
+will allow you to chose the list(s) you require.
+
+        The format for your private list is as follows ....
+
+
+Slabihoud, Stephan                  90:400/410
+Lacey, Antony                       100:1011/19
+Areafix                             90:102/140
+
+
+
+   f) Fonts...         <ALT><M>.
+
+        A Dialog Box will open which allows you to choose the font and 
+point size for each seperate type of Window. If GDOS is active a small 
+piece of text will show this.
+
+        To change the font click on the box on the right of the font 
+name. Any fonts which are available will be shown and the font that is 
+used will be the one currently selected. Clicking on the font name will
+change back to the system font.
+
+        Use the same method to choose the font size with the small box 
+to the right of the point size numbers.
+
+        There are three other choices that can be made.
+
+   i) Quote: Normal or thick.
+
+        This allows you to choose wether quoted parts of the message
+        appear in normal or bold text.
+
+   ii) Block: Reverse or Highlighted.
+
+        This changes the appearence of any chosen block. Reverse 
+        is white text on a black background, highlighted greys out 
+        the selected text. 
+
+   iii) Only Monospaced Fonts.
+
+        LED will only display monospaced fonts!
+
+
+
+   g) F-Keys...        <ALT><K>.
+
+        A Dialog box will open and allow you to enter text to assign 
+to each Function Key. You may enter up to 20 key assignments.
+
+        The Dialog box also shows you the options you may use to 
+include names etc. in the text. If the text including these options 
+exceeds the length of one line in the Edit Window, it will be wrapped 
+onto the next line.
+
+        If you wish to include carriage returns in your F-Keys, simply 
+use <CONTROL><M> and this will insert a new line command.
+
+        IMPORTANT: If you don't want to lose your clever effects, use 
+SAVE! This will save the contents of the Function Keys to the file 
+LED.FKY so you may use them every time you load LED.
+
+
+   h) Save             <ALT><S>.
+
+        This will save all your chosen options in the file LED.OPT.
+
+
+
+VIII) Extras.
+=============
+
+
+   a) Msg-Header...    <SHIFT><ALT><H>
+
+        This opens a Dialog Box which shows you some information about 
+the message header. It also allows you to change the header 
+information and write it back to the .HDR file if you require.
+
+
+   b) ...flags         <ALT><H>
+
+        This will show a Dialog Box with the Flags for the current 
+message in the Msg-Window. You may change any of the Flags and write 
+the changes to the .HDR file. For an explanation of the Flags see 
+Appendix B at the end of this manual.
+
+
+   c) ...special flags
+   
+        This can be used to show the 'Processed' flags for the 
+current message.  
+
+
+   d) File Request...  <ALT><Q>
+
+        You can use LED to generate file requests. A Dialog Box will 
+open allowing you to enter the node from which you want the file from. 
+Also the name of the file and any password you may need.
+
+        There are a further two options to select which files are 
+generated and where they are put.
+
+        Create Dummy Flowfile. If this is selected, a 0 byte .OFT file 
+will be generated as well as the .ORT file with the file request in.
+
+        Select Domain. If you have more than one Domain that you 
+collect mail from, you can use this to ensure the file request is put 
+into the appropriate Outbound folder. If the folder does not exist 
+then a Dialog Box will be shown to tell you and the file request will 
+not be generated.
+
+        Click on Make File to generate the files necessary for the
+request.
+
+
+   e) Add PRVTUSER.LST <ALT><P>
+
+        Use this to add the name in the From: field of the existing 
+message to your Private User list. You can add any address to this 
+file (point addresses, areafix/filefix etc.).
+
+
+   f) Find in USERLIST <ALT><U>
+
+        If you need to find the address of someone while in a message, 
+use this option to search the userlists as defined in the Options 
+menu. Enter the required name or abbreviations and click on Userlist 
+(or use <ALT><U> the userlist is searched. When you have finished 
+click on Ok or press return to go back to the Window you were in.
+
+        This feature may be used from any Window, including the 
+MsgList and Arealist windows.
+
+        If you are in the Edit Window, if you press return / click on
+OK when the name and address are found, they will be entered into the 
+message at the current cursor position.
+
+
+   g) Find String...   <ALT><F>
+
+        This allows you to search for a text string in the current 
+message area. You can specify wether to search in the To:, From:, 
+Subject fields or in the message text for a string.
+
+        Three options are also available in the options at the base of 
+the Dialog Box:
+
+    Backwards:
+
+   This will search backwards in the specified area. Once an area has 
+been searched forwards to the end, this option will automatically be 
+selected for the next search.
+
+    Inside Current Message:
+
+  The search will only be made in the currently selected message.
+
+    Use Allquantor (*):
+
+  You may use the * as a wildcard for the search. E.g in the To: 
+field, putting Ste* will find Stephen, Steve, Steven and Stephan. You 
+may also search using the following method ...  St*en ... will search 
+for the same as above. 
+  If you use this the search will be noticeably slower.
+
+
+   h) Find Same        <ALT><G>
+
+        Search for the same string as selected in Find String.
+
+
+
+IX) Help.
+=========
+
+
+   a) Msg Window
+
+      This shows a list of all the keys available in the Message 
+Window. There are two screens of keys for this window. Click on NEXT 
+to get to the second screen.
+
+
+   b) Edit Window.
+
+      This shows a list of all the keys available in the Edit Window.
+
+
+   c) Dialogs.
+
+      This shows a list of all the keys available in the Dialog 
+      Boxes. (Messagelist and Arealist)
+
+
+   d) Comment Tree.
+
+      This shows a list of all the keys available in the Comment Tree.
+
+
+   e) Shortcut         <CTRL><F1>
+
+      This is a list of text that can be used in the Edit Window to 
+insert frequently used text. It is called LED.SCT
+      Any text may be included on each line, there is no set 
+pattern. It can be used in the To: and subj: line of a message as 
+well as the message text, so can be used for long names (e.g 
+internet addresses) as well as for riles. 
+
+      A short example is shown here ... 
+   --------------------------
+AFAIC    As Far As I'm Concerned 
+AFK      Away From Keyboard
+Antony ... the All At Sea Sysop
+Merry Christmas and a Happy New Year
+algy@allatsea.demon.co.uk
+-lots of text, C:\TEXT\LOADSA.TXT
+%d %D
+   --------------------------
+If you want to add coments to your text, adding the | character will 
+stop the rest of the line being quoted ... e.g.
+
+AFAIC | As Far As I'm Concerned 
+
+ .. would only add AFAIC to your message. The rest will be ignored.
+
+A maximum of 1024 characters is allowed on each line.
+
+You may also use ascii text files with the following format:
+
+-My footer, F:\TEXT\FOOTER.TXT  
+
+   on it's own line will use the text of the file Footer.Txt.
+
+   The - is necessary to let LED know this is a file, otherwise the
+   line will be input as it is typed! The text after the - is purely 
+   for your own reference and may be left out if desired, e.g
+
+-, F:\TEXT\FOOTER.TXT 
+
+   will do the same as the example above.
+
+   You can also use the '%' parameters from the Options .. Quote 
+   menu now .... in the above example %d %D would enter:
+   20 SEP 96 18:42:50  (todays date and the time). 
+
+
+   e) System Report
+   
+   If you are having problems with LED and need to contact the
+Author, you can now generate a Report which may help him locate 
+the problem a bit quicker. 
+   Once you click on this, the fileselector will appear so you can 
+choose where the file (default name is REPORT.LED) is to be 
+written. Then you can send it directly, or include it in a Netmail 
+to him.
+
+
+
+=========================================================================
+                        Appendix A   AREAS.BBS
+                        ----------------------
+
+   Important: The NETMAIL area must be the first area in AREAS.BBS. 
+LED takes the first area to be Netmail.
+
+  (AutoAddAreas in IOSMail 0.89 sometimes changes the order of 
+AREAS.BBS and puts it at the end of the file)
+
+
+   The following is a list of AREAS.BBS flags that LED can use.
+
+-Latin1
+-Latin1small
+
+   Converts some characters from the Latin-1 font into the normal 
+   System Font. 
+
+
+-Desc    e.g -Desc LED Support (for N.SUP.LED)
+
+   Gives the description of a message area as used in MsgList Window
+
+
+-FixedAddress
+
+   LED will set the correct address for this area. The 'Fixed Address' 
+flag will be set automatically.
+
+
+-FollowUp <areaname>
+
+   Msgs in this area will be quoted in <areaname>. Only "Quote 
+msg" and "Reply msg" use this statement, NOT "Edit msg".
+
+ 
+-FootlineFile <file> 
+
+   LED creates a random footline for that area taken from <file> 
+This must be the path and name of the file, and it must be the same 
+format as LED.FLN. (See appendix E for the file format)
+
+-ForcePVT
+
+   LED will automatically set the Private flag in echomail
+
+
+-IgnoreNewMsgFlag
+
+   LED ignores the NewMsg Flag so it shows no '*' for this area in the 
+Arealist window.
+
+
+-IgnoreUnreadFlag
+
+   LED ignores the Unread Flag so it shows no '/' for this area in the 
+Arealist window.
+
+
+-Invisible
+
+   Area is invisible. Similar to PassThrough.
+
+
+-Maus
+
+   Area is a MausNet area.
+
+
+-NoRandomFootline  
+
+   LED creates no random footline for that area.
+
+-PassThrough
+
+  LED does not show messages in this area. The message area is for 
+another system. This can replace the DAREAS.BBS, but use that file if 
+your mail tosser supports it.
+
+
+-QUOTE_ENGLISH
+
+  Adds the free editable topline in English.
+
+-QUOTE_MSG
+
+  Adds the topline "In a Msg from ... "
+
+-QUOTE_NACHRICHT
+
+  Adds the topline "In einer Nachricht ..."
+
+-QUOTE_NATIVE
+
+  Adds the free editable topline in your own language.
+
+-QUOTE_NON
+
+  No topline when quoting for this area.
+
+  {These QUOTE_ flags over ride the choices set in the Options, Quote
+   menu for this particular area only}.
+
+
+-RandomFootline <file>
+
+   LED creates a random footline for that area taken from LED.FLN. If 
+you add a filename in the optional <file> parameter, the footline will 
+be taken from that file instead of LED.FLN. So you may have seperate 
+Footlines for each area. 
+
+
+-NoTopline    
+
+   LED does not generate a topline in this area.
+
+-Topline <text> 
+
+   Instead of the "normal" topline for this area, LED uses this 
+topline. '|' is used for a <cr>.
+
+   Example: -Topline On %d %31 (%a) wrote to %33:||Hi %i,|
+
+-Umlaut
+
+  Allows the umlaut to be used in messages in this area. If this is 
+not used „ will be replaced by ae, ” by oe etc.
+
+
+-UseCommentTree   
+  
+  Comment-Tree is always activated for this area.
+
+  
+-NoCommentTree  
+  
+  Comment-Tree is always deactivated for this area.
+
+
+-Visible
+
+  May be used with -Passthrough. Makes the message area visible again 
+in LED.
+
+
+=========================================================================
+                        Appendix B   Message Flags
+                        --------------------------
+
+   This is a list of Message Flags and their meanings.
+
+   N means allowed in Netmail
+   E means allowed in EchoMail
+   L means only allowed in Local Mail
+
+
+Private       NE  This message is Private and can only be seen by the 
+                  sender and Recipient.
+
+Sent          NEL Message has been exported by the Mail Tosser.
+
+Read          NE  Message has been read. (Shouldn't this be 
+                  Displayed!).
+
+Local         NE  Message was written on this system (i.e not 
+                  imported).
+
+Deleted       NE  Message has been marked as deleted (normally only 
+                  the mail tosser will actually delete it).
+
+Crash         NL  Message will be crashed (i.e not routed through 
+                  other systems) to the recipient.
+
+Hold          NL  Message will be 'on hold'. The recipient must call 
+                  this system to collect this message.
+
+Direct        NL  Message will be sent direct to the Recipient (very 
+                  much like crash).
+
+Immediate     NL  Again similar to crash.
+
+ArchivSent    NEL Message will be moved to the Archive area after 
+                  being exported by the Mail Tosser.
+
+Kill/Sent     NL  Message will be deleted after being exported.
+
+Orphan        N   The Mail Tosser has no routing information for this 
+                  message.
+
+InTransit     N   Message is being routed to another system and is not 
+                  intended for this system.
+
+Received      NE  The message has been received by the recipient.
+
+HostRoute     NL  Send Netmail through the Host/Hub of the recipient.
+
+ZoneGate      NL  Send Netmail through the ZoneGate.
+
+ReturnReceipt N   The recipient is to send a Return Receipt.
+
+IsReceipt     N   Message is the return receipt.
+
+AuditRequest  N   Every system that routes this Netmail is to send a
+                  Return Receipt.
+
+Signature
+
+Locked        NE  Message is locked. It will not be exported or 
+                  deleted.
+
+Fixed Address NEL The Origin address will not be changed by the Mail 
+                  Tosser.
+
+Gated         NE  Message has been locally gated.
+
+With/File     N   Message has a File attached to be routed with it.
+                  Note: some systems will not route attached files.
+
+TruncFileSent NL  The file will be truncated to 0 bytes after it has
+                  been exported. i.e it is NOT deleted.
+
+KillFileSent  NL  The file will be deleted when sent.
+
+CreateFlowFile N  A flow file is created from the message text.
+
+FileRequest   N   The message is a file request. The filenames are 
+                  contained in the subject line seperated by spaces.
+
+MausMsg.          This shows a number of extra flags that are for use 
+                  in MausNet. They are included so that when Mail 
+                  Tossers can deal with MausNet mail they may be used.
+
+
+=========================================================================
+                    Appendix C   LED Configuration file
+                    -----------------------------------
+
+   To enable LED to be used in a seperate directory (without using an 
+environment variable) you can use a file called LED.CFG to specify the 
+paths etc. for LED to use.
+
+   The following statements are needed.
+
+     Statement                   |            Example
+-------------------------------------------------------------------------
+SYSOP    name                    |  SYSOP Antony Lacey
+
+This must be the same as used for the registration Key.
+
+
+ADDRESS  address [fakenet]       |  ADDRESS 90:102/146.0@nest.ftn
+
+This must be the same as used for the registration Key.
+
+
+LOGFILE  filename                |  LOGFILE C:\LED.LOG
+
+Needed if you want LED.LOG in any directory other than LED directory.
+
+
+NETMAIL  filename                |  F:\MESSAGE\MAIL\NETMAIL
+
+The path and file name, but without the .HDR / .MSG extension.
+
+HOLD path                        |  F:\OUTBOUND
+
+This should be the Outbound path used by the Mail Tosser as the File
+Requests files will be put here.
+
+SHELL program                    |  F:\PROG\GULAM.PRG
+
+If you want to use an external shell from within LED this statement
+defines the path and name of the program you want to use.
+
+
+The following files are Optional:
+
+MAILER path                      | F:\MESSAGE\
+
+This is similar to the Environment setting and points to the directory 
+where AREAS.BBS is kept.
+
+Outbound36
+
+This is for use with  Binkley 3.18 or above and allows the use of 
+base 36 folder names. The feature is available for Registered 
+users only.
+
+CallExporter x
+
+When used, this will tell Avalon (3.77 or above) or Semper to 
+start the mail exporter when LED quits. 
+Replace x with 0 for Avalon, and 1 for Semper.
+
+
+AKASYSOP name                    | AKASYSOP Antony Lacey {EM}
+
+( To use this option in Binkley.CFG use APPLICATION AKASYSOP e.g
+APPLICATION AKASYSOP  Antony Lacey {EM} )
+
+Can be used to define an alternative Sysop name. It MUST be defined 
+AFTER the Sysop statement. Up to four names may be used, but they must 
+begin with the name as defined in the Sysop statement. i.e the above 
+would be accepted but Antony Jones would not be accepted.
+
+Normally used to distinguish between messages posted by the Sysop or 
+posted in an alternative position e.g Echo Moderator
+
+The alternative names can be selected by using <CTRL><F5> in the
+MessageList window.
+
+AREASPpath                        | Path to your AREAS.BBS file
+LEDNEWpath                        | Path to your LED.NEW file
+Nodelist <path>                   | path to nodelist 
+BTNC                              | defines BTNC nodelist
+
+=========================================================================
+                 Appendix D   Function Key Macros
+                 --------------------------------
+
+
+ Attention! For experts only! (You have been warned!!) 
+
+
+It is possible to use macros assigned to the function keys. This is 
+not(!) trivial, so be careful about using it!
+
+A macro that is only allowed in the EditWindow can be defined as 
+follows: %[keylist]
+and when it is only allowed in the MsgWindow:    &[keylist]
+macros for both windows can be defined with:     $[keylist] 
+
+"Keylist" is a list in the following format: SSAAK
+
+     SS=Scancode  
+     AA=ASCII-Code
+     K =Status (1=RShift,2=LShift,4=Ctrl,8=Alt)
+
+You must use that format exactly! The codes (in hex) are seperated 
+with commas.
+
+NOTE: LED may crash if you make a mistake using this feature!!
+
+
+NOTE: his feature does not allow <ALT><Key> combinations to be used. 
+
+
+Here are two small examples: 
+
+   e.g. for F1:   %[21064,30024,2d184,21064].
+
+will do the same as pressing Keys: <CTRL><F> <CTRL><B> <CTRL><X> and 
+<CTRL><F> again ... and will erase the text from the cursor to the end 
+of the message.
+
+
+   and for F2:   &[1e014,47000,1c0d0]
+
+will do the same as pressing Keys: <CTRL><A> <HOME> <RETURN> and will 
+select the first area (Netmail area).
+
+=========================================================================
+                 Appendix E   Footline File (LED.FLN)
+                 ------------------------------------
+                 
+   This file contains the Random Footlines if you use the 
+-RandomFootline switch in LED. This is normally named LED.FLN but 
+you may use other files for use in different areas if you use the 
+-Footline switch in AREAS.BBS. 
+
+   The file is plain ASCII and uses the following format:-
+   
+NOTE:  The FIRST line of the file will be placed in front of the 
+footline and can be empty.
+
+UFP Starfleet Command: End Transmission|
+I know the depths I reach are limitless|
+The christmas spirit is not something to drink|
+;
+; Long lines can be used, the next five lines would normally be all 
+; on one line, I just had to wrap them to fit in the manual!
+;
+"Sehr sonderbare Leute, diese Physiker. Nach meiner Erfahrung sind  |die, 
+die nicht tot sind, irgendwie sehr krank"|  Douglas Adams 'Der lange 
+dunkle Fuenfuhrtee...' S.105|"Very strange people these physicists. In 
+my experience, those who |are not yet dead are, somehow, quite ill."|  
+Douglas Adams|
+
+(These are taken from the LED.FLN file as an example). 
+
+The maximum length for each Footline is 1024 characters!! The '|' 
+character denotes a carriage return, helps to keep long Footlines 
+looking neat! 
+
+Lines can be commented out using a ';' character if you want to 
+comment your file. 
+
+You can also use the '%' parameters as in the Options Quote menu, 
+e.g %o will insert the full name of the sender of the message.
+
+=========================================================================
+                 Appendix F   Nickname file (LED.NIC)
+                 ------------------------------------
+You can define about 100 nicknames. To use the feature, simple 
+create a file called LED.NIC in LED's system folder. Here is a 
+short example: 
+
+;sample LED.NIC
+Kev,Kevin Osborne
+Slabbi,Stephan Slabihoud
+algy,Antony Lacey
+nic1,Joe Bloggs,N.ST.MISC
+nic2,Joe Bloggs,N.MISC.COMMON
+
+The format is <nickname>,<fullname>[,<area>]. The comma tells LED that the 
+nickname is ended, thereby allowing nicknames of two words or 
+more.
+
+[NEW]
+The <area> is optional, and will use the nickname only in the area 
+indicated. Using this it is possible to have different nicknames 
+in different areas. In teh above, Joe Blogg's nickname will be 
+nic1 in N.ST.MISC and nic2 in N.MISC.COMMON.
+
+And comments can be added by staring the line with a semi-colon.
+
+You can use the nicknames with a '%'-parameter. '%i' may be used 
+instead of '%f' but uses the nickname instead of the first name 
+(when the nickname is defined) and '%I' conforms with '%t'.
+
+========================================================================= 
+
+                       ----- End of the Manual ------

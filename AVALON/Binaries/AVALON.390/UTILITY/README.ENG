@@ -1,0 +1,29 @@
+
+This folder contains some utilties. These utilites can be used by every
+registered AVALON or AVALON4SEMPER user.
+
+AVALON user must not use these files, because the utilites have been
+implemented in the batchcli of AVALON.
+
+
+Program              Command in Avalon
+------------------------------------------------------------
+ARC_IT.TTP           not implemented
+
+BBS_INFO.TTP         Dialog: FileManager->MsgBase
+
+COMPDIFF.TTP         BatchCLI: APPLYDIFF
+
+CONVERT.TTP          BatchCLI: MAKEUSERLIST
+
+EXTRACT.TTP          BatchCLI: EXTRACT
+
+PN24CONV.TTP         BatchCLI: similar MAKEUSERLIST
+                     (you should use CONVERT instead of PN24CONV)
+
+FILE2MSG.TTP         BatchCLI: All "!"-commands (e.g. !SEND)
+
+SPLIT_IT.TTP         BatchCLI: SPLIT
+------------------------------------------------------------
+
+  St.Slabihoud 1994

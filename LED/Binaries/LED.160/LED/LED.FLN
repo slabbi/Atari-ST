@@ -1,0 +1,29 @@
+--|
+; The FIRST line will be placed in front of the footline and can be empty.
+; Examples: "--|" prints two "-" and the tagline in the next line
+;           "*** " prints three "*" and a space and the tagline behind the space
+; Note: '|' describes a <cr>, ';' defines a remark line, max length: 1024 chars
+
+; Die ERSTE Zeile wird automatisch vor jede Fužzeile gesetzt und kann leer sein.
+; Beispiele: "--|" druckt zwei "-" und die Tagzeile in die darauffolgende Zeile
+;            "*** " druckt drei "*" und ein Leerzeichen und die Tagzeile hinter
+;            dem Leerzeichen
+; Beachte: '|' beschreibt ein <cr>, ';' ist eine Bemerkungszeile, maximal 1024 Zeichen
+
+; Random footlines follows (please use less comment lines):
+; Hier nun die Fužzeilen (bitte nur wenige Kommentarzeilen verwenden):
+UFP Starfleet Command: End Transmission|
+I know the depths I reach are limitless|
+The christmas spirit is not something to drink|
+Say cheese - fromaaaaaaaaaaaaaaaaaaaaaaage|
+l'Ecole des Bas Artes.  You want fries with that?|
+"Just remember that the last laugh is on you..."|
+You want it all but you can't have it|
+I am the end of all your dreams|
+I often daydream about my inability to fantasize|
+Come on my friends lets make for the hills|
+"Dual Pentium-100 - Compiles in a flash, makes great coffee too!"|
+The new Pentium Overheat, CPU and water boiler in a single chip!|
+
+; And now a very long footline / Und nun eine sehr lange Fužzeile
+"Sehr sonderbare Leute, diese Physiker. Nach meiner Erfahrung sind |die, die nicht tot sind, irgendwie sehr krank"|  Douglas Adams 'Der lange dunkle Fuenfuhrtee...' S.105|"Very strange people these physicists. In my experience, those who |are not yet dead are, somehow, quite ill."|  Douglas Adams|

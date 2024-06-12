@@ -1,0 +1,101 @@
+==========================================================================
+ ARC-IT V1.2x                                     Last Changes: 22 Apr 95
+==========================================================================
+                          (c) Stephan Slabihoud
+==========================================================================
+                            S H A R E W A R E
+==========================================================================
+
+                For shareware details refer to AVALON.TXT
+
+==========================================================================
+
+    If you have any ideas and bug reports directed at manual and program,
+            please send them directly and per crashmail to me!
+
+
+
+INTRO:
+======
+
+So you were the one who got angry all the time about needing old  messages 
+that you killed just a week ago?  Well,  then ARC-IT will help you to live 
+your FIDO life more satisfied.
+
+ARC-IT packs all messages that were written by you or "sysop" or that were 
+addressed to you or "sysop".
+
+
+
+
+
+
+START:
+======
+
+It's that simple:
+
+ARC-IT <e|n> [-ax] "SysopName" <msgbase> [<arcname>]
+
+<msgbase>        This  is  the  filename of the  messagebase  ARC-IT  will 
+                 proceed with.  Do not give the extension of the filename! 
+                 The  messagebase has to be in a TheBox compatible  format 
+                 (this  format is used by LED,  ACS,  ECU and  many  other 
+                 programs). 
+
+"SysopName"      Your  name.   This  information  is  used  to  find   the 
+                 corresponding messages.
+
+<e|n>            One  of  these  parameters  has  to  be  used!  By  these 
+                 parameters  you tell ARC-IT wether you want to work  with 
+                 an  echomail area (e) or your netmail area  (n).  If  you 
+                 chose  "n" (netmail area),  the "From:" and "To:"  fields 
+                 are saved, too.
+
+[-ax]            "-a": Already  archived messages will be  archived  once 
+                       more. 
+                 "-x": All messages (not only your own) will be archived.
+
+<arcname>        All  messages  are  saved in the folder  that  holds  the 
+                 messagebase. The file extension is *.ABK (Avalon Backup). 
+                 If you want to rename this file, you can do this by using 
+                 this optional parameter.
+
+
+EXAMPLES:
+=========
+
+ARC_IT n "Stephan Slabihoud" E:\FIDO\MSGS\NETMAIL
+
+   - The netmail area is archived to a file named NETMAIL.ABK.
+
+ARC_IT e "Stephan Slabihoud" E:\FIDO\MSGS\ATARI H:\BACKUP.TXT
+
+   - The echomail area ATARI.GER (the files of the messagebase are
+     ATARI.HDR and ATARI.MSG) is archived as H:\BACKUP.TXT.
+
+ARC_IT e -a "Stephan Slabihoud" E:\FIDO\MSGS\ATARI
+
+   - ATARI.GER is archived, but now the already archived messages are
+     saved, too.
+
+ARC_IT e -ax "doesn't matter" E:\FIDO\MSGS\ATARI
+
+   - Now all messages (also these ones that are not written by you and
+     also the messages that were already archived before) are saved.
+
+
+INTERNA:
+========
+ARC-IT  uses  bit #1 (0x0002) of Unused[7] in the header file  (*.HDR)  to 
+recognize wether messages were already archived or not.
+
+
+HISTORY:
+=========
+ V1.00 -  First official version
+ V1.01 -  A little bit optimized
+ V1.10 -  Optional parameter <arcname>
+ V1.20 -  Now works with FastEcho
+ V1.21 -  Problems with msgs>32kb fixed.
+

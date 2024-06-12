@@ -1,0 +1,1948 @@
+
+========================================================================
+  LED support (send new ideas, bug reports and criticism to the
+  address below):
+
+    Stephan Slabihoud
+       FidoNet: 2:2448/2020.6@fidonet.org
+     NetworkST: 90:400/410@nest.ftn
+
+========================================================================
+      BETATEST-Versions can only be used by registered user!
+
+
+Update-Info:
+============
+
+5D support / network-dependant netmail areas
+
+  As from version 1.50 it is possible to define more than one netmail 
+  area in LED: mark the desired area with "-Netmail <domain>" in the 
+  AREAS.BBS file. The <domain> MUST be the full network name, i.e. 
+  fidonet.org, nest.ftn, atarinet.ftn etc.
+  The FIRST area in AREAS.BBS continues to be the main netmail area. 
+  It may be redefined using "-Netmail <domain>" but will ALWAYS be 
+  treated as a netmail area (both with and without this statement).
+
+ These are the other changes to LED:
+
+  o In the user lists all entries should now be in 5D format, i.e. with
+    domain. Searching for a name in the user list will only produce members
+    of the current domain.
+    If this is not specified in the user list, the name will be presented
+    anyway as it may possibly belong to the current network.
+
+    However, it is possible to specify a default domain for ALL names of a
+    user list that have NO domain specification. This domain may be defined
+    for each user list using the menu "Options->Userlist".
+    So, for a NeST user list you would rather specify "nest.ftn" as the
+    default domain than adding the domain to EACH entry.
+
+  o "Add PRVTUSER.LST" will now attempt to add domain information to the
+    new entry in the user list. The methods used are:
+    a) For a network-dependant netmail the domain as specified in the
+       "-Netmail <domain>" statement will be added.
+    b) For an echomail the domain of the first link will be used.
+    c) For the main netmail area NO domain will be added yet (edit this
+       manually).
+
+  o The dialog boxes "Search in Userlist" and "Forward msg" are not domain
+    aware yet.
+    Example:
+    If you click on the "To:" line while editing a mail a dialog box
+    appears. Searching for a name will search ALL user lists and will
+    produce ALL matching names as a domain specification is not possible
+    here yet.
+
+Resource- and Languagefile:
+
+  From version 1.41 LED makes use of a resource- AND a languagefile.
+  The resourcefile (LED.RSC) must be placed in the LED systemfolder or
+  in the same folder together with LED.PRG; the languagefile (*.LNG) must
+  be placed in the LED systemfolder.
+
+  When you have written a new language adaptation please send it to
+  LED-HQ.
+
+Files:
+
+  Following files are used by LED:
+
+  Filename    Desciption               Optional   Editable
+
+    LED.CFG   Configurationfile           Yes       Yes
+    LED.DLG   Dialogpositions             Yes        No
+    LED.FKY   Funktionkeys                Yes        No
+    LED.FLN   Footnotes                   Yes       Yes
+    LED.LNG   Languagefiles                No       Yes
+    LED.LOG   Logfile (for errors)        Yes       Yes (Why?)
+    LED.NEW   Lastread-Pointers          (Yes)      Yes
+    LED.OPT   Setup (Options)             Yes        No
+    LED.PRG   Programfile                  No        No
+    LED.PRN   Printerdriver (binary)      Yes        No
+    LED.RSC   Resourcefile                 No       Yes (RSC-Editor)
+    LED.RSD   Definitionfile for RSC       --       Yes (RSC-Editor)
+    LED.SCT   Shortcutfile                Yes       Yes
+    LED.NIC   Nicknames                   Yes       Yes
+      *.PN    Printerdriver (source)       --       Yes
+
+Charset conversion:
+
+  LED 1.29 can display other character sets correctly when the mail
+  contains a CHRS or CHARSET kludge. Note: LED converts Latin-1 codes
+  into the ST font and not into the IBMPC font! The converter uses a
+  best match table that means that not existing Latin-1 characters are
+  converted into similar ST characters.
+
+  Be carefull when quoting such a mail: When saving a mail with a
+  converted Latin-1 font LED creates a "^CHRS IBMPC 2" kludge (normally
+  it should write "ATARIST" instead of "IBMPC" but that is not defined).
+  Some converted Latin-1 characters do not exist in the IBMPC font, so
+  the receiver of the msg might see some block graphics.
+  When you have installed an IBMPC font (like Myblue) you will be able
+  to see how the mail looks like on the receiver's system.
+
+  LED can display msgs with MIME coded characters. Such mails cannot be
+  recognized automatically so this feature is switchable with ALT+1
+  (Options->Switches->Convert MIME style). When this feature is enabled
+  LED does use the LATIN1->Atari-ST convertion, too, when no valid
+  ^CHRS kludge defines another convertion method.
+
+Important note:
+
+  "Address correction" (and the flag "Fixed address") is not needed
+  as a rule! Especially points or nodes with only one address per zone/
+  network will NEVER need to make use of this feature!
+  Every tosser known to me (JetMail, IOSmail, Ecu/Llegada) normally
+  ignores the entries LED makes and enters it's own address of sender.
+  Nevertheless, if you have several addresses within a zone/network, you
+  could only use one fixed address until now. This concerned e.g. Z*C's,
+  R*C's N*C's and other's with administrative addresses. "Address
+  correction" now enables them to choose their address as desired and
+  instruct their tosser (atm JetMail only) via the flag "Fixed address"
+  not to alter that (origin) address at export.
+
+  In echo areas the address correction can be switched on using the
+  statement "-FixedAddress". Note: LED only writes the origin address!
+  The routing (the destination address) must be done by the tosser!
+  When quoting from such an area into the netmail (and "Address
+  correction" for netmail not selected) LED creates no MSGID and origin
+  address. That must be done by the tossser as usual.
+
+  I.e.: points and nodes with only one address per zone can do without.
+  The other's must decide for themselves whether they need this feature
+  or not...
+
+Another important note:
+
+  Now you MUST define your netmail as FIRST area in AREAS.BBS. The
+  config statement "NETMAIL" is not longer parsed by the LED 1.26
+  (and higher).
+
+ACS-Package:
+
+  In LED 1.28 (and higher) you MUST define the ExtraExportArea and
+  Bad_Msgs in the AREAS.BBS, otherwise LED does not show them.
+  The "EchoList" for ACS will be created as usual when you put the
+  'ECHOLIST' statement in LED.CFG.
+
+NVDI 2.5x bug:
+
+  When using NVDI 2.5x (not NVDI 2.5x ET4000) the scollbar in the
+  AreaListWindow is not drawn.
+
+Support-Echos:
+
+  Information of new LED versions will be given in following echos:
+  ST_FIDO.GER (FidoNet), N.SUP.LED (NeST) and A.SUP.LED (AtariNet).
+  If you have questions about the new LED please write them in one
+  of these echos or use the netmail!
+
+ToDo-List:
+
+  Please send me your ideas how to improve LED (btw the ToDo list is
+  approx. 60kb long now => over 140 different suggestions ;-)).
+
+
+    +--------------------+
+    | V1.60     30.01.98 |\
+ +--+--------------------+-------------------------------------+
+ |                                                             |\
+ | New:                                                        |||
+ |                                                             |||
+ | LED is FREEWARE now!                                        |||
+ |                                                             |||
+ | Though the RSC files tell you to register, you mustn't!     |||
+ | But you can send me a small appreciate if you want :-)      |||
+ |                                                             |||
+ +-------------------------------------------------------------+||
+  \_____________________________________________________________\|
+
+
+    +--------------------+
+    | V1.51     07.05.97 |\
+ +--+--------------------+-------------------------------------+
+ |                                                             |\
+ | New:                                                        |||
+ |                                                             |||
+ | - RECEIVED flag will be set.                                |||
+ | - ToSysop flag is deleted even when a pseudonym is used.    |||
+ | - Hotkey "Ctrl+I" removed.                                  |||
+ | - The "backward" checkmark is set automatically when "Find  |||
+ |   msg" is called and you are reading the last msg.          |||
+ | - The correct footlinefile (*.FLN) is used even in the      |||
+ |   PRIVATEMAILBOX.                                           |||
+ | - Lots of small bugfixes.                                   |||
+ | - LED.PRN:                                                  |||
+ |   LEFTMARGIN works with texteffects now.                    |||
+ | - LED.NEW:                                                  |||
+ |   LED will create a backup from LED.NEW now (LED.BAK).      |||
+ | - LED will not longer create a wrong (quote) initial when   |||
+ |   non-ASCII-characters are used in a name.                  |||
+ |                                                             |||
+ +-------------------------------------------------------------+||
+  \_____________________________________________________________\|
+
+
+    +--------------------+
+    | V1.50     14.11.96 |\
+ +--+--------------------+-------------------------------------+
+ |                                                             |\
+ | AREAS.BBS                                                   |||
+ |                                                             |||
+ |   -NoTopline    - Do not generate a topline in this area    |||
+ |   -Topline <text> Instead of the "normal" topline for this  |||
+ |                   area LED uses this topline. '|' is used   |||
+ |                   for a <cr>.                               |||
+ |      Example:                                               |||
+ |      -Topline On %d %31 (%a) wrote to %33:||Hi %i,|         |||
+ |                                                             |||
+ |   -Netmail <domain> This area is a netmail area for msgs    |||
+ |                   from/to the network <domain>.             |||
+ |      Example:                                               |||
+ |      -Netmail nest.ftn                                      |||
+ |                                                             |||
+ | New:                                                        |||
+ |                                                             |||
+ | - Lots of small improvments:                                |||
+ |   - Recognizing of MIMEcoded msgs improved                  |||
+ |   - Displaying of very long paths improved                  |||
+ |   - Code a little bit optimized                             |||
+ |   - and much more improvments                               |||
+ | - 12 userlists available now.                               |||
+ | - "Switches->Recognize AkaSysop":                           |||
+ |   Disabled: LED displays "<" and ">", when the sender/      |||
+ |             receiver of a msg is equal to the sysop in the  |||
+ |             first characters. This is the behaviour of LED  |||
+ |             until version 1.45.                             |||
+ |    Enabled: LED displays "<" and ">", when the sender/      |||
+ |             receiver of a msg is 100% equal to one of the   |||
+ |             definied AkaSYSOPs. Also LED recognizes the     |||
+ |             first 20 "-Pseudonym <name>" and "-Name <name>" |||
+ |             statements in AREAS.BBS. When this function is  |||
+ |             enabled LED is slowed down a little bit.        |||
+ | - Shift+Cntrl+L works again.                                |||
+ | - Quoting changed:                                          |||
+ |   CNTRL+[T|N|J] - Quote msg (as defined)                    |||
+ |   SHIFT+[T|N|J] - Quote msg (switch to other language)      |||
+ | - "Switches->Add infoline" prints msg with infoline.        |||
+ | - "Shift+W" calls menu function "Write Binary". LED tries   |||
+ |   to join splitted mails automatically! There is no         |||
+ |   question if you want to continue with the next mail.      |||
+ | - Nine AkaSysops are allowed now.                           |||
+ | - Getting quote characters from strings like                |||
+ |   "Stephan_Slabihoud@somewhere.de"                          |||
+ |   works properly now.                                       |||
+ | - "Switches->'ž' (ATARI-ST Font)"                           |||
+ |   When this switch is enabled, LED uses ascii code 158 for  |||
+ |   the 'ž' and creates a "CHRS: ATARIST 2" kludge.           |||
+ |   Otherwise LED uses ascii code 225 for the 'ž' and creates |||
+ |   a (compatible) "CHRS: IBMPC 2" kludge.                    |||
+ |   Normally this switch should be DISABLED!                  |||
+ | - LED was not able to unfreeze ST-GUIDE with MagiC 5.0. Now |||
+ |   this should work even with MagiC 5.0 again.               |||
+ | - The selection of reversed displayed text should be        |||
+ |   correct now.                                              |||
+ | - Seperate nicknames can be defined for each area. Here is  |||
+ |   the new format of LED.NIC:                                |||
+ |     <nickname>,<full name>[,<area>]                         |||
+ | - "ChangeMsg" deletes a tearline also when a '%' parameter  |||
+ |   is used in the first line of LED.FLN.                     |||
+ |   Small bug removed that added a single line with a space   |||
+ |   at the end of the text.                                   |||
+ | - "CallExporter" is only executed when a new msg has been   |||
+ |   created.                                                  |||
+ |                                                             |||
+ | - Recognition of (own) tearlines improved:                  |||
+ |                                                             |||
+ |   RandomFootlines are removed automatically when a msg is   |||
+ |   changed with "Change msg". Please note:                   |||
+ |    - RandomFootlines are only removed from the last eight   |||
+ |      msg lines.                                             |||
+ |    - The RandomFootline must start with exact the same      |||
+ |      sequence defined in the corresponding RandomFootline-  |||
+ |      File for this area (first line in this file=>PREFIX).  |||
+ |      The minimum length of the sequence are two characters  |||
+ |      (without '|' line wraps).                              |||
+ |    - Between the PREFIX and the textline no empty line      |||
+ |      should appear! So use a maximum of ONE '|' at the end  |||
+ |      of the prefix!                                         |||
+ |    - The LOCAL flag must be set.                            |||
+ |                                                             |||
+ +-------------------------------------------------------------+||
+  \_____________________________________________________________\|
+
+
+    +--------------------+
+    | V1.45     12.08.96 |\
+ +--+--------------------+-------------------------------------+
+ |                                                             |\
+ | MAKE_PRN.TTP:                                               |||
+ |                                                             |||
+ |   A new command has been added: INIT,...                    |||
+ |   This command allows you to initialize the printer.        |||
+ |                                                             |||
+ | IMPORTANT:                                                  |||
+ |                                                             |||
+ |   You must compile your printer driver again!               |||
+ |                                                             |||
+ | New:                                                        |||
+ |                                                             |||
+ | - You can also use the following special shortcuts (useful  |||
+ |   in "Quote...->Free editable"):                            |||
+ |                                                             |||
+ |    Shortcut: Meaning:                                       |||
+ |    -------------------------------------------------------- |||
+ |     %30      When FROM=SYSOP, then "Ich", else like "%o"    |||
+ |     %31       "       "        "   "ich",  "    "    "      |||
+ |     %32       "    TO=SYSOP,   "   "Mich", "    "   "%O"    |||
+ |     %33       "       "        "   "mich", "    "    "      |||
+ |     %34       "       "        "   "Mir",  "    "    "      |||
+ |     %35       "       "        "   "mir",  "    "    "      |||
+ |     %40      When FROM=SYSOP, then "I",   else like "%o"    |||
+ |     %41       "       "        "   "I",    "    "    "      |||
+ |     %42       "    TO=SYSOP,   "   "Me",   "    "   "%O"    |||
+ |     %43       "       "        "   "me",   "    "    "      |||
+ |                                                             |||
+ | - You can define about 100 nicknames. To do this you must   |||
+ |   create a file called LED.NIC in LED's systemfolder. The   |||
+ |   format of LED.NIC is very simple: First enter the         |||
+ |   nickname, followed by a comma and then the full name.     |||
+ |     <nickname>, <full name>                                 |||
+ |   A comment line begins with a semikolon.                   |||
+ |   You can use the nicknames with a '%'-parameter. '%i'      |||
+ |   conforms with '%f' but uses the nickname instead of the   |||
+ |   first name (when the nickname is defined) and '%I'        |||
+ |   conforms with '%t'.                                       |||
+ |   => ONLY FOR REGISTERED USER <=                            |||
+ | - Pressing Shift+x sets the "Locked" flag in the MsgWindow. |||
+ | - ALT+Mouseclick on a valid address works in the "To:" line |||
+ |   in netmail area now!                                      |||
+ |                                                             |||
+ +-------------------------------------------------------------+||
+  \_____________________________________________________________\|
+
+
+    +--------------------+
+    | V1.44     03.08.96 |\
+ +--+--------------------+-------------------------------------+
+ |                                                             |\
+ | LED.CFG/BINKLEY.CFG:                                        |||
+ |                                                             |||
+ |   It is possible to use a new folder format with            |||
+ |   BinkleyTerm 3.18 (and above). LED uses this format when   |||
+ |   the statement "Outbound36" is found in BINKLEY.CFG or     |||
+ |   LED.CFG. => ONLY AVAILABLE FOR REGISTERED USER <=         |||
+ |                                                             |||
+ |   "CallExporter n" orders LED to send the message "Start    |||
+ |   Exporter" to AVALON (n=0) or SEMPER (n=1) when LED exits. |||
+ |   Avalon/Semper call the exporter automatically.            |||
+ |   You need AVALON 3.77 to use this function.                |||
+ |                                                             |||
+ | New:                                                        |||
+ |                                                             |||
+ | - ALT+Mouseclick on a valid address displays all flags and  |||
+ |   works in the "From:" line in netmail area now!            |||
+ | - LED supports the 'FidoInfo' message (FIDO_MSG-Protocoll)  |||
+ |   now. For more information: See DEVELOP folder.            |||
+ | - Wrap function changed.                                    |||
+ | - When a msg is aborted (using the Closer, Abort msg or     |||
+ |   Cntrl+Z) a dialogbox appears now.                         |||
+ |   To abort a msg immediatly press Shift+Cntrl+Z now.        |||
+ | - A lot of code rewritten to make LED a little bit faster.  |||
+ | - RandomFootlines are removed automatically when a msg is   |||
+ |   changed with "Change msg". Please note:                   |||
+ |    - RandomFootlines are only removed from the last eight   |||
+ |      msg lines.                                             |||
+ |    - The RandomFootline must start with exact the same      |||
+ |      sequence defined in the corresponding RandomFootline-  |||
+ |      File for this area (first line in this file). The      |||
+ |      minimum length of the sequence are two characters.     |||
+ |    - The LOCAL flag must be set.                            |||
+ | - Msgs with text effects are shown a little bit faster.     |||
+ | - "Write BINARY" decodes MIME coded msgs in "base64"        |||
+ |   format now. The distinction between UUE and MIME is done  |||
+ |   automatically.                                            |||
+ |                                                             |||
+ +-------------------------------------------------------------+||
+  \_____________________________________________________________\|
+
+
+    +--------------------+
+    | V1.43     29.06.96 |\
+ +--+--------------------+-------------------------------------+
+ |                                                             |\
+ | MAKE_PRN.TTP                                                |||
+ |                                                             |||
+ |   You can define a left margin now.                         |||
+ |                                                             |||
+ | New:                                                        |||
+ |                                                             |||
+ | - Small problem fixed with splitted UUEcoded mails.         |||
+ | - MagiC and MultiTOS-Iconify support.                       |||
+ |   ALT+CNTRL+SPACE:       Iconify top window                 |||
+ |   SHIFT+ALT+CNTRL+SPACE: Iconify all windows                |||
+ | - EditWindow: Block or text can be written or appended now. |||
+ | - Ctrl+F10 crashes when no arealist-window was open.        |||
+ | - "Keep" and "Forward" was selectable in ChangeAreaDialog.  |||
+ | - "p" (NUM+1) and "n" (NUM+3) jumped also to deleted msgs.  |||
+ | - In LED_ICON.RSC you will find icons for LED. ColorIcons   |||
+ |   are not available because I have not a color monitor...   |||
+ | - When LED is started as single task in MagiC, normally all |||
+ |   accessories are disabled, that means ST-GUIDE cannot be   |||
+ |   called. LED unfreezes this accessory when necessary now.  |||
+ | - "Uucp" flag is displayed especially for Daron (Hi ;-)).   |||
+ | - Major bugfix. Fortunately this bug appeared only very     |||
+ |   seldom.                                                   |||
+ |                                                             |||
+ +-------------------------------------------------------------+||
+  \_____________________________________________________________\|
+
+
+    +--------------------+
+    | V1.42     01.05.96 |\
+ +--+--------------------+-------------------------------------+
+ |                                                             |\
+ | AREAS.BBS:                                                  |||
+ |                                                             |||
+ |   -FollowUp <areaname>                                      |||
+ |      Msgs in this area will be quoted in <areaname>.        |||
+ |      Only "Quote msg" and "Reply msg" use this statement,   |||
+ |      NOT "Edit msg".                                        |||
+ |                                                             |||
+ | LED.CFG (ACS.CFG):                                          |||
+ |                                                             |||
+ |   LED does not longer support ACS.CFG. When you need an     |||
+ |   echolist (statement 'ECHOLIST' in ACS.CFG) put it in      |||
+ |   LED.CFG now.                                              |||
+ |                                                             |||
+ | New:                                                        |||
+ |                                                             |||
+ | - "Change Msg" does not reset all XFlags when changing an   |||
+ |   own msg.                                                  |||
+ | - When quoting a msg into the netmail the "-Quote_english"  |||
+ |   flag is recognized.                                       |||
+ | - Minor Bugfixes.                                           |||
+ | - When clicking on a unlisted pointaddress information about|||
+ |   the boss' system will be displayed.                       |||
+ | - Sometimes "Change msg" does not set the %-parameters.     |||
+ | - "Add PRVTUSER.LST->New" sets the address correctly now.   |||
+ | - "* Originally from XY..." with date now.                  |||
+ | - "Hard format paragraph" (SHFT+ALT+E) works again.         |||
+ | - Bugfix: "Change msg" does not delete all smileys when the |||
+ |   EditWindow consists of less columns than the MsgWindow.   |||
+ |                                                             |||
+ +-------------------------------------------------------------+||
+  \_____________________________________________________________\|
+
+
+    +--------------------+
+    | V1.41     14.03.96 |\
+ +--+--------------------+-------------------------------------+
+ |                                                             |\
+ | New:                                                        |||
+ |                                                             |||
+ | Configfile:                                                 |||
+ |                                                             |||
+ |   Nodelist <path>    - path to nodelist                     |||
+ |   BTNC               - defines BTNC nodelist                |||
+ |                                                             |||
+ |   Even when LED recognized only the BTNC nodelist up to now,|||
+ |   BTNC must be used!                                        |||
+ |                                                             |||
+ | AREAS.BBS:                                                  |||
+ |                                                             |||
+ |   -UseCommentTree    - Comment-Tree is always activated for |||
+ |                        this area.                           |||
+ |   -NoCommentTree     - Comment-Tree is always deactivated   |||
+ |                        for this area.                       |||
+ |                                                             |||
+ | Generally:                                                  |||
+ |                                                             |||
+ | - "Hard/Softformat paragraph" function available with ALT+E |||
+ |   and Shift+ALT+E now. ALT+A ("Abort msg" in EditWindow)    |||
+ |   removed. Selected block in EditWindow can be saved now,   |||
+ |   when no block is selected the whole contents of the       |||
+ |   EditWindow is saved.                                      |||
+ | - When ST-GUIDE cannot be found as accessory LED tries to   |||
+ |   start ST-GUIDE as applikation. "ST-GUIDE.APP" must be     |||
+ |   put in the LED systemfolder to use this feature.          |||
+ | - "Shift+HELP" displays available keys.                     |||
+ | - The zone-/node-number is not entered separately in        |||
+ |   following dialogs now: SearchUser-, CarbonCopy- and       |||
+ |   FRequest-Dialog.                                          |||
+ | - New switch: "Switches->Show cursor position":             |||
+ |   The cursor position is shown in the EditWindow.           |||
+ | - Searching for areanames in the AreaListWindow changed:    |||
+ |   LED allows to enter successive the first characters of an |||
+ |   areaname. The first area found will be displayed. When    |||
+ |   more areas start with the same characters press TAB to    |||
+ |   cycle between them. When you press TAB in the MsgWindow   |||
+ |   the next area with the same characters will be selected   |||
+ |   (even when the AreaListWindow is closed). The selection   |||
+ |   will be lost when a new area is selected i.e. with one of |||
+ |   the following keys: "+-/*#".                              |||
+ |   Example:                                                  |||
+ |     1.) AreaListWindow is top-window                        |||
+ |     2.) Press "N."                                          |||
+ |     3.) Press RETURN (first NeST-Area will be selected)     |||
+ |     4.) Press TAB (next NeST-Area will selected)            |||
+ |     5.) Repeat step 4.) to select other NeST areas          |||
+ | - LED does also call LED.HYP in the EditWindow when the     |||
+ |   cursor is on a whitespace and HELP is pressed.            |||
+ | - The resourcefile (LED.RSC) can be placed in the LED-      |||
+ |   systemfolder or in the same folder together with LED.PRG  |||
+ |   LED searches first in the systemfolder for this file.     |||
+ | - New flag "Multiple CC". When this flag is set JetMail     |||
+ |   will create carbon copys when the mail is exported.       |||
+ |   More information you will find in the JetMail dox.        |||
+ | - Now the '%'-parameters can be used in the shortcut file   |||
+ |   (*.SCT), too.                                             |||
+ | - When forwarding a mail in the netmail LED does not set    |||
+ |   the K/S flag now when the destination address is one of   |||
+ |   your own.                                                 |||
+ | - When clicking in the MsgWindow with pressed ALTERNATE key |||
+ |   on an address, this address is searched in the nodelist   |||
+ |   and information about the entry are displayed.            |||
+ |   This function does only work when a nodelist is used!     |||
+ | - When searching for a nodenumber in the userlist-dialog,   |||
+ |   LED searches in the nodelist first and then in the        |||
+ |   userlists.                                                |||
+ | - "Hidden CC" implemented. A name will not be included in   |||
+ |   the "CC:" list when a "-" is set in front of the name in  |||
+ |   the CC dialog.                                            |||
+ | - Bugfix: When using very long comment trees LED does not   |||
+ |   crash now.                                                |||
+ | - The systemfile LED.SYS is not longer necessary because    |||
+ |   a new headerfile format is not to be expected in future.  |||
+ |   All functions have been reimplemented in the main program.|||
+ | - A "-NoExport" area is marked with a "x" in the AreaList-  |||
+ |   Window now. LED also warns you when trying to write a msg |||
+ |   in a "NoExport"-echo.                                     |||
+ | - Slider in MsgListWindow and AreaListWindow corrected. 128 |||
+ |   characters are displayed now.                             |||
+ | - New deadkey "|" implemented:                              |||
+ |     a -> †  134  0x86          b -> ¦  166  0xa6            |||
+ |     c -> ‡  135  0x87          d -> ›  155  0x9b            |||
+ |     e -> ‘  145  0x91 ae       f -> Ÿ  159  0x9f            |||
+ |     g -> ø  248  0xf8          h -> ù  249  0xf9            |||
+ |     i -> À  192  0xc0 ij       j                            |||
+ |     k                          l                            |||
+ |     m                          n                            |||
+ |     o -> ´  180  0xb4 oe       p -> §  167  0xa7            |||
+ |     q                          r -> ¾  190  0xbe (r)        |||
+ |     s -> ½  189  0xbd (c)      t -> ¿  191  0xbf (tm)       |||
+ |     u                          v                            |||
+ |     w                          x                            |||
+ |     y ->   157  0x9d          z                            |||
+ |     A ->   143  0x8f          B                            |||
+ |     C -> €  128  0x80          D                            |||
+ |     E -> ’  146  0x92 AE       F                            |||
+ |     G                          H                            |||
+ |     I -> Á  193  0xc1 IJ       J                            |||
+ |     K                          L                            |||
+ |     M                          N                            |||
+ |     O -> µ  181  0xb5 OE       P -> ¼  188  0xbc Paragraph  |||
+ |     Q                          R                            |||
+ |     S                          T -> »  187  0xbb Cross      |||
+ |     U                          V -> Ý  221  0xdd Par.(germ.)|||
+ |     W -> ©  169  0xa9          X -> ª  170  0xaa            |||
+ |     Y -> ô  244  0xf4          Z -> õ  245  0xf5            |||
+ |     ? -> ¨  168  0xa8          ! -> ­  173  0xad            |||
+ |     < -> ®  174  0xae <<       > -> ¯  175  0xaf >>         |||
+ |     ~ -> ÷  247  0xf7          / -> ö  246  0xf6            |||
+ |     $ -> œ  156  0x9c          2 -> «  171  0xab            |||
+ |     4 -> ¬  172  0xac          8 -> ß  223  0xdf oo         |||
+ |     : -> ¹  185  0xb9 ..                                    |||
+ | - LED evaluates the keypad more precisely. When the keyboard|||
+ |   has been remapped (e.g. by KeyEdit) LED should display    |||
+ |   the correct character now. KeyEdit only returns a changed |||
+ |   ascii-code but the scancode from the keypad. So LED 1.40  |||
+ |   was not able to display the changed characters.           |||
+ | - New keys:                                                 |||
+ |     ALT+3: Recognize ^CHAR kludge (was ALT+7)               |||
+ |     ALT+7: Show SEEN-BYs (New)                              |||
+ |     ALT+8: Show Comment-Tree (was ALT+3)                    |||
+ |     NUM+1: Previous unread msg                              |||
+ |     NUM+3: Next unread msg                                  |||
+ | - Bugfix: Selection in areadialog corrected.                |||
+ | - "%"-statements can be used in the praefix of footlines    |||
+ |   (first line in LED.FLN) now.                              |||
+ | - Bugfix: Very long quoted lines can be quoted again without|||
+ |   bombs!                                                    |||
+ | - Bugfix: When selecting a word/filename the effect-        |||
+ |   indicator should work as described.                       |||
+ | - LED makes use of a language file now (LED.LNG). So it is  |||
+ |   possible to adapt (together with LED.RSC) LED to every    |||
+ |   language you want. The language file must be put in the   |||
+ |   systemfolder.                                             |||
+ | - Realtimescrolling (MagiC 4.0) does not flicker.           |||
+ | - And again some small bugfixes.                            |||
+ | - I am sorry but there was a small bug in the english       |||
+ |   update hypertext ("What's new in...->1.40").              |||
+ |                                                             |||
+ +-------------------------------------------------------------+||
+  \_____________________________________________________________\|
+
+
+    +--------------------+
+    | V1.40     20.12.95 |\
+ +--+--------------------+-------------------------------------+
+ |                                                             |\
+ | New:                                                        |||
+ |                                                             |||
+ | - LED can display msgs with MIME coded characters now. Such |||
+ |   mails cannot be recognized automatically so this feature  |||
+ |   is switchable with ALT+1 (Options->Switches->Convert MIME |||
+ |   style). When this feature is enabled LED does use the     |||
+ |   LATIN1->Atari-ST convertion, too, when no valid ^CHRS     |||
+ |   kludge defines another convertion method.                 |||
+ |   Infoline displays:                                        |||
+ |     RC->Recogize ^CHRS                                      |||
+ |     MI->Convert MIME style                                  |||
+ |     RM->Recognize ^CHRS, Convert MIME style                 |||
+ | - When clicking on a word with the CONTROL-key pressed LED  |||
+ |   searches the word in the shortcut-file (LED.SCT) and      |||
+ |   displays all entries found.                               |||
+ | - New help feature available with CONTROL-F4 in "MsgWindow" |||
+ |   and "EditWindow". This needs 2kb of code. Please tell me  |||
+ |   if it is usefull or not. If it is useless I will remove   |||
+ |   it in the next version.                                   |||
+ | - "Options->Comment->Complete msgbase scan" allows to build |||
+ |   a correct comment-tree even when a reply is found before  |||
+ |   the original msg. Note: This slows LED down a little bit  |||
+ |   and is (normally) not neccessary!                         |||
+ | - "Switches->Numblock graphics" removed. Now you can use    |||
+ |   following feature in the EditWindow:                      |||
+ |     ALT+NUMPAD <n> = Enter ASCII-Code                       |||
+ |   SHIFT+NUMPAD <n> = Blockgraphics                          |||
+ |   CNTRL+NUMPAD <n> = Blockgraphics                          |||
+ | - "Cntrl+F3" kills all msgs.                                |||
+ | - Shortcut (Cntrl+F1) function improved. Now you can use    |||
+ |   the "%"-shortcuts (incl. function keys) that are allowed  |||
+ |   in toplines in files that are defined with                |||
+ |     - <name>, <filename>                                    |||
+ | - When ALT+RETURN is pressed LED asks if you want to delete |||
+ |   all msgs with the same subject or all msgs written by the |||
+ |   same person.                                              |||
+ | - When selecting a word in the MsgWindow LED asks if this   |||
+ |   should be requestet as file or searched in the hypertexts.|||
+ | - "Delete quote stuff..." with "Delete" as default.         |||
+ | - Big bug fixed: LED crashed sometimes when an empty area   |||
+ |   and the MsgListWindow was open at the same time.          |||
+ | - New Quote/FKey parameter "%v" contains LED's version      |||
+ |   number.                                                   |||
+ | - "Carbon-Copy" allows to merge CCL files (select LOAD and  |||
+ |   then choose MERGE).                                       |||
+ | - "Carbon-Copy" dialog a little bit improved.               |||
+ | - "File->Read BINARY" reads a binary file uue-coded into    |||
+ |   a msg.                                                    |||
+ |   "File->Write BINARY" saves a uue-coded mail into a file.  |||
+ |   NOTE: LED does not support splitting on purpose, otherwise|||
+ |   the mail traffic will (IMO) become enormous because user  |||
+ |   will send their whole filebase. Splitted uue-coded mails  |||
+ |   can be written by LED when these mails are stored in the  |||
+ |   correct order.                                            |||
+ |   NOTE: The ESS-CODER by Michel Forget has two small bugs:  |||
+ |           1.It appends an extra character to each line      |||
+ |           2.The line before the "end" consists of a space   |||
+ |             and a character (1.bug). An encoder should write|||
+ |             zero bytes when it founds such a line.          |||
+ |   Even if this behaviour is not correct LED works correct.  |||
+ | - FIDOCONFDIR does not work properly when the path ends     |||
+ |   with a '\'.                                               |||
+ | - Because of some LED user who do not understand what       |||
+ |   "shareware" means, I have implemented another (new)       |||
+ |   reminder-dialog in LED. Perhaps only registered user will |||
+ |   be able to use further versions in future.                |||
+ | - Some minor bugfixes.                                      |||
+ | - Selecting files in a msg works properly now even when     |||
+ |   texteffects are used in that line.                        |||
+ | - Bugfix: LED used the last entered command line for a      |||
+ |   program started with "Execute".                           |||
+ | - When starting a "*.GTP" program LED asked for a command   |||
+ |   line now.                                                 |||
+ | - "Search in userlist" searches for addresses again.        |||
+ | - LED shows no texteffects in the To-line now.              |||
+ | - System-Report improved.                                   |||
+ | - LED has not recognized the october in the "%z" parameter. |||
+ |                                                             |||
+ +-------------------------------------------------------------+||
+  \_____________________________________________________________\|
+
+
+    +--------------------+
+    | V1.31     23.09.95 |\
+ +--+--------------------+-------------------------------------+
+ |                                                             |\
+ | Printing of texteffects:                                    |||
+ |                                                             |||
+ |   Because of a new texteffect ('#' = inverse text) the      |||
+ |   printertable entries 0x10 (16d) up to 0x17 (23d) have     |||
+ |   been changed.                                             |||
+ |   Please adapt your own printerdriver and compile it again  |||
+ |   with MAKE_PRN.                                            |||
+ |   Because I do not know any printer that allows to print    |||
+ |   inverse characters, all demonstration-drivers will only   |||
+ |   print a '#'.                                              |||
+ |                                                             |||
+ | LEDlight:                                                   |||
+ |                                                             |||
+ |   LED 1.31 is also available in a "light" version. The only |||
+ |   difference between the full-version and LEDlight is:      |||
+ |     - approx.200 kb less memory usage                       |||
+ |     - no Area- and MsgListeWindow avaiable                  |||
+ |     - Headersorting not possible                            |||
+ |     - max.3000 msgs per area                                |||
+ |     - max.3000 lines per msg                                |||
+ |                                                             |||
+ | New:                                                        |||
+ |                                                             |||
+ | - "...special flags" in the menubar allows to edit the      |||
+ |   "Precessed" field in the msg header.                      |||
+ | - "No compression" creates sometimes the "No more lines"    |||
+ |   bug.                                                      |||
+ | - Bugfix: When writing to the same person using different   |||
+ |   addresses LED has used the wrong address.                 |||
+ | - Searching for addresses in the CC dialog works again now. |||
+ | - Small problem removed with the redraw of the infoline in  |||
+ |   the MsgWindow.                                            |||
+ | - "WM_ONTOP" sets LED's menubar when MagiC is installed.    |||
+ | - NEWECHOS.LST will be written even when you have started   |||
+ |   a program with "Execute".                                 |||
+ | - Texteffect "'#'=Inverse text" implemented.                |||
+ | - Continuous reading of mails with SPACE did not work in    |||
+ |   1.31b.                                                    |||
+ | - Maximum length of RandomTearlines: 1024 characters now!   |||
+ |   You can use the same "%"-shortcuts in tearlines that are  |||
+ |   allowed in toplines.                                      |||
+ | - Tiny problems in the MsgListDialog fixed.                 |||
+ | - It is allowed to use trailing spaces in the first line of |||
+ |   LED.FLN now.                                              |||
+ | - Following flags can be set in ALT+V dialog additionally:  |||
+ |   Direct, Immediate, KillFileSent and ArchivSent            |||
+ |                                                             |||
+ +-------------------------------------------------------------+||
+  \_____________________________________________________________\|
+
+
+    +--------------------+
+    | V1.31     21.08.95 |\           BETATEST-Version
+ +--+--------------------+-------------------------------------+
+ |                                                             |\
+ | Configuration folder:                                       |||
+ |                                                             |||
+ |   LED expects to find most of it's files in a folder        |||
+ |   called "LED". This folder is searched in different        |||
+ |   places (highest priority first):                          |||
+ |     1. Defined by the environment "LED":                    |||
+ |        This defines the path AND name(!) of the             |||
+ |        configuration folder, e.g.                           |||
+ |          LED=D:\FIDOSOFT\CONFIGS\LED                        |||
+ |     2. Defined by the environment "FIDOCONFDIR":            |||
+ |        LED expects its configuration folder (called "LED")  |||
+ |        in that directory, e.g.                              |||
+ |          FIDOCONFDIR=D:\FIDOSOFT\CONFIGS                    |||
+ |     3. When $FIDOCONFDIR does not exist, LED tries to find  |||
+ |        its config folder in .\CONFIG                        |||
+ |     4. LED tries to find the config folder (called "LED")   |||
+ |        in the home directory of LED.PRG.                    |||
+ |                                                             |||
+ |   Following files are searched in the folder "LED" only:    |||
+ |     LED.SYS, LED.FLN, LED.CFG, LED.PRN, LED.SCT, LED.FKY,   |||
+ |     LED.DLG, LED.OPT                                        |||
+ |                                                             |||
+ |   Following folders are searched for different config files |||
+ |   (highest priority first):                                 |||
+ |     1. Folder defined in LED.CFG with following statements: |||
+ |        "AREASpath"  for AREAS.BBS                           |||
+ |        "LEDNEWpath" for LED.NEW                             |||
+ |     2. Folder defined by environment "FIDOCONFDIR"          |||
+ |     3. When $FIDOCONFDIR does not exist, LED tries to find  |||
+ |        its config folder in .\CONFIG                        |||
+ |     4. Folder defined by environment "BINKLEY"              |||
+ |     5. Folder defined by environment "MAILER"               |||
+ |     6. Home directory of LED.PRG                            |||
+ |   LED searches in those folders for following files:        |||
+ |     LED.NEW, BINKLEY.CFG, AREAS.BBS, ACS.CFG                |||
+ |                                                             |||
+ |   Follwing files are treated in an especially way:          |||
+ |     LED.NEW : If this file is found in the LED folder, it   |||
+ |               will be read from there only.                 |||
+ |     LED.LOG : This (error) file will be created in the      |||
+ |               LED folder unless the statement "Logfile"     |||
+ |               in LED.CFG defines a different logfile.       |||
+ |                                                             |||
+ |  Note:                                                      |||
+ |    BINKLEY.CFG is only neccessary when no LED.CFG is        |||
+ |    used.                                                    |||
+ |                                                             |||
+ | LED config file:                                            |||
+ | The following statements are allowed in LED.CFG:            |||
+ |                                                             |||
+ |   SYSOP   name                    -> as in BINKLEY.CFG      |||
+ |   ADDRESS address [fakenet]       -> ditto                  |||
+ |   DOMAIN  network folder          -> ditto                  |||
+ |   LOGFILE file                    -> ditto                  |||
+ |   NETMAIL file                    -> ditto                  |||
+ |   HOLD    path                    -> ditto                  |||
+ |   SHELL   prg                     -> ditto                  |||
+ |                                                             |||
+ | Optionally the following statements may be added:           |||
+ |                                                             |||
+ |   AKASYSOP name                                             |||
+ |   AREASpath             -> path to AREAS.BBS                |||
+ |   LEDNEWpath            -> path to LED.NEW                  |||
+ |                                                             |||
+ | New:                                                        |||
+ |                                                             |||
+ | - Blockmarking and frequest selection by mouse should work  |||
+ |   on each TOS version.                                      |||
+ | - Bugfix: Msg selection by clicking in the (original)       |||
+ |   GEM infoline of the MsgWindow works now when the          |||
+ |   systemfont is not used in the MsgWindow                   |||
+ | - "CNTRL+SHIFT+RETURN" (delete all msgs with same subject)  |||
+ |   changed to "ALT+RETURN". It worked with MagiC but not     |||
+ |   with plain TOS :-(                                        |||
+ | - TB.CFG is not longer supported.                           |||
+ | - BugFix: EPSON.PN and IBM.PN did not work.                 |||
+ | - Uucp mails will not be quoted with "u>".                  |||
+ | - Bad Bug in effect function removed.                       |||
+ | - LED can create a system report (menubar->help->           |||
+ |   system report). When you have problems with LED you       |||
+ |   should send me this file (if neccessary).                 |||
+ | - Only the first selected filename in the MsgWindow was     |||
+ |   copied correctly into the FileRequestDialogue.            |||
+ | - When LED detects quote lines at the end of a new written  |||
+ |   mail it asks if these quotes should be deleted before     |||
+ |   saving the mail.                                          |||
+ | - LED word-wraped imported files now.                       |||
+ | - <CNTRL>+<DEL> deletes one word                            |||
+ |   <SHIFT>+<DEL> deletes one character with line wrap        |||
+ |                 (was CNTRL+DEL)                             |||
+ | - Mousepointer was hidden when calling a "MsgWindow"-macro  |||
+ |   in the EditWindow.                                        |||
+ | - "sF1" in menubar changed to "^F1".                        |||
+ |                                                             |||
+ +-------------------------------------------------------------+||
+  \_____________________________________________________________\|
+
+
+    +--------------------+
+    | V1.30    21.07.95  |\
+ +--+--------------------+-------------------------------------+
+ |                                                             |\
+ | New:                                                        |||
+ |                                                             |||
+ | AREAS.BBS Flags (new in 1.30):                              |||
+ |                                                             |||
+ | -IgnoreNewMsgFlag  LED ignores the "NeMsgFlag", so it shows |||
+ |                    no "*" for this area.                    |||
+ | -IgnoreUnreadFlag  LED ignores the "UnreadFlag", so it shows|||
+ |                    no "/" for this area.                    |||
+ | -RandomFootline    LED creates a random footline for that   |||
+ |                    area taken from LED.FLN.                 |||
+ | -NoRandomFootline  LED creates no random footline for that  |||
+ |                    area.                                    |||
+ | -FootlineFile <file> LED creates a random footline for that |||
+ |                    area taken from <file> (same format as   |||
+ |                    LED.FLN).                                |||
+ |                                                             |||
+ | Systemfile:                                                 |||
+ |                                                             |||
+ |   LED needs a systemfile "LED.SYS" now. If this file is not |||
+ |   found in the LED's configuration folder LED cannot be     |||
+ |   started. The systemfile contains functions to access the  |||
+ |   msgbase headerfile. When the headerfileformat changes you |||
+ |   must only replace this file, not the complete LED. The    |||
+ |   systemfile is stored in a compressed format.              |||
+ |                                                             |||
+ | Manual:                                                     |||
+ |                                                             |||
+ |   In this package you will find an english manual for       |||
+ |   LED 1.30 now (MANUAL.ENG). I want to thank Antony Lacey   |||
+ |   for his really good work on this manual.                  |||
+ |                                                             |||
+ | - Blockselection in EditWindow using the mouse:             |||
+ |     1. Hold down right mousekey,                            |||
+ |     2. Singleclick on left key: Blockstart                  |||
+ |        Doubleclick "   "    " : Blockend                    |||
+ | - It is possible to select filenames in the MsgWindow now   |||
+ |   (single-click ont he filename). These filenames will be   |||
+ |   taken over in the F'Request dialog (ALT+Q) automatically. |||
+ | - "Cntrl+Shift+RETURN" kills all msgs with the same subject.|||
+ | - "NUM 5" selects the first msg in a msg thread.            |||
+ | - Cntrl+^/v jumps to the top/bottom of screen.              |||
+ | - The origin address of the current mail is used as default |||
+ |   for the filerequest.                                      |||
+ | - Texteffects in subject-line are printed now.              |||
+ | - Bugfix: "Change area" dialog works correctly when         |||
+ |   MsgListWindow is open.                                    |||
+ | - "Indent" changed. LED does only indent lines when this    |||
+ |   function is really switches on.                           |||
+ | - New switch: "Switches->GEM infoline". Some people dislike |||
+ |   LED's own infoline in the MsgWindow. Now you can tell LED |||
+ |   to use the original GEM-Infoline in that window.          |||
+ |   This switch will be active when LED is restarted.         |||
+ |   Note: When using the original GEM infoline you might not  |||
+ |   be able to click on the msg number in the infoline to     |||
+ |   select a msg (if so click under the msg number) and the   |||
+ |   actual msg number is displayd '*n*'.                      |||
+ | - Bugfix: "Recognize ^CHRS" can be toggeled correctly with  |||
+ |   ALT+7).                                                   |||
+ | - LED can create random footlines. If you want to use this  |||
+ |   option place a file called "LED.FLN" in LED's             |||
+ |   systemfolder. For more information: See demofile.         |||
+ |   To use that option for all areas switch on "Switches->    |||
+ |   Random footline" or use the AREAS.BBS command             |||
+ |   "-RandomFootline" to use it for specified areas.          |||
+ |   It is possible to define for each area its own file with  |||
+ |   "-FootlineFile <file>".                                   |||
+ |     1. "-FootlineFile <file>" set in AREAS.BBS?             |||
+ |        Yes: Take a random footline from <file>.             |||
+ |     2. "-RandomFootline" or switch "Switches->Random..."    |||
+ |        set?                                                 |||
+ |        Yes: Take a random footline from LED.FLN.            |||
+ | - New Option: "Switches->MsgWindow->...autoclose window".   |||
+ |   The MsgListWindow will be closed automatically when a msg |||
+ |   has been selected.                                        |||
+ | - New option: "Quote->No topline in netmail" suppresses the |||
+ |   topline in netmail area.                                  |||
+ | - LED allows to define 20 function keys now. FKeys F11-F20  |||
+ |   are called with SHIFT+F<n>. The old <SHIFT> functions     |||
+ |   can be called with CONTROL+F<n> now:                      |||
+ |     Control+F10: Clear all unread flags                     |||
+ |     Control+F9 : All lastread pointers to maximum           |||
+ |     Control+F8 : Lastread pointer to maximum                |||
+ |     Control+F7 : Print msg with formfeed                    |||
+ |     Control+F6 : Sort headers by date (current area)        |||
+ |     Control+F5 : Change user name.                          |||
+ |     Control+F2 : Small msginfo                              |||
+ |     Control+F1 : Shortcut                                   |||
+ |   The functionkey texts can be used in quotes with %01 to   |||
+ |   %20 now.                                                  |||
+ | - "^REPLYADDR:" will be treated correctly, too.             |||
+ | - Columns increased by 5 (MsgWindow max 85 cols).           |||
+ | - A maximum of 40 cc's is possible (30 before).             |||
+ | - Bold quoted lines will be printed.                        |||
+ | - Userlist-Dialog-Functions rewritten (hope it works).      |||
+ | - Carbon-Copy-Dialog a little bit improved. Found names     |||
+ |   will be displays immediatly.                              |||
+ | - Bugfix: Shift+F8 with READ does not display the last msg. |||
+ | - The Forward-Dialog shows the PrivateUserList now when the |||
+ |   name field is empty and the dialog is exited with "OK".   |||
+ | - When searching for a name with "Extras->Find in Userlist" |||
+ |   and the top window is the EditWindow, the name and        |||
+ |   address will be inserted at the cursor position (only     |||
+ |   when leaving the dialogbox with "OK").                    |||
+ | - New switch: "Options->Quote->No compression"              |||
+ |   Normally LED quotes msg as follows:                       |||
+ |   Original:                                                 |||
+ |   | This is an example!                                     |||
+ |   |            ^^^^^^^ note this word                       |||
+ |   Quoted version:                                           |||
+ |   | XY> This is an example!                                 |||
+ |   | XY>        ^^^^^^^ note this word                       |||
+ |   Advantage: Normally no line wrap because spaces are       |||
+ |   overwritten by quote signs.                               |||
+ |   Disadvantages: Tabulars and marks are destroyed normally. |||
+ |   When using "No compression" LED creates following:        |||
+ |   | XY> This is an example!                                 |||
+ |   | XY>            ^^^^^^^ note this word                   |||
+ | - Lines will be quoted correctly. Older versions quoted     |||
+ |   "> >" as ">>"; now LED creates the correct quote ">> >".  |||
+ | - Bugfix: When leaving the address-selectorbox with "OK"    |||
+ |   using the mouse LED returned a wrong address (0:0/0).     |||
+ | - New parameters %o and %O will be replaced by the complete |||
+ |   from/to name.                                             |||
+ | - It is possible to use HOME and Shift+HOME in the MsgList- |||
+ |   Dialog.                                                   |||
+ |                                                             |||
+ | Attention! For experts only!                                |||
+ | It is possible to call macros about the funtionkeys. That   |||
+ | is not(!) trivial, so be carefull when using it!            |||
+ |                                                             |||
+ |   A macro that is only allowed in the EditWindow can be     |||
+ |   defined as follows: %[keylist]                            |||
+ |   and when it is only allowed in the MsgWindow: &[keylist]  |||
+ |   macros for both windows can be defined with: $[keylist]   |||
+ |                                                             |||
+ |   "Keylist" is a list in the following format: SSAAK        |||
+ |     SS=Scancode                                             |||
+ |     AA=ASCII-Code                                           |||
+ |     K =Status (1=RShift,2=LShift,4=Ctrl,8=Alt)              |||
+ |   You must use that format exactly! The codes (in hex) are  |||
+ |   seperated with commas. LED may crash when making a        |||
+ |   mistake!                                                  |||
+ |   I will remove that feature when it does not work properly |||
+ |   on all TOS versions. "ALT+Key" actions can not be         |||
+ |   initiated (seems to be a bug in TOS).                     |||
+ |                                                             |||
+ |   Here are two small examples (if you have definied another |||
+ |   interesting macroa please tell me about it):              |||
+ |   e.g. for F1:   %[21064,30024,2d184,21064]                 |||
+ |    and for F2:   &[1e014,47000,1c0d0]                       |||
+ |   F1 - Erase text from cursor to end of text                |||
+ |        Keys: Ctrl+F, Ctrl+B, Ctrl+X, Ctrl+F                 |||
+ |   F2 - Select first area (Netmail)                          |||
+ |        Keys: Ctrl+A, HOME, RETURN                           |||
+ |                                                             |||
+ +-------------------------------------------------------------+||
+  \_____________________________________________________________\|
+
+
+    +--------------------+
+    | V1.29    21.05.95  |\
+ +--+--------------------+-------------------------------------+
+ |                                                             |\
+ | New:                                                        |||
+ |                                                             |||
+ | Recognization of CHARSET/CHRS:                              |||
+ |                                                             |||
+ |   LED converts following charsets into the Atari-ST         |||
+ |   character set, when the switch "Recognize ^CHRS" is       |||
+ |   selected:                                                 |||
+ |    Level-1:                                                 |||
+ |      FRENCH,GERMAN,ITALIAN,NORWEG,PORTU,SPANISH,SWEDISH,UK  |||
+ |    Level-2:                                                 |||
+ |      LATIN-1,IBMPC,ASCII                                    |||
+ |   The CHRS/CHARSET kludge has a higher priority then the    |||
+ |   AREAS.BBS statement "-Latin1" or "-Latin1small".          |||
+ |   The convertion only works properly when no IBMPC font is  |||
+ |   installed (because LED tries to convert all chars into    |||
+ |   the normal systemfont).                                   |||
+ |   Tip: Normally you need only the general conversion with   |||
+ |        "-Latin1small" to read a Latin-1 mail.               |||
+ |                                                             |||
+ | Configuration folder:                                       |||
+ |                                                             |||
+ |   LED now expects to find most of it's files in a folder    |||
+ |   called "LED". This must be located in the same directory  |||
+ |   that LED.PRG is in!                                       |||
+ |                                                             |||
+ |   Overview:                                                 |||
+ |                                                             |||
+ |   - Following files are searched in the folder "LED" only:  |||
+ |       LED.CFG, LED.PRN, LED.SCT, LED.FKY, LED.DLG, LED.OPT  |||
+ |                                                             |||
+ |   - The following files will be recognized when situated in |||
+ |     the same folder as LED.PRG, or in the folder that the   |||
+ |     environment variable MAILER (or BINKLEY) points to, or  |||
+ |     in the folder that "MailerPath" in LED.CFG points to:   |||
+ |       BINKLEY.CFG, TB.CFG, NEWECHOS.LST, AREAS.BBS, ACS.CFG |||
+ |                                                             |||
+ |   - Follwing files are treated in an especially way:        |||
+ |       LED.NEW : If this file is found in the LED folder, it |||
+ |                 will be read from there only; else LED.NEW  |||
+ |                 is expected to be in the same folder as the |||
+ |                 AREAS.BBS file.                             |||
+ |       LED.LOG : This (error) file will be created in the    |||
+ |                 LED folder unless the statement "Logfile"   |||
+ |                 in LED.CFG defines a different logfile.     |||
+ |                                                             |||
+ | New key available in EditWindow:                            |||
+ |                                                             |||
+ |   CNTRL+F        Clear cutbuffer                            |||
+ |   CNTRL+K        Append line to cutbuffer                   |||
+ |   SHIFT+ALT+Y    Hard delete paragraph                      |||
+ |                                                             |||
+ | New key available in MsgWindow:                             |||
+ |                                                             |||
+ |   ALT+7          Toggle "Recognize ^CHRS/CHARSET"           |||
+ |                                                             |||
+ | New key available:                                          |||
+ |                                                             |||
+ |   HELP           Calls ST-Guide                             |||
+ |                                                             |||
+ | - Tabsize=0 does not crash LED.                             |||
+ | - Optionally the READ flag for each msg can be set with     |||
+ |   Shift+F8 (set lastread pointer to maximum). Usefull when  |||
+ |   using JetMail with 'NoDeleteUnread'.                      |||
+ | - Searching for a mail with "Find" sets the READ flag on    |||
+ |   all found msgs.                                           |||
+ | - In "Switches" you can define which keys become 'deadkeys'.|||
+ |   So you can enter nearly all characters now.               |||
+ |   Switch "'„' in [net|echo]area" will be ignored when       |||
+ |   entering '„”Ž™š' using a deadkey.                        |||
+ | - ST-GUIDE will be supported. ST-GUIDE searches for the word|||
+ |   under the cursor when pressing HELP in the EditWindow;    |||
+ |   HELP in all other windows displays the hypertext LED.HYP. |||
+ | - Numeric fields can be deleted by pressing ESC in MoveMsg  |||
+ |   dialog.                                                   |||
+ | - Searching for addresses in userlists corrected.           |||
+ | - LED recognizes the ">AREA xxx"-(Pseudo)Kludge (written by |||
+ |   JetMail and IMHO IOSmail in the PrivateMailBox-Area).     |||
+ |   This kludge will not be quoted (or removed) when quoting  |||
+ |   (or replying) a mail (except "Quote to area").            |||
+ | - "Options->Switches->Use GDOS for printing" allows to      |||
+ |   print a msg using GDOS. LED.PRN is not neccessary when    |||
+ |   this switch is selected and "Add formfeed" will be        |||
+ |   ignored. But when using GDOS it is also not longer        |||
+ |   possible to make character conversions for the printer.   |||
+ |   Now you can choose: Fast printing with printer font and   |||
+ |   usage of LED.PRN, or nice (and slower) printing using     |||
+ |   GDOS ;-)                                                  |||
+ | - When selecting "Set cursor" (Options->Quote) LED sets the |||
+ |   cursor (e.g. when quoting a mail) in the first textline   |||
+ |   and not in the first msgline!                             |||
+ | - When writing a reply in the netmail REPLYTO and REPLYADDR |||
+ |   will be recognized.                                       |||
+ | - The uucp-gate "To:" will be created in the netmail only.  |||
+ | - Following shortcuts are shown in the status line:         |||
+ |     HC - Header cache aktiv                                 |||
+ |     RC - Recognize CHRS-Kludge                              |||
+ |     TE - Text effects                                       |||
+ | - Status of buttons in the frequest dialog will be saved    |||
+ |   correctly.                                                |||
+ | - MAJOR-BUGFIX in VDI init functions. Sometimes LED tried   |||
+ |   to open a wrong workstation. That bug is was in all LED   |||
+ |   versions so far!                                          |||
+ | - When using "-Quote_nachricht" LED writes to "Alle" not    |||
+ |   "All". People who are using a free defined quote cannot   |||
+ |   use that feature.                                         |||
+ | - When forwarding a msg the "address correction" is enabled |||
+ |   automatically now (so LED can set your origin address     |||
+ |   correctly). Also the forward of non-exported msgs will    |||
+ |   work properly now.                                        |||
+ | - Textsearching is up to 50% faster now because of the      |||
+ |   implementing of a new search algorithm:                   |||
+ |     When not switching on "Use allquantor (*)" the search   |||
+ |     will be up to 50% faster! It is still allowed to use    |||
+ |     the wildcard '?'.                                       |||
+ | - BugFix: Texteffects will be shown when blockmarks are     |||
+ |   shown reverse.                                            |||
+ | - Shift+F9 asks if NewMsg flags should be reset, too.       |||
+ | - When deleting a msg in the MsgListWindow the cursor jumps |||
+ |   to the next line and not to the next msg!                 |||
+ | - Shortcut function improved. Now you can insert complete   |||
+ |   files. The syntax is:                                     |||
+ |     - <name>, <filename>                                    |||
+ |   Example: "- My footer, D:\FIDO\FOOTER.SIG"                |||
+ |   When you select this entry the file FOOTER.SIG will be    |||
+ |   inserted.                                                 |||
+ |   An entry consists of max. 128 characters now.             |||
+ |   The '|' character and all following characters and spaces |||
+ |   before will not be inserted into the text (EditWindow).   |||
+ | - "KeepCopy|Forward" status in MoveMsg dialog will be saved.|||
+ | - "REPLYADDR name <addr>" is recognized.                    |||
+ | - "Extend Tabs" corrected.                                  |||
+ | - Quoting functions changed. Try following:                 |||
+ |   a) Add some words in a quoted line and see what happens.  |||
+ |   b) Write something like "HelloWorld> " at the beginning   |||
+ |      of a line and then write some lines of text after it   |||
+ |      (try it with "Indent" switched on and off and see what |||
+ |      happens).                                              |||
+ | - Opening of an EditWindow rewritten (hope it works).       |||
+ | - It is not allowed to use relative paths in AREAS.BBS now. |||
+ | - When forwarding a msg an existing CHRS kludge is not      |||
+ |   removed when LED does not create a new one (LED creates   |||
+ |   a new one, when "-Umlaute" or "-IOSconvert" is used).     |||
+ | - "-Convert" renamed to "-Latin1small"                      |||
+ |   LED tries to interprete all Latin-1 characters when using |||
+ |   "-Latin1" instead of "-Latin1small". For german NewsGroups|||
+ |   you should use "-Latin1small".                            |||
+ | - Problems with the statusline fixed!                       |||
+ | - Some functions should be faster (Find,Copy with forward). |||
+ | - Statusline should not "flicker" now.                      |||
+ | - MsgInfo also shows msg flags.                             |||
+ | - Proportional fonts are supported a little(!) bit better   |||
+ |   in the MsgWindow.                                         |||
+ |                                                             |||
+ +-------------------------------------------------------------+||
+  \_____________________________________________________________\|
+
+
+    +--------------------+
+    | V1.28    01.04.95  |\
+ +--+--------------------+-------------------------------------+
+ |                                                             |\
+ | BETATEST-VERSION                                            |||
+ |                                                             |||
+ | New:                                                        |||
+ |                                                             |||
+ | AREAS.BBS flags (new in 1.28):                              |||
+ |                                                             |||
+ | -CONVERT         Usefull in some (german) Internet-         |||
+ |                  NewsGroups. Converts following characters  |||
+ |                  in german vowel-mutations:                 |||
+ |                  0xfc->'', 0xf6->'”', 0xe4->'„', 0xdf->'ž',|||
+ |                  0xdc->'š', 0xd6->'™', 0xc4->'Ž'            |||
+ |                  Renamed to "-ISOconvert" in 1.29!          |||
+ |                                                             |||
+ | New key strokes:                                            |||
+ |                                                             |||
+ |   p,n            Jump to previous/next unread msg           |||
+ |   CNTRL T        Quote msg          -+                      |||
+ |   CNTRL N        Quote to Netmail    +- native              |||
+ |   CNTRL J        Quote to area      -+                      |||
+ |   SHIFT T        Quote msg          -+                      |||
+ |   SHIFT N        Quote to Netmail    +- english             |||
+ |   SHIFT J        Quote to area      -+                      |||
+ |                                                             |||
+ | Config-File:                                                |||
+ |                                                             |||
+ |   "AkaSysop" will only be recognizes when used AFTER the    |||
+ |   statement sysop. It is also not longer possible to use    |||
+ |   free entries for AkaSysop (thanks to those user who gave  |||
+ |   their keys to other unregistered user). Each AkaSysop     |||
+ |   entry must begin with the full sysop name, that means     |||
+ |   that only suffixes are allowed. Valid AkaSysop entries    |||
+ |   are for example:                                          |||
+ |     Sysop Stephan Slabihoud                                 |||
+ |     AkaSysop Stephan Slabihoud {LED-HQ}                     |||
+ |     AkaSysop Stephan Slabihoud {IC}                         |||
+ |     and so on                                               |||
+ |                                                             |||
+ | Searching in userlist:                                      |||
+ |                                                             |||
+ |   Entry:           Displays:                                |||
+ |   *Empty            Exit with [OK]: PrivateUserList         |||
+ |   +Empty            Exit with [Userlist] and valid address  |||
+ |                       in node field: Search email address   |||
+ |   *One character    Surnames beginning with X               |||
+ |   *Two characters   Names with XX as initial                |||
+ |   *One word         Surname beginning with "word"           |||
+ |   +Two words        First-/Surname beginning with "word"    |||
+ |                                                             |||
+ |     * = shows select dialog                                 |||
+ |     + = aborts searchings when a pattern is found           |||
+ |                                                             |||
+ | - Click in the Statusline should work with all TOS versions.|||
+ | - Special characters are not longer used for "Quote>".      |||
+ | - TextEffects possible in subject line.                     |||
+ | - LED uses its own printer-driver (LED.PRN) now. Without    |||
+ |   this driver no character conversion is done. More about   |||
+ |   the driver you will find in the folder DRIVER.            |||
+ | - LED can print text effects now. To print effects you must |||
+ |   switch on the "text effects" and "...also on printer",    |||
+ |   too. It is important to have installed the correct        |||
+ |   printer driver.                                           |||
+ | - A msg with XF_LOCK flag set will be marked with a "x".    |||
+ | - Search in userlist is a little bit faster and uses less   |||
+ |   memory.                                                   |||
+ | - Usernames in userlists can be (max) 35 characters long.   |||
+ | - Pressing a key in a user-selectbox or in the shortcut     |||
+ |   dialog jumps to the concerning username/shortcut.         |||
+ | - When you press RETURN (or the OK button) without typing   |||
+ |   in a username in the To-Field in the "To-User"-Dialogbox, |||
+ |   you can select a name from the PRVTUSER.LST. The file     |||
+ |   PRVTUSER.LST must be defined in in the userlist dialog.   |||
+ | - ACS: LED only reads "EchoList" from ACS.CFG now.          |||
+ | - LED does not crash when deleting a mail using Control+    |||
+ |   Return in the MsgListWindow.                              |||
+ | - ReplyCrc calculation improved (trailing spaces will not   |||
+ |   be included in the calculation).                          |||
+ | - Cursor will be set correctly when editing mails (there    |||
+ |   a small bug that appeard when using page up/down).        |||
+ | - "ALT+2" (Edit origin) removed.                            |||
+ | - "Clipboard" works correct now.                            |||
+ | - Some Bugfixes (e.g. redraw of status line, AreaListWindow |||
+ |   does not crash when scolling, full window without redraw  |||
+ |   problems and other).                                      |||
+ | - "Skip scanner" removed. LED will not longer delete an     |||
+ |   ExtraExportArea- or Netmail-Copy wenn deleting the        |||
+ |   original msg.                                             |||
+ | - "MoveMsg" completly rewritten. Hope it works :-)          |||
+ |   Note: "MoveMsg" copies all kludges and seen-by's,         |||
+ |   "MoveMsg/Forward" removes ALL kludges and Seen-By's!      |||
+ | - "ForwardMsg" completly rewritten. Hope it works :-)       |||
+ | - With that version of LED you will get a small program     |||
+ |   that allows to compress userlists (it will cut all        |||
+ |   unnecessary spaces in a userlist).                        |||
+ |                                                             |||
+ +-------------------------------------------------------------+||
+  \_____________________________________________________________\|
+
+
+    +--------------------+
+    | V1.27    11.03.95  |\
+ +--+--------------------+-------------------------------------+
+ |                                                             |\
+ | New:                                                        |||
+ |                                                             |||
+ | AREAS.BBS flags (new in 1.27):                              |||
+ |                                                             |||
+ | -FORCEPVT        When this command is defined LED will      |||
+ |                  set the PRIVATE flag automatically in      |||
+ |                  echomails (BBS systems).                   |||
+ |                                                             |||
+ | - Saving the dialog positions works now. I have disabled    |||
+ |   this code, but don't know why?!? When someone has         |||
+ |   problems with it, switch of "Save Dialog Positions" and   |||
+ |   delete the *.DLG file!                                    |||
+ | - Some bugfixes (IMHO no new bugs).                         |||
+ | - New parameter %s will be replaced by the subject.         |||
+ | - Text effects will work properly with TT- and Speedo fonts.|||
+ | - Text effects improved (99% should be shown correctly now).|||
+ | - Some window redraws are changed again.                    |||
+ | - MsgListWindow should work correctly (bombs sometimes when |||
+ |   an area was empty).                                       |||
+ | - Some minor corrections.                                   |||
+ | - QBBS reply link will be shown in infoline correctly       |||
+ |   works now on all systems).                                |||
+ | - When you press RETURN in the To-Field in the netmail area |||
+ |   (without a name typed in), you can select a name from the |||
+ |   PRVTUSER.LST. The file PRVTUSER.LST must be defined in    |||
+ |   in the userlist dialog.                                   |||
+ | - "Change msg" in an empty area does not longer crash.      |||
+ | - "Shortcut" dialog works now.                              |||
+ | - "Control+Del" in MsgList-Window jumps to the next         |||
+ |   readable msg.                                             |||
+ | - New button in "Options->Comment tree": "NumPad in comment |||
+ |   tree mode" (was removed in 1.26 and was also switchable   |||
+ |   with "Show..:"; now reimplemented because some guys ask   |||
+ |   me to do so).                                             |||
+ | - Shift+Cntrl+L opens ALWAYS the MsgList DIALOG!            |||
+ | - Menu items will be disabled correctly(?).                 |||
+ | - LED recognizes "Re^n:" and when you quote a mail 'n' will |||
+ |   be increased automatically. When you want to use that     |||
+ |   style turn the switch "...'Re^n:' style" on.              |||
+ | - It was possible to switch on "„ in netmail" and it was    |||
+ |   also possible to save the flag. But when calling the      |||
+ |   "Switches" dialog again it was reset.                     |||
+ |                                                             |||
+ +-------------------------------------------------------------+||
+  \_____________________________________________________________\|
+ 
+
+    +--------------------+
+    | V1.26    13.02.95  |\
+ +--+--------------------+-------------------------------------+
+ |                                                             |\
+ | New:                                                        |||
+ |                                                             |||
+ | ########################################################### |||
+ | In "LED->About LED" you can now enter a "registration key". |||
+ | User's who have registered already do not need a key, these |||
+ | are recognized by LED. New user's may enter their personal  |||
+ | key here.                                                   |||
+ | THERE ARE NO RESTRICTIONS WHEN USING LED WITHOUT A KEY!!!   |||
+ | With a key the PID in your msgs will read "LED x.xx",       |||
+ | without it it will be "LED x.xx/unreg". There is no other   |||
+ | difference (except a small logo that will be displayed for  |||
+ | two seconds).                                               |||
+ | ########################################################### |||
+ |                                                             |||
+ | - "Address correction (echomails)" removed, as this is now  |||
+ |   switchable for each area using a new flag in AREAS.BBS    |||
+ |   (see below). "Address correction" for netmail remains; in |||
+ |   addition you can specify that the "Fixed address" flag is |||
+ |   to be set automatically (for netmails).                   |||
+ |                                                             |||
+ | AREAS.BBS flags (new in 1.26):                              |||
+ |                                                             |||
+ | -FIXEDADDRESS    LED is to set the correct address for this |||
+ |                  area resp. show the address selector box.  |||
+ |                  Furthermore, the "Fixed address" flag will |||
+ |                  be set automatically. This statement       |||
+ |                  applies to echomail only, not to netmail!  |||
+ | -NONEWECHO       Only for ACS User: This area will not      |||
+ |                  be written into NEWECHOS.LST. Usefull for  |||
+ |                  archiv echos.                              |||
+ |                                                             |||
+ | - When switching of "MsgListWindow" or "AreaListWindow" the |||
+ |   corresponding window is closed.                           |||
+ | - More than 2^16 user can be read from a user list.         |||
+ | - XF_READ will be set when a msg is entered locally.        |||
+ | - Pressing Shift+F1 calls a dialog (Help->Shortcut) that    |||
+ |   displays the contents of the textfile "LED.SCT". When the |||
+ |   top window is an edit window, the selected line will be   |||
+ |   inserted into your text.                                  |||
+ | - Also when no origin name is found in the header, the mail |||
+ |   will be displayed.                                        |||
+ | - Search in userlists a little bit faster.                  |||
+ | - Window handling changed.                                  |||
+ |    - "Smart redraw" in Edit-Window should work now.         |||
+ |    - Saving of window positions rewritten.                  |||
+ |    - Some redraws removed.                                  |||
+ |    - Scrolling works now (when only one msg line is         |||
+ |      displayed).                                            |||
+ | - Saving of msg>64kb is saver now.                          |||
+ | - New help texts.                                           |||
+ | - "Sort header" works correctly now.                        |||
+ | - "Kommentar zu"-line will only created when msg comes from |||
+ |   a MausEcho and is quoted into another area.               |||
+ | - The comment tree will be rebuild only once when using     |||
+ |   CarbonCopies now (saves a lot of time).                   |||
+ | - When starting other programs the memory was not           |||
+ |   deallocated. Now it should work even with AREAS.BBS files |||
+ |   with more than 2000 or 3000 areas.                        |||
+ | - Now you can change the "From"-name by pressing Shift+F5.  |||
+ |   For more details please read "LED config file" (below).   |||
+ | - move msg/forward changed again. The origin address is     |||
+ |   always corrected now. The origin name is replaced by the  |||
+ |   own name.                                                 |||
+ | - LED creates 4d-frequestfiles (ORT) now and optional       |||
+ |   a 4d-flowfile (OFT). Network frequests (5d) are also      |||
+ |   possible now.                                             |||
+ | - When quoting a mail names consisting of more than two     |||
+ |   names are not longer cut.                                 |||
+ | - Quotes "xy>" are also set correctly.                      |||
+ | - The destination is shown in the "Select origin" dialog.   |||
+ | - PATH line will be suppressed correctly now. IOSmail has a |||
+ |   small bug that let LED 1.25 show the last PATH line       |||
+ |   though PATH lines were suppressed.                        |||
+ | - "Switches->Text effects" tries to recognize text          |||
+ |   attributes:                                               |||
+ |     _Text_ => Displays "Text" underlined                    |||
+ |     *Text* =>   "     "    bold                             |||
+ |     /Text/ =>   "     "    cursive                          |||
+ |   Supposition: In front of (behind) a "*", "/" or "_" must  |||
+ |   be a space (except: Start/End of line).                   |||
+ |   The text attributes will be used until end of line.       |||
+ |   Text attributes can be combined.                          |||
+ |   ALT+2 switches that function on/off.                      |||
+ |   ATTENTION: It is very diffcult to recognize if it is a    |||
+ |              control character or not. When someone has     |||
+ |              written a better function he should tell me    |||
+ |              about it.                                      |||
+ | - ALT+W in edit window formats a complete paragraph until a |||
+ |   <cr> (or empty line) is found.                            |||
+ | - Shift+ALT W in edit window formats a complete paragraph   |||
+ |   until an empty line is found.                             |||
+ | - Some minor redraw bugs removed.                           |||
+ | - "'„' in echomail" implemented for scandinavian LED user   |||
+ |   (especially for Magnus).                                  |||
+ | - Home/Shift+Home works in MsgList-Dialog.                  |||
+ | - Search forward works again (but as slow as in 1.24). It   |||
+ |   cannot be changed, sorry.                                 |||
+ | - Adresses with node=0 and point!=0 are shown correctly     |||
+ |   now.                                                      |||
+ | - Sometimes LED has not closed all windows. Fixed.          |||
+ | - Font choosable for Msglist- and Arealist-Window.          |||
+ | - Faster sorting of headers.                                |||
+ | - Msgidcrc/Replycrc are not deleted when move-msg is used.  |||
+ | - Changes of ^A switches are shown immediatly.              |||
+ | - Comment tree is built aprox. 400% faster (area with       |||
+ |   1200 msgs: 1.25 needed 12.8 sec, 1.26 needs 3.2 sec;      |||
+ |   time measure done on a TT).                               |||
+ | - You can use following parameters in quotes and function   |||
+ |   key defaults: %f, %F, %t, %T, %a, %d, %D, %z, %n and %%   |||
+ |   (double % for a single %).                                |||
+ | - It is also allowed to use a parameter '%#' in quotes      |||
+ |   (0<=#<=9) where <#> is the number of the function key.    |||
+ | - Parameter %n works now.                                   |||
+ | - New quoting functions implemented.                        |||
+ | - WM_BUTTOMED (MultiTOS) is supported now.                  |||
+ | - New switch: "...autoclose" closes arealist-window         |||
+ |   automatically when an area was selected.                  |||
+ | - New switch: "Always use ^REPLYADDR" for Uucp-Gateways.    |||
+ | - A lot of optimizations (e.g. no resources will be         |||
+ |   overwritten when using long areanames).                   |||
+ | - Shift+F2 shows a short msginfo.                           |||
+ | - All MsgFlags will be shown (except XF_READ) (and when you |||
+ |   use a lot of flags then three lines will be used).        |||
+ | - New option "Edit header flags".                           |||
+ | - There is no longer a box above the fileselector. First it |||
+ |   was not above the fs when using a higher resolution,      |||
+ |   second it is better to use the extended fileselector of   |||
+ |   tos 1.04 (and higher).                                    |||
+ | - Comment tree is shown in a better way in the status line! |||
+ | - Now you can click on a msg number in the status line to   |||
+ |   select a msg only possible when the comment tree is       |||
+ |   shown!).                                                  |||
+ | - LED does not crash when closing a msgwindow and a msg is  |||
+ |   edited.                                                   |||
+ | - Forwarding a msg updates the msglist window now.          |||
+ | - Nicer msg forward in netmail.                             |||
+ | - MsgMsg copies all ^A lines (when displayed). When no      |||
+ |   ^A line is displayed only the MSGID and REPLY is copied.  |||
+ |   MoveMsg with forward creates no MSGID and no REPLY!       |||
+ | - "Edit msgheader" works correct when setting MausFlags.    |||
+ |   XF_IMMEDIATE implemented. Nicer Dialog now.               |||
+ |   When entering a hex number for the flags, the settings of |||
+ |   the buttons will be ignored!                              |||
+ | - When all windows are closed it is possible to open a      |||
+ |   window using "Area change".                               |||
+ | - Window close/cycle is disabled when necessary.            |||
+ | - Window slider handling improved.                          |||
+ | - Complete screen redraw when LED is exited.                |||
+ | - "Hide ^MSGID" extended to "Hide ^MSGID/REPLY/REPLYTO".    |||
+ | - "Netmail Address-Correction" improved.                    |||
+ | - Optical corrections.                                      |||
+ | - "Switches->Rescue lastreads" saves the lastread pointers  |||
+ |   when exiting an area. The NewMsgFlag is not deleted any   |||
+ |   more!                                                     |||
+ | - "Switches->Del new msg flag" causes all NewMsg flags to   |||
+ |   be deleted when exiting LED.                              |||
+ | - In the "Quote" lines "cr" (Ctrl+M) is allowed. "Quotes"   |||
+ |   may now take up more than two lines.                      |||
+ | - Some unimportant "Switches" removed.                      |||
+ | - "Change msg" and some other functions are faster now.     |||
+ | - Six user lists.                                           |||
+ | - Font names are being displayed with up to 24 characters   |||
+ |   (used to be 16).                                          |||
+ | - When coosing a font, clicking on the font name will cause |||
+ |   the first font (system font) to be displayed. This is     |||
+ |   useful if many fonts have been loaded. (Sorry, couldn't   |||
+ |   implement a popup yet.)                                   |||
+ | - Fixed a capital bug in the GEM routines. It only became   |||
+ |   obvious when I compiled LED with a different GEM library  |||
+ |   for testing purposes.                                     |||
+ | - The lastreads are not reset to 1 any more when executing  |||
+ |   another program from within LED.                          |||
+ | - "Options->Quote" expanded and changed quoting method.     |||
+ |   Now you can specify a different text for quoting to       |||
+ |   another area. Example:                                    |||
+ |   Native:                                                   |||
+ |       "In einer Msg vom %d tippte %f %F (%a) an %t %T:"     |||
+ |   to area:                                                  |||
+ |       "In einer Msg vom %d tippte %f %F (%a) an %t %T       |||
+ |        in Area '%n':"                                       |||
+ |   English:                                                  |||
+ |       "In a message of %d %f %F (%a) wrote to %t %T:"       |||
+ |   to area:                                                  |||
+ |       "In a message of %d %f %F (%a) wrote to %t %T         |||
+ |        in area '%n':"                                       |||
+ |                                                             |||
+ | Note: New key definitions!                                  |||
+ |                                                             |||
+ |   Shift+F10: Clear all unread flags                         |||
+ |   Shift+F9 : All lastread pointers to maximum               |||
+ |   Shift+F8 : Lastread pointer to maximum                    |||
+ |   Shift+F7 : Print msg with form feed                       |||
+ |   Shift+F6 : Sort headers by date (current area)            |||
+ |   Shift+F5 : Change user name.                              |||
+ |   Shift+F2 : Small msginfo                                  |||
+ |   Shift+F1 : Shortcut                                       |||
+ |   Cntrl+t/T: Quote in native language (if not set via       |||
+ |              AREAS.BBS "-QUOTE...".                         |||
+ |   Shift+t/T: Quote in other language (if not set via        |||
+ |              AREAS.BBS "-QUOTE...".                         |||
+ |   Alt+4    : Show MSGID/REPLY/REPLYTO                       |||
+ |   Alt+5    : Show PID/TID/EID                               |||
+ |   Alt+6    : Show other ^A lines                            |||
+ |   Alt+7    : "Comment tree" dialog                          |||
+ |         Alt+H: Edit header flags                            |||
+ |   Shift+Alt+H: Edit header                                  |||
+ |   Shift+Alt+A: Append Msg (plain)                           |||
+ |   Shift+Alt+W: Write Msg (plain)                            |||
+ |                                                             |||
+ | LED config file:                                            |||
+ |                                                             |||
+ | As some users would like the LED to reside in a different   |||
+ | directory without having to specify an environment variable |||
+ | I decided to design an optimal config file for the LED.     |||
+ | The following statements are allowed in LED.CFG:            |||
+ |                                                             |||
+ |   SYSOP   name                    -> as in BINKLEY.CFG      |||
+ |   ADDRESS address [fakenet]       -> ditto                  |||
+ |   LOGFILE file                    -> ditto                  |||
+ |   NETMAIL file                    -> ditto                  |||
+ |   HOLD    path                    -> ditto                  |||
+ |   SHELL   prg                     -> ditto                  |||
+ |                                                             |||
+ | Optionally the following statements may be added:           |||
+ |                                                             |||
+ |   MAILER   path                                             |||
+ |   AKASYSOP name                                             |||
+ |                                                             |||
+ | - "MAILER" may be used to specify the directory of          |||
+ |   AREAS.BBS and NEWECHOS.LST (ACS).                         |||
+ | - Now you can use up to four different names (changeable    |||
+ |   with Shift+F5). Just use "AKASYSOP" in the same way as    |||
+ |   you use "SYSOP".                                          |||
+ |   ATTENTION: WHEN USING BINKLEY.CFG TOGETHER WITH           |||
+ |              BINKLEY.TTP you must use the statement         |||
+ |              "APPLICATION AKASYSOP" instead of "AKASYSOP"!  |||
+ |              The LED is always registered for the person    |||
+ |              named in the SYSOP statement. When other user  |||
+ |              are working with a registered LED version they |||
+ |              had to pay the shareware fee, too!             |||
+ |                                                             |||
+ | On startup, LED tries to find one of the following files:   |||
+ | 1. LED.CFG, 2. BINKLEY.CFG, 3. TB.CFG                       |||
+ | These files are usually expected in LED's directory but     |||
+ | TB.CFG and BINKLEY.CFG may also be placed in a different    |||
+ | directory using the environment variables MAILER or BINKLEY |||
+ | to point to that directory.                                 |||
+ |                                                             |||
+ | Note:                                                       |||
+ |                                                             |||
+ | I had to make changes to LED.OPT again, hopefully for the   |||
+ | last time.                                                  |||
+ |                                                             |||
+ | Key definitions overview:                                   |||
+ |                                                             |||
+ | Alternate: ALT R  Read msg          ALT B  Write clipboard  |||
+ |            ALT A  Append msg        ALT E  Execute program  |||
+ |      Shift+ALT A  Append msg plain  ALT L  Read clipboard   |||
+ |            ALT W  Write msg         ALT Z  Execute shell    |||
+ |      Shift+ALT W  Write msg plain   ALT C  Chance msg       |||
+ |            ALT X  Carbon copy       ALT I  Indent on/off    |||
+ |            ALT T  Extend tabs       ALT O  Switches         |||
+ |            ALT J  Windows           ALT N  Quotes           |||
+ |            ALT Y  User lists        ALT 7  Comments         |||
+ |            ALT M  Fonts             ALT K  Function keys    |||
+ |            ALT S  Save options      ALT Q  File request     |||
+ |            ALT H  Edit header       ALT P  Add to user list |||
+ |      Shift+ALT H  Edit header flags ALT F  Find             |||
+ |            ALT U  Search user       ALT G  Find same        |||
+ |            ALT 8  Very small font   ALT 9  Small font size  |||
+ |            ALT 0  Normal font size                          |||
+ |            ALT 1  Refresh windows                           |||
+ |            ALT 2  Show text attributes                      |||
+ |            ALT 3  Show comment tree                         |||
+ |            ALT 4  Show MSGID/REPLY/REPLYTO                  |||
+ |            ALT 5  Show PID/TID/EID                          |||
+ |            ALT 6  Show other ^A cludges                     |||
+ |            ALT_Fn Start shell <n>                           |||
+ |                                                             |||
+ | Control: CNTRL I  Info              CNTRL Q  Quit           |||
+ |          CNTRL O  Open area         CNTRL A  Change area    |||
+ |          CNTRL W  Cycle window      CNTRL U  Close window   |||
+ |          CNTRL L  List msgs         CNTRL G  Goto msg       |||
+ |          CNTRL K  Kill msgs         CNTRL H  Heal msgs      |||
+ |          CNTRL F  Forward msg       CNTRL M  Move msgs      |||
+ |          CNTRL P  Print msg         CNTRL E  Enter msg      |||
+ |          CNTRL R  Reply msg         CNTRL T  Quote msg      |||
+ |          CNTRL N  Quote to netmail  CNTRL J  Quote to area  |||
+ |          CNTRL Z  Abort msg         CNTRL S  Save msg       |||
+ |          CNTRL B  Block begin/end   CNTRL D  Del block mark.|||
+ |          CNTRL X  Cut block         CNTRL C  Copy block     |||
+ |          CNTRL V  Paste block                               |||
+ |          CNTRL<cr>Kill active msg                           |||
+ |                                                             |||
+ | Normal and other keys:                                      |||
+ |                                                             |||
+ |          SHIFT T  Quote msg (alternate)                     |||
+ |          HELP     Help                                      |||
+ |          UNDO     Redraw window                             |||
+ |          v        Scroll one line down                      |||
+ |          ^        Scroll one line up                        |||
+ |          SHIFTv   Display next page                         |||
+ |          SHIFT^   Display prev page                         |||
+ |          SPACE    Display next msg                          |||
+ |          RETURN   Display next/prev msg                     |||
+ |          ENTER    Display next/prev msg                     |||
+ |          BACKSPACE Display prev page                        |||
+ |          NUM 1,<  Display previous msg                      |||
+ |          NUM 3,>  Display next msg                          |||
+ |          P        Previous unread msg                       |||
+ |          N        Next unread msg                           |||
+ |          NUM 2,+  First comment on aktive msg               |||
+ |          NUM 8,-  Origin msg                                |||
+ |          NUM 6,s> Next comment                              |||
+ |          NUM 4,>  Previous comment                          |||
+ |          NUM (    Prev msg with same subject                |||
+ |          NUM )    Next msg with same subject                |||
+ |          NUM ^(   Prev original msg                         |||
+ |          NUM ^)   Next original msg                         |||
+ |          SHIFT<   Screen left                               |||
+ |          SHIFT>   Screen right                              |||
+ |          NUM +    Next area                                 |||
+ |          NUM -    Previous area                             |||
+ |          NUM *    Next area with new msg                    |||
+ |          NUM /    Next area with unread msg                 |||
+ |          NUM #    Next area with msg to sysop               |||
+ |          HOME     Start of msg                              |||
+ |          CLR      End of msg                                |||
+ |          SHFT F10 Delete all unread and tosysop flags       |||
+ |          SHFT F9  Set all lastread pointers to maximum      |||
+ |          SHFT F8  Set the lastread pointer to maximum       |||
+ |          SHFT F7  Print msg with form feed                  |||
+ |          SHFT F6  Sort the header file by date              |||
+ |          SHFT F5  Change sysop name                         |||
+ |          SHFT F3  Start SIB.ACC???                          |||
+ |          SHFT F2  Small msginfo                             |||
+ |          SHFT F1  Shortcut                                  |||
+ |          ESC      Reread area                               |||
+ |                                                             |||
+ | Edit-Window keys:                                           |||
+ |                                                             |||
+ |   ^B     Begin/End of block  ^D     Del blockmark           |||
+ |   ^X     Cut block           ^C     Copy block              |||
+ |   ^V     Paste block         ^Z     Abort msg               |||
+ |   ^Y     Delete line         ALT Y  Undelete line           |||
+ |   ALT D  Edit To-line        ALT N  Edit address (Netmail)  |||
+ |   ALT S  Edit subject        ALT V  Edit flags (Netmail)    |||
+ |   ALT 2  Edit origin         ALT A  Abort msg               |||
+ |   ALT W  Format paragraph                                   |||
+ |   ALT F  Search text         ALT G  Continue search         |||
+ |   ALT I  Indent on/off       ALT T  Expand tabs             |||
+ |   ^DEL   Del with linewrap   ESC    Cut/Paste line          |||
+ |   TAB    Tabulator           RETURN Newline (new paragraph) |||
+ |   HOME   Top of msg          sHOME  End of msg              |||
+ |   DELETE Del character       INSERT Insert/Overwrite        |||
+ |   BACKSPACE    Del character                                |||
+ |   Cursorkeys   Cursor movement                              |||
+ |   Shift <,>    Start/End of line                            |||
+ |   Control <,>  Word left/right                              |||
+ |         ALT W  Soft format paragraph (until <cr>)           |||
+ |   Shift+ALT W  Hard format paragraph (until emtpy line)     |||
+ |                                                             |||
+ | Developer-Information:                                      |||
+ |                                                             |||
+ | - In further LED versions I will use the lower byte of      |||
+ |   mailer[6] to store the number of the "Address" line used  |||
+ |   for the origin of the msg.                                |||
+ |   Is it "0" LED could not found a proper "Address" line or  |||
+ |   the user does not use the "Address correction".           |||
+ |   The higher byte of mailer[6] is reserved and should be    |||
+ |   zero.                                                     |||
+ |   This feature is implemented in LED 1.26 but not yet       |||
+ |   available (because JetMail crashes when using mailer[6]). |||
+ |   Please send me your opinion about my idea.                |||
+ |   Example:                                                  |||
+ |     Address   2:2446/110.6@fidonet.org                      |||
+ |     Address   51:601/7.6@atarinet.ftn                       |||
+ |     Address   90:400/410@nest.ftn                           |||
+ |     Address   90:400/404.6@nest.ftn                         |||
+ |   Writing a mail using 90:400/410 sets "mailer[6] = 3".     |||
+ |   So the tosser can get the correct domain without a new    |||
+ |   header format.                                            |||
+ |                                                             |||
+ | - Flags:                                                    |||
+ |                                                             |||
+ |   #define F_PRIVATE         (1U << 0)                       |||
+ |   #define F_CRASH           (1U << 1)                       |||
+ |   #define F_RECEIVED        (1U << 2)                       |||
+ |   #define F_SENT            (1U << 3)                       |||
+ |   #define F_FILEATTACH      (1U << 4)                       |||
+ |   #define F_INTRANSIT       (1U << 5)                       |||
+ |   #define F_ORPHAN          (1U << 6)                       |||
+ |   #define F_KILLSENT        (1U << 7)                       |||
+ |   #define F_LOCAL           (1U << 8)                       |||
+ |   #define F_HOLD            (1U << 9)                       |||
+ |   #define F_RESERVED        (1U << 10)                      |||
+ |   #define F_FILEREQ         (1U << 11)                      |||
+ |   #define F_RETRECREQ       (1U << 12)                      |||
+ |   #define F_ISRETREC        (1U << 13)                      |||
+ |   #define F_AUDITREQ        (1U << 14)                      |||
+ |   #define F_DELETED         (1U << 15)                      |||
+ |                                                             |||
+ |   #define XF_READ           (1U << 0)                       |||
+ |   #define XF_ARCHIVSENT     (1U << 1)                       |||
+ |   #define XF_TRUNCFILESENT  (1U << 2)                       |||
+ |   #define XF_KILLFILESENT   (1U << 3)                       |||
+ |   #define XF_DIRECT         (1U << 4)                       |||
+ |   #define XF_ZONEGATE       (1U << 5)                       |||
+ |   #define XF_HOSTROUTE      (1U << 6)                       |||
+ |   #define XF_LOCK           (1U << 7)                       |||
+ |   #define XF_MAUSMSG        (1U << 8)                       |||
+ |   #define XF_GATED          (1U << 9)                       |||
+ |   #define XF_CREATEFLOWFILE (1U << 10)                      |||
+ |   #define XF_RESERVED11     (1U << 11)                      |||
+ |   #define XF_RESERVED12     (1U << 12)                      |||
+ |   #define XF_SIGNATURE      (1U << 13)                      |||
+ |   #define XF_IMMEDIATE      (1U << 14)                      |||
+ |   #define XF_FIXEDADDRESS   (1U << 15)                      |||
+ |                                                             |||
+ |   #define MF_NICHTGELESEN   (1U << 0)                       |||
+ |   #define MF_NOTREAD        (1U << 0)                       |||
+ |   #define MF_ZURUECK        (1U << 1)                       |||
+ |   #define MF_RETURN         (1U << 1)                       |||
+ |   #define MF_BEANTWORTET    (1U << 2)                       |||
+ |   #define MF_ANSWERED       (1U << 2)                       |||
+ |   #define MF_GELESEN        (1U << 3)                       |||
+ |   #define MF_GELESEN        (1U << 3)                       |||
+ |   #define MF_WEITER         (1U << 4)                       |||
+ |   #define MF_CONTINUE       (1U << 4)                       |||
+ |   #define MF_MAUSNET        (1U << 5)                       |||
+ |   #define MF_ANGEKOMMEN     (1U << 6)                       |||
+ |   #define MF_RECEIVED       (1U << 6)                       |||
+ |   #define MF_GATEWAY        (1U << 7)                       |||
+ |   #define MF_KOPIERT        (1U << 8)                       |||
+ |   #define MF_COPIED         (1U << 8)                       |||
+ |   #define MF_MAUSTAUSCH     (1U << 9)                       |||
+ |   #define MF_UNBEKANNT      (1U << 10)                      |||
+ |   #define MF_UNKNOWN        (1U << 10)                      |||
+ |   #define MF_INTERESTING1   (1U << 11)                      |||
+ |   #define MF_INTERESTING2   (1U << 12)                      |||
+ |   #define MF_VERERBEN       (1U << 13)                      |||
+ |   #define MF_HEREDITARY     (1U << 13)                      |||
+ |   #define MF_RESERVED14     (1U << 14)                      |||
+ |   #define MF_RESERVED15     (1U << 15)                      |||
+ |                                                             |||
+ +-------------------------------------------------------------+||
+  \_____________________________________________________________\|
+
+    +--------------------+
+    | V1.25   02.01.95   |\
+ +--+--------------------+-------------------------------------+
+ |                                                             |\
+ | New:                                                        |||
+ |                                                             |||
+ | - Msglist can be put into a window.                         |||
+ |   When switching "Switches->...use Comment-Tree" on the     |||
+ |   Msglist will be shown using the comment tree.             |||
+ |   Does also work without header cache!                      |||
+ | - MsgFlags will be shown in a long format (and when you use |||
+ |   a lot of flags then two lines will be used).              |||
+ | - New window functions.                                     |||
+ | - Fontsize switchable for listwindows.                      |||
+ | - New parameter %n. This parameter consists of the name of  |||
+ |   the actually area.                                        |||
+ | - You can use the same parameters allowed in quotes with    |||
+ |   function keys (%f, %F, %t, %T, %a, %d, %D, %z and %n).    |||
+ | - New quoting functions implemented.                        |||
+ | - Automatically formfeed ("Print msg ^P") switchable.       |||
+ | - Printing of Arealist/Msglist is possible.                 |||
+ | - When using AVALON and LED in a multitasking OS you can    |||
+ |   start AVALON via the LED requestbox.                      |||
+ | - 63 small bugfixes ;-)                                     |||
+ | - Netmailarea will be shown even if not defined in          |||
+ |   AREAS.BBS.                                                |||
+ | - Faster forward searching with ALT-F                       |||
+ | - When moving msgs the comment tree will be reread now.     |||
+ | - Bugfix: When undeleting msgs no incorrect flag is set.    |||
+ | - Switching on "Switches->Show areadescription" shows the   |||
+ |   areadescription in the Areawindow.                        |||
+ | - MSGID and REPLY can consist of 200 characeters now.       |||
+ | - Max. 32767 areas allowed in AREAS.BBS. Each area needs    |||
+ |   approx. 400 Byte of memory (LED 1.23 and below needs      |||
+ |   200 KByte for 512 areas).                                 |||
+ | - Now you can choose if you want to hide the MSGID or other |||
+ |   ^A-lines with "Switches->Hide ^A lines...".               |||
+ | - LED uses the "^REPLYTO" statement when "Switches->Always  |||
+ |   use ^REPLYTO" is turned on. Usefull for UUCP gateways.    |||
+ | - When LED 1.24 crashes it was a problem with the stack.    |||
+ |   I have compiled LED with 'only' 16 KByte of stack, but    |||
+ |   it needs up to 19 KByte! Now 16 KByte should be more than |||
+ |   enough for LED 1.25.                                      |||
+ | - New font selection.                                       |||
+ | - "Indent" is temporary switched of when a functionkey is   |||
+ |   pressed.                                                  |||
+ | - Header can be sorted by date with Shift+F7.               |||
+ |                                                             |||
+ | - LED can use the correct address for netmails and          |||
+ |   echomail now ("Switches->Address correction ...").        |||
+ |   This feature is useless with JETmail, IOSmail,            |||
+ |   Ecu/Llegada because these tosser put their own address    |||
+ |   into the msg header. I have implemented it, because it    |||
+ |   might be usefull in future. It works not with             |||
+ |   'Skip Scanner'!                                           |||
+ | - Now you can tell JETmail 0.99beta11 (and higher) that the |||
+ |   origin address should not be changed by the tosser.       |||
+ |   The flag is named "Fixed address" and can be switched on  |||
+ |   e.g. with ALT-V. When setting that flag the user is       |||
+ |   responsible that the mail gets the correct origin         |||
+ |   address.                                                  |||
+ |   TIP: Switch on "Switches->Address correction (Netmail)",  |||
+ |        so it is possible to select and fix the correct      |||
+ |        address when it is necessary.                        |||
+ |                                                             |||
+ | - Keys: Window with msglist                                 |||
+ |                                                             |||
+ |   ESC      : Update of all flags (new,unread,to sysop)      |||
+ |   UNDO,^U  : Close window                                   |||
+ |   sHOME    : End of list                                    |||
+ |   HOME     : Start fo list                                  |||
+ |   s[<>^v]  : Side left, right, up, down                     |||
+ |   BACKSPACE: Side up                                        |||
+ |   SPACE    : Side down                                      |||
+ |   RETURN   : Select msg (undelete killed msg)               |||
+ |   ^RETURN  : Kill msg                                       |||
+ |   [<>]     : Line up, down                                  |||
+ |   [^v]     : Line up, down                                  |||
+ |   NUM+     : Line down                                      |||
+ |   NUM-     : Line up                                        |||
+ |                                                             |||
+ | AREAS.BBS flags (1.23 and below):                           |||
+ |                                                             |||
+ | -ORIGIN          Origin of area.                            |||
+ | -PASSTHROUGH     LED does not show this area.               |||
+ | -VISIBLE         Only with -Passthrough. Area is visible.   |||
+ | -UMLAUTE         Only usefull for germans ;-).              |||
+ | -QUOTE_NON       No topline when quoting a msg.             |||
+ | -QUOTE_MSG       Topline: "In a msg from...".               |||
+ | -QUOTE_NACHRICHT Topline: "In einer Nachricht...".          |||
+ | -QUOTE_NATIVE    Topline: free editable, own language.      |||
+ | -QUOTE_ENGLISH   Topline: free editable, english.           |||
+ |                                                             |||
+ | AREAS.BBS flags (new 1.24):                                 |||
+ |                                                             |||
+ | -MAUS            Area is a MausNet area.                    |||
+ |                                                             |||
+ | AREAS.BBS flags (new 1.25):                                 |||
+ |                                                             |||
+ | -INVISIBLE       Area is invisible.                         |||
+ |                                                             |||
+ +-------------------------------------------------------------+||
+  \_____________________________________________________________\|
+
+    +--------------------+
+    | V1.24   13.12.94   |\
+ +--+--------------------+-------------------------------------+
+ |                                                             |\
+ | New:                                                        |||
+ |                                                             |||
+ | - Now you can jump to an area beginning with a number (in   |||
+ |   LED 1.23 and below it works only with alpha chars).       |||
+ | - "Write Msg plain..." and "Append Msg plain..."            |||
+ |   implemented. These functions will save msgs without       |||
+ |   any header. Usefull for UUE coded msgs or splitted texts. |||
+ | - 17 small bugs fixed.                                      |||
+ |                                                             |||
+ | - Keys: Window with arealist                                |||
+ |                                                             |||
+ |   A-Z,0-9  : Jump to area                                   |||
+ |   ESC      : Update of all flags (new,unread,to sysop)      |||
+ |   UNDO,^U  : Close window                                   |||
+ |   sHOME    : End of list                                    |||
+ |   HOME     : Start of list                                  |||
+ |   s[<>^v]  : Side left, right, up, down                     |||
+ |   BACKSPACE: Side up                                        |||
+ |   SPACE    : Side down                                      |||
+ |   RETURN   : Select area                                    |||
+ |   [<>^v]   : Line left, right, up, down                     |||
+ |   NUM+     : Line down                                      |||
+ |   NUM-     : Line up                                        |||
+ |   NUM*     : Next area with new msgs                        |||
+ |   NUM/     : Next area with unread msgs                     |||
+ |   #        : Next area with msgs for the sysop              |||
+ |                                                             |||
+ +-------------------------------------------------------------+||
+  \_____________________________________________________________\|
+
+    +--------------------+
+    | V1.24   11.12.94   |\
+ +--+--------------------+-------------------------------------+
+ |                                                             |\
+ | New:                                                        |||
+ |                                                             |||
+ |  - Arealist and Msglist can be put in a window.             |||
+ |  - Paths can be longer than 80 characters (now 128 chars).  |||
+ |  - LOCAL flag is set in forwards now.                       |||
+ |  - New method of saving the window positions.               |||
+ |  - Window manager rewritten. Windows can be changed in the  |||
+ |    background.                                              |||
+ |  - ALT+I: Indent On/Off, ALT+T: Expand TABs                 |||
+ |  - Limits: (4 MsgWindows, 2 ListWindows, 5000 Msgs,         |||
+ |    5000 Zeilen, 100 Fonts).                                 |||
+ |                                                             |||
+ +-------------------------------------------------------------+||
+  \_____________________________________________________________\|
+
+    +--------------------+
+    | V1.23 vom  7.12.94 |\
+ +--+--------------------+-------------------------------------+
+ |                                                             |\
+ | New LED author:                                             |||
+ |                                                             |||
+ |  Stephan Slabihoud                                          |||
+ |         FidoNet: 2:2446/110.6                               |||
+ |         Internet: slabbi@kali.rhein-ruhr.de                 |||
+ |                                                             |||
+ +-------------------------------------------------------------+||
+  \_____________________________________________________________\|

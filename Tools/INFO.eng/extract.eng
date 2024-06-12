@@ -1,0 +1,52 @@
+==========================================================================
+ EXTRACT V1.xx                                     Last Changes: 18 Aug 94
+==========================================================================
+                          (c) Stephan Slabihoud
+==========================================================================
+                            S H A R E W A R E
+==========================================================================
+
+                For shareware details refer to AVALON.TXT
+
+==========================================================================
+
+    If you have any ideas and bug reports directed at manual and program,
+            please send them directly and per crashmail to me!
+
+
+
+INTRO:
+======
+This  program  allows to convert a nodelist into a smaller  one.  You  can 
+define up to 50 regions which are included into the smaller list.
+
+
+How to start EXTRACT
+====================
+
+EXTRACT <nodelist> <output> [<region1> [<region2> ...]]
+
+ <nodelist>  - Nodelist
+
+   <output>  - Filename of new (smaller) nodelist
+
+   <region>  - Regions that should be included into the smaller nodelist.
+               If this parameter is missing a list of all RCs is created.
+
+
+EXAMPLE:
+========
+Creation of a nodelist with region 24 and 25:
+
+  EXTRACT nodelist.007 region.007 24 25
+
+
+INTERNA:
+========
+The number of point-/nodesystems is unlimited.
+
+
+History:
+========
+ V1.0 - First official version.
+

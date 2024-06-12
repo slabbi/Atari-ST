@@ -1,0 +1,140 @@
+==========================================================================
+FILE2MSG v1.4x                                     Last Changes: 02 Apr 94
+==========================================================================
+                          (c) Stephan Slabihoud
+==========================================================================
+                            S H A R E W A R E
+==========================================================================
+
+                For shareware details refer to AVALON.TXT
+
+==========================================================================
+
+
+    If you have any ideas and bug reports directed at manual and program,
+            please send them directly and per crashmail to me!
+
+
+INTRO
+=====
+
+<One morning, after a FIDO session>
+
+"Ah,  respond files in my Inbound!" 
+
+<leaves AVALON,  starts editor,  reads respond files, leaves editor, kills 
+respond file, starts AVALON... ;-)>.
+
+Well,  perhaps your boss has a new version of BINKLEY and sends you *.PKTs 
+as respond files.  But what about text files that want to be forwarded  to 
+other FIDO users? In such cases, FILE2MSG can make it easier for you.
+
+FILE2MSG converts any text files in the FIDO messagebase format that  e.g. 
+is  used by LED (TheBox compatible).  After that,  such files can be  read 
+easily by LED.
+
+
+
+
+
+START
+=====
+
+I guess you've never seen such an easy-to-use commandline:
+
+FILE2MSG <file> <msgbase> <addr> [<from> <dest-addr> <to> <subj> <mode>]
+
+
+<infile>    -  File(s) to be converted.
+
+<msgbase>   -  Whereto should FILE2MSG write the converted file(s)? Give
+               the area filename without extension (like in AREAS.BBS)!
+
+<address>   -  Your FIDO address (4d).
+
+The converted original file will be deleted afterwards!
+
+
+The message then gets the following header:
+                                           
+ From : File2Msg Vx.xx            Sent Pvt
+ To   : Sysop
+ Subj.: FILENAME                           
+
+Nodes  often  want  to forward files to their  points.  In  such  a  case, 
+FILE2MSG will take additional parameters:
+
+     <from> -  Your name (that shall appear in the "From:" field)
+<dest-addr> -  The target address (4d).
+       <to> -  The receiver ("To:").
+  <subject> -  The subject.
+               If  you use "*filename*" as subject,  the filename  of  the 
+               converted file will be used as subject.
+     <mode> -   0 = The message flags "Sent" and "Local" are set,  i.e. it 
+                    will not be exported.
+                1 = The  message  flag "Local" is set,  i.e.  it  will  be 
+                    exported (use this mode for echomails).
+                2 = The message flag "Local" and "Private" are  set,  i.e. 
+                    it will be exported (use this mode for netmails).
+                3 = Set "Local","Private" and "KillSend".
+                4 = Set "Local","Private" and "Crash".
+                5 = Set "Local","Private","KillSent" and "Crash".
+
+If  these parameters are not given,  the original file is not deleted  (in
+the case that it can be sent to other persons as well).
+
+
+
+ATTENTION <ah, a little action after all;-)>
+=========
+
+LED  can only show files that are not longer than  32768  bytes;  FILE2MSG 
+converts files with a length up to 65535 bytes, so this feature cannot be 
+used with the current version of LED.
+
+
+
+
+
+EXAMPLES
+========
+
+FILE2MSG E:\FIDO\INBOUND\*.RSP E:\FIDO\MSGS\SYSTEM 2:2401/208.6
+
+  - All respond files (*.RSP) are written to the area SYSTEM of your
+    messagebase.
+
+
+FILE2MSG E:\FIDO\INBOUND\LISTE.LST E:\FIDO\MSGS\NETMAIL 2:4711/80.0
+
+  -  The file LISTE.LST is written to your NETMAIL area.
+
+
+FILE2MSG E:\TEXT.TXT E:\FIDO\MSGS\NETMAIL 2:2401/208.6
+  "Stephan Slabihoud" 2:2401/53.0 "Guenther Paczia" "Info about AVALON" 1
+
+  -  The  text  file  TEXT.TXT is written to your  netmail  and  gets  the 
+     following header:
+     ================================================
+      From : Stephan Slabihoud on 2:2401/208.6   Pvt
+      To   : Guenther Paczia on 2:2401/53
+      Subj.: Info about AVALON                       
+
+     This message can now be exported.
+
+
+
+HISTORY 
+=======
+
+ V1.00 -  First official version.
+ V1.10 -  Converts up to 10 times faster.
+ V1.20 -  Converts error-free <;-)>.
+ V1.30 -  Addtional options.
+ V1.40 -  Now with MSGID.
+ V1.41 -  More flags possible.
+ V1.42 -  PID implemented.
+ V1.43 -  *filename* as subject can be used.
+ V1.44 -  Little changes.
+ V1.45 -  Summertime is used when necessary.
+

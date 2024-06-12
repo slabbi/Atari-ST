@@ -1,0 +1,48 @@
+TT-High Hardcopy V1.2
+=====================
+
+(c) Stephan Slabihoud 1993,1994 - Public-Domain
+
+PROLOG:
+=======
+Dieses Programm entstand, weil die hohe Auflîsung des TT's (1280x960),
+keine Bildschirmhardcopy zulÑût. Ich Ñrgerte mich jedesmal darÅber,
+wenn ich "nur mal eben" eine Hardcopy benîtigte, den Bildschirminhalt 
+aber erst umstÑndlich per IMG sichern und mit einem Grafikprogramm 
+ausgeben muûte... :-(
+
+Das Programm:
+=============
+Dazu gibt es nicht viel zu sagen:
+Einfach in den Auto-Ordner packen, mehr nicht...
+
+Ausgabe einer Hardcopy ist mit ALT+HELP mîglich und wenn diese um 
+90 Grad gedreht ausgegeben werden soll, SHIFT-LINKS+ALT+HELP drÅcken.
+
+Die Hardcopy kann bzw. sollte auf jedem(?) 24-Nadler im 180dpi-Modus
+gedruckt werden.
+
+EPILOG:
+=======
+Dieses Programm soll kein komplettes universelles hypermodernes
+Druckprogramm darstellen! Deshalb funktioniert es auch NUR in der 
+1280x960er Auflîsung (TT-High) und auf 24-Nadel-Drucker.
+
+Wer einen anderen Drucker oder Auflîsung benutzt, der hat Pech gehabt. 
+Anfragen, ob ich noch dieses oder jenes einbauen kînne, kann man zwar, 
+aber ich werde es in absehbarer Zeit NICHT machen...
+
+Den anderen WÅnsche ich viel Spaû mit ihren Hardcopy's ;-)
+
+
+Wer's braucht (meine Kontaktadresse):
+
+Stephan Slabihoud
+
+
+Historie:
+=========
+ 0.x - Interne Testversionen
+ 1.0 - Erste îffentliche Version
+ 1.1 - 90 Grad Drehung mîglich
+ 1.2 - Interrups werden - wÑhrend des Ausdrucks - komplett gesperrt

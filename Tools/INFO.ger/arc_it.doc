@@ -1,0 +1,106 @@
+072000300070000144000006000014000
+11
+21
+F0000000001
+9[..........................................................]0110
+Ä==========================================================================
+ARC-ITV1.2x                                  Letzteénderung:22.04.95
+==========================================================================
+(c)StephanSlabihoud
+==========================================================================
+SHAREWARE
+==========================================================================
+
+Sharewarebedingungen:sieheAVALON.TXT
+
+==========================================================================
+
+AnregungenundFehlerbeschreibungenzumHandbuch
+undProgrammbittedirektperCrashmailanmich!
+
+
+
+INTRO:
+======
+HabenSiesichauchschonoftdarÅbergeÑrgert,daûSieunbedingteine
+ÑltereNachrichtbenîtigten,dieseaberschonlÑngstdurchdenCruncher
+gekilltwordenwar?
+Wennja,dannistARC-ITgenaudasrichtigeUtilityfÅrSie.
+
+ARC-ITarchiviertalleNachrichten,die,entwedervonIhnenoder"Sysop"
+stammen,oderanSieoder"Sysop"adressiertsind.
+
+
+
+
+
+
+Ä
+AUFRUF:
+=======
+DerAufrufvonARC-ITistdenkbareinfach:
+
+ARC-IT<e|n>[-ax]"SysopName"<msgbase>[<arcname>]
+
+Als"msgbase"wirddiezuprotokollierendeMsgBaseOHNEExtentioneinge
+tragen.HierbeimuûdieMsgBaseimTheBox-Formatvorliegen,d.h.indem
+Format,welchesauchLED,ACS,ECUuvm.benutzen.
+
+"SysopName"istIhreigenerName.DieseAngabewirdbenutzt,umdie
+entsprechendenNachrichtenzufinden.
+
+DerParameter"e"oder"n"muûangegebenwerden.Hiermitwirdfestgelegt,
+obessichbeiderAreaumeineEchoMailArea(e)oderumeineNetMailArea
+(n)handelt.BeiderNetmail-AreawirdzusÑtzlichderAbsender/Adressat
+derNachrichteingetragen.
+
+WirdzusÑtzlich"-a"angegeben,sowerdenauchdiebereitsschon
+archiviertenNachrichtennochmalsarchiviert.Mit"-x"werdenalleNach
+richten(auchdienichteigenen)archiviert.
+
+DieNachrichtensindimselbenVerzeichnis,inderauchdieMsgBasezu
+findenist,gesichert.DasentsprechendeFiletrÑgtdieEndung"ABK"
+(AvalonBackup).SolldiesesFileandersheiûenbzw.woandersabgelegt
+werden,sokanndiesesÅberdenoptionalenParameter<arcname>geschehen.
+
+
+
+BEISPIELE:
+==========
+
+ARC_ITn"StephanSlabihoud"E:\FIDO\MSGS\NETMAIL
+
+-DieNetmail-Areawirdunter"NETMAIL.ABK"archiviert.
+
+ARC_ITe"StephanSlabihoud"E:\FIDO\MSGS\ATARIH:\BACKUP.TXT
+
+   -DieArea"ATARI.GER",welcheunter"ATARI.HDR"bzw."ATARI.MSG"
+vorliegt,wirdals"H:\BACKUP.TXT"archiviert.
+
+ARC_ITe-a"StephanSlabihoud"E:\FIDO\MSGS\ATARI
+
+   -Eswird"ATARI.GER"archiviert,jetztaberwerdenauchdiebereits
+schonarchiviertenMsgsnochmalsgesichert.
+
+ARC_ITe-ax"istegal"E:\FIDO\MSGS\ATARI
+
+   -EswerdenALLE(auchdienichteigenen)Nachrichten,undauchdie,
+dieschonarchiviertwurden,gesichert.
+
+
+
+INTERNA:
+========
+Zumerkennen,obdieNachrichtenbereitsarchiviertwordensind,benutzt
+ARC_ITimHeaderFileBit1(0x0002)ausUnused[7].
+
+
+
+ÄHISTORIE:
+=========
+V1.00-  ErsteoffizielleVersion.
+V1.01-kleinereOptimierungen.
+V1.10-optionalerParameter<arcname>.
+V1.20-VertrÑgtsichnunmitFastEcho
+V1.21-ProblememitMsgs>32KBbeseitigt.
+

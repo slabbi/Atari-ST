@@ -1,0 +1,39 @@
+
+These are the available language and resource files for LED:
+
+ENGLISH.RSC/LNG  - english RSC/LNG (by Stephan Slabihoud)
+DEUTSCH.RSC/LNG  - german RSC/LNG  (by Stephan Slabihoud)
+FRENCH.RSC/LNG   - french RSC/LNG  (by Herv‚ Piedvache)
+FRENCH3D.RSC     - french RSC      (by Jacques Delavoix)
+ITALIAN.RSC/LNG  - italian RSC/LNG (by Alex Guerrazzi, Mike de Petris)
+
+To change the language:
+ 1. rename both files (*.RSC and *.LNG) to LED.RSC and LED.LNG
+ 2. copy LED.RSC into the same folder with LED.PRG or into the
+    systemfolder of LED
+ 3. copy LED.LNG into the systemfolder of LED
+
+
+When editing the Ressource-File be very careful! Following strings
+must have at least the given length (use fill chars when neccessary):
+
+  TREE.OBJECT       LENGTH
+  font.fgdosact     11
+  allarea.atitel    22
+  selorig.sotitel   21
+  username.unfound  14
+  nodenum.nninfo    16
+  writemsg.wmto     17
+  switches.lgemsact 23
+  editline.eltext   6
+  gotomsg.gmtext    13
+
+Do not change following objects in the about-tree:
+  'Date', 'Bytes free' and 'Blocks'
+
+Do not add your own objects to the rsc file!
+
+When you find a bug please report it to LED-HQ and the person who has
+written the adaption. Thanx!
+
+St.Slabihoud

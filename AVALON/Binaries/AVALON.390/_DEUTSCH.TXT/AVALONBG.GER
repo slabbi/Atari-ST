@@ -1,0 +1,465 @@
+==========================================================================
+AVALON V3.6x                                   Letzte nderung: 21.03.1994
+==========================================================================
+                    Installationshilfe fr Anf„nger
+                      von Florian Diete, 10.07.93
+==========================================================================
+
+Hallo!
+
+Nachdem  ich Stephans Anleitung etwas kritisiert hatte, da sie meiner Mei-
+nung nach fr Anf„nger im FidoNet (oder technisch verwandten Netzen) nicht
+gengend  Hilfestellung gab, hat er mir sofort den Vorschlag unterbreitet,
+einen  Installationshilfetext  zu  verfassen. Du bist der- bzw. diejenige,
+der/die jetzt darunter leiden darf! ;-)
+
+Inzwischen sind seit der Avalon-Version 3.3x einige nderungen im Programm
+vorgenommen  worden,  die  es  erforderlich  machen,  auch  diesen Text zu
+aktualisieren.
+
+Ich  habe  mir  vorgenommen,  hier  zun„chst mal nur _die_ Schritte zu be-
+schreiben,  die  fr  eine erste Installation von Avalon _unbedingt n”tig_
+sind.  Auerdem  denke ich, wenn Du Node bist und Downlinks hast, wirst Du
+auch Stephans Anleitung verstehen, daher werden solche "fortgeschrittenen"
+Anwendungen  hier  ebenfalls  nicht erl„utert werden. Fr eine Testinstal-
+lation  reicht  diese  Hilfe  (hoffentlich) aus, fr eine regelm„ige Ver-
+wendung von Avalon solltest Du die Installation aber bald erweitern. Diese
+Hilfe ersetzt also Stephans Manual _nicht_, sondern bietet h”chstens einen
+"Verst„ndniseinstieg".
+
+Ich beschr„nke mich bei der Beschreibung der Installation als Beispiel auf
+die  Programme,  die ich als Point bislang verwendet habe. Das sollte aber
+kein Problem sein, denn die Grundfunktionen der verwendeten Programme sind
+meist  sehr  „hnlich.  Auerdem gehe ich mal davon aus, da Du noch keinen
+Key  fr  Avalon hast - schlielich willst Du das Programm ja erstmal aus-
+probieren! :-)
+
+Genug der vielen (einleitenden) Worte...
+
+
+Was ist Avalon?
+===============
+Avalon ist eine GEM-Shell fr Points im Fido oder kompatiblen Netzen, also
+ersetzt Avalon zun„chst mal nur das, was ber den Desktop oder eine belie-
+bige  Allzweck-Shell  "per Hand" oder mit einem Shellskript auch zu errei-
+chen  ist.  Sp„ter (s. Stephans Manual) kommen dann weitere Anwendungsm”g-
+lichkeiten  hinzu,  die nicht mehr oder nur mit groen Schwierigkeiten mit
+Shellskripts zu realisieren sind.
+
+Avalon  automatisiert  in meiner Installation den Poll (weitestgehend [wg.
+Semper, s.u.]), zus„tzlich bietet es auf einem Bildschirm die M”glichkeit,
+viele  Fido-Programme  (und  andere)  aufzurufen, ohne zum Desktop zurck-
+kehren  zu  mssen. Mithilfe des internen Batch-Interpreters, der auf DFš-
+Anwendungen  zugeschnitten  ist, lassen sich schnell ntzliche Anwendungen
+erstellen,  so  z.B.  das  automatische  Einbinden  von  DIFF-Files in die
+Nodelist(en).
+
+
+Was brauchst Du vom Avalon-Paket?
+=================================
+Nur AVALON.PRG. Die anderen Programme sind (u.a. in Verbindung mit Avalon)
+ntzliche  Utilities,  die  aber  fr den Betrieb der Shell zun„chst nicht
+ben”tigt  werden.  Bei  Problemen solltest Du natrlich das Manual und die
+von Stephan im SPEZIAL-Ordner abgelegten Texte zur Hand haben.
+
+
+Was brauchst Du auer Avalon?
+=============================
+Als  Point (und nur darauf beziehe ich mich hier) brauchst Du einen Mailer
+(Binkley  oder  Semper),  einen  Exporter  (z.B.  ECU oder JetMail), einen
+Importer  (z.B.  Llegada oder - wieder - JetMail) und einen Message-Editor
+(z.B. LED).
+
+Diese  Software  solltest  Du  -  sofern  noch  nicht geschehen - zun„chst
+installieren,  so  da sie sicher l„uft. Es lohnt nicht, einen Poll durch-
+fhren zu k”nnen, ohne zu wissen, was dabei abl„uft!
+
+Solltest  Du  "The  Box"  verwenden:  zum  einen kenne ich dieses Programm
+nicht,  zum  anderen wird es in der gegenw„rtigen Version von Avalon nicht
+mehr  untersttzt.  Deswegen werde ich mich ausschlielich auf Binkley und
+Semper beziehen.
+
+
+Wohin geh”rt Avalon?
+====================
+Ich  habe  Avalon  in  das  gleiche Verzeichnis kopiert, in dem auch meine
+andere Fido-Software residiert, speziell auch Binkley bzw. Semper. Das ist
+bei mir "E:\BIN\POINT\". Das verringert Problemquellen, z.B. wenn Software
+darauf  vertraut, irgendwelche Konfigurationsdateien o.„. im gleichen Ver-
+zeichnis vorzufinden etc.
+
+
+Was mut Du wissen, bevor Du Avalon konfigurierst?
+==================================================
+Die  Parameter,  mit  denen  die  o.g. Programme aufgerufen werden mssen,
+solltest Du Dir der Einfachheit halber kurz notieren. Auerdem solltest Du
+natrlich  die  Programme  und  die  Pfade  zum  BINKLEY.CFG  bzw. Sempers
+CONFIG.DAT  und  dem  AREAS.BBS mithilfe der Fileselector-Box wiederfinden
+k”nnen... ;-)
+
+
+Kann Avalon Dir irgend etwas zerst”ren?
+=======================================
+Ja  und Nein. Avalon berschreibt, sofern Du Binkley verwendest, die Datei
+BINKLEY.CFG  beim  Start  mit einer von max. sechs Avalon-eigenen Binkley-
+Konfigurationsdateien. nderungen, die Du in BINKLEY.CFG vornimmst, werden
+also   berschrieben.  Vielleicht  solltest  Du  zur  Vorsicht  die  Datei
+BINKLEY.CFG  mal in BINKLEY.ALT _kopieren_. (BINKLEY.CFG wird derzeit noch
+gebraucht!) nderungen solltest Du bei Verwendung von Avalon also nur noch
+in  der  BINKLEY.0  (bzw. sp„ter auch in .1 bis .5) vornehmen. Wenn Avalon
+allerdings  beim  ersten Start _nur_ BINKLEY.CFG vorfindet und keine Datei
+BINKLEY.0  (im  AVALON-Ordner),  so  wird aus der *.CFG-Datei zun„chst die
+*.0-Datei erzeugt.
+Bei  Verwendung  von Semper sind derzeit keine solchen Manahmen n”tig, da
+Semper  bislang  keine  ASCII-Konfigurationsdateien  einlesen kann. Jedoch
+sollte  die  Datei  CONFIG.DAT vorhanden sein. (Diese kann erzeugt werden,
+indem  in Sempers Men "Config/Options..." die Option "Write ASCII config"
+angekreuzt  wird  und danach die Konfiguration mittels "Config/Save" abge-
+speichert wird.)
+
+
+Was passiert beim Start von Avalon?
+===================================
+Avalon  legt  (nach  vorheriger Information) einen Ordner mit Namen AVALON
+an. In diesem Ordner werden alle Systemdateien, die irgendetwas mit Avalon
+zu tun haben, abgelegt.
+Weiterhin  ben”tigt  Avalon  beim Start die Datei BINKLEY.CFG bzw. Sempers
+CONFIG.DAT.  Wenn  es  keine  dieser  Dateien  finden kann, erscheint eine
+Dialogbox,  die  nach  dem  verwendeten  Mailer  fragt (derzeit werden nur
+Semper  und  Binkley untersttzt). Nach dieser Auswahl erscheint die File-
+Selector-Box,  mit  deren  Hilfe  Du die entsprechende Konfigurationsdatei
+(BINKLEY.CFG fr Binkley, CONFIG.DAT fr Semper) aussuchen kannst.
+Wenn  es die Datei BINKLEY.CFG findet, wird eine Kopie namens BINKLEY.0 im
+AVALON-Ordner angelegt, um sie beim n„chsten Start zur Verfgung zu haben.
+Auerdem  sucht  Avalon nach einer eigenen Konfigurationsdatei AVALON.CFG,
+deren Fehlen Avalon allerdings nichts ausmacht. (Dich drfte es allerdings
+mit der Zeit st”ren, jedesmal die Pfade neu einstellen zu mssen... ;-)
+
+
+Welche M”glichkeiten hast Du, Avalon zu konfigurieren?
+======================================================
+Eigentlich  nur eine, n„mlich die einfachste: Avalon starten, die Einstel-
+lungen  vornehmen  und  sichern. Die AVALON.CFG ist zwar in Textform, aber
+das  Format  ist nicht dokumentiert. Stefan warnt auerdem ausdrcklich in
+seinem Manual davor, die Datei zu „ndern.
+
+Wenn  Du  nun weit, was auf Dich zukommen kann, und Du auerdem Avalon im
+gleichen  Verzeichnis  wie Binkley (und speziell BINKLEY.CFG) resp. Semper
+stehen hast, ist es Zeit, Avalon zu starten...
+
+Viele der Schaltfl„chen und manches zus„tzliche Feature findest Du auch in
+den  Mens wieder. Das ist allerdings etwas, das Du auch ohne mich auspro-
+bieren kannst, deswegen gleich zur Sache:
+
+
+Zun„chst  ein  Absatz  nur fr Semper-Verwender: Du kannst Dir, wenn Du in
+Semper  schon  einige  Einstellungen  fr  Importer, Exporter etc. gemacht
+hast,  wom”glich Arbeit sparen, wenn Du zun„chst auf "Special" klickst und
+im  erscheinenden  Fenster  den  Pfad  zu  Sempers CONFIG.DAT angibst. Die
+anderen  Einstellungen  werden sp„ter noch behandelt werden. "OK" zum Ver-
+lassen  des  Fensters  anklicken  und die Einstellungen mit "Save" abspei-
+chern.
+
+
+Unter der šberschrift "Programs" findest Du drei Bl”cke: der linke ist fr
+die  Fido-Programme,  die Du zum Pollen brauchst, reserviert, der mittlere
+fr  diverse  Utilities nach Deinem Belieben (z.B. Statistik-Programme wie
+JetStat) und der rechte, um Programme mit den entsprechenden Erweiterungen
+aufzurufen. Dabei schimmern die linken beiden Bl”cke noch sehr grau (auer
+bei  manchen  Semper-Benutzern ;-), da Avalon die entsprechenden Programme
+noch unbekannt sind. Um den linken Block geht's jetzt:
+
+
+Durch  Klicken  auf  "Find  1"  oder  Anw„hlen  des  Mens  "Config/Find 1
+(Program)"  oder  durch  die  Tastenkombination Alt-F (solche Alternativen
+spare  ich  mir  ab  jetzt!) erscheint ein Fenster "Install programs". Zur
+Handhabung allgemein: Durch Doppelklick auf "Import:" oder die leere Zeile
+dahinter erscheint die Fileselector-Box und Du kannst Dein Import-Programm
+ausw„hlen.  Dann  kannst  Du  hinter  "Cmd:" die notwendigen Parameter fr
+dieses  Programm angeben. Die Redirect-K„stchen bewirken, da die Ausgaben
+der  Programme  in  ein Fenster umgeleitet werden, statt auf den TOS-Bild-
+schirm.  Bei  "Export:"  und den weiteren Programm-Optionen gilt natrlich
+entsprechendes. Noch ein Wort zu den einzelnen Programmen:
+
+"Import:"  ist  allgemein  das Programm, das die Mailpakete auspacken l„t
+und die Mails in die verschiedenen Echos verteilt (auch "Tosser" genannt).
+Das  war  bei mir frher mal Llegada (mit ECU.CFG [inkl. komplettem Pfad -
+ist  sicherer!]  als  Parameter)  und  ist heute JetMail (mit "import" als
+Parameter).  Redirect  ist, da das TOS-Programme sind, meiner Meinung nach
+sinnvoll.
+
+"Export:"  ist  allgemein das Programm, das die Messages aus den Areas und
+der NetMail-Area holt, sie fr den Mailer geeignet zusammenpacken l„t und
+in  das  Outbound-Verzeichnis  legt. Manche Programme l”schen gleichzeitig
+die „ltesten Messages aus den Areas nach vorgegebenen Obergrenzen. Bei mir
+hie  der  Exporter  mal ECU (als Parameter wieder die Konfigurationsdatei
+ECU.CFG) und heute ist es JetMail (mit "scan bundle pack" als Parametern).
+Redirect ist bei mir natrlich wieder an.
+
+"Cruncher:"  ist das bei "Export:" schon erw„hnte Programm zum L”schen der
+„ltesten  Messages.  Frher  (d.h. zu ECU-Zeiten) blieb dieser Eintrag bei
+mir  leer,  da  ECU  das  Crunchen schon beim Exportieren erledigte. Heute
+steht  hier  (wieder)  JetMail  (mit  "crunch"  als Parameter). (Ich h„tte
+diesen Parameter natrlich auch bei "Export:" mit angeben k”nnen - pers”n-
+liche Vorliebe!) Redirect ist an.
+
+"Scanner:"  das  sollte eigentlich das Programm sein, das die Messages aus
+den  Areas  exportiert,  aber  ich  habe das mit den Parametern "scan" und
+"pack"  fr  JetMail  schon  beim  "Export:" angegeben. Bei ECU ist meiner
+Erinnerung  nach eine Trennung der Funktionen nicht m”glich, so da dieser
+Eintrag  leer blieb. (Hier habe ich jetzt JetMail mit "scan" angegeben, so
+da  lediglich die Messages aus den Areas exportiert werden.) Redirect ist
+- da es bei mir immer noch das gleiche Programm ist - an.
+
+"Msg-Ed:"  ist das Programm zum Editieren der Messages. Bei mir ist es der
+LED,  diesmal  ohne jegliche Parameter. Redirect ist - weil GEM-Programm -
+aus.
+
+"Txt-Ed:"  ist  ein  Texteditor  eigener Wahl. Dieses Programm ist fr den
+EMail-Betrieb  normalerweise nicht erforderlich. Hiermit k”nnen jedoch gut
+Konfigurationsdateien  u.v.a.m.  ge„ndert werden. Ich habe hier den Tempus
+eingetragen, ohne Parameter. Redirect ist aus.
+
+"Mailer:"  das  ist  Binkley  oder  Semper.  Fr Binkley ist der Parameter
+"unattended"  sinnvoll,  damit  Binkley nicht im "Terminal mode" gestartet
+wird.  Fr  Binkley kann Redirect angeschaltet werden, es l„uft allerdings
+etwas langsamer. Bei Semper sollte Redirect aus bleiben.
+
+"Terminal:"  fr  den  Point oftmals ziemlich uninteressant, kann hier ein
+beliebiges Terminal-Programm angegeben werden. So z.B. Binkley, Rufus oder
+CoNnect  (jeweils  ohne  Parameter).  Bei  GEM-Programmen  mu  auch  hier
+Redirect aus bleiben.
+
+Dann  gibt  es  noch  zwei zus„tzliche Eintr„ge, die fr den EMail-Betrieb
+nicht n”tig sind, aber der Vollst„ndigkeit halber...:
+
+"Viewer:"  hier  kann man einen Datei-Viewer eintragen, z.B. den GUCK oder
+1stView oder was auch immer.
+
+"AreaEditor:"  Falls  man  nicht  den  im  Avalon  eingebauten Area-Editor
+verwenden m”chte, kann man hier ein alternatives Programm angeben.
+
+Nun  mit  "OK"  die  Eintragungen  und  deren  Richtigkeit  best„tigen und
+(sicherheitshalber) danach schonmal "Save" anklicken...
+
+
+Nun  sollten  die  "lebenswichtigen"  Programme im linken "Programs"-Block
+schwarz  dargestellt  sein.  Die  Utilities  auf „hnliche Art via "Find 2"
+einzutragen,  berlasse  ich  Dir,  denn  die sollten fr einen Poll nicht
+unbedingt  notwendig sein. Der Unterschied zum linken Block besteht ledig-
+lich  darin,  da  Du  Dir  den Text der Buttons im Avalon-Hauptbildschirm
+selber  w„hlen  kannst  (also "JetStat" anstatt "Utility 1"). Bitte vergi
+anschlieend das "Save" nicht.
+
+
+Es bleiben noch einige wenige Einstellungen zu machen:
+
+Klick  bitte "Special" an. Im auftauchenden Fenster sind noch einige Pfade
+anzugeben,  sofern  die  entsprechenden  Dateien sich NICHT im selben Ver-
+zeichnis wie AVALON.PRG befinden (und selbst dann kann man sie angeben):
+
+"AREAS.BBS:"  trage hier den (relativen oder [wie bei mir] absoluten) Pfad
+zu  dieser  Datei  ein. Bei mir ist dies "E:\BIN\POINT\". (Ein Doppelklick
+ruft auch fr diese Pfade die File-Selector-Box auf.)
+
+"BINKLEY.CFG:"  entsprechend  wie  bei  AREAS.BBS,  blo  fr  BINKLEY.CFG
+(logisch, gell?). Natrlich nur fr Binkley-Benutzer.
+
+"CONFIG.DAT:"  dito  fr  Semper-Verwender. Wer Semper nicht benutzt, l„t
+diesen Eintrag leer.
+
+"Netmail:"  dito  fr  den  Pfad  inkl.  Dateiname  (ohne  Extension!) der
+Netmail-Dateien (s. Bsp.). Sollte hier schon der richtige Pfad eingetragen
+sein,  hat  Avalon  beim  Start  die  BINKLEY.CFG-Datei gefunden und diese
+Angabe daraus bernommen.
+
+Die  "Setups"  sind  gleichzusetzen  mit  den o.g. BINKLEY.?-Dateien. Hier
+kannst  Du  die Bezeichnungen der Schaltfl„chen im Hauptfenster von Avalon
+(auf der rechten Seite) festlegen. Zun„chst brauchst Du aber nur BINKLEY.0
+(und das sollte inzwischen automatisch erzeugt worden sein).
+Als  Semper-Benutzer  kannst Du bislang keine verschiedenen Setups verwen-
+den, diese Eintr„ge sind daher uninteressant fr Dich.
+
+Mit  "Infobox:"  kannst  Du nach Belieben herumspielen. Der Effekt ist (im
+Hauptfenster) ziemlich offensichtlich.
+
+"K/Sent:"  Diese  Schaltfl„chen  werden  erst in Zusammenhang mit "fortge-
+schrittenen" Funktionen von Avalon interessant. Da diese hier nicht behan-
+delt  werden,  verweise  ich  auf  Stephans Manual. Zun„chst sollten diese
+Fl„chen ausgeschaltet bleiben. (Kleiner Tip: 'K' steht fr "Kill" ;-)
+
+"Fontsize:" ist zum Einstellen der verwendeten Fontgr”e in den Fenstern.
+
+Die Schalter sind bei mir folgendermaen gesetzt:
+
+        [x] MsgBaseChecking ("Edit areas")
+        [x] Wait for keypress (direct start)
+        [x] Redirect output (direct start)
+        [x] 4D-Mode (Binkley>=3.0)
+        [x] Delay AutoStartPoll
+        [ ] Ask for AREAS.BBS/DAREAS.BBS
+        [ ] Save dialogpositions
+        [x] Big windows (vert.>=672 points)
+        [ ] Smart redraw
+        [ ] Snap textwindows
+        [ ] No Line-A (TOS redirect)
+        [ ] Always center textwindows
+        [ ] Send 3D-TIC
+        [x] Main-Dialogbox
+
+Wenn  Du  Semper  verwendest oder Binkley 3.xx benutzt (und in BINKLEY.CFG
+bzw.  BINKLEY.0  das  Statement  "IOS"  oder  "Hold4D" angegeben hast) und
+zus„tzlich  noch  IOSmail oder JETmail benutzt, so sollte "4D-Mode" einge-
+schaltet sein. So werden die moderneren 4D-kompatiblen Files erzeugt.
+
+Mit  "Big  windows"  zeigen der Areafix-Manager und File-Requester 20 Ein-
+tr„ge  mehr auf dem Bildschirm an. Avalon ignoriert diese Option, wenn bei
+Dir nicht genug Platz auf dem Bildschirm sein sollte.
+
+"Smart  redraw"  ben”tigt  man  nur  dann,  wenn aus irgendeinem Grund die
+Windows zweimal gezeichnet werden (teilweise bei TOS 2.06 und MultiTOS).
+
+Fr  alle  nicht  selbsterkl„renden  Schalter  empfehle  ich  den Blick in
+Stephans  Manual. Meine Angaben oben solltest Du normalerweise fr's erste
+bernehmen k”nnen.
+
+Nun  kannst  Du  wieder die Vollst„ndigkeit und Richtigkeit Deiner Angaben
+mit "OK" best„tigen und direkt nochmal "Save" anklicken.
+
+
+Jetzt kommt der interessante Teil:
+
+Klick  bitte "Session-Setup" an. Nun kannst Du von dem profitieren, was Du
+vorhin eingetragen hast: es geht jetzt um die Programm-Aufrufe (z.B. eines
+Polls) in der richtigen Reihenfolge mit den richtigen Parametern.
+
+Zun„chst:  Du  kannst  den  Text fr die einzelnen Sessions in den Schalt-
+fl„chen ab„ndern, indem Du _in diesem Fenster_ (!) doppelt darauf klickst.
+Ein einfacher Klick w„hlt die Session aus.
+
+Am  besten  beschreibe  ich  einmal, wie ich meine Poll-Session bei meinem
+Boss konfiguriert habe:
+
+Den  Text  der  Schaltfl„che  habe  ich in die FidoNet-Adresse meines Boss
+ge„ndert.
+
+Vor  dem  Exportieren m”chte ich ein Programm aufrufen, das eigentlich mit
+der  EMail-Sache  nichts  zu tun hat. Dazu klicke ich auf "Other" und kann
+mir  das  Programm  mithilfe der Fileselektor-Box aussuchen. Direkt danach
+erscheint  ein  Fenster,  in  dem  ich diesem Programm (sofern n”tig) noch
+Parameter  mitgeben  kann. Das Programm erscheint als erstes in der Liste.
+Klicke  ich  auf  diesen  Eintrag,  kann ich den Eintrag l”schen ("Kill"),
+einen  weiteren  davor  einfgen ("Insert") oder die Parameter „ndern (und
+mit "OK" best„tigen).
+Hinter der Box erscheinen nun K„stchen unter "Wait" und "Redirect" und ein
+Eingabefeld  unter  "Error  Level". Wenn Du "Wait" ankreuzt, wartet Avalon
+nach  der  Ausfhrung  dieses  Programms  auf einen Tastendruck. Soll nach
+jedem  Programm  gewartet  werden, gengt es, die Schaltfl„che unten links
+anzuschalten.  Bei  "Redirect" wird die Ausgabe in ein Fenster umgeleitet.
+Zu den Errorlevels hier eine Anmerkung von Stephan selbst:
+  [
+     Um  die  Errorlevels  zu  benutzen,  mu  zun„chst  der  "Loop-Modus"
+     aktiviert  werden.  Als  Anzahl  der Schleifen kann man eine "0" oder
+     "1"  eintragen  (Mathematiker  einmal  wegh”ren: Die "0" ist hier mit
+     der  "1"  gleichzusetzen).  Beim  Eintrag "BINKLEY.TTP" kann z.B. als
+     Errorlevel  die  "100"  angegeben  werden. Wird jetzt die PollSession
+     abgearbeitet  und  verl„t  Binkley  mit  Tastendruck  auf "F10" (das
+     bedeutet,  da  BT  mit  Fehlercode 100 beendet werden soll), so wird
+     die  komplette  Session  beendet, d.h. etwaige nachfolgende Programme
+     werden nicht mehr ausgefhrt.
+  ]
+Ich  pers”nlich  habe  diese  M”glichkeit bislang nicht ben”tigt, also die
+Eintr„ge dieser Spalte grunds„tzlich leer gelassen.
+
+Als  n„chstes  m”chte  ich  meine  Mails  exportieren. Dazu klicke ich auf
+"Export".  Bei  mir erscheint "JETMAIL.TTP" (Leerschritte mal weggelassen)
+mit einem Pfeil davor in der Liste; bei Dir erscheint entsprechend der von
+Dir  nach  Anklicken von "Find 1" im "Install programs"-Fenster angegebene
+Exporter.  Klicke  ich auf diesen Eintrag, kann ich ihn l”schen, ihn lokal
+(also  nur  fr  diesen  Aufruf)  oder global (also als ob ich im "Install
+programs"-Fenster  w„re)  „ndern,  oder  die  Einstellungen  ohne nderung
+beibehalten.  (Hier erscheint [bei mir] kein K„stchen unter "Redirect", da
+ich schon bei "Find 1/Export" "Redirect" angekreuzt habe.)
+
+Dann  will  ich noch etwas Platz auf der Platte schaffen, d.h. meine Areas
+krzen,  also klicke ich "Cruncher" an. Bei mir erscheint wieder ein Pfeil
+und  "JETMAIL.TTP" in der Liste, jedoch ergibt eine šberprfung, da dies-
+mal erwartungsgem„ der Parameter "crunch" gesetzt ist.
+
+Nun  will  der  Mailer  aufgerufen  werden. Ich klicke auf "Mailer" und es
+erscheint  "BT.TTP"  (bzw. "SEMPER.APP"), wieder mit einem Pfeil davor. Da
+ich  bei  meinem  Boss  pollen  m”chte, will ich hier den Parameter "mail"
+(bzw.  "poll  2:2456/95";  Semper  l„t  sich leider bislang nach dem Poll
+nicht  automatisch  beenden)  angeben,  also  ein  Klick  auf  den Eintrag
+"BT.TTP"  (bzw.  "SEMPER.APP")  und  "mail" (bzw. "poll 2:2456/95") einge-
+tippt.  Da  ich aber nicht nur bei meinem Boss pollen will, „ndere ich den
+Parameter  natrlich nur lokal. Sofort erscheint eine Warnung, da ich das
+Programm oder die Parameterzeile dieses Eintrags in "Find 1" (bei in "Find
+2"  eingetragenen  Programmen  natrlich dort) nicht mehr „ndern kann. Das
+ist  o.k.,  also klicke ich auch darauf. Der Pfeil vor "BT.TTP" verschwin-
+det.  Ergo  kann  ich  die Programme mit einem Pfeil davor global ersetzen
+oder  modifizieren,  indem ich den Eintrag in "Find 1" bzw. "Find 2", also
+dem "Install programs"- bzw. dem "Install utilities"-Fenster „ndere! Genau
+das habe ich ausgenutzt, als ich von ECU auf JetMail umgestiegen bin.
+
+Nun  habe  ich mir ein cleveres Avalon-Batch-File geschrieben, das mir die
+DIFFs in die Nodelisten einarbeitet und die Fileliste meines Boss auspackt
+etc.pp. und mir in einer Message in meine SystemInfo-Area mitteilt, was es
+jeweils  getan  hat.  Dies kann ber den Button "Batch" ausgesucht werden.
+Neben dem Batch-Programm erscheint ein "+"-Zeichen.
+
+Weiter  im  Text: ich mu die gerade vom Mailer hereingeholte Post ja noch
+auspacken,  also klicke ich auf "Import": "JETMAIL.TTP" steht an 5. Stelle
+der Liste, der Parameter lautet erwartungsgem„ "import".
+
+Zum Schlu will ich direkt in meinem Message-Editor landen, um meine Mails
+sofort  lesen zu k”nnen, also klicke ich auf "Msg-Ed" und voil…: "LED.PRG"
+bildet das neue Schlulicht der Programmliste.
+
+
+Die  "Options:"  will  ich jetzt nicht besprechen, dazu ist das Manual vom
+Stephan da. "Del one" und "Del all" l”schen jeweils einen Eintrag vom Ende
+der Liste bzw. alle Eintr„ge in der Liste.
+
+Wie weiter oben schon erw„hnt, sind die Setups gleichzusetzen mit den ver-
+schiedenen  Binkley-Konfigurationen. Du solltest zun„chst nur "Main Setup"
+(bzw.  wie immer Du die erste Schaltfl„che umbenannt hast) verwenden, denn
+derzeit hast Du ja nur ein BINKLEY.0, oder?
+
+
+Ich habe mir noch eine zweite Session definiert, die aber nirgendwo pollt:
+wenn ich Avalon aufrufe, will ich _meistens_ sofort in den Message-Editor.
+Also  habe  ich in Session 6 (pers”nliche Vorliebe!) als einziges Programm
+den  LED  eingetragen.  Jetzt noch "AutoStart" angeklickt und der LED wird
+nach  dem  Start  von  Avalon  automatisch  gestartet. Wegen des gesetzten
+Schalters  "Delay  AutoStartPoll"  im  "Special"-Fenster habe ich nach dem
+Start  von  Avalon  noch  ein paar Sekunden Zeit, den Vorgang abzubrechen,
+wenn ich LED mal _nicht_ sofort geladen haben m”chte.
+
+
+Damit  solltest  Du  in  der Lage sein, bei Deinem Boss Mail abzuholen und
+abzuliefern.  File  Requests  sind  i.a.  mit  dem  Msg-Ed  auch  m”glich,
+ansonsten  schreibt Stephan in seinem Manual ja auch was dazu, genauso wie
+zum  File Hatch, dessen genaue Einstellungen Du z.B. auch mit Deinem SysOp
+absprechen  solltest.  Die Optionen unter "Filemanager" kannst Du bestimmt
+z.T. intuitiv bedienen, wobei als letzter Eintrag Dein "Viewer" aufgerufen
+wrde.  Vom  Areas  editieren  solltest  Du allerdings so lange die Finger
+lassen,  bis  Du genau weit, was Du tust! (Und sonst: _erst_ Sicherheits-
+kopie erstellen, _dann_ drin rummantschen.)
+
+
+Viel Vergngen!
+
+Ciao,
+
+Florian.
+
+
+ [  Und noch eine kleine Anmerkung von mir... ;-)
+     Wem  dieses  Handbuch  gefallen  hat,  der  sollte dieses dem Florian
+     ruhig  mitteilen.  Wer ihm eine kleine Spende zukommen lassen m”chte,
+     kann  dieses  ber  o.g.  Bankverbindung  machen (Stichwort "Florian"
+     nicht  vergessen!!!),  oder  noch viel besser, (da weniger Arbeit fr
+     mich) sich direkt mit Florian in Verbindung setzen...
+  ]
+

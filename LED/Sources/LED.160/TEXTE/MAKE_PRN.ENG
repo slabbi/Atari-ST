@@ -1,0 +1,48 @@
+MAKE_PRN     PrinterDriver Compiler for the LED    (c) St.Slabihoud 1996
+========================================================================
+
+This program compiles *.PN files to LED.PRN. To start it type:
+
+  MAKE_PRN <driver.pn>      e.g. MAKE_PRN default.pn
+
+This will create a file called LED.PRN. This file must be put in the
+LED configuration folder. Is this file is missing LED does not convert
+any character.
+
+If someone has written a driver for a special printer, please send me the 
+source. I want to put it into the LED package.
+
+
+Format of *.pn files:
+---------------------
+;
+; Source of Default-PrinterDriver for LED 1.43  (c) St.Slabihoud
+;
+; Converts:      To:
+;  arrow up       '^'
+;  arrow left     '<'
+;  arrow right    '>'
+;
+; Each entry has follwing format:
+;  <original character>, <char1> [, <char2> [...]]
+;
+; Up to eleven entries are allowed (maximum number of entries per
+; line is twelve). This is enough for all convertions. You can
+; enter values in decimal, in octal (0...) or in hex (0x...).
+;
+0x01, 0x5e
+0x03, 0x3e
+0x04, 0x3c
+;
+; Following entries are optional (you can delete these lines when you want):
+;
+; Left margin
+LEFTMARGIN,0
+;
+; Printer-Initialization (max.11 entries)
+INIT,27,64
+;
+
+
+The 16th to 23rd entry is reserved for defining printer control codes for 
+underline/bold/cursive/inverse on/off.

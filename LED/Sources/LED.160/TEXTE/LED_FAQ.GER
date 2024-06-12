@@ -1,0 +1,71 @@
+
+HÑufig gestellte Fragen und Antworten zum LED:
+
+
+F: LED zeigt bei mir keine NewMsg/Unread/ToSysop-Flags an, weder im
+   AreaListDialog, noch im AreaListWindow.
+
+A: Die Datei LED.NEW wird vom LED in folgenden Verzeichnissen gesucht:
+    a) im LED-Systemordner (.\LED) bzw.
+    b) im Verzeichnis, in dem auch LED.PRG steht
+   Wird LED.NEW im Systemordner gefunden, so wird ein zweites LED.NEW 
+   nicht mehr beachtet.
+   Damit die Flags erscheinen, muû also sichergestellt sein, mit welcher 
+   LED.NEW der Tosser (JetMail, IOSmail etc.) arbeiten. I.d.R. wird das 
+   die Datei sein, die zusammen mit LED.PRG im gleichen Verzeichnis 
+   steht. Eine weitere Datei LED.NEW im Systemordner muû also gelîscht 
+   werden.
+
+
+F: Was hat es mit der PRVTUSER.LST auf sich?
+
+A: Die PRVTUSER.LST erlaubt einen schnellen Zugriff auf immer wieder
+   benîtigte Namen/Adressen. Hierzu muû eine Datei mit Namen 
+   PRVTUSER.LST unter "Userlist...", bevorzugt als erste Datei, 
+   eingetragen werden. Mit "Add PRVTUSER.LST" wird der Absender der 
+   aktuellen Nachricht mit seiner Adresse in diese Liste aufgenommen.
+   Schreibt man nun eine Nachricht in der Netmail und springt aus dem 
+   EmpfÑngerfeld ("To:") nur mit einem RETURN heraus OHNE etwas 
+   eingegeben zu haben, wird der gesamte Inhalt der PRVTUSER.LST zur 
+   Auswahl angeboten. Dieses geschieht auch, wenn die "Search User"- 
+   Dialogbox mit [OK] OHNE eingegebenen Namen verlassen wird.
+
+
+F: Wozu dient "FILE->Write Binary..." bzw. "Read Binary..."?
+
+A: Hiermit kînnen Nicht-Textdateien, die sogenannten Binary-Dateien
+   (darunter fallen z.B. Programmdateien, Grafik- und Sound-Dateien), 
+   verschickt werden. Mit "Read Binary..." wird eine solche Datei in die 
+   Nachricht codiert eingebunden und mit "Write Binary..." kann eine 
+   derartig codierte Nachricht wieder zurÅckgeschieben werden.
+   Der LED benutzt hierbei den sogenannten UUE-Code, der auch von 
+   anderen Programmen (auch auf anderen Rechnerplattformen) wieder 
+   decodiert werden kann. LED selbst kann UUE decodieren und den im 
+   Internet verbreiteten MIME-Code.
+
+
+F: Ist es notwendig eine BTNC-Nodeliste im LED.CFG anzugeben?
+
+A: Nein. Nur wenn man hÑufig nach Adressen in den Userlisten sucht, ist
+   dieses auf Dauer erheblich schneller. Ansonsten wird nichts 
+   beschleunigt.
+
+
+F: Was ist aus LEDlight geworden?
+
+A: LEDlight gibt es nicht mehr und es wird auch keine Neuauflage davon 
+   mehr geben. Der Support von zwei LED-Versionen in mehreren Sprachen 
+   ist einfach zu aufwendig.
+   Wer nur 1 MB Speicher hat, der sollte wirklich Åberlegen, ob er nicht 
+   mal auf 2, 2.5 oder 4 MB aufrÅsten sollte. LED lÑuft auch auf 1 MB-
+   Rechner, sofern man nicht noch probiert Programme wie MagiC und NVDI 
+   zusÑtzlich zu installieren. Mit 4 MB Speicher hat man dann genug fÅr 
+   LED, MagiC, Ease, NVDI und AVALON.
+
+
+F: Wozu dient das Statement "CallExporter n" in BINKLEY.CFG bzw. LED.CFG?
+
+A: Wird dieses Statement in das Konfigurationsfile aufgenommen, versendet
+   LED am Programmende, entweder an AVALON, oder an SEMPER, die Nachricht,
+   daû AVALON/SEMPER den Exporter starten soll (n=0 fÅr AVALON, n=1 fÅr
+   SEMPER). Funktioniert unter AVALON allerdings erst ab Version 3.77.

@@ -1,0 +1,9 @@
+extern int trans_key1(int s,int key);
+extern int trans_key2(int s,int key);
+extern int trans_key3(int s,int key);
+extern int trans_key4(int s,int key);
+extern int trans_key5(int s,int key);
+extern int trans_key6(int s,int key);
+extern int trans_key7(int s,int key);
+extern int trans_key8(int s,int key);
+extern int trans_key9(int s,int key);

@@ -1,0 +1,898 @@
+FFFFFFFF  IIIIII  DDDDDDDD      OOOOOO    FFFFFFFF    AAAAAA      QQQQQQ
+FFFFFFFF  IIIIII  DDDDDDDDD    OOOOOOOO   FFFFFFFF   AAAAAAAA    QQQQQQQQ
+FF          II    DD      DD  OO      OO  FF        AA      AA  QQ      QQ
+FF          II    DD      DD  OO      OO  FF        AA      AA  QQ      QQ
+FFFFFF      II    DD      DD  OO      OO  FFFFFF    AAAAAAAAAA  QQ   QQ QQ
+FFFFFF      II    DD      DD  OO      OO  FFFFFF    AAAAAAAAAA  QQ    QQQQ
+FF          II    DD      DD  OO      OO  FF        AA      AA  QQ     QQQ
+FF        IIIIII  DDDDDDDDD    OOOOOOOO   FF        AA      AA   QQQQQQQQQ
+FF Rev.11 IIIIII  DDDDDDDD      OOOOOO    FF        AA      AA    QQQQQQ QQ
+
+(c) Stephan Slabihoud August'95
+    Rev.1-8 translations by F.Diete (no guarantee for correctness, though!)
+
+This file contains frequently asked questions and their answers with respect
+to FidoNet with Atari-ST computers.
+
+  Binkley with more than 19200 bps: Questions Q0xx
+  Transmission faults             : Questions Q1xx
+  BTNC - Nodelist                 : Questions Q2xx
+  Binkley and Fax-Reception       : Questions Q3xx
+  Point-Software / Demo-Configs   : Questions Q4xx
+  Generally questions about BT    : Questions Q5xx
+  Various                         : Questions Q9xx
+
+
+###########################################################################
+       Faster, higher, further... Binkley with more than 19200 bps
+###########################################################################
+
+Q001) I'd like to run Binkley with 38400bps or 57600bps. If I've understood
+      correctly, when using HSMODEM I need to set "BAUD 134" in BINKLEY.CFG
+      to get 57600bps. Still, BT returns an error message.
+
+A001) You didn't understand correctly. ;-)
+      You can enter "38400", "57600" or "115200" directly, baud rates below
+      300 are ignored by BT. Try it out with 38400 at first.
+
+      When using 38400 you need to include the statement "RSVEBoard" into
+      the config file, even when not using the RSVE hardware. Else it can
+      be left out.
+
+      Set "Port 2" on a Falcon. With some Falcon TOS's you'll need to
+      install FPATCH2.PRG in order for the port to work correctly.
+
+Q002) But why does BT accept "Baud 38400" but not "Baud 57600"?
+
+A002) Find a new version of BT. As from version 3.14pl6 38400, 57600,
+      76800, 115200 and 153600bps are implemented. Older versions allow only
+      38400bps.
+
+###########################################################################
+
+Q003) In a file enclosed with Binkley you suggest to set "RSVEBoard" in
+      BINKLEY.CFG  - that won't work either (the HSMODEM cookie is "RSVF"?!?
+
+A003) RTFM (HSMODEM). You can configure the HSMODEM drivers to produce a
+      "RSVE" cookie. "RSVEboard" only makes sense with 38400 bps, unless
+      the patch program sets the UCR register correctly by itself.
+
+###########################################################################
+
+Q004) How can I get Binkley to work with baud rates higher than 19200 bps?
+
+A004) a) When using the 38400 hardware patch on a ST, you can put
+         "Baud 38400" together with "Hard38400" into the config...
+
+      b) On a MSTE/TT/Falcon with FAST_SER installed:
+         (that program converts the original bps rate into a higher one):
+
+         For MSTE/Falcon030:
+           Compatibility in FSERIAL.CPX =ON:
+
+         Modem 2:     Serial 2:          Original:
+         57600        57600        <-    19200
+         38400        38400        <-    9600
+         19200        19200        <-    4800
+
+         For TT:
+           Compatibility in FSERIAL.CPX =ON:
+
+         Modem 2:     Serial 2:          Original:
+         38400        57600        <-    19200
+         76800        38400        <-    9600
+         19200        19200        <-    4800
+
+         If you want to use your modem on a TT with 38400 bps at the
+         "Serial-2" port, set "Baud 9600" in BINKLEY.CFG.
+         Do not use MODEM.CPX by Atari when using FAST_SER.CPX!
+         When you experience problems on a MSTE with Modem2/Serial2 you
+         should try using the GAL from Franz Sirl (see FAST_SER v0.96)
+         in place of GAL UA03.
+
+      c) On a ST/MSTE/TT/Falcon with HSMODEM installed:
+ 
+         Start HSMODEM with the corresponding drivers from the AUTO folder.
+
+         Set "RSVEBoard" in BINKLEY.CFG when using 38400 bps.
+
+         The higher baud rates can be set directly using "Baud 38400",
+         "Baud 57600", "Baud 76800", "Baud 115200" or "Baud 153600"!
+         A normal ST needs to be modified first so you can use 38400 bps.
+         Binkley converts these higher rates (38400 and above) for HSMODEM
+         as follows:
+
+           "Baud xxx" in    available via      original bps rate
+           BT config file   Rsconf(x,...)      in TOS w/o HSMODEM
+         ==========================================================
+             153600            14                    75
+             115200            11                   150
+              76800            15                    50
+              57600            12                   134
+              38400            13                   110
+         ==========================================================
+
+###########################################################################
+
+Q005) To achieve 38400 bps hardware-wise, you take the 2.4576 MHz pulse
+      from pin 18 of the MFP, divide that by four and apply the result to
+      pin 7 and 10 of the MFP.
+      What if I divide that pulse by two only and additionally get the pulse
+      at the 4040 from pin 9 instead of pin 7, arithmetically I get a pulse
+      of 57600. Does that work?
+
+A005) Here's an excerpt from the HSMODEM docs:
+
+      =====================================================================
+      57600bd on 8MHz and 16MHz 68000 CPUs on MODEM1
+      ----------------------------------------------
+      57600bd is the magic border of MODEM1 on (Mega)ST(E) which is achieved
+      only by small modifications in TOS (or by Mag!X). 115200bd seem to be
+      possible by polling only.
+
+      On my system 57600bd work on a 8MHz ST with TOS 2.06. I'm not sure
+      whether this works with other (older) TOS versions.
+      =====================================================================
+      The Modem1 interface can reach a maximum of 19200bd without additional
+      hardware. MFP.PRG cannot exceed this, either. However, it replaces the
+      slow and partially faulty TOS routines by fast and hopefully faultless
+      ones. With additional hardware like RSVE (developed by me), RS-Speed
+      (by Stephan Skrodzki) or others, higher baud rates can be achieved.
+      RSVE, for example, allows configuring of 38400, 57600 and 115200bd.
+      MFP.PRG provides for a higher cps rate within the given hardware
+      frames. The complete DIY plan for RSVE is available as RSVE.LZH in
+      several BBS's, definately in the MAUS Berlin (@B). The finished
+      product is available from me directly.
+      =====================================================================
+
+      This means: a (stable) 38400 baud rate is possible on a normal ST. It
+      gets critical with 57600 (this is the performace limit of the MFP IC.
+      If you've installed a CPU accelerator card with more than 16 MHz, you
+      may want to try out whether 57600 bps work (with your system) but
+      noone can guarantee you this.
+
+###########################################################################
+
+Q006) I've got a ST and would like to operate my serial interface with more
+      than 19200 bps. Is this possible?
+
+A006) Yes, but only with a small hardware alteration:
+
+                             +-----------------------------------+
+      +----------------------^---+   +---------------------+     |
+      |    MFP 68901         34  |   |   +-----+        +--|-----+
+      |>                         |   |   |    +^--------^--^--+  |
+      |  7 10 11  16  18         |   |   |    |16       11 10 |  |
+      +--v--v--v---v---v---------+   |   |    |> CD 4040      |  |
+         |  |  |   |   |             |   |    |1         7  8 |  |
+         +--+  |   |   +-------------+   |    +----------v--v-+  |
+         |     +---|---------------------+               |  +----+
+         |         +--------------------------------o    |
+         +------------------------------------------o|   |  <-- Switch
+                                                    o----+
+      Important:
+      Cut Pin 16 (MFP) from PCB and bend it up!
+
+      The connections in detail:
+
+      1.) pin  7 (MFP) and Pin 10 (MFP)     to switch - MIDDLE
+      2.) pin 11 (MFP)                      to pin 16 (CD 4040)
+      3.) pin 16 (MFP) (bent up!)           to switch - TOP/RIGHT
+      4.) pin 18 (MFP)                      to pin 10 (CD 4040)
+      5.) pin 34 (MFP)                      to pin 11 and 8 (CD 4040)
+      6.) switch - LEFT/BOTTOM              to pin 7 (CD 4040)
+
+      Functions:  switch up: as before - all ST baud rates available
+                       down: fixed on 38400 bps
+      Funktionsweise:  Schalter oben: alles beim alten - alle ST-Baudraten
+                               unten: fest auf 38400 bps
+
+###########################################################################
+
+Q007) I'd like to operate Binkley with 115200bps but it doesn't work. I'm
+      using the Modem2 interface on my TT. HSMODEM is installed!
+
+A007) As from Binkley 3.14pl6 the following applies:
+      Not every baud rate is available on every serial interface:
+
+      Standard SCC-PCLK (8MHz):
+      =========================
+      SERIAL2: 115200,57600,38400
+      MODEM2 : 153600,76800,38400
+
+      Only MegaSTE and Falcon (not TT):
+      =================================
+      MODEM2 : 153600,115200,76800,57600,38400
+
+      SCC-PCLK with 14.745.600 Hz:
+      ============================
+      SERIAL2: 153600,115200,76800,57600,38400
+      MODEM2 : 153600,115200,76800,57600,38400
+
+###########################################################################
+                            Transmission errors
+###########################################################################
+
+Q101) I observe very many (too many) transmission errors.
+      What might be the cause?
+
+A101) With most TOS versions the RTS/CTS handshaking is faulty. Remedy is
+      possible with one of many available patches. A very good patch program
+      is e.g. HSMODEM (but also FAST_SER and some others)...
+
+###########################################################################
+
+Q102) I always get an "Unknown ZModem error"?
+
+A102) There are several things you should test:
+ 
+      a) Does your computer have a cache? Switching this off might already
+         solve your problem.
+
+      b) Put "FDbugfix" in your BINKLEY.CFG.
+
+      c) Enlarge your receive/transmit buffers; i.e. put "RBuf 32767" and
+         "TBuf 2048" in your BINKLEY.CFG or try out other values...
+
+      d) If the error appears with big blocks (>1KB) only, test "NoZedZap"
+         in your config file.
+
+###########################################################################
+
+Q103) The transmission rates are very bad.
+      What can I do about that?
+
+A103) a) The screen output of BT is quite time-consuming. You should always
+         install a screen accelerator like e.g. NVDI.
+
+      b) Do not use MultiTOS. With MagiX always start Binkley in single mode
+         to force output to the TOS(!) screen!
+    
+      c) If you are using a large screen monitor, reduce the size of the
+         output window using the environment variables "BCOLS=80" and
+         "BROWS=25". A window of 160x60 chars may look impressive but uses
+         an impressive amout of time, too!
+
+      d) If BT must run with MultiTOS, use "NoFullscreen" in BINKLEY.CFG.
+         The screen output is not as nice, but a lot faster.
+
+      e) If you don't want to do without the "FullScreen" output, try out
+         "FastScreen" in the config file (as from Binkley 3.14pl8).
+
+      f) Do not use "UseColors".
+
+      g) When using NVDI (or if the LineA variables are available on your
+         computer) you shouldn't use "NoLineA" either. The speed advantage
+         is only minimal, but why should Binkley run slower than necessary?
+
+###########################################################################
+
+Q104) I don't seem to be able to get a proper Janus session?
+
+A104) When using 14400 bps or more, you should enter the following in
+      BINKLEY.CFG:
+
+      AutoBaud
+      Baud       19200            <- or higher (e.g. 38400)
+      STLockBaud                  <- important!
+      JanusBaud       32767       <- important! (max. 32767, not more!)
+      JanusOK         /V.42Bis    <- may differ depending on modem!
+      JanusOK         /V.32Bis    <-  ditto
+      JanusOK         /ARQ/V32    <-  ditto
+
+      TIP: Instead of entering lots of "JanusOK" lines, it often suffices to
+           enter one "JanusOK /" line!
+
+###########################################################################
+
+Q105) How about MagiX 2.0? Is a serial interface patch necessary?
+
+A105) For speeds >=38400 you need HSMODEM anyway, providing you want to use
+      them directly and not transpose them with programs like FAST_SER; even
+      when there's no bug in the actual routines any more.
+
+###########################################################################
+
+Q106) I poll a PC system which uses FrontDoor/Binkley and get a ZedZap
+      session. While sending the first block Binkley suddenly stops and
+      freezes (except the ESC key). What can I do?
+
+A106) This is the infamous FD bug. I have seen this error only once myself,
+      although it appears regularly with others. There is no 100% cure yet:
+
+      a) Put "NoZedZap" in your config file (use blocks of max. 1KB, 8KB
+         would be normal).
+      and/or
+
+      b) Put "FDbugfix" in the config file.
+      and/or
+
+      c) Test different receive/transmit buffer sizes. "RBuf 32767" and
+         "TBuf 2048" often work fine.
+      and/or
+
+      d) As from BT 3.14pl6 try "NEEDTIME <milliseconds (0..1000)>".
+         Please start with small values like 10, 20, or 50, if that doesn't
+         help try larger ones like 100 or 200.
+      and/or
+
+      e) Put "SmallWindow" in the config file (use small blocks here, too).
+
+###########################################################################
+
+Q107) Partially, when sending my mail bundles there are several resends now
+      (I didn't experience those before). My boss uses Semper 0.74.
+
+A107) It doesn't need to be Binkley.
+      If you now experience transmission errors that didn't appear before
+      your boss might have used Semper 0.73 (or some other version) before.
+     
+###########################################################################
+                              BTNC - Nodelist
+###########################################################################
+
+Q201) I have some problems with the nodelist compiler BTNC.
+      I can compile the nodelist without problems, but Binkley-ST doesn't
+      seem to be able to extract information from it.
+
+A201) 1.) Check BINKLEY.CFG!
+          The following statements must be included:
+
+          a) As you cannot state a session password like you could with the
+             (old) version 6 nodelist (PARSELST), you need to state it in
+             the "Key" statement like
+
+             Key !passwd 2:2448/2020@fidonet.org
+
+          b) For Binkley in order to use the BTNC nodelist:
+
+             BTNC
+
+          c) Binkley needs to deal with the dial translation; BTNC is unable
+             to do this:
+
+             Dial 49-2041- /
+             Dial 49- 0/
+             Dial / 00
+
+             Adjust "49-2041" to your own dial prefix, like e.g.
+             "Dial 49-89- /"  for Munich or "Dial 49-201- /" for Essen.
+
+          d) Do not forget to state where BT can find the compiled nodelist,
+             e.g.:
+
+             Nodelist D:\JETMAIL\NODELIST\
+
+###########################################################################
+
+Q202) I'm using BTNC and now Binkley always dials the (country) prefix?
+
+A202) When using BTNC, Binkley needs to take over the dial translation:
+
+      For Bottrop (dial prefix: 49-2041-) this looks like:
+
+      BTNC
+      Dial 49-2041- /
+      Dial 49- 0/
+      Dial / 00
+
+      "49-2041-" is simply cut off  -> local zone
+      "49-" is translated into "0"  -> regional and long distance zone
+      all others: put "00" in front -> other countries
+
+###########################################################################
+
+Q203) According to BT_REF.ASC when using "Dial /00" the "00" is appended??!
+      I haven't yet succeeded in 'teaching' BT the foreign countries' dial
+      prefix with the last line (see Q201, Q202) above.
+
+A203) Watch the spaces: "[D][i][a][l][ ][/][ ][0][0]". The order of the
+      statements above is important, too!
+
+###########################################################################
+
+Q204) I want to install a nodelist. What must be done?
+      I receive once a week two files (PR24DIFF.A?? and NODEDIFF.A??).
+
+A204) First you need the complete nodelist and pointlist.
+      These two files can be compiled using the BTNC. The config file
+      for BTNC looks like that:
+
+      NODELIST.CFG
+      ============
+      Domain fidonet.org nodelist
+      AddList points24.* 2:24
+      MakeUserlist
+      Statistics
+      Display
+
+      When you do not need a pointlist remove the line "Addlist...".
+      Do not delete the ascii NL (PL). It is needed for the NL (PL)
+      update with the diff-files.
+
+      The diff-file only contains the changes to the NL (PL) from the
+      previous week. When you want to update the NL (PL) make sure that
+      the NL (PL) and its diff-file is found in the same folder with
+      COMPDIFF (APPLYLST and lots of more). Then you can call COMPDIFF
+      for example with:
+        COMPDIFF nodelist.* nodediff.* clear
+      You will get a new NL (PL) that is up2date. This NL (PL) must be
+      compiled with BTNV again.
+
+###########################################################################
+                         Binkley and Fax-Reception
+###########################################################################
+
+Q301) How can I receive a fax with Binkley?
+
+A301) This is what's needed for a SupraFax modem:
+
+      AutoBaud
+      Prefix    ATDT
+      Busy      ATH1|
+      Init      v```^ATZ|~~AT+FAA=1+FDCC=1,5+FLID="Name@Telephon"|
+      Answer    AT+FDIS=1,3,0,0+FCR=1|~ATA|
+      Fax       d:\binkley\btfax.ttp -pf:\stfax\incoming\ -m
+      Afterfax  d:\binkley\faxcvt.ttp -if:\stfax\incoming\ -of:\stfax\view\
+      FaxInbound f:\stfax\incoming\
+
+###########################################################################
+
+Q302) I have problems to receive a fax. I always get a error message
+      "Time out in Phase B" when calling BTFAX.
+
+A302) It seems that your modem tries to answer a data call with "Adaptive
+      Answer"; that means your modem sends "+FCON FAX" though it is a
+      normal data call.
+
+###########################################################################
+
+Q303) How can I receive a fax with BTFAX when RATSoft/ST answers and not
+      binkley?
+
+A303) RATSoft/ST must call BTFAX and not binkley!
+      I use following init string in CONFIG.DAT (one line):
+
+      +++~~~ATZ*[OK]ATN1W2&K3+FAA=1+FCR=1+FBOR=0
+              +FDCC=1,5,0,0,0,0,0,7*[OK]AT+FLID="My Fax-ID"*[OK]
+
+      Now change CNCT_STR.DAT (RATSoft):
+
+      ; CNCT_STR.DAT
+      ; """""""""""
+      ; Alternate Connect Strings, up to 10 entries
+      ;
+      ; FORMAT: [batch<.bat>],[string]
+      ;
+      c:\ratsoft\fax.bat,+FCON
+
+      And FAX.BAT calls BTFAX:
+
+      c:\ratsoft\btfax.ttp -q -pd:\faxes\ -d10
+
+###########################################################################
+                              Point software
+###########################################################################
+
+Q401) What software do I need to install a point system?
+
+A401) There are several possibilities. From each of the six groups below you
+      need to choose one program. Exception: if Semper is being used as the
+      mailer, another shell isn't necessary; you can use Avalon4Semper,
+      however, which is being supported by Semper.
+
+      Group 1 (Mailer)   : Binkley-Term (PD)
+                           Semper (Keyware, demokey available)
+
+      Group 2 (Tosser)   : JETmail (Keyware, demokey available)
+                           IOSmail (PD)
+                           Ecu/Llegada (Freeware)
+
+      Group 3 (Reader)   : LED (Shareware)
+
+      Group 4 (Shell)    : Avalon (Shareware (some restrictions),
+                                   demokey available)
+
+      Group 5 (NL-Comp.) : BTNC (PD)
+                           ParselST (not with Semper and JETmail)
+
+      Group 6 (NL-Update): ApplyLst (PD)
+                           CompDiff (comes with Avalon)
+                           Fido-ST (PD)
+
+      Others             : Avalon4Semper (see Avalon)
+
+      This list is incomplete. There are a lot more utilities available.
+      Only the most important programs were to be pointed out here.
+
+###########################################################################
+
+Q402) I am having trouble with my Binkley setup...
+
+A402) Here's a demo config for Binkley with BTNC nodelist compiler and
+      HSMODEM.
+      Own addresses: 2:2448/2020@fidonet.org and 51:601/7.6@atarinet.ftn
+      (Do not enter "(...)"!)
+
+      BINKLEY.CFG
+      ===========
+      System   This is my point...
+      City     Bottrop
+      Sysop    Stephan Slabihoud
+
+      Domain   fidonet.org fidonet
+      Domain   atarinet.ftn atarinet
+
+      Address  2:2448/2020.6@fidonet.org 24818
+      Address  51:601/7.6@atarinet.ftn 16017
+
+      Key      !passwd 2:2448/2020@fidonet.org
+      Key      !passwd 51:601/7@atarinet.ftn
+
+      Hold4D                    (not with Ecu/Llegada)
+      BTNC
+      Dial 49-2041- /           (watch the spaces!)
+      Dial 49- 0/
+      Dial / 00
+
+      Init     ATS10=150|~~
+      HoldOnUs *
+      Prefix   ATDP
+      Rbuf     32737
+      TBuf     1024
+      AutoBaud
+      RSVEBoard
+      Baud            38400     (max. 19200 with ST)
+      Port 2                    (1=Modem1, 2=Modem2 (TT))
+      STLockBaud
+      JanusBaud       32767     (don't change this)
+      JanusOK         /V.42Bis
+      JanusOK         /V.32Bis
+      SlowModem
+      Statuslog       D:\JETMAIL\BINKLEY.LOG
+      Nodelist        D:\JETMAIL\NODELIST\
+      Downloads       D:\JETMAIL\TRANSFER\INBOUND\
+      Hold            D:\JETMAIL\TRANSFER\OUTBOUND\
+      Netfile         D:\JETMAIL\TRANSFER\INBOUND\
+      Netmail         D:\JETMAIL\MSGS\NETMAIL
+      KnownInbound    D:\JETMAIL\TRANSFER\INBOUND.KWN\
+      ProtInbound     D:\JETMAIL\TRANSFER\INBOUND.PRO\
+      CaptureFile     D:\JETMAIL\BINKLEY.CAP
+      NoCollide
+      Unattended
+      ; NoLineA                 (if problems arise)
+      BoxType         1         (when using an ANSI character set)
+      NiceOutBound
+      Gong
+      Loglevel        5
+
+###########################################################################
+
+Q403) How should a config file for BTNC look like?
+
+A403) Like this for example:
+
+      NODELIST.CFG:
+      =============
+      Domain  fidonet.org  nodelist
+      Domain  atarinet.ftn atarlist
+      MakeUserlist
+      Statistics
+      Display
+
+###########################################################################
+
+Q404) What should a config for IOSmail look like?
+
+A404) Like this for example:
+
+      (Export: IOSMAIL.TTP -e EXPORT)
+      (Import: IOSMAIL.TTP -e IMPORT)
+      (Crunch: IOSMAIL.TTP -e CRUNCH)
+
+      IOSMAIL.CFG:
+      ============
+      #IMPORT
+      commands  -bilt
+      #ENDLABEL
+      ;
+      #CRUNCH
+      commands  -dlt
+      #ENDLABEL
+      ;
+      #EXPORT
+      commands  -csoltp
+      #ENDALL
+      ;
+      4DMsgHeader
+      RedirectNetmail
+      NiceOutput
+      NoZone
+      CompactMSGS      3
+      KeepPrivate
+      NewBinkley
+      SaveLocal
+      DefDays          14
+      MSGbuffer        256000
+      DefaultPKT       2+
+      SendAlwaysPKT
+      LogLevel         1
+      ;
+      SysOp            Stephan Slabihoud
+      Address          2:2448/2020.6 24818
+      Address          51:601/7.6 16017
+      Password         2:2448/2020 passwd # %LZHmail
+      Password         51:601/7 passwd # %LZHmail
+      ;
+      Logfile          J:\FIDO\IOSMAIL.LOG
+      Netmail          J:\FIDO\MSGS\NETMAIL
+      Outbound         J:\FIDO\TRANSFER\OUTBOUND\
+      Inbound          J:\FIDO\TRANSFER\INBOUND\
+      KnownInbound     J:\FIDO\TRANSFER\INBOUND\
+      ProtInbound      J:\FIDO\TRANSFER\INBOUND\
+      TrashArea        J:\FIDO\MSGS\BAD_MSGS
+      MailTemp         J:\FIDO\TRANSFER\OUTBOUND\TEMP\
+      PktTemp          J:\FIDO\TRANSFER\INBOUND\TEMP\
+      ;
+      LZHarchive       J:\FIDO\LHARC.TTP x a -m    ; LZH
+      ARCarchive       J:\FIDO\ARC.TTP -x -a       ; ARC
+      ZIParchive       J:\FIDO\ZIP.TTP -x -a       ; ZIP
+      ARJarchive       J:\FIDO\ARJ.TTP -x -a       ; ARJ
+      ;
+      ApplZone         51: J:\FIDO\TRANSFER\ATARINET.033\ atarinet.ftn
+      ;
+      Boss             2:2448/2020
+      Route            51:601/7 51:*
+      Route            2:2448/2020 *
+      ;
+      Arc-For   *
+      File-To   *
+
+###########################################################################
+
+Q405) What should a config for JETmail look like?
+
+A405) Like this for example:
+
+      CONFIG.JM:
+      ==========
+      Key             xxxxxxxxxxxxxxxxxxxx
+      ;
+      Inbound         D:\JETMAIL\TRANSFER\INBOUND\
+      SecureInbound     D:\JETMAIL\TRANSFER\INBOUND.PRO\
+      ; ^^^^^^^^^^^
+      ; accommodate in binkley.cfg as well
+      ;
+      Outbound        D:\JETMAIL\TRANSFER\OUTBOUND\
+      ;
+      ArcPack         D:\JETMAIL\ARC.TTP -a
+      ArcExtract      D:\JETMAIL\ARC.TTP -x
+      LZHPack         D:\JETMAIL\LHARC.TTP a -m
+      LZHExtract      D:\JETMAIL\LHARC.TTP x
+      LHAPack         D:\JETMAIL\LHARC.TTP a -m
+      LHAExtract      D:\JETMAIL\LHARC.TTP x
+      ZipPack         D:\JETMAIL\ZIP.TTP -a
+      ZipExtract      D:\JETMAIL\ZIP.TTP -x
+      ZooPack         D:\JETMAIL\ZOO.TTP a
+      ZooExtract      D:\JETMAIL\ZOO.TTP x
+      ArjPack         D:\JETMAIL\ARJBETA.TTP a
+      ArjExtract      D:\JETMAIL\UNARJ.TTP x -~pe- -~g-
+      ;
+      Netmail         Mail
+      Mailbox         PrivateMailBox
+      BadMsgs         TrashArea
+      DupeMsgs        DupeArea
+      Archive         Important
+      Nodelist        D:\JETMAIL\NODELIST\
+      Logfile         D:\JETMAIL\JETMAIL\JETMAIL.LOG 100
+      BinkleyLog
+      ;
+      Domain          fidonet.org fidonet Fidonet.Org
+      Domain          atarinet.ftn atarinet AtariNet.Ftn
+      ;
+      Address         2:2448/2020.6@fidonet.org 24818
+      Address         51:601/7.6@atarinet.ftn 16017
+      ;
+      Sysop           Stephan Slabihoud
+      ;
+      KnownAddress    1:* 3:* 4:* 5:* 6:*    (when using zone 2 only)
+      ;
+      StdDays         14
+      KeepMemory      500
+      MSGIDMode       5D
+      OriginMode      4D
+      DefPktType      FSC0039
+      NoSaveSeenby
+      Robots          Allfix VoteMGR
+      CheckEchoDupes
+      CheckNetDupes
+      ImportArcmail
+      DisableAreafix
+      NoCPP
+      MonitorNetmail
+      ;
+      Link            2:2448/2020@fidonet.org 24818
+      Aka             51:601/7@atarinet.ftn 16017
+      Sysop           Guenther Paczia
+      Password        passwd
+      Arcmode         LHAmail
+      PKTType         FSC0039
+      INTLMode        3D
+      ControlMode     2D
+      OutboundMode    5D
+      NetmailType     4D
+      EchomailType    4D
+      DummyPacket
+      ForceINTL
+      LinkEnd
+
+      ROUTE.JM:
+      =========
+      FILE-TO     *
+      ROUTE-TO    2:2448/2020@fidonet.org *:*/*.*
+      ROUTE-TO    51:601/7@atarinet.ftn 51:*/*.*
+      POLL        2:2448/2020@fidonet.org
+
+###########################################################################
+                 Generally questions about Binkley
+###########################################################################
+
+Q501) When including "Fastscreen" in the config, Binkley places the lowest
+      screen window onto the middle window.
+
+A501) Nope, it doesn't. It just swaps these windows. This was the only way
+      to considerably speed up the screen output with a VT52 command.
+      In version 3.14pl8 the whole screen output might be shifted one line
+      up. Set the value of the environment variable "BROWS=x" to read one
+      less than before or wait for version 3.14pl9.
+
+###########################################################################
+
+Q502) If I comment "NoLineA", I can't set the colours of the 2-colour-mode
+      any more. (I'd like to have the frame 'white on black'.)
+      (Falcon users)
+
+A502) This was the same in older versions. The Falcon does not support the
+      LineA commands any more. So either include "NoLineA" in your config
+      or install NVDI and switch on LineA emulation.
+
+###########################################################################
+
+Q503) If I set 57600 as baud rate, I sometimes only get a 9600 connect
+      (instead of 14400), and sometimes mail on hold for me at my boss's
+      is not being sent to me.
+
+A503) Whatever you set as baud rate in your BT config and whatever connect
+      string your modem returns has absolutely nothing to do with each other
+      whatsoever. And getting 9600 connects does not result from setting
+      your serial port to 57600 baud.
+
+      There is no "sometimes" error. Either you NEVER get the mails on hold
+      for you at your boss's - then it's your setup - or if the bundles are
+      sent to you off and on it may be a fault at your boss's system.
+
+###########################################################################
+
+Q504) When using "FastScreen" the "Recent Activity" window is broader than
+      the others...
+
+A504) So what?
+
+###########################################################################
+
+Q505) What about this "bug": BT.TTP is being called with parameter "batch",
+      takes over an established connect and exits after the session (or
+      <ESC> in case of a bbs call).
+
+A505) This behaviour is intended. It was implemented by Steven Green to be
+      able to start Binkley from Forem or //TurboBoardST as a "backdoor". The
+      BBS program //TurboBoard is the primary interface to the calling user
+      or mailer. When a mailer is detected Binkley will be called up with
+      the parameter "batch"...
+      (Wolfgang Zweygart)
+
+###########################################################################
+
+Q506) When Binkley receives mail it doesn't exit on return from 'AfterMail'
+      but merely starts anew ("Begin BT/ST...")?!?
+
+A506) When using parameter "batch" 'AfterMail' is simply NONSENS!!!
+      Exit levels are a sensible measure for this purpose.
+      (Wolfgang Zweygart)
+
+###########################################################################
+
+Q507) My question is: What is the difference between RBuf/TBuf and the
+      buffer of HSMODEM (defined by SETTER.TTP)?
+      When there is a difference between these buffers, what is the best
+      setup?
+
+A507) Binkley writes its data into the TBuf/RBuf-Buffer before the data
+      is sent by HSMODEM (TBuf/Rbuf is like a second-level-cache). You
+      should make the send buffer not too small, because a complete
+      zmodem header should be stored in it. My setup is: Rbuf=32767 and
+      TBuf=2048.
+
+###########################################################################
+
+Q508) I want to poll a point crash. His boss is not listed in my nodelist.
+
+A508) Add the point's phone number to BINKLEY.CFG using the Key-statement:
+
+      e.g.
+      Key %49-261-54953 2:2454/95     ; Scary MonSTer/2, Koblenz
+
+      (';' is a comment!)
+
+      All phone numbers must be listed using the international format.
+
+      It is also possible to crash a point, when he is online! Note: You
+      must use the 4d outboud format if you want to do so ("Hold4D").
+
+###########################################################################
+                                  Various
+###########################################################################
+
+Q901) What do the msg flags mean?
+
+A901) N = flag allowed in netmails
+      E = flag allowed in echomails
+      L = only allowed with local mails
+
+      Name           NEL  Description
+      ==================================================================
+      Private        ++   Msg is private.
+      Crash          +-+  Msg is to be sent "crash", i.e. directly to the
+                          recipient.
+      Received       ++   Msg was received by the recipient. This flag is
+                          being used by QBBS for BBS users.
+      Sent           +++  Msg was exported.
+      W/File         +-   A file is being sent along with the msg. The
+                          file's name is stated in the subject field.
+      InTransit      +-   The msg is not for this system and will be sent
+                          on.
+      Orphan         +-   The Tosser does not know where to route this mail
+                          to.
+      Kill/Sent      +-+  Msg will be deleted automatically from the msg
+                          base after export.
+      Local          ++   Msg was written on this system, either by the
+                          sysop or a BBS user.
+      Hold           +-+  Msg will be put "on hold", i.e. must be collected
+                          by the recipient.
+      FRequest       +-   Msg is a file request. The subject field contains
+                          the file names separated by spaces.
+      ReturnReceipt  +-   The recipient is to send a return receipt.
+      IsReceipt      +-   This msg is a return receipt.
+      AuditRequest   +-   Every routing system is to send a return receipt.
+      Deleted        ++   This msg was deleted.
+
+      Name           NEL  Description
+      ==================================================================
+      Read           ++   This msg has been displayed on the screen (and
+                          has maybe even been read ;-).
+      Archive/Sent   +++  After exporting the msg copy it into the archive
+                          area.
+      TruncFileSent  +-+  File will be truncated to length 0 when sent.
+      KillFileSent   +-+  File will be deleted when sent.
+      Direct         +-+  Send netmail directly to the recipient (the mail
+                          will not be routed).
+      ZoneGate       +-+  Send netmail via the ZoneGate.
+      HostRoute      +-+  Send netmail via the host/hub of the recipient.
+      Locked         ++   Msg is locked, i.e. no export, no crunch, no
+                          change.
+      Immediate      +-+  Send netmail to the recipient immediately. This is
+                          the "more severe" version of "Crash".
+      Gated          ++   Marks locally gated msgs.
+      CreateFlowFile +-   Creates a flowfile from the msg text.
+      Maus           +++  Msg is for the Mausnet.
+      Fixed address  +++  Tosser does not change the origin address.
+
+###########################################################################
+
+Q902) How can I persuade the exporter to not include my address in the
+      SEEN-BY and PATH lines?
+
+A902) Your address belongs in those lines, else each recipient would send
+      this echomail back to the respective sender. The tosser of a node
+      system is responsible for removing fake SEEN-BY's of it's point
+      systems.

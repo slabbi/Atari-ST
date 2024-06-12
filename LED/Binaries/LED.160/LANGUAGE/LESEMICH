@@ -1,0 +1,39 @@
+
+Folgendes sind die Sprachanpassungs- und Resource-Dateien fÅr LED.
+
+ENGLISH.RSC/LNG  - RSC/LNG in Englisch    (von Stephan Slabihoud)
+DEUTSCH.RSC/LNG  - RSC/LNG in Deutsch     (von Stephan Slabihoud)
+FRENCH.RSC/LNG   - RSC/LNG in Franzîsisch (von HervÇ Piedvache)
+FRENCH3D.RSC     - RSC     in Franzîsisch (von Jacques Delavoix)
+ITALIAN.RSC/LNG  - RSC/LNG in Italienisch (von Alex Guerrazzi, Mike de Petris)
+
+Um die Sprache zu Ñndern:
+ 1. Benenne beide Dateien (*.RSC und *.LNG) um in LED.RSC und LED.LNG
+ 2. Kopiere LED.RSC in das selbe Verzeichnis mit LED.PRG oder
+    in das Systemverzeichnis von LED
+ 3. Kopiere LED.LNG in das Systemverzeichnis von LED
+
+
+Vorsicht beim AbÑndern der Ressource-Datei! Folgende Texte mÅssen mindestens
+die vorgegebene LÑnge haben (ggf. auffÅllen):
+
+  TREE.OBJECT       LéNGE
+  font.fgdosact     11
+  allarea.atitel    22
+  selorig.sotitel   21
+  username.unfound  14
+  nodenum.nninfo    16
+  writemsg.wmto     17
+  switches.lgemsact 23
+  editline.eltext   6
+  gotomsg.gmtext    13
+
+Folgende Objekte dÅrfen im ABOUT-Dialog nicht verÑndern werden:
+  'Date', 'Bytes free' und 'Blocks'
+
+Auf gar keinen Fall eigene Objekte zur RSC-Datei hinzufÅgen!
+
+Bitte alle gefundenen Fehler an LED-HQ und dem Autor der Anpassung senden.
+Danke!
+
+St.Slabihoud

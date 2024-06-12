@@ -1,0 +1,14 @@
+lin_row.ttp
+.C [ -Y -K -G ]
+; .L [ -L -Y ]
+; .S [ -Y ]
+=
+PCSTART.O
+
+LIN_ROW.C
+
+PCLNALIB.LIB
+PCSTDLIB.LIB       ; standard library
+; PCEXTLIB.LIB       ; extended library
+PCTOSLIB.LIB       ; TOS library
+; PCGEMLIB.LIB       ; AES and VDI library

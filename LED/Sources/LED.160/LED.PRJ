@@ -1,0 +1,51 @@
+led.prg
+
+.C [ -Y -K -P -G ]    ; SM
+.L [ -S=16384 ]
+; .S [ -Y ]
+=
+pcstart.o
+main.c
+iconify.c
+deadkey.c
+thanks.c
+deklara.c
+hndl.c
+gem.c
+window.c
+msg.c
+liste.c
+doform.c
+config.c
+edit.c
+editmsg.c
+uuencode.c
+hndlsub.c
+hndlopt.c
+search.c
+hdrcache.c
+rcopy.c
+edhndl.c
+user.c
+selorig.c
+font.c
+key.c
+comment.c
+hypertxt.c
+crc.c
+quote.c
+fido.c
+cookie.c
+register.c
+windlist.c
+windarea.c
+windmsgs.c
+language.c
+nodelist.c
+vars.c
+; crypt.c
+flydial.lib
+pcstdlib.lib
+pctoslib.lib
+pcgemlib.lib
+pcextlib.lib

@@ -1,0 +1,40 @@
+BATCHRUN V1.0                                     Letzte énderung: 10.08.1994
+=============================================================================
+
+Da mich einige darum gebeten haben, den Avalon-Batchinterpreter auch fÅr
+AVALON4SEMPER verfÅgbar zu machen, ist das Programm BATCHRUN entstanden.
+BATCHRUN ist praktisch der komplette AVALON-BatchCLI, allerdings mit
+einigen EinschrÑnkungen (s.u.). BATCHRUN kann nur von registrierten Usern
+benutzt werden. Ein temporÑrer Key reicht nicht aus!
+
+
+Nicht vorhandene Befehle:
+-------------------------
+SWITCH
+ENDOFAVALON
+ERRORENDOFAVALON
+
+EingeschrÑnkte Befehle:
+-----------------------
+EXEC,DEXEC - Die Kommandos EXPORT,IMPORT,CRUNCH etc. sind nicht erlaubt.
+!AREA      - AREAS.BBS muû sich im selben Verzeichnis wie BATCHRUN befinden.
+LOG,LOGn   - Das Logfile BATCHRUN.LOG ist fest voreingestellt.
+
+
+Aufruf:
+-------
+BATCHRUN <keyfile> <batchfile>
+
+<keyfile> ist das Avalon-Keyfile ("AVALON.KEY"). Da der Anwendername
+          benîtigt wird, muû zusÑtzlich zu der "Application ..."-Zeile, die
+          Zeile "Sysop <name>" aufgenommen werden.
+          Also:     Application AVALON <key>
+                    Sysop <name>
+
+<batchfile> ist das zu startende Avalon-Batchfile.
+
+
+Errorlevels:
+------------
+1000 = Keine zwei Parameter (evtl. fehlt <keyfile> oder <batchfile>)
+1001 = UngÅltiger Key

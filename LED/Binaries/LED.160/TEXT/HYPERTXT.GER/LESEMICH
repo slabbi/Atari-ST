@@ -1,0 +1,12 @@
+
+Das ist ein ST-Guide Hypertext (deutschsprachige Version).
+
+Um den Hypertext mit STOOL.TOS zu kompilieren bitte folgende zwei Zeilen
+in KATALOG.CFG aufnehmen:
+
+============( CUT )==============
+>Dokumentation/Fido
+Anleitungen Åber FidoSoftware.
+============( CUT )==============
+
+St.Slabihoud 1995

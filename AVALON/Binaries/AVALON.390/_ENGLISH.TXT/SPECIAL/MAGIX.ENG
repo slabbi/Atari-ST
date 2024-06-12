@@ -1,0 +1,21 @@
+                     AVALON, Mag!X & Binkley
+                  =============================
+
+Avalon works with Magix (and MultiTOS) without any problems.
+
+If you use Binkley you might have problems, because Binkley does
+not recognize every keypress.
+
+If you use Binkley you should install Avalon using the "Single
+mode". All programs that are started by Avalon (e.g. Binkley) will
+run in "Singe mode", too.
+
+
+                       AVALON & Mag!X
+                    ====================
+
+When running AVALON *not* in the "Single mode" of Mag!X, you should
+switch of the internal redirection of Avalon, if you have problems
+with it. I have had no problems yet, but if you have some, just turn 
+of the "Redirect (screen) output" in "Special", "Find-1" and "Find-2",
+in the "Session setup" and do not use "REDIRECT=ON" in batchfiles!

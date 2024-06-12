@@ -1,0 +1,93 @@
+
+ Klinkenbelegung
+   ^  1  TxD
+   Ò  2  RxD
+   -
+   º  3  GND
+
+
+          IC1 a                                                9-pol Sub D
+          ÚÄÄ¿                ÚÄÄÄÄÄ¿
+ TxD 3----³  ³ 2---------+----³470 ï³-------------------------------2
+          ÀÄÄÙ           ³    ÀÄÄÄÄÄÙ                               6 + 5 V
+          IC1 b          ³                                          8 + 5 V
+          ÚÄÄ¿           ³
+ RxD 4----³  ³ 5-+---------------³<---------------------------------3
+          ÀÄÄÙ   ³       ³     1N4148
+                 ³       ³
+                 Ä       Ä
+     47kï        º       / Diode 5V6             Ú------------------5
+                 Ä       ^                      GND
+                 ³       Ä                             Ú------------4
+                 ³       ³                             ³
+                 ÀÄÄÄ+ÄÄÄÙ                             ³
+                     ³                                 ³
+                    GND                                V 1N4148
+                                                       Ä
+                                        ÚÄÄÄÄÄÄÄÄÄ¿    ³
+        IC1 Pins 7,10,1,11,14-------+---³< 78L05 <³----+
+                                    ³   ³         ³    ³
+                          1 MFD   + Í   ÀÄÄÄÄÄÄÄÄÄÙ  + Í 100 MFD
+                          16 V      Ä        ³         Ä 16 V
+                                    ³        ³         ³
+        IC1 Pin 8            -------+--------+---------+
+                                             ³
+                                            GND
+        IC1 ist ein 4049
+
+Es wird keine Spannungsversorgung benoetigt (die 5 V kommen aus dem Computer)
+
+Ich hoffe ihr werdet aus dem Ganzen schlau. Besser laesst sich das halt nicht
+machen ohne Bilder. Der Klinkenstecker muss ohne Kappe genommen werden, da
+er sonst nicht ins Casiotel passt. Ansonsten ist das Original in der
+Elektor 7-8/94 von Andreas Schiefen veroeffentlicht.
+
+
+Msg #31 of 38   Time: 25 Apr 95  16:38:50
+From: Stephan Slabihoud
+To  : Stephan Slabihoud
+Subj: CASIO SF-8350
+---------[WICHTIG]-----------------------------------------------
+PID: LED 1.29 #STSL/87cd
+
+                 +  --------    +  10uF/16V
+            ---)|--1|       |2---|(----------------o Vcc
+    1uF/16V |       |       |
+            |------3|       |6---)|----------------o Gnd
+                 +  |       |      +  10uF/16V
+            ---)|--4|       |
+    1uF/16V |       |   M   |
+            |------5    A   |15--------------------o Gnd
+                    |   X   |
+                    |       |1------|(-------------o Vcc
+                    |   2   |      + 10uF/16V
+                    |   3   |
+                    |   2   |
+Atari:              |       |                        Casio
+2 o------Txd------13|       |11------------Txd-----------o  x
+3 o------Rxd------14|       |12------------Rxd-----------o  y
+                    ---------
+
+
+4 o-|                                GND<-|
+    |-->|---|    +12V      1kR
+5 o-|  D1   |---|---------|===|---|----------|-----> 5V
+            |   |   +             |   +     --- ZPD5,1
+6 o---->|---| ----- 100uF       ----- 47uF  / \ Zenerdiode
+       D2     -----             -----       ---
+7 o-------------|-----------------|----------|----->GND
+
+Liste:                     Alles ohne Gewaehr!
+2 Dioden 1N4148
+1 Zenerdiode 5,1V
+1 MAX232
+2 Elko 1uF/16V
+3 Elko 10uF/16V
+1 Elko 100uF/16V
+1 Elko  47uF/16V
+3 Widerstaende 1k
+1 Klinkenstecker 2.5mm STEREO
+1 SUB-D-25 Stecker
+
+
+

@@ -1,0 +1,38 @@
+BATCHRUN V1.0                                         Last change: 10.08.1994
+=============================================================================
+
+Some people ask me if the batchcli could be implemented in AVALON4SEMPER.
+So I wrote the program BATCHRUN. It is the external version of the 
+build-in batchcli of AVALON. BATCHRUN can only be used be registered
+user (a temporary key does not work).
+
+
+Statements that cannot be used:
+-------------------------------
+SWITCH
+ENDOFAVALON
+ERRORENDOFAVALON
+
+Restricted statements:
+----------------------
+EXEC,DEXEC - The commands EXPORT,IMPORT,CRUNCH etc. do not work.
+!AREA      - AREAS.BBS must be put in the same folder with BATCHRUN.
+LOG,LOGn   - The logfile is called BATCHRUN.LOG.
+
+
+Calling BATCHRUN:
+-----------------
+BATCHRUN <keyfile> <batchfile>
+
+<keyfile> is the Avalon keyfile ("AVALON.KEY"). You must define your
+          name in the keyfile with "Sysop <name>".
+          For example:   Application AVALON <key>
+                         Sysop <name>
+
+<batchfile> is the batchfile you want to start.
+
+
+Errorlevels:
+------------
+1000 = More or less than two parameter.
+1001 = Invalid key.

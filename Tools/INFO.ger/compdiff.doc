@@ -1,0 +1,72 @@
+072000300070000144000006000014000
+11
+21
+F0000000001
+9[..........................................................]0110
+Ä==========================================================================
+COMPDIFFV1.x                                Letzteénderung:16.04.94
+==========================================================================
+(c)StephanSlabihoud
+==========================================================================
+SHAREWARE
+==========================================================================
+
+Sharewarebedingungen:sieheAVALON.TXT
+
+==========================================================================
+
+AnregungenundFehlerbeschreibungenzumHandbuch
+undProgrammbittedirektperCrashmailanmich!
+
+
+
+INTRO:
+======
+ZujederPoint-/NodelistewirdeinewîchentlicheUpdate-Datei(Diff-File)
+gepostet.MitdiesemUtilitykanneinePoint-oderNodelistezusammenmit
+einerDiff-DateiaufdenneuestenStandgebrachtwerden.
+
+EsistmîglichmehralseineDiff-Dateiaufeinmalzubearbeiten(Batch-
+Mode).
+
+
+
+ÄAUFRUF:
+=======
+DerAufrufvonCOMPDIFFistsehreinfach:
+
+COMPDIFF<list><diff>[clear]
+
+<list>-DiePoint-/Nodeliste(z.B."C:\FIDO\NODELIST.*").
+<diff>-DasDiff-File(z.B."C:\FIDO\NODEDIFF.*").
+
+clear   -UnabhÑngigvoneinemCRC-FehlerwerdendieOriginal-und
+          Diff-Dateigelîscht!
+
+
+Beispiel:
+=========
+COMPDIFFc:\fido\nodelist.*c:\fido\nodediff.*clear
+
+
+
+INTERNA:
+========
+FolgendeRÅckgabecodesbenutztCOMPDIFF:
+
+0-OK              AlteListeundDiff-Dateisindgelîscht
+1-CRC-Fehler      AlteListeundDiff-Dateisindnochvorhanden
+2-Parameter       Zuviele/ZuwenigeParameter
+3-Nodelist        Nodelistnichtgefunden
+6-Fehler          Nodelisteerzeugt,abernichtÅberprÅft
+7-Daynumber      Tagesnr.konnteausDiff-Filenichtermitteltwerden
+8-Fehler          UnbekannterFehler
+9-Fileerror      IrgendeineDateikonntenichtgeîffnetwerden
+
+
+HISTORIE:
+=========
+V1.0-  ErsteoffizielleVersion.
+V1.1-Laufzeitwirdausgegeben(speziellfÅrFlorian;-))
+V1.2-NodelistenÅberprÅfungverbessert.
+

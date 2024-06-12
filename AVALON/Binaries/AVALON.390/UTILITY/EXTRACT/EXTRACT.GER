@@ -1,0 +1,55 @@
+==========================================================================
+ EXTRACT V1.x                                    Letzte énderung: 18.08.94
+==========================================================================
+                          (c) Stephan Slabihoud
+==========================================================================
+                            S H A R E W A R E
+==========================================================================
+
+                  Sharewarebedingungen: siehe AVALON.TXT
+
+==========================================================================
+
+             Anregungen und Fehlerbeschreibungen zum Handbuch
+             und Programm bitte direkt per Crashmail an mich!
+
+
+
+INTRO:
+======
+Mit  diesem  Programm  kann eine komplette  Nodelist  verkleinert  werden. 
+Hierbei  kînnen  bis  zu  50 Regionen  angegeben  werden,  aus  denen  die 
+verkleinerte Nodeliste bestehen soll.
+
+
+AUFRUF:
+=======
+Der Aufruf von EXTRACT ist denkbar einfach:
+
+EXTRACT <nodelist> <output> [<region1> [<region2> ...]]
+
+ <nodelist>  - Nodeliste, die bearbeitet werden soll.
+
+   <output>  - Filename der neuen (verkleinerten) Nodeliste.
+
+   <region>  - Die Regionen, die in die verkleinerte Nodeliste Åbernommen
+               werden sollen. Fehlt die Angabe einer Region, so wird eine
+               Liste mit allen RCs erzeugt.
+
+
+BEISPIEL:
+=========
+Erzeugen einer Nodeliste mit Region 24 und 25:
+
+  EXTRACT nodelist.007 region.007 24 25
+
+
+INTERNA:
+========
+Die Nodeliste darf unbegrenzt viele EintrÑge beinhalten.
+
+
+HISTORIE:
+=========
+ V1.0 -  Erste offizielle Version.
+

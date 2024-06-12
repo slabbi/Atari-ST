@@ -1,0 +1,67 @@
+072000300070000144000006000014000
+11
+21
+F0000000001
+9[..........................................................]0110
+€==========================================================================
+BBS-INFOV1.3x                                LetzteŽnderung:08.03.94
+==========================================================================
+(c)StephanSlabihoud
+==========================================================================
+SHAREWARE
+==========================================================================
+
+Sharewarebedingungen:sieheAVALON.TXT
+
+==========================================================================
+
+AnregungenundFehlerbeschreibungenzumHandbuch
+undProgrammbittedirektperCrashmailanmich!
+
+
+
+INTRO:
+======
+SiewolleneineStatistikberihreMessageBasehaben?-KeinProblem!
+BBS-INFOgibteineStatistikberallevorhandenenAreasaus.
+
+
+
+
+€
+AUFRUF:
+=======
+DerAufrufvonBBS-INFOisteinfach:
+
+BBS_INFOsysop[file][>[>]logfile]
+
+
+Als<sysop>gebenSieIhrenFidoNamen(derauchimNachrichtenkopf
+erscheint)an.
+
+Als<file>wirdderPfadundFilenamevonderDateiAREAS.BBSeingesetzt.
+FehltdieAngabevon<file>,sowird"AREAS.BBS"angenommen,d.h.die
+Datei"AREAS.BBS"mužsichimgleichenVerzeichnisbefindenwieBBS-INFO.
+
+SolldieAusgabenichtaufdemBildschirmerfolgen,sokannals<logfile>
+eineDateiangegebenwerden,inderdieStatistikabgelegtwird.
+
+
+
+BEISPIELE:
+==========
+
+
+BBS_INFO"StephanSlabihoud"e:\fido\areas.bbs   |AusgabeaufBildschirm
+
+BBS_INFO"StephanS"e:\fido\areas.bbs>>logfile |Anh„ngenan"logfile"
+
+
+
+HISTORIE:
+=========
+V1.00-  ErsteoffizielleVersion.
+V1.10-AuchdieMsgsvomundzumSysopwerdengez„hlt.
+V1.20-Nunmaximal500Areas(vorher100).
+V1.30-NunbeliebigvieleAreasm”glich.
+

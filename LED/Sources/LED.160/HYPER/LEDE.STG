@@ -1,0 +1,610 @@
+@database "LED Update-Documentation"
+@subject "Manual/Fido"
+@author "Stephan Slabihoud"
+@$VER: led.hyp 1.51 (@:"__DATE__")
+
+@remark @help "Helptext"
+
+@remark @options +gz-s-d12
+@options -s+z
+
+@toc Main
+
+@remark =================================================================
+
+@node Main "LED-Shortmanual"
+LED - Shortmanual
+
+Contents:
+
+  What is new in...
+  Important! Please read!
+  AREAS.BBS commands
+  '%' parameters
+  Available keys
+  Deadkeys
+  Mouse commands
+  Search in userlist
+  Printerdriver
+  Configurationfile
+  Shortcuts
+  Header format
+  MsgFlags
+  Nicknames
+  5D support / Network-dependant netmail areas
+
+Author
+How to register
+Timezones
+@endnode
+
+@remark =================================================================
+
+@include led_hist.i_e
+
+@remark =================================================================
+
+@node "Important! Please read!"
+
+Contents:
+
+  Language adaptation
+  Charset conversion
+  Address correction
+  Netmailarea
+  ACS-Package
+  NVDI 2.5x bug
+  Support-Echos
+  ToDo-List
+  Files
+@endnode
+
+@endnode
+
+@remark =================================================================
+
+@node "Search in userlist"
+
+There are a lot of possibilities of searching names in userlists:
+
+Entry in field...
+
+...TO (name)   ...ON (address)  Button:      Remark:
+======================================================================
+*  EMPTY          (ignored)     [OK]         Display PrivateUserList
+
++  EMPTY          ADDRESS       [Userlist]   Search address
+
+*  One character  (ignored)     [Userlist]   Search for all Surnames
+                                             beginning with this
+                                             character
+
+*  Two characters (ignored)     [Userlist]   Search all user with XX
+                                             as initial
+
+*  One word       (ignored)     [Userlist]   Search for all user with
+                                             Surnames beginning with
+                                             "word"
+
++  Two words      (ignored)     [Userlist]   First user whose First-
+                                             and Surname begins with
+                                             these two "words"
+
+*  *              (ignored)     (Userlist)   Shows ALL user.
+======================================================================
+* = shows select dialog
++ = aborts searchings when a pattern is found
+
+
+Examples:
+
+(1) To:
+    On:
+      [OK] pressed: Displays PRVTUSER.LST
+
+(2) To:
+    On: 90:400/410
+      [USERLIST] pressed: Searches 90:400/410 in all userlists and
+                          displays first match!
+
+(3) To: S
+    On:
+      [USERLIST] pressed: Displays all surnames beginning with 'S' in
+                          a select dialog.
+
+(4) To: SS
+    On:
+      [USERLIST] pressed: Displays all users with initials SS in a
+                          select dialog.
+
+(5) To: Sla
+    On:
+      [USERLIST] pressed: Displays all surnames beginning with "Sla"
+                          in a select dialog.
+    To: Slabihoud
+    On:
+      [USERLIST] pressed: Displays all surnames beginning with
+                          "Slabihoud" in a select dialog.
+
+
+(6) To: Ste Sla
+    On:
+      [USERLIST] pressed: Displays the first user whose firstname matches
+                          "Ste" and surname matches "Sla".
+
+(7) To: *
+    On:
+      [USERLIST] pressed: Displays ALL users
+@endnode
+
+@remark =================================================================
+
+@node "'%' parameters"
+
+Parameters are allowed in following strings:
+
+ 1. Shortcut-Dialog (LED.SCT)
+ 2. Shortcut-Dialog (included textfiles)
+ 3. Quotes
+ 4. FKeys
+ 5. Footline-Texts
+
+ %f %F (= %o)   From: Stephan Slabihoud
+ %a               On: 90:400/410
+ %t %T (= %O)     To: Sandra Sprenkels
+ %d             Date: 12 Feb 96
+ %D             Time: 17:05:47
+ %z             Date: 12.02.96
+ %n             Area: N.SUP.LED
+ %s             Subj: Info about LED
+ %%                   %
+ %01 - %20      FKey: Text      (not allowed on FKey-Texts)
+ %v          Version: 1.41
+ %i (conforms with %f), replaced by the nickname (when exists)
+ %I (conforms with %t), replaced by the nickname (when exists)
+
+You can also use following special shortcuts (useful in "Quote...->
+Free editable"):
+
+ Shortcut: Meaning:
+ --------------------------------------------------------
+  %30      When FROM=SYSOP, then "Ich", else like "%o"
+  %31       "       "        "   "ich",  "    "    "
+  %32       "    TO=SYSOP,   "   "Mich", "    "   "%O"
+  %33       "       "        "   "mich", "    "    "
+  %34       "       "        "   "Mir",  "    "    "
+  %35       "       "        "   "mir",  "    "    "
+  %40      When FROM=SYSOP, then "I",   else like "%o"
+  %41       "       "        "   "I",    "    "    "
+  %42       "    TO=SYSOP,   "   "Me",   "    "   "%O"
+  %43       "       "        "   "me",   "    "    "
+@endnode
+
+@remark =================================================================
+
+@node "Shortcuts"
+@include led_shor.i_e
+@endnode
+
+@remark =================================================================
+
+@node "Printerdriver"
+@include ..\texte\make_prn.eng
+@endnode
+
+@remark =================================================================
+
+@node "Configurationfile"
+
+Configuration folder:
+=====================
+LED expects to find most of it's files in a folder called "LED". This
+folder is searched in different places (highest priority first):
+
+ 1. Defined by the environment "LED":
+    This defines the path AND name(!) of the configuration
+    folder, e.g.
+      LED=D:\FIDOSOFT\CONFIGS\LED
+
+ 2. Defined by the environment "FIDOCONFDIR":
+    LED expects its configuration folder (called "LED")
+    in that directory, e.g.
+      FIDOCONFDIR=D:\FIDOSOFT\CONFIGS
+
+ 3. When $FIDOCONFDIR does not exist, LED tries to find
+    its config folder in .\CONFIG
+
+ 4. LED tries to find the config folder (called "LED")
+    in the home directory of LED.PRG.
+
+Following files are searched in the folder "LED" only:
+  LED.FLN, LED.CFG, LED.PRN, LED.SCT, LED.FKY, LED.DLG, LED.OPT, LED.LNG
+
+
+Configuration files:
+====================
+Following folders are searched for different config files
+(highest priority first):
+
+ 1. Folder defined in LED.CFG with following statements:
+    "AREASpath"  for AREAS.BBS
+    "LEDNEWpath" for LED.NEW
+
+ 2. Folder defined by environment "FIDOCONFDIR"
+
+ 3. When $FIDOCONFDIR does not exist, LED tries to find
+    its config folder in .\CONFIG
+
+ 4. Folder defined by environment "BINKLEY"
+
+ 5. Folder defined by environment "MAILER"
+
+ 6. Home directory of LED.PRG
+
+LED searches in those folders for following files:
+  LED.NEW, BINKLEY.CFG, AREAS.BBS
+
+
+Special files:
+==============
+Follwing files are treated in an especially way:
+  LED.NEW : If this file is found in the LED folder, it will be read
+            from there only.
+  LED.RSC : This file will be loaded from the LED folder when it exists
+            otherwise LED searches for it in the LED home directory.
+  LED.LOG : This (error) file will be created in the LED folder unless
+            the statement "Logfile" in LED.CFG defines a different
+            logfile.
+
+Note:
+  BINKLEY.CFG is only neccessary when no LED.CFG is used.
+
+
+Example:
+========
+@include ..\texte\led_exam.cfg
+@endnode
+
+@remark =================================================================
+
+@node "Author"
+
+LED 1.23 (and above) written by
+
+Snailmail:   Stephan Slabihoud
+             Germany
+
+email:         FidoNet: 2:2448/2020.6@fidonet.org
+             NetworkST: 90:400/410@nest.ftn
+
+LED 1.23 (and above) is based on the sources of LED 1.22 written
+by Volkmar Wieners and Roland Bohn.
+@endnode
+
+@remark =================================================================
+
+@node "How to register"
+@include ..\texte\register.eng
+@endnode
+
+@remark =================================================================
+
+@node "Language adaptation"
+
+  From version 1.41 LED makes use of a resource- AND a languagefile.
+  The resourcefile (LED.RSC) must be placed in the LED systemfolder or
+  in the same folder together with LED.PRG; the languagefile (*.LNG) must
+  be placed in the LED systemfolder.
+
+  When you have written a new language adaptation please send it to
+  LED-HQ.
+@endnode
+
+@node "Charset conversion"
+
+  LED 1.29 can display other character sets correctly when the mail
+  contains a CHRS or CHARSET kludge. Note: LED converts Latin-1 codes
+  into the ST font and not into the IBMPC font! The converter uses a
+  best match table that means that not existing Latin-1 characters are
+  converted into similar ST characters.
+
+  Be carefull when quoting such a mail: When saving a mail with a
+  converted Latin-1 font LED creates a "^CHRS IBMPC 2" kludge (normally
+  it should write "ATARIST" instead of "IBMPC" but that is not defined).
+  Some converted Latin-1 characters do not exist in the IBMPC font, so
+  the receiver of the msg might see some block graphics.
+  When you have installed an IBMPC font (like Myblue) you will be able
+  to see how the mail looks like on the receiver's system.
+
+  LED can display msgs with MIME coded characters. Such mails cannot be
+  recognized automatically so this feature is switchable with ALT+1
+  (Options->Switches->Convert MIME style). When this feature is enabled
+  LED does use the LATIN1->Atari-ST convertion, too, when no valid
+  ^CHRS kludge defines another convertion method.
+
+  Recognization of CHARSET/CHRS:
+
+  LED converts following charsets into the Atari-ST character set, when
+  the switch "Recognize ^CHRS" is selected:
+
+    Level-1:
+      FRENCH,GERMAN,ITALIAN,NORWEG,PORTU,SPANISH,SWEDISH,UK
+    Level-2:
+      LATIN-1,IBMPC,ASCII
+
+  The CHRS/CHARSET kludge has a higher priority then the AREAS.BBS
+  statements "-Latin1" or "-Latin1small".
+
+  The convertion only works properly when no IBMPC font is installed
+  (because LED tries to convert all chars into the normal systemfont).
+
+@endnode
+
+@node "Address correction"
+
+  "Address correction" (and the flag "Fixed address") is not needed
+  as a rule! Especially points or nodes with only one address per zone/
+  network will NEVER need to make use of this feature!
+  Every tosser known to me (JetMail, IOSmail, Ecu/Llegada) normally
+  ignores the entries LED makes and enters it's own address of sender.
+  Nevertheless, if you have several addresses within a zone/network, you
+  could only use one fixed address until now. This concerned e.g. Z*C's,
+  R*C's N*C's and other's with administrative addresses. "Address
+  correction" now enables them to choose their address as desired and
+  instruct their tosser (atm JetMail only) via the flag "Fixed address"
+  not to alter that (origin) address at export.
+
+  In echo areas the address correction can be switched on using the
+  statement "-FixedAddress". Note: LED only writes the origin address!
+  The routing (the destination address) must be done by the tosser!
+  When quoting from such an area into the netmail (and "Address
+  correction" for netmail not selected) LED creates no MSGID and origin
+  address. That must be done by the tossser as usual.
+
+  I.e.: points and nodes with only one address per zone can do without.
+  The other's must decide for themselves whether they need this feature
+  or not...
+@endnode
+
+@node "Netmailarea"
+
+  Now you MUST define your netmail as FIRST area in AREAS.BBS. The
+  config statement "NETMAIL" is not longer parsed by the LED 1.26
+  (and higher).
+@endnode
+
+@node "ACS-Package"
+
+  In LED 1.28 (and higher) you MUST define the ExtraExportArea and
+  Bad_Msgs in the AREAS.BBS, otherwise LED does not show them.
+  The "EchoList" for ACS will be created as usual when you put the
+  'ECHOLIST' statement in LED.CFG.
+@endnode
+
+@node "NVDI 2.5x bug"
+
+  When using NVDI 2.5x (not NVDI 2.5x ET4000) the scollbar in the
+  AreaListWindow is not drawn.
+@endnode
+
+@node "Support-Echos"
+
+  Information of new LED versions will be given in following echos:
+  ST_FIDO.GER (FidoNet), N.SUP.LED (NeST) and A.SUP.LED (AtariNet).
+  If you have questions about the new LED please write them in one
+  of these echos or use the netmail!
+@endnode
+
+@node "ToDo-List"
+
+  Please send me your ideas how to improve LED (btw the ToDo list is
+  approx. 60kb long now => over 140 different suggestions ;-)).
+@endnode
+
+@node "Files"
+
+Files:
+
+  Following files are used by LED:
+
+  Filename    Desciption               Optional   Editable
+
+    LED.CFG   Configurationfile           Yes       Yes
+    LED.DLG   Dialogpositions             Yes        No
+    LED.FKY   Functionkeys                Yes        No
+    LED.FLN   Footnotes                   Yes       Yes
+    LED.LNG   Languagefiles                No       Yes
+    LED.LOG   Logfile (for errors)        Yes       Yes (Why?)
+    LED.NEW   Lastread-Pointers          (Yes)      Yes
+    LED.OPT   Setup (Options)             Yes        No
+    LED.PRG   Programfile                  --        No
+    LED.PRN   Printerdriver (binary)      Yes        No
+    LED.RSC   Resourcefile                 No       Yes (RSC-Editor)
+    LED.RSD   Definitionfile for RSC       --       Yes (RSC-Editor)
+    LED.SCT   Shortcutfile                Yes       Yes
+    LED.NIC   Nicknames                   Yes       Yes
+      *.PN    Printerdriver (source)       --       Yes
+@endnode
+
+@remark =================================================================
+
+@node "AREAS.BBS commands"
+
+ -Netmail <domain>     This area is a netmail area for msgs from/to the
+                       network <domain>.
+ -FollowUp <areaname>  Msg will be quoted in <areaname>.
+ -UseCommentTree       Comment-Tree is always activated for this area.
+ -NoCommentTree        Comment-Tree is always deactivated for this area.
+ -IgnoreNewMsgFlag     LED ignores the "NeMsgFlag", so it shows
+                       no "*" for this area.
+ -IgnoreUnreadFlag     LED ignores the "UnreadFlag", so it shows
+                       no "/" for this area.
+ -RandomFootline       LED creates a random footline for that
+                       area taken from LED.FLN.
+ -NoRandomFootline     LED creates no random footline for that area.
+ -FootlineFile <file>  LED creates a random footline for that area
+                       taken from <file> (same format as LED.FLN).
+ -Latin1               LED tries to interprete all Latin-1 characters.
+ -Latin1small          like -Latin1 but only for vowel mutations:
+                       0xfc->'Å', 0xf6->'î', 0xe4->'Ñ', 0xdf->'û',
+                       0xdc->'ö', 0xd6->'ô', 0xc4->'é'
+ -ForcePVT             When this command is defined LED will
+                       set the PRIVATE flag automatically in
+                       echomails (BBS systems).
+ -FixedAddress         LED is to set the correct address for this
+                       area resp. show the address selector box.
+                       Furthermore, the "Fixed address" flag will
+                       be set automatically. This statement
+                       applies to echomail only, not to netmail!
+ -NoNewEcho            Only for ACS User: This area will not
+                       be written into NEWECHOS.LST. Usefull for
+                       archiv echos.
+ -NoExport             Msgs will not be exported by the tosser. LED
+                       displays a warning when trying to write a msg
+                       in such area.
+ -Passthrough          LED does not show this area.
+ -Visible              Only with -Passthrough. Area is visible.
+ -Invisible            Area is invisible.
+ -Umlaute              Only usefull for germans ;-).
+ -QUOTE_NON            No topline when quoting a msg.
+ -QUOTE_MSG            Topline: "In a msg from...".
+ -QUOTE_NACHRICHT      Topline: "In einer Nachricht...".
+ -QUOTE_NATIVE         Topline: free editable, own language.
+ -QUOTE_ENGLISH        Topline: free editable, english.
+ -NoTopline            Do not generate a topline in this area
+ -Topline <text>       Instead of the "normal" topline for this area
+                       LED uses this topline. '|' is used for a <cr>.
+ -MAUS                 Area is a MausNet area.
+@endnode
+
+@remark =================================================================
+
+@node "Mouse commands"
+
+MsgWindow:
+==========
+Click in infoline on MsgNumber (or below when GEM infoline is used):
+  Activate Msg
+
+Click in MsgWindow:
+  a) Search text in hypertext
+  b) Frequest file (frequest with ALT+Q)
+
+Click in MsgWindow with CONTROL-key hold down:
+  Search text in shortcut file (LED.SCT)
+
+Click in MsgWindow with ALTERNATE-key hold down:
+  Search address in nodelist
+  (also works in the From/To line in netmail)
+
+
+EditWindow:
+===========
+Blockselection:
+  1. Hold down right mousekey,
+  2. Singleclick on left key: Blockstart
+     Doubleclick "   "    " : Blockend
+
+@endnode
+
+@remark =================================================================
+
+@node "Available keys"
+@alias "TastaturÅbersicht"
+@include led_keys.i_e
+@endnode
+
+@remark =================================================================
+
+@node "Deadkeys"
+@include led_dead.i_e
+@endnode
+
+@remark =================================================================
+
+@node "Header format"
+@include led_head.i
+@endnode
+
+@remark =================================================================
+
+@node "MsgFlags"
+@include led_flag.i_e
+@endnode
+
+@remark =================================================================
+
+@node "Timezones"
+@include f:\database\dfÅ.txt\zeitzone.txt
+@endnode
+
+@remark =================================================================
+
+@node "Nicknames"
+
+ You can define about 100 nicknames. To do that you must create a file 
+ called LED.NIC in LED's systemfolder. The format of LED.NIC is very 
+ easy: First enter the nickname followed by a comma and then the full 
+ name. Optionally you can add an area you want to use the nickname in.
+
+   <nickname>,<full name>[,<area>]
+
+ A comment line begins with a semikolon.
+
+ You can use the nicknames with '%' parameters. '%i' conforms with '%f' 
+ but uses the nickname instead of the first name (when the nickname is 
+ defined) and '%I' conforms with '%t'.
+
+ Example for a quoteline:
+
+   In a Msgs of %d %41 (%a) wrote to %43:^M^MHello %i,^M
+
+
+ Functionkeytext:
+
+   Hello %I,
+@endnode
+
+@remark =================================================================
+
+@node "5D support"
+@alias "Network-dependant netmail areas"
+
+  As from version 1.50 it is possible to define more than one netmail 
+  area in LED: mark the desired area with "-Netmail <domain>" in the 
+  AREAS.BBS file. The <domain> MUST be the full network name, i.e. 
+  fidonet.org, nest.ftn, atarinet.ftn etc.
+  The FIRST area in AREAS.BBS continues to be the main netmail area. 
+  It may be redefined using "-Netmail <domain>" but will ALWAYS be 
+  treated as a netmail area (both with and without this statement).
+
+ These are the other changes to LED:
+
+  o In the user lists all entries should now be in 5D format, i.e. with
+    domain. Searching for a name in the user list will only produce members
+    of the current domain.
+    If this is not specified in the user list, the name will be presented
+    anyway as it may possibly belong to the current network.
+
+    However, it is possible to specify a default domain for ALL names of a
+    user list that have NO domain specification. This domain may be defined
+    for each user list using the menu "Options->Userlist".
+    So, for a NeST user list you would rather specify "nest.ftn" as the
+    default domain than adding the domain to EACH entry.
+
+  o "Add PRVTUSER.LST" will now attempt to add domain information to the
+    new entry in the user list. The methods used are:
+    a) For a network-dependant netmail the domain as specified in the
+       "-Netmail <domain>" statement will be added.
+    b) For an echomail the domain of the first link will be used.
+    c) For the main netmail area NO domain will be added yet (edit this
+       manually).
+
+  o The dialog boxes "Search in Userlist" and "Forward msg" are not domain
+    aware yet.
+    Example:
+    If you click on the "To:" line while editing a mail a dialog box
+    appears. Searching for a name will search ALL user lists and will
+    produce ALL matching names as a domain specification is not possible
+    here yet.
+@endnode

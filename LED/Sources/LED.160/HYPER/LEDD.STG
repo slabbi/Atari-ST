@@ -1,0 +1,2568 @@
+@database "LED Dokumentation"
+@subject "Dokumentation/Fido"
+@author "Stephan Slabihoud"
+@$VER: led.hyp 1.51 (@:"__DATE__")
+@help "Programmautor"
+
+@remark @help "Helptext"
+
+@remark @options +gz-s-d12
+@options +g-s+z
+
+@toc Main
+
+@remark =================================================================
+
+@node Main "LED-Handbuch"
+AUTOR | REGISTRIERUNG | INHALT MENöZEILE | WAS IST NEU IN... | ZEITZONEN
+
+
+                                L E D
+
+                        Der FidoNet MsgEditor
+                                _
+                               /  \
+                              /|oo \
+                             (_|  /_)
+                              _`@/_ \    _
+                             |     | \   \\
+                             | (*) |  \   ))
+                             |__U__| /  \//
+                              _//|| _\   /
+                             (_/(_|(____/
+                                   (jm)
+
+        Alle Versionen bis einschlieûlich der 1.22 wurden von
+             Volkmar Wieners und Roland Bohn erstellt.
+
+           Alle Versionen ab 1.23 wurden (und werden) von
+                     Stephan Slabihoud erstellt.
+     Ab Version 1.28 hat LED mit den alten Versionen praktisch nur noch
+       den Namen gemeinsam. Der Source ist vîllig Åberarbeitet worden.
+
+   @{B}Dieses Handbuch ist noch nicht fertiggestellt. Es sind bei weitem 
+   noch nicht alle Features und Funktionen beschrieben, die der LED 
+   bietet. Auch wurde noch nicht Korrektur gelesen, so daû wahrscheinlich 
+   noch viele Fehler in diesem Dokument vorhanden sind. "The Final 
+   Release" sollte aber bei einen der nÑchsten Versionen des LED 
+   beiliegen.@{b}
+
+   Ab Version 1.20 ist der LED nicht mehr Freeware sondern *Shareware*. 
+   Wenn Ihnen das Programm gefÑllt und Sie es regelmÑssig benutzen 
+   sollten Sie sich registrieren lassen. öber die Registrierbedingungen 
+   geben u.a. die Dateien REGISTER.GER (in Deutsch) und REGISTER.ENG (in
+   Englisch) Auskunft.
+   
+   Sie unterstÅtzen damit die BemÅhungen um die Weiterentwicklung des 
+   Programmes. Wenn Sie einmal die vielen Stunden, die Sie eventuell 
+   lesenderweise mit diesem Programm verbringen, zum Vergleich 
+   heranziehen, sollte der *Sharewarebeitrag* eigentlich nicht zu hoch 
+   bemessen erscheinen. Die erste LED-Version erschien Mitte 1989. 
+   Seitdem wurde stetig daran gearbeitet und verbessert, auch wenn nicht 
+   jeden Monat eine neue Version in Umlauf gebracht wurde. Um dies auch 
+   weiterhin zu ermîglichen, war der Schritt hin zu *Shareware* 
+   unumgÑnglich. Von der Ehrlichkeit der regelmÑûigen Benutzer wird es 
+   abhÑngen, wann und wie die nÑchsten Versionen erscheinen. Ideen sind 
+   jedenfalls noch zur GenÅge vorhanden.
+@endnode
+
+@remark =================================================================
+
+@node "Programmautor"
+@alias "AUTOR"
+  Snailmail:   Stephan Slabihoud
+               Germany
+
+  email:       NetworkST: 90:400/410@nest.ftn
+  
+  Informationen zu neuen Versionen werden auschlieûlich in folgenden 
+  Echos gegeben: ATARI.GER (Fidonet), N.SUP.LED (NeST) und A.SUP.LED 
+  (AtariNet). Ebenso werde ich "îffentliche" Fragen zum LED nur noch 
+  dort beantworten (nicht mehr in der ATARI.GER oder anderen Echos)!
+  Per Netmail bin ich wie gewohnt zu erreichen...
+  
+@limage stephan.img 2
+  Stephan Slabihoud
+@endnode
+
+@node "Registrierung"
+@alias "REGISTRIERUNG"
+@alias "REGISTER.GER"
+@include ..\texte\register.ger
+@endnode
+
+@remark =================================================================
+
+@node "LED-FAQ (Fragen zum LED)"
+@include ..\texte\led_faq.ger
+@endnode
+
+@remark =================================================================
+
+@node "Inhaltsverzeichnis"
+@alias "INHALT"
+  INHALTSVERZEICHNIS
+
+     Hinweise zum Handbuch
+     LED-FAQ (Fragen zum LED)
+
+  LED-Allgemein
+
+     Allgemeine Informationen
+     Bedienung des LED
+     Suchen in der Userliste
+
+     Die MenÅzeile
+
+     MsgWindow
+     EditWindow
+     MsgListWindow
+     AreaListWindow
+
+     'Address correction'
+     Charset-Konvertierung
+     Verwendete AbkÅrzungen
+
+     Die '%' Parameter
+     Spitznamen
+     Funktionstastenmakros
+
+     Mauskommandos
+     Tastaturkommandos
+     Deadkeys
+     Multiple Carbon Copy
+
+  LED-Konfiguration
+
+     Der Konfigurationsordner
+     Die Konfigurationsdatei
+     Aufbau der Druckertreiber
+     Sprachanpassung
+     AREAS.BBS Kommandos
+     NetzwerkabhÑngige Netmailareas
+
+  LED-Internes
+
+      Netmailarea
+      ZufÑllige Fuûzeilen
+      ACS-Paket
+      Headerformat
+      Dateien
+      ToDo-Liste
+      NVDI 2.5x Bug
+      Unregistrierte Version
+      Aufbau LED.NEW
+
+  Fido-Allgemein
+
+     Aufbau der AREAS.BBS
+     Bedeutung der MsgFlags
+     BegriffserklÑrungen
+     Schreiben von Msgs
+
+  Sonstiges
+
+     ZeichenÅbersicht Latin-1
+@endnode
+
+@remark =================================================================
+
+@node "ZeichenÅbersicht Latin-1"
+@alias "Latin-1"
+@include f:\database\dfÅ.txt\latin1.txt
+@endnode
+
+@remark =================================================================
+
+@include led_hist.i_g
+
+@remark =================================================================
+
+@node "Zeitzonen"
+@alias "ZEITZONEN"
+@include f:\database\dfÅ.txt\zeitzone.txt
+@endnode
+
+@remark =================================================================
+
+@node "Hinweise zum Handbuch"
+  1) In diesem Handbuch werden TastendrÅcke in "< >" angegeben.
+     z.B. <p> = DrÅcke p
+     oder <ALT><p> = DrÅcke ALTERNATE und p gleichzeitig.
+
+  2) MenÅ Optionen, die mit drei Punkten gekennzeichnet sind (z.B. 
+     "About..."), rufen den FileSelector auf oder fÅhren zu einer 
+     Dialogbox. Alle anderen MenÅ-EintrÑge werden sofort ausgefÅhrt.
+@endnode
+
+
+@node "Allgemeine Informationen"
+  Allgemeine Information
+
+    Der LED ist ein GEM-Editor fÅr FidoNet-Nachrichten (und komp.Netze), 
+    der mit allen derzeit fÅr den ATARI ST verfÅgbaren Mailprozessoren 
+    benutzt werden kann.
+   
+    Einige FÑhigkeiten des LED, wie Kommentarverkettung und die 
+    Verwendung von Flags wie zB Host- und Zonerouting, werden jedoch nur 
+    von neueren Mailprozessoren wie JetMail, IOSmail (ab 0.90), ECU (ab 
+    2.00) oder VMU (ab 0.50) unterstÅtzt.
+   
+    LED lÑuft unter allen TOS-Versionen, sowie MultiTOS und MINT, und 
+    unterstÅtzt so weit wie mîglich deren Besonderheiten, z.B. das 
+    Ikonifizieren von Fenstern.
+   
+    Mit Hilfe geeigneter Mailprozessoren (OPPI oder VMU) kann der LED 
+    auch als Maustausch-Frontend (=Pointsystem im MausNet) eingesetzt 
+    werden.
+
+
+  Damit LED funktioniert, mÅssen mindestens folgende Dateien vorhanden 
+  sein:
+
+    LED.PRG           Das Programm, ...
+    LED.RSC           ...das zugehîrige Resource-File und...
+    LED.LNG           ...die Sprachanpassung
+
+  Mehr dazu unter folgenden Punkten:
+
+    Dateien
+    Sprachanpassung
+    Konfigurationsdatei
+    Druckertreiber
+@endnode
+
+@node "Bedienung des LED"
+  Nachdem der LED gestartet wurde, liest er die Konfigurationsfiles ein 
+  und îffnet dann automatisch ein Fenster mit der zuletzt gelesenen 
+  Message. War beim Verlassen kein Fenster offen, so wird eines mit der 
+  ersten Area des AREAS.BBS geîffnet.
+
+@symbol ia "Limits"
+  Es kînnen maximal sechs Fenster geîffnet werden (abzÅglich 2 
+  ListWindows). Pro Area kann je ein Anzeige- und ein Eingabefenster 
+  geîffnet werden. Versucht man, ein weiteres zu îffnen, so wird das 
+  erste Fenster dieser Area aktiviert (in den Vordergrund gebracht).
+
+  Weitere Limits: - 4 Windows als MsgWindow oder EditWindow
+                  - 2 Windows (1 x AreaListWindow und 1 x MsgListWindow)
+                  - 5000 Areas im AreaListWindow
+                  - 32767 Areas im AreaListDialog
+                  - 5000 Nachrichten pro Area
+                  - 5000 Zeilen pro Nachricht (maximal 64 KByte)
+                  - Maximal 85 Zeichen pro Zeile
+                  - 100 GDOS-Fonts
+                  - Beliebig viele EintrÑge in den Listendateien 
+                    (Userliste, Shortcuts, Footlines etc.)
+                  - 1 Sysop + 9 AkaSysop (beginnend wie Sysop-Eintrag)
+                  - 12 Userlisten (mit beliebig vielen EintrÑgen)
+                  - 100 Spitznamen (LED.NIC)
+                  - 20 Pseudonyme (aus AREAS.BBS)
+
+  Die Fenster kînnen beliebig positioniert, gewechselt, geîffnet, 
+  geschlossen oder ikonifiziert werden. Ist kein weiteres Fenster mehr 
+  verfÅgbar, wird die Meldung 'No more windows available' ausgegeben.
+
+  Die Fensterbreite kann unter OPTIONS->Window... auf maximal 85 Zeichen 
+  eingestellt werden.
+
+  Wird in einer Auswahlbox (Shortcut, Userlist, usw.) eine 
+  Buchstabentaste gedrÅckt, so wird direkt zu dem Eintrag gesprungen, 
+  der mit dem Zeichen beginnt.
+  
+  Verweise: Konfigurationsdatei
+@endnode
+
+@node "MsgWindow"
+@alias "Das MsgWindow"
+  Das MsgWindow oder Anzeigefenster
+
+  In einem geîffneten MsgWindow befindet sich im oberen Teil der 
+  Msg-Kopf und die Infozeile. Der Message-Text ist vom Msg-Kopf durch 
+  eine Linie abgetrennt.
+
+  In der Infozeile werden der Status des Header-Caches, erste bzw letzte 
+  Message einer Area und die Kommentarverkettung angezeigt.
+
+  Im Msg-Kopf werden Msg-Nummer, Anzahl der Messages einer Area, 
+  Erstellungsdatum und eventuelle Flags angezeigt. Darunter stehen 
+  Absender, EmpfÑnger und Subject der Message.
+
+  Unter der Linie folgen einige Zeilen, die die Msg-Id, Reply-Id und 
+  evtl. weitere Informationen enthalten. Die Zeilen beginnen mit den 
+  Zeichen CTRL-A, die der LED nicht anzeigt. Daraufhin folgt der 
+  eigentliche Msg-Text.
+
+  Unter dem Msg-Text folgt die Tear-Line, die mit '---' beginnt und den 
+  Namen des Mailprozessors enthÑlt. Die nÑchste Zeile ist die 
+  Origin-Zeile mit der FidoNet-Adresse des Absenders.
+
+  Die letzten Zeilen schlieûlich enthalten die SeenBy-Zeilen, die 
+  anzeigen, welche Nodes die Message erhalten haben und die Path-Zeile, 
+  die angibt, Åber welchen Weg die Message vom Absender zum EmpfÑnger 
+  gelangt ist.
+
+  Die Kludge- (CTRL-A), Seenby- und Path-Zeilen kînnen unter 
+  OPTIONS->Switches... abgeschaltet werden. Zum Ein/Ausschalten der 
+  Msg-Id und Reply-Id Anzeige gibt es zusÑtzlich Tastaturkommandos.
+
+  Verweise: Open..., Switches..., Tastaturkommandos, Mauskommandos
+@endnode
+
+@node "EditWindow"
+  Das EditWindow oder Eingabefenster
+
+  In einem geîffneten EditWindow befindet sich im oberen Teil der 
+  Msg-Kopf und die Infozeile. Der Message-Text ist vom Msg-Kopf durch 
+  eine Linie abgetrennt.
+
+  In der Infozeile werden der Eingabemodus (Insert oder Overwrite, 
+  Indent) sowie die Start und Endzeile eines ggf. selektierten Blocks.
+
+  Der Text wird einfach fortlaufend eingegeben. Den Umbruch Åbernimmt 
+  LED selbst. Der Vorteil dieses Verfahrens ist, daû der Reader des 
+  EmpfÑngers derartig geschriebene Msgs auch immer optimal formatiert zu 
+  Gesicht bekommt.
+
+  Verweise: Enter Msg, Switches..., Tastaturkommandos, Mauskommandos
+@endnode
+
+@node "AreaListWindow"
+  Das AreaListWindow
+
+  In diesem Fenster werden alle verfÅgbaren Nachrichtenbretter ggf. mit 
+  aktivierten FollowUp und Beschreibung angezeigt.
+  Weiterhin werden noch einige Flags angezeigt, die angeben, ob neue 
+  Nachrichten in einer Area vorhanden sind.
+
+  Verweise: Open..., Switches..., Tastaturkommandos, Mauskommandos
+@endnode
+
+@node "MsgListWindow"
+  Das MsgListWindow
+
+  In diesem Fenster werden alle Nachrichten einer Area angezeigt. 
+  Hierbei kann die Anzeige in der Reihenfolge erfolgen, in der die Msgs 
+  physikalisch gespeichert sind, oder in Form eines Kommentarbaumes.
+  Weiterhin werden noch einige Flags angezeigt.
+
+  Verweise: Enter Msg, Switches..., Tastaturkommandos, Mauskommandos
+@endnode
+
+@remark =================================================================
+
+@node "Die MenÅzeile"
+@alias "MENöZEILE"
+
+  LED             FILE                AREA          MESSAGE
+----------------------------------------------------------------------
+  | About...    | | Read ASCII...   | | Open...   | | List...     |
+  |-------------| | Write ASCII...  | | Change... | | Goto...     |
+  | Accessories | | Append ASCII... | | Cycle...  | |-------------|
+  +-------------+ |-----------------| | Close...  | | Forward...  |
+                  | Read Binary...  | +-----------+ | Move...     |
+                  | Write Binary... |               | Print       |
+                  |-----------------|               |-------------|
+                  | Write Plain...  |               | Set Flag... |
+                  | Append Plain... |               | Del Flag... |
+                  |-----------------|               +-------------+
+                  | Read Clipboard  |
+                  | Write Clipboard |
+                  |-----------------|
+                  | TOS Shell       |
+                  | Execute...      |
+                  |-----------------|
+                  |  Quit           |
+                  +-----------------+
+
+ EDIT                 BLOCK         OPTIONS         EXTRAS
+-------------------------------------------------------------------------
+ | Enter Msg        | | Begin/End | | Switches... | | Msg-Header...    |
+ | Reply Msg        | | Del Marks | | Window...   | | ...flags         |
+ | Quote Msg        | |-----------| | Quote...    | | ...special flags |
+ | Quote to Netmail | | Cut       | | Comment...  | |------------------|
+ | Quote to Area    | | Copy      | | Userlist... | | File Request...  |
+ |------------------| | Paste     | | Fonts...    | | Add PRVTUSER.LST |
+ | Change Msg       | |-----------| | F-Keys...   | | Find in USERLIST |
+ | Carbon Copy      | | Indent    | |-------------| |------------------|
+ |------------------| | Ext TAB   | | Save        | | Find String...   |
+ | Abort Msg        | +-----------+ +-------------+ | Find Same        |
+ | Save Msg         |                               +------------------+
+ +------------------+
+
+ HELP
+---------------------
+ | Msg Window    |
+ | Edit Window   |
+ | Dialogs       |
+ | Comment Tree  |
+ |---------------|
+ | Shortcut      |
+ |---------------|
+ | System Report |
+ +---------------+
+@endnode
+
+@remark =================================================================
+
+@node "About..."
+  Kurze Information Åber LED. Weiterhin befindet sich hier die 
+  Mîglichkeit seinen persînlichen LED-Key einzutragen. LED arbeitet ohne 
+  diesen Key leicht eingeschrÑnkt:
+
+   1) Die PID zeigt "LED x.xx/unreg" anstelle von "LED x.xx".
+
+   2) Beim Starten/Verlassen von LED wird eine kurze Wartezeit 
+      eingelegt.
+   
+   3) Der Ausdruck von Texteffekten und die Konvertierung von MIME 
+      kodierten Zeichen ist nicht mîglich.
+@endnode
+
+@remark =================================================================
+
+@node "FILE"
+  In diesem MenÅ kînnen Messages im ASCII-Format abgespeichert bzw. 
+  eingelesen und Programme bzw. eine TOS-Shell gestartet werden.
+@endnode
+
+@node "Read ASCII..."
+  Im Eingabemodus kann hiermit Åber die Fileselectbox ein ASCII-Text 
+  eingelesen werden, der an der aktuellen Cursorposition eingefÅgt wird. 
+  Dabei muû darauf geachtet werden, daû eine Message max. 5000 Zeilen 
+  lang sein darf und der Umfang 64 Kbyte nicht Åberschreiten darf. Ist 
+  der Text lÑnger/grîûer, wird beim abspeichern der Nachricht ein Teil 
+  dieser Nachricht abgeschnitten.
+
+  Viele Mailprozessoren kînnen jedoch keine Messages grîûer 16 Kbytes 
+  verarbeiten, so daû alles, was schon Åber diesem Wert liegt, 
+  kurzerhand abgeschnitten wird oder die Mail gar nicht erst exportiert 
+  wird. Mit einer MessagelÑnge zwischen 8 und 16 Kbyte liegt man daher 
+  auf der sicheren Seite.
+@endnode
+
+@node "Read Binary..."
+  Lieût eine Datei ein und legt diese UUEcoded in der Nachricht ab 
+  Cursorposition ab. Diese Datei darf maximal 48KByte umfassen. Hiermit 
+  kînnen schnell kleinere Programme (Bilder etc.) verschickt werden.
+  
+  Hinweis: LED kann zwar UUE und MIME kodierte Mails mit
+           "Write Binary..." decodieren, aber weiterhin nur UUE kodierte 
+           Mails erzeugen!
+           IMO ist dieses durchaus ausreichend fÅr Mails bis 48KB. 
+           Sollte irgendwann einmal ein neues Headerformat Åber 64KB pro 
+           Mail zulassen, wird LED auch MIME kodierte Mails erzeugen 
+           kînnen.
+
+  Achtung: Zu groûe Nachricht werden ggf. nicht mehr exportiert!
+  
+  Verweis: Write Binary...
+@endnode
+
+@node "Write Binary..."
+  Konvertiert eine UUE- oder MIME (base64) kodierte Mail wieder zurÅck. 
+  Der kodierte Text darf auch Åber mehrere Mails verteilt sein, 
+  allerdings muû er fortlaufend und in der richtigen Reihenfolge 
+  vorliegen!
+  
+  Wird diese Funktion Åber die MenÅleiste aufgerufen, so wird nach jeder 
+  Msg gefragt, ob mit der nÑchsten fortgefahren werden soll. Wird diese 
+  jedoch Åber Tastatur aufgerufen, versucht LED das Ende der 
+  gesplitteten Mail automatisch zu erkennen!
+  
+  Die Erkennung von MIME kodierter Mail ist etwas kompliziert, da es 
+  hier verschiedene Formate gibt. LED extrahiert immer das erste base64-
+  kodierte File, das in einer Mail gefunden wird. Sind in einer Mail 
+  mehr als eine Datei vorhanden, so muû man diese abspeichern und mit 
+  anderen Tools bearbeiten.
+  
+  Verweis: Read Binary..., Tastaturkommandos
+@endnode
+
+@node "Write ASCII..."
+  Im Anzeigemodus werden hiermit Messages im ASCII-Format in ein File 
+  geschrieben. In einer Dialogbox werden die Nummern der Anfangs- und 
+  Endmessage eingegeben, mit der darauffolgenden Fileselectbox der 
+  Filename. Existiert das ausgewÑhlte File bereits, kann man zwischen 
+  AnhÑngen der Messages an dieses File ('Append'), öberschreiben 
+  ('Overwrite') oder Abbruch ('Cancel') wÑhlen. Der Text enthÑlt den 
+  MsgHeader wie folgt:
+
+  Msg #11 / 1-14  Time: 28 Mar 95  01:26:12
+  From: Antony Lacey on 90:102/146
+  To  : Stephan Slabihoud on 90:400/410
+  Subj: Led 1.27
+  ---------[FidoNetmail]-----------------------------------------------
+  [Die Nachricht...]
+
+  Im Editiermodus wird entweder der gesamte Text oder der selektierte 
+  Block ohne Header gespeichert. Ist kein Block selektiert, wird der 
+  gesamte Text gespeichert!
+  
+  Wenn "Switches...->Add Infoline" angewÑhlt wurde, wird ein erweiteter 
+  Header gespeichert.
+@endnode
+
+@node "Append ASCII..."
+  Die Nachricht wird an die unter "Write ASCII..." gewÑhlte Datei 
+  automatisch angehÑngt. Ist noch keine Datei gewÑhlt worden, so muû 
+  dieses wie unter "Write ASCII..." beschrieben nachgeholt werden.
+@endnode
+
+@node "Write Plain..."
+  Wie "Write ASCII..." aber die Nachricht wird OHNE Header gespeichert. 
+  Praktisch fÅr z.B. UUEcodierte Daten, die Åber mehrere Nachrichten 
+  verteilt vorliegen.
+@endnode
+
+@node "Append Plain..."
+  Wie "Append ASCII..." aber ohne Header. Weiteres unter
+  "Write Plain...".
+@endnode
+
+@node "Read Clipboard"
+  Entspricht dem Einlesen eines ASCII-Textes, jedoch wird das File 
+  SCRAP.TXT aus dem Clipboard-Ordner eingelesen.
+@endnode
+
+@node "Write Clipboard"
+  Entspricht dem Abspeichern von Messages, jedoch wird in das File 
+  SCRAP.TXT im Clipboard-Ordner geschrieben.
+@endnode
+
+
+@node "TOS Shell"
+  Eine TOS-SHELL wird gestartet, wenn die Enviromentvariable SHELL 
+  gesetzt wurde. Diese enthÑlt den Pfad der zu startenden Commandline-
+  Shell. Danach lÑdt der LED wieder seine komplette Konfiguration neu 
+  ein.
+@endnode
+
+@node "Execute..."
+  öber die Fileselectbox kann ein beliebiges TOS- oder GEM-Programm 
+  gestartet werden. Nach dessen Beendigung gelangt man wieder in den 
+  LED.
+  
+  Da der LED nach jedem Programmstart die Konfigurationsdateien neu 
+  einliest, kann man innerhalb des LED einen Texteditor starten, diese 
+  Dateien editieren und speichern, der LED wird diese énderungen sofort 
+  berÅcksichtigen.
+@endnode
+
+@node "Quit"
+  Der LED schlieût alle Fenster und speichert die Lastread-Pointer aller 
+  Areas im File LED.NEW ab. Die Lage und Anzahl der offenen Fenster, der 
+  momentan gÅltige Font und alle anderen Optionen werden in LED.OPT 
+  gesichert. Das Abspeichern der Optionen kann durch DrÅcken der 
+  <SHIFT>-Taste beim Verlassen des Programms verhindert werden. Sollen 
+  generell die Optionen nicht gesichert werden, so kann unter 
+  "OPTIONEN/Switches..." ein entsprechendes Flag gesetzt werden.
+@endnode
+
+@remark =================================================================
+
+@node "AREA"
+  Mit diesem MenÅ werden Areas ausgewÑhlt und in Anzeigefenstern 
+  dargestellt. Es kînnen nicht mehr als ein Anzeige- und ein 
+  Eingabefenster pro Area geîffnet werden.
+@endnode
+
+@node "Open..."
+  Wenn noch ein Fenster verfÅgbar ist, wird hiermit ein weiteres 
+  Anzeigefenster geîffnet. Es erscheint hierzu ein Dialog oder Fenster 
+  in dem alle verfÅgbaren Areas aufgelistet sind. Sind es mehr als 60 
+  beim Dialog, erscheinen im unteren Teil der Dialogbox zwei kleine 
+  Pfeile, mit denen auf die nÑchsten 60 Areas umgeschaltet werden kann. 
+  Diese Pfeile kînnen mit der Maus oder mit <SHIFT>-<CUR_RIGHT> bzw 
+  <SHIFT>-<CUR_LEFT> betÑtigt werden. Beim AreaListWindow kann 
+  zusÑtzlich die Areabeschreibung angezeigt werden.
+
+  Vor dem Areanamen kînnen drei Zeichen mit folgender Bedeutung stehen:
+
+      *  In dieser Area gibt es neue Messages
+      /  In dieser Area noch ungelesene Msgs
+      #  In dieser Area befinden sich Msgs an den Sysop
+      x  Es handelt sich um eine NoExport-Area (Nur AreaListWindow)
+  
+  Hinter dem Areanamen wird ggf. ein "-> Areaname" angezeigt, wenn ein 
+  FollowUp gesetzt wurde (siehe AREAS.BBS Kommandos) und ggf. die 
+  Beschreibung der Area.
+
+  Mit den Cursortasten (links, rechts, auf und ab) kann der Cursor Åber 
+  die Arealiste bewegt werden. Mit <RETURN> wird die invertierte Area in 
+  einem neuen Fenster angezeigt. Alternativ kann mit der Maus (ein Klick 
+  auf die linke Maustaste genÅgt) direkt eine Area ausgewÑhlt werden.
+
+  Eine weitere Mîglichkeit beim Dialog ist die Anwahl mit Buchstaben. 
+  DrÅckt man beispielsweise auf die Taste <s>, springt der Cursor auf 
+  die nÑchste Area, deren Name mit einem S beginnt.
+
+  Im AreaWindow ist noch folgende Variante mîglich:
+  LED erlaubt es den Anfang eines Areanamens einzugeben; es wird dabei 
+  immer die erste gefundene Area angezeigt. Gibt es mehrere Areas mit 
+  demselben Namensanfang, so kann durch man diese durch Druck auf TAB 
+  hintereinander auswÑhlen. DrÅckt man TAB im MsgWindow, so wird die 
+  nÑchste Area mit demselben Namensanfang angewÑhlt (auch wenn das 
+  AreaListWindow schon geschlossen wurde). Die Selektion geht verloren, 
+  wenn z.B. eine neue Area mit eine der folgenden Tasten angewÑhlt wird: 
+  "+-/*#".
+
+  Beispiel:
+
+      1.) AreaListWindow ist das oberste Fenster
+      2.) Tippe "N."
+      3.) DrÅcke RETURN (erste NeST-Area wird angewÑhlt)
+      4.) DrÅcke TAB (nÑchste NeST-Area wird angewÑhlt)
+      5.) Wiederhole Schritt 4.) fÅr andere NeST-Areas
+
+  Mit <#> wird die Area angewÑhlt, die dem Cursor am nÑchsten ist und 
+  Messages an den Sysop enthÑlt. Weiteres dazu unter: Tastaturkommandos.
+
+  Der Dialog kann mit dem Cancel-Button oder <UNDO> abgebrochen werden.
+
+  Es kînnen maximal vier unterschiedliche Areas gleichzeitig geîffnet 
+  werden. Ist das entsprechende Fenster schon offen, so wird es nur nach
+  vorne geholt.
+  
+  Am oberen Rand des MsgWindow ist die Status oder Informations-Zeile. 
+  Hier werden einige wichtige Inforationen Åber gewÑhlte Optionen 
+  angezeigt. Die Infozeile wird in mehrere Bereiche unterteilt:
+
+  Der erste Bereich zeigt folgende AbkÅrzungen an:
+
+   HC   HeaderCache ist fÅr diese Area aktiv
+   TE   Text-Effekte werden angezeigt
+   RC   CHRS-Kludge wird erkannt
+   MI   MIME-Zeichen werden konvertiert (automatisch wird CHRS: LATIN-1
+        angenommen)
+   RM   RC und MI
+
+  Der zweite Bereich zeigt folgendes an:
+
+   1)   "Original Msg", wenn dieses die erste Msg in einem Thread ist.
+   2)   "Reply to: xxx", wenn es ein Kommentar zur Nachricht xxx ist.
+   3)   "?", wenn die Original-Nachricht nicht mehr in der MsgBase 
+        vorhanden ist.
+
+  Im dritten Bereich wird die aktuelle Nachrichtennummer in Fettschrift 
+  angezeigt. Ist die original GEM-Statuszeile aktiv, so wird diese als 
+  "*x*" markiert. ZusÑtzlich werden alle weiteren Kommentare auf 
+  derselben Ebene angezeigt.
+
+  Im vorletzten Bereich werden die weiteren Kommentare auf die aktuelle 
+  Nachricht angezeigt.
+
+  Im letzten Bereich sind zwei Anzeigen mîglich:
+
+   1)  "Start of Messages". Dieses ist die erste Msg in dieser Area.
+   2)  "End of Messages". Dieses ist die letzte Msg in dieser Area.
+
+  Mit einigen Mauskommandos bzw. Tastaturkommandos kann man durch einen 
+  Thread "navigieren".
+@endnode
+
+@node "Change..."
+  Entspricht der OPEN-Funktion mit dem Unterschied, daû kein weiteres 
+  Fenster geîffnet wird, sondern im obersten Fenster eine neue Area 
+  angezeigt wird. Dialog und Fenster entsprichen den der OPEN-Funktion. 
+@endnode
+
+@node "Cycle..."
+  Sind mehrere Fenster geîffnet, wird hiermit auf das nÑchste Fenster 
+  umgeschaltet. Diese Funktion ist auch bei geîffneten Eingabefenstern 
+  mîglich.
+@endnode
+
+@node "Close..."
+  Hiermit wird das aktuelle Fenster geschlossen. Die Funktion kann auch 
+  durch Anklicken des "Closers" in der Titelzeile ausgelîst werden. Ist 
+  bei Anwahl der Funktion noch ein Eingabefenster offen, kann die 
+  Message verworfen oder abgespeichert werden.
+@endnode
+
+@remark =================================================================
+
+@node "MESSAGE"
+  Dieses MenÅ ist nur aktiv, wenn mindestens ein Anzeigefenster offen 
+  ist.
+@endnode
+
+@node "List..."
+  Mit dieser Funktion werden die Messages einer Area in einer Dialogbox 
+  oder Fenster gelistet. Angezeigt werden MsgNr, Absender (FROM), 
+  EmpfÑnger (TO) und Thema (SUBJECT) der Msg. öber der Kopfzeile sind 
+  der Name der Area und die Anzahl der Messages in ihr angegeben.
+
+  Im Dialog werden zunÑchst 18 Messages gelistet, wobei die zuletzt 
+  gelesene an der ersten Stelle der Liste steht und durch den 
+  Scrollbalken invertiert dargestellt wird. Gelîschte Msg werden durch 
+  die helle Schrift dargestellt.
+
+  Mit <SHIFT>-<CUR_DOWN> und <SHIFT>-<CUR_UP> kînnen die nÑchsten bzw 
+  vorhergehenden 18 Messages seitenweise gelistet werden, mit <CLR/HOME> 
+  bzw <CTRL>-<CLR/HOME> gelangt man zur ersten bzw letzten Seite. Das 
+  BlÑttern ist natÅrlich auch mit der Maus mîglich, indem mit dem 
+  Mauszeiger der Scrollbalken auf der rechten Seite der Dialogbox 
+  bedient wird. Ein Klick auf die Pfeile scrollt den Dialog einen 
+  Eintrag vor oder zurÅck. Ein Klick auf den grauen Teil des Rollbalkens 
+  Åber dem Slider blÑttert eine Seite zurÅck, ein Klick unter dem Slider 
+  eine Seite vor. Zum schnellen BlÑttern kann der Slider mit der Maus 
+  bewegt werden.
+
+  Auf der linken Seite jedes Eintrags werden Msgs, die an den Sysop 
+  gerichtet sind, mit einen invertierten Pfeil gekennzeichnet. Msgs, die 
+  der Sysop eingegeben hat, werden durch einen normalen Pfeil 
+  hervorgehoben. Die Richtung des Pfeils soll zusÑtzlich verdeutlichen, 
+  ob die Msg "raus" oder "rein" ging. Ein "u" vor der Msg bedeutet, daû 
+  sie noch nicht gelesen wurde; ein "x" das diese Mail gesperrt 
+  (Lock-Flag) wurde.
+
+  Die Auswahl einer Msg geschieht Åber die Cursortasten. Mit <CUR_DOWN> 
+  und <CUR_UP> wird der invertierte Balken Åber die EintrÑge bewegt und 
+  mit <RETURN> wird die gerade invertierte Msg ausgewÑhlt. Alternativ 
+  ist die Auswahl auch mit der Maus mîglich, indem der betreffende 
+  Eintrag angeklickt wird.
+
+  Gelîschte Msgs werden in heller Schrift dargestellt. Sie kînnen nicht 
+  mit der Maus ausgewÑhlt werden, man kann sie aber mit den Cursortasten 
+  invertieren und mit <RETURN> anwÑhlen. Damit wird die Msg 'Undeleted' 
+  und dargestellt.
+
+  Der Dialog kann mit dem 'Cancel'-Button oder <UNDO> verlassen werden.
+  
+  Es sind noch einige weitere Mauskommandos und Tastaturkommandos 
+  vorhanden!
+@endnode
+
+@node "Goto..."
+  Hiermit kann eine Msg Åber die Msg-Nr angewÑhlt werden. Es erscheint 
+  eine kleine Dialogbox, in der die Nummer eingegeben und mit OK bzw. 
+  <RETURN> bestÑtigt wird. Ist die neue Nummer kleiner als die der 
+  ersten Msg-Nr, wird zur ersten Msg, ist sie grîûer als die letzte 
+  Msg-Nr, wird zur letzten Msg gesprungen.
+
+  Geben man keine Nummer ein und betÑtigt 'OK', Ñndert sich die aktuelle 
+  Msg nicht.
+
+  Der Dialog kann auch Åber die Zahlentastenreihe bzw den Zehnerblocks 
+  aufgerufen werden. Ist die Kommentarverkettung eingeschaltet, ist der 
+  Aufruf der GOTO-Funktion nur noch Åber die Zahlentastenreihe mîglich.
+@endnode
+
+@node "Forward..."
+  Eine Msg wird an einen neuen EmpfÑnger in der selben Area 
+  weitergeleitet.
+
+  Es erscheint ein Dialog, in dem man den Namen des neuen EmpfÑngers 
+  eingeben muû, an den die angezeigte Msg weitergeschickt werden soll. 
+  In der Netmail-Area muû zusÑtzlich die Fidonetadresse des EmpfÑngers 
+  eingegeben werden.
+
+  Mit dem Button USERLIST kann man aus Adreûlisten (Node- bzw 
+  Pointliste) den neuen EmpfÑnger heraussuchen lassen (wenn diese Listen 
+  unter OPTIONS/Userlist... eingetragen wurden). Die Benutzung der 
+  Userliste wird unter "Suchen in der Userliste".
+
+  Als Hinweis auf den Forward werden am Beginn der Message folgende 
+  Zeilen eingefÅgt:
+
+  'Originally from Area ...'
+  'Originally from ... on ...'
+  'Originally to ...'
+  'Forwarded by ... on ...'
+@endnode
+
+@node "Move..."
+  Mit dieser Funktion kînnen eine oder mehrere Msgs in eine andere Area 
+  verschoben bzw. kopiert werden. Wenn man beispielsweise eine neue Area 
+  bestellt und vergessen hat, sie in das AREAS.BBS einzutragen, so 
+  landen die Messages in der Badmail-Area. Nach der énderung des 
+  AREAS.BBS kînnen die Messages in die richtige Area verschoben werden.
+
+  In der Dialogbox mÅssen zuerst die Nummern der Msgs festgelegt werden, 
+  die aus der gerade aktuellen Area in eine andere verschoben werden 
+  sollen. Als Voreinstellung ist dort immer die Nummer der aktuellen Msg 
+  eingetragen. Durch éndern der Anfangs- und Endnummern kînnen mehrere 
+  Msgs auf einmal verschoben werden.
+
+  Mit <CUR_DOWN> kann man darufhin in den Bereich mit allen gelisteten 
+  Areas wechseln und dort die Ziel-Area auswÑhlen. Bevor man mit 
+  <RETURN> (oder Mausklick) das Moven bzw. Kopieren startet, kînnen noch 
+  drei Optionen gesetzt werden:
+
+    Keep Copy         Normalerweise wird jede Msg in die neue Area
+                      verschoben und in der alten Area gelîscht. Ist 
+                      diese Option angewÑhlt, wird sie in der alten Area 
+                      nicht gelîscht.
+
+    Forward           Die Msg bekommt einen neuen Addressaten. Nachdem
+                      die Ziel-Area ausgesucht wurde, erscheint ein 
+                      Dialog, in dem man den neuen Addressaten (in der 
+                      Netmail-Area mit zusÑtzlicher FidoNet-Addresse) 
+                      eingeben muû.
+@endnode
+
+
+@node "Print"
+  Die gerade aktuelle Msg wird auf den Drucker ausgegeben.
+
+  Falls zusÑtzlich noch ein Seitenvorschub gewÅnscht wird, so muû man 
+  die aktuelle Msg mit "Control F7" ausdrucken lassen, oder dieses in 
+  einer Option explizit festlegen.
+  
+  Verweis: Switches...
+@endnode
+
+@node "Set Flag..."
+  Mit diesen Funktionen kînnen fÅr eine Message bestimmte Flags gesetzt 
+  werden. In der Dialogbox wird die aktuelle Msg-Nr automatisch 
+  eingetragen. Will man ein Flag fÅr mehrere Messages setzen, mÅssen 
+  Anfangs- und Endnummer eingetragen werden. Die Flags werden durch 
+  Anklicken mit der Maus gesetzt und mit <RETURN> Åbernommen.
+
+  Eine öbersicht der Flags befindet sich unter: MsgFlags.
+
+  Unten links kann noch die Option ABSOLUTE gesetzt werden. 
+  Normalerweise werden die eingestellten Flags nur zu den addiert, die 
+  bereits in der Msg gesetzt sind. Bei Absolute werden alle Flags 
+  genauso gesetzt wie im Dialog dargestellt. Die Schalterstellung in 
+  diesem Dialog entspricht nicht dem Flag-Zustand der gerade aktuellen 
+  Msg, sondern dem Zustand des Dialoges beim letzten Aufruf. Die 
+  Buchstaben-KÅrzel (im Dialog unterstrichen) der gesetzten Flags werden 
+  im Msg/Edit-Fenster oben rechts dargestellt.
+   
+  Verweise: AbkÅrzungen, MsgFlags
+@endnode
+
+@node "Del Flag..."
+  Wie "Set Flag...", aber die Flags werden gelîscht.
+@endnode
+
+@remark =================================================================
+
+@node "EDIT"
+  Mit diesen Funktionen werden Messages eingegeben. Alle Funktionen 
+  beziehen sich auf das aktuelle Anzeigefenster. Ist kein Fenster mit 
+  einer Area geîffnet, kînnen keine Messages eingegeben werden.
+@endnode
+
+@node "Enter Msg"
+  Mit dieser Funktion wird in der aktuellen Area eine Message 
+  eingegeben, indem ein Eingabefenster geîffnet wird. Zwischen dem 
+  Eingabe- und dem Anzeigefenster der aktuellen Area kann mit <CTRL>-<W> 
+  hin- und zurÅck geschaltet werden.
+
+  Im Msg-Header muû zuerst der EmpfÑnger der Msg (TO) und das Subject 
+  eingegeben werden. Beide Zeilen werden mit <RETURN> abgeschlossen und 
+  in den Msg-Kopf eingetragen.
+
+  Ist die Message nicht fÅr einen bestimmten EmpfÑnger gedacht, kann man 
+  im TO-Feld ein ALL einsetzen, ein <*> sollte es nicht sein, da der LED 
+  sonst in den unter OPTIONS/Userlist... angegebenen Adreûlisten nach 
+  allen Namen sucht.
+
+  Ist die aktuelle Area die Netmail-Area, so muû nach dem EmpfÑngernamen 
+  auch noch die FidoNet-Adresse eingegeben werden. Hierzu kann der 
+  Button USERLIST verwendet werden:
+
+   1. Man gibt den kompletten (und korrekten) Vor- und Nachnamen des 
+   EmpfÑngers ein. Durch BetÑtigen des Buttons USERLIST startet man dann 
+   die Suche nach diesem Vor- und Nachnamen in den Adreûlisten.
+
+   2. Man gibt NUR die Anfangs-Buchstaben des VOR- und NACHNAMENS des 
+   gewÅnschten EmpfÑngers ein, z.B. 'vw' fÅr Volkmar Wieners. Wird dann 
+   USERLIST angewÑhlt, werden alle EintrÑge aus den Userlisten gesucht, 
+   auf die die Suchvorlage zutreffen wÅrde. Alle gefundenen EintrÑge 
+   werden in einem Dialog angezeigt, in dem man mit den Cursortasten 
+   <CUR_U> bzw <CUR_D> den gewÅnschten EmpfÑnger auswÑhlt.
+
+     Mehr Varianten unter "Suchen in der Userliste".
+
+  Bei allen Messages, die man eingibt, wird rechts oben im Msg-Kopf das 
+  Local-Flag gesetzt, das anzeigt, daû man die Msg selbst geschrieben 
+  hat.
+  
+  Bei NetMails wird zusÑtzlich das Private-Flag gesetzt. Durch einen 
+  Mausklick in diesem Bereich kînnen bei Netmails mit einer Dialogbox 
+  weitere Flags gesetzt werden:
+
+      WITH FILE  Zusammen mit der Netmail wird ein File verschickt,
+                 welches mit einer Fileselectbox ausgewÑhlt wird. Der 
+                 Filename wird mit seinem kompletten Pfad in das Subject 
+                 eingetragen.
+
+                 NETMAILS MIT ANGEHéNGTEM FILE (FILEATTACH) WERDEN 
+                 I.D.R. ALLERDINGS NICHT GEROUTET.
+
+                 Man kann also mit diesem Flag lediglich seinem Boss 
+                 oder einem Mitpoint ein File schicken. Oder man 
+                 verschickt den Fileattach als Crashmail, die auf eigene 
+                 Kosten direkt an den EmpfÑnger geht.
+
+      Crash      Die Msg wird direkt an den EmpfÑnger geschickt, was
+                 bedeutet, daû der eigene Mailer selbst beim EmpfÑnger 
+                 anruft und die Msg dort abliefert.
+
+      Hold       Die Message wartet darauf, daû sie vom EmpfÑnger
+                 abgeholt wird. Ist fÅr Points nicht sehr sinnvoll.
+
+      K/SENT     Die Message wird nach dem Export als gelîscht markiert.
+
+
+  Die TO- und SUBJECT-Zeilen sowie die Msg-Flags kînnen wÑhren der 
+  Eingabe einer Message jederzeit editiert werden, indem sie mit der 
+  Maus angeklickt werden.
+
+  Den Msg-Text kann fliessend ohne <RETURN> eingeben, am Ende der Zeile 
+  wird das Åberstehende Wort automatisch in die nÑchste Zeile 
+  Åbernommen.
+
+  Der Editiervorgang kann jederzeit mit 'Abort Msg' abgebrochen werden. 
+  Mit 'Save Msg' wird die aktuelle Msg gespeichert und das Edit-Window 
+  geschlossen.
+
+  Folgende Texteffekte sind mîglich:         Beispiele:
+
+    *   Fett                                 *Fetter Text*
+    /   SchrÑggestellt                       /SchrÑger Text/
+    _   Unterstrichen                        _Unterstrichener Text_
+    #   Invers                               #Inverser Text#
+
+  Auch Kombinationen sind mîglich:
+  
+    *_Fett und Unterstrichen_*
+    */Fett und SchrÑg und _unterstrichen_/*
+@endnode
+
+@node "Reply Msg"
+  Hiermit wird eine Message in der aktuellen Area beantwortet.
+
+  EmpfÑnger und Subject werden automatisch aus der Original-Msg 
+  Åbernommen und vor das Subject wird ein 'Re:' (fÅr Reply) gesetzt. 
+  Unter den Optionen kann man festlegen, ob das 'Re:' eingefÅgt wird und 
+  ob es ggf. hochgezÑhlt werden soll.
+@endnode
+
+@node "Quote Msg"
+  EmpfÑnger und Subject werden Åbernommen, der Msg-Text (soweit noch 
+  nicht gequotet) in Quotes gesetzt. Entsprechend den unter 
+  "OPTIONS/Quote..." gesetzten Schaltern wird dem Text zusÑtzlich eine 
+  Kopfzeile in der Art "In einer Nachricht vom 29.06.96 schrieb Stephan 
+  Slabihoud..." vorangestellt.
+
+  Eine Message kann auch mit der Taste <Q> (<Shift> <q>) gequotet 
+  werden. Der Unterschied zu <CTRL>-<q> liegt darin, daû <Q> die 
+  anderssprachige Kopfzeile einsetzt. Ist unter OPTIONS/Quote... 
+  beispielsweise die deutsche Kopfzeile eingeschaltet, wird mit <Q> die 
+  englische vorangestellt.
+
+  Alle Zeilen werden auf die maximale Zeichenbreite des Eingabe-Fensters 
+  (einstellbar unter OPTIONS/Window...) formatiert. Bei den Quotes wird 
+  dabei versucht, die Zeilen soweit wie mîglich "aufzufÅllen".
+
+  Mit <CTRL>-<Y> sollten man die Zeilen aus dem gequoteten Teil lîschen, 
+  die ÅberflÅssig sind und wirklich nur die Åbrigbehalten, auf die man 
+  sich beziehen will.
+
+  Ansonsten gelten die gleichen Funktionen wie bei "Enter Msg".
+@endnode
+
+@node "Quote to Netmail"
+  Entspricht der Funktion "Quote Msg" mit dem Unterschied, daû die neue 
+  Message nicht in der aktuellen Area sondern in der Netmail-Area 
+  eingegeben wird. Die FidoNet-Addresse des EmpfÑngers wird automatisch 
+  eingetragen (sofern das Origin korrekt ist).
+
+  Ansonsten gelten die gleichen Funktionen wie bei "Enter Msg".
+@endnode
+
+@node "Quote to Area"
+  Entspricht der Funktion "Quote Msg" mit dem Unterschied, daû die neue 
+  Message nicht in der aktuellen Area sondern in einer beliebig anderen 
+  Area eingegeben wird. Hierzu erscheint eine Dialogbox mit allen Areas, 
+  aus denen man die gewÅnschte auswÑhlt. Die Dialogbox entspricht 
+  derjenigen unter "Open..."  und wird genauso bedient.
+
+  ZusÑtzlich wird unter der Kopfzeile eine weitere Zeile ausgegenen, die 
+  angibt, aus welcher Area die Message Åbernommen wurde.
+
+  Ansonsten gelten die gleichen Funktionen wie bei "Enter Msg".
+@endnode
+
+@node "Change Msg"
+  Hiermit kann man (die eigenen!) Messages, die schon eingegeben und 
+  abgespeichert wurden, Ñndern. Beim Abspeichern dieser neuen Message 
+  wird die alte automatisch gelîscht.
+
+  Ansonsten gelten die gleichen Funktionen wie bei "Enter Msg".
+@endnode
+
+@node "Carbon Copy"
+  Hiermit wird eine Netmail an mehrere EmpfÑnger gleichzeitig geschickt.
+
+  Beim Eingeben der Netmail ruft man diese Funktion auf und gibt in der 
+  Dialogbox die kompletten Vor- und Nachnamen sowie die FidoNet-Adressen 
+  derjenigen EmpfÑnger ein, an die diese Msg zusÑtzlich gehen soll.
+
+  Dabei kann man auch auf die USERLIST zugreifen, wie unter "Suchen in 
+  der Userliste" beschrieben. Mit SAVE kînnen alle angezeigten EintrÑge 
+  in einer spezielle Userliste (*.CCL) abgespeichert werden, mit LOAD 
+  wird diese Liste ein- oder dazugeladen. Bei CLEAR werden alle 
+  aktuellen EintrÑge gelîscht.
+  
+  In den erzeugten Mails werden im Kopf alle EmpfÑnger mit einem 
+  Vorangestelltem "CC:" angezeigt. Soll dieses unterbleiben, so ist dem 
+  Namen im CC-Dialog ein "-" voranzustellen (Hidden CC; kein Anzeigen 
+  des Namens).
+  
+  Verweis: Multiple Carbon Copy
+@endnode
+
+@node "Abort Msg"
+  Die Eingabe wird abgebrochen, die Message nicht gespeichert und das 
+  Eingabefenster wird geschlossen.
+  
+  Wenn sich am Ende der Msg noch gequoteter Text befinden sollte, wird 
+  man gefragt, ob dieser beibehalten oder gelîscht werden soll. Bei 
+  langen Msgs 'vergessen' gerade Newcommer ganz gerne, daû sich auch am 
+  Ende der Mail noch Quotes befinden kînnen (vielleicht sogar noch 
+  gequotete SEEN-BYs und ein Footer).
+@endnode
+
+@node "Save Msg"
+  Die editierte Msg wird abgespeichert.
+@endnode
+
+@remark =================================================================
+
+@node "BLOCK"
+  Diese  Funktionen dienen dem Bearbeiten von markierten Blîcken im 
+  Eingabe-Fenster.
+
+  Auûer den MenÅkommandos sind ein paar weitere Tastaturkommandos 
+  verfÅgbar:
+
+  <CTRL><K>   Aktuelle Zeile an den Text im Blockpuffer anhÑngen.
+
+  <CTRL><F>   Pufferinhalt leeren. Nicht besonders nÅtzlich, es sei denn
+              man kopiert sehr groûe Blîcke und hat nur wenig freien 
+              Speicher.
+
+  Verweis: Mauskommandos, Tastaturkommandos
+@endnode
+
+@node "Begin/End"
+  Die aktuelle Zeile wird zum Blockanfang bzw. -ende. In der Statuszeile 
+  wird die entsprechende Zeilenummer angezeigt. Ist das Blockende 
+  markiert, werden alle Zeilen des Blockes markiert, wahlweise hell oder 
+  invers.
+  
+  Mit "Write...", "Append..." bzw. "Write Clipboard..." kann ein Block 
+  auch gesichert werden.
+
+  Verweis: Mauskommandos
+@endnode
+
+@node "Del Marks"
+  Die Blockmarkierungen werden gelîscht. Die Zeilen werden wieder normal 
+  dargestellt.
+@endnode
+
+@node "Cut"
+  Der ausgewÑhlte Block wird aus der aktuellen Msg herausgeschnitten und 
+  in den internen Buffer kopiert.
+@endnode
+
+@node "Copy"
+  Der ausgewÑhlte Block wird in den internen Buffer kopiert ohne dabei 
+  die Msg zu verÑndern.
+@endnode
+
+@node "Paste"
+  Der Block-Buffer wird an der aktuellen Cursorzeile eingefÅgt. Ist zwar 
+  ein Block markiert aber noch nichts ausgeschnitten oder kopiert, so 
+  wird vor dem 'Paste' ein 'Copy' ausgefÅhrt.
+@endnode
+
+@node "Indent"
+  Automatisches EinrÅcken beim Zeilenumbruch. Die Funktion kann erst im 
+  Edit-Modus eingeschaltet werden.
+  
+  Funktionsweise: Leerzeichen und Initialen am Anfang einer Zeile werden
+                  automatisch in die nÑchste Zeile nach einem Return 
+                  oder Zeilenumbruch Åbernommen.
+@endnode
+
+@node "Ext TAB"
+  Eventuelle im Text vorhandene Tabulatoren-Zeichen werden durch die 
+  entsprechende Anzahl Leerstellen (Spaces) ersetzt. Wichtig fÅr das 
+  Einlesen von C-Sources und Ñhnlichen Texten, die in Tabellenform 
+  dargestellt werden sollen.
+  
+  Festgelegt wird die Anzahl der Leerstellen in OPTIONS/Window...!
+@endnode
+
+@remark =================================================================
+
+@node "OPTIONS"
+  Hier werden die Optionen eingestellt, die in LED.OPT gespeichert und 
+  daraus geladen werden. Ist kein LED.OPT vorhanden, werden 
+  Default-Werte eingestellt.
+@endnode
+
+@node "Switches..."
+@symbol ia "Save always LED.OPT"
+   Save always LED.OPT   Alle Einstellungen der Optionen und Grîûe der
+                         Fenster werden bei jedem Verlassen des 
+                         Programmes in LED.OPT abgespeichert.
+
+@symbol ia "Save Dialog Position"
+   Save Dialog Position  Die Positionen der Dialoge werden bei jedem
+                         Verlassen des Programmes in LED.DLG 
+                         abgespeichert.
+
+@symbol ia "Header-Cache"
+   Header-Cache          Falls genug RAM-Speicher verfÅgbar ist, lÑdt
+                         der LED das komplette Header-File einer Area in 
+                         den Speicher. Dies beschleunigt einiger 
+                         Operationen. Zum Zeichen, daû der 
+                         'Header-Cache' aktiv ist, wird ein '(HC)' in 
+                         der Infozeile des Msg-Windows angezeigt.
+
+@symbol ia "Rescure Lastreads"
+   Rescure Lastreads     Die Lastread-Pointer (Zeiger auf die zuletzt
+                         gelesene Msg jeder Area) werden bei jedem 
+                         Areawechsel abgespeichert. Ist fÅr System 
+                         gedacht, die gerne mitten in der Arbeit 
+                         abstÅrzen.
+
+@symbol ia "AreaList Window"
+@symbol ia "...show description"
+@symbol ia "...autoclose window"
+   AreaList Window       Die AreaÅbericht wird in einem Fenster
+                         angezeigt und nicht in einer Dialogbox. Das 
+                         Fenster erlaubt u.a., Areas komfortabler 
+                         auszuwÑhlen. Siehe auch "Open...".
+   ...show description   Die Beschreibung der Area wird mit angezeigt
+                         (siehe auch -DESC in AREAS.BBS Kommandos).
+   ...autoclose window   Nachdem eine Area angewÑhlt wurde, wird das
+                         AreaListWindow wieder geschlossen.
+
+@symbol ia "MsgList Window"
+@symbol ia "...autoclosewindow"
+@symbol ia "...use Comment-Tree"
+   MsgList Window        Die Msgliste wird in einem Fester und nicht in
+                         einem Dialog angezeigt.
+                         Es ist aber weiterhin mîglich den MsglistDialog 
+                         Åber Tastatur aufzurufen (siehe auch 
+                         Tastaturkommandos).
+   ...autoclosewindow    Nachdem eine Msg angewÑhlt wurde, wird das
+                         Fenster geschlossen.
+   ...use Comment-Tree   Die Nachrichten werden als Kommentarbaum im
+                         Fenster angezeigt und nicht mehr in der 
+                         physikalischen Reihenfolge.
+@symbol ia "Recognize AkaSysop"
+   Recognize AkaSysop    Nicht AngewÑhlt:
+                            LED zeigt die Markierungen "<" und ">" an, 
+                            sobald der Absender/EmpfÑnger in den ersten 
+                            Zeichen mit dem (aktuell ausgewÑhlten) SYSOP 
+                            Åbereinstimmt. Das ist die bisherige 
+                            Arbeitsweise von LED bis Version 1.45 
+                            gewesen.
+                         AngewÑhlt (LED wird etwas langsamer):
+                            LED zeigt die Markierungen "<" und ">" nur 
+                            dann an, wenn der Absender/EmpfÑnger GENAU 
+                            mit einem der definierten AkaSYSOPs 
+                            Åbereinstimmt.
+                         Siehe auch: Konfigurationsdatei
+
+@symbol ia "Always use ^REPLYTO"
+@symbol ia "Always use ^REPLYADDR"
+   Always use ^REPLYTO   LED beachtet die ^REPLYTO-Kludge, wenn dieser
+                         Switch aktiviert ist (wichtig fÅr Mails, die 
+                         Åber einen Gateway laufen).
+
+   Always use ^REPLYADDR LED beachtet die ^REPLYADDR-Kludge, wenn dieser
+                         Switch aktiviert ist (wichtig fÅr Mails, die 
+                         Åber einen Gateway laufen). Es wird eine eine 
+                         Domainangabe in der Form "To: xxx" in der 
+                         ersten Mailzeile automatisch erzeugt.
+
+                         Beachte: REPLYTO setzt die Adresse/Namen des 
+                         Gates in den MsgHeader, REPLYADDR erzeugt die 
+                         "To:"-Zeile, um die Mail entsprechend zu 
+                         adressieren.
+
+@symbol ia "Netmail address correction"
+@symbol ia "...set 'FIXED_ADDRESS' flag"
+   Netmail address correction
+                         Mehr dazu unter: 'Address correction'
+   ...set 'FIXED_ADDRESS' flag
+                         Mehr dazu unter: 'Address correction'
+
+@symbol ia "Hide ^MSGID/REPLY{TO}"
+@symbol ia "Hide ^PID/TID/EID"
+@symbol ia "Hide other ^A-Lines"
+@symbol ia "Hide SEEN-BYs"
+   Hide ^MSGID/REPLY{TO} Versteckt die MsgID und Reply(To)-Kludges.
+
+   Hide ^PID/TID/EID     Versteckt die PID, TID und EID-Kludges
+
+   Hide other ^A-Lines   Andere als die o.g. Kludge-Zeilen werden
+                         ebenfalls nicht mehr angezeigt (z.B. PATH)
+
+   Hide SEEN-BYs         Die Seen-By-Zeilen werden nicht mehr angezeigt.
+                         Die Orgin-Zeile kann nicht gestrichen werden.
+
+@symbol ia "Always extend Tabs"
+   Always extend Tabs    EnthÑlt eine Msg echte Tabs, werden diese
+                         automatisch in die entsprechende Anzahl von 
+                         Blanks konvertiert.
+
+@symbol ia "Delete new Msg Flag"
+   Delete new Msg Flag   Die New-Msg-Flags aller Areas werden beim
+                         Verlassen des LED gelîscht. Beim nÑchsten Start 
+                         werden im Area-Dialog keine Anzeigen ('*') mehr 
+                         fÅr neue Message ausgegeben, falls nicht in der 
+                         Zwischenzeit neue Msgs importiert wurden.
+
+@symbol ia "Add 'Re:'"
+@symbol ia "...'Re^n' style"
+   Add 'Re:'             Bei einem Reply oder Quote wird im Subjects ein
+                         'Re:' hinzugefÅgt (falls noch keines vorhanden 
+                         ist). Ist dieser Schalter aus, bleibt das 
+                         Subject unverÑndert.
+   ...'Re^n' style       Die "Re:"'s werden hochgezÑhlt (anstelle von
+                         "Re: Re: ...").
+
+@symbol ia "Text Effects (/*-#)"
+@symbol ia "...also on printer"
+   Text Effects (/*-#)   Dieser Schalter schaltet die Text-Effekt
+                         Erkennung ein. Mehr dazu unter "Enter Msg".
+   ...also on printer    Die Texteffekte werden auch auf dem Drucker
+                         ausgegeben. Siehe auch: Druckertreiber.
+
+@symbol ia "Use GDOS for printing"
+   Use GDOS for printing Es wird GDOS zum Ausdrucken der Nachrichten
+                         verwendet. Ist zwar erheblich langsamer, 
+                         erlaubt es aber, verschiedene Fonts und 
+                         Fontgrîûen zu verwenden.
+
+@symbol ia "Add FormFeed"
+   Add FormFeed          Wird eine Nachricht mit Print ausgedruckt, wird
+                         im Normalfall kein FF ausgegeben. Hiermit kann 
+                         dieses eingeschaltet werden. Print arbeitet 
+                         dann wie Control+F7 (siehe auch 
+                         Tastaturkommandos).
+
+@symbol ia "Add Infoline"
+   Add Infoline          Ausdruck der Msg mit Infozeile (Erstellungs-,
+                         Import- und Druckdatum, sowie Infozeile mit 
+                         Thread)
+      
+@symbol ia "Smart Redraw"
+   Smart Redraw          Es werden einige Redraw-Operationen gestrichen,
+                         u.a. kann das EditWindow sehr viel kleiner 
+                         werden als ohne "Smart Redraw".
+
+@symbol ia "Show 'CR'"
+   Show 'CR'             Die CR-Zeichen am Zeilenende werden beim
+                         Editieren angezeigt.
+
+@symbol ia "Show cursor position"
+   Show cursor position  Die Cursorposition wird beim Editieren
+                         angezeigt.
+
+@symbol ia "GEM infoline"
+   GEM infoline          Da einige LED's Infozeile nicht mochten, kann
+                         man  hiermit auf die GEM Infozeile im MsgWindow 
+                         umschalten. Dieser Switch ist erst nach 
+                         erneutem Start vom LED wirksam. Wichtig: Wenn 
+                         die original GEM-Infozeile benutzt wird, ist 
+                         eine eine direkte Anwahl der Msg-Nummer u.U. 
+                         nicht mehr mîglich (in diesem Fall unterhalb 
+                         der Nummer klicken). Weiterhin wird die 
+                         aktuelle Msg als '*n*' angezeigt.
+      
+@symbol ia "'Ñ' in Netmail-Area"
+@symbol ia "'Ñ' in Echomail-Area"
+  'Ñ' in Netmail-Area    Die Ñ->ae Ersetzung wird bei Netmails nicht
+                         mehr durchgefÅhrt, man kann also normale 
+                         deutsche Umlaute in der Netmail eingeben.
+
+  'Ñ' in Echomail-Area   Die Ñ->ae Ersetzung wird bei Echomails nicht
+                         mehr durchgefÅhrt, man kann also normale 
+                         deutsche Umlaute in der Echomail eingeben.
+
+@symbol ia "Recognize ^CHRS"
+@symbol ia "Convert MIME-style"
+   Recognize ^CHRS       NÑheres dazu unter: Charset-Konvertierung
+   
+   Convert MIME-style    NÑheres dazu unter: Charset-Konvertierung
+
+@symbol ia "Random footline"
+   Random footline       LED kann zufÑllig Fuûzeilen unter eine Mail
+                         setzen. Mehr hierzu unter: ZufÑllige Fuûzeilen
+
+@symbol ia "Deadkeys"
+   Deadkeys              Deadkeys erlauben Sonderzeichen einzugeben.
+@endnode
+
+@node "Window..."
+  Hier werden die Fenster- und die Tabulatorbreite eingestellt. Im 
+  Anzeigefenster sind es maximal 85 Spalten, im Eingabefenster 83.
+  
+  Um Messages mit Initialen zu qouten, sollten 76 Spalten nicht 
+  Åberschritten werden.
+@endnode
+
+@node "Quote..."
+  In der Dialogbox werden die Optionen fÅr das Quoten von Messages 
+  eingestellt. Ein angekreuztes KÑstchen bedeutet, daû die Option 
+  angeschaltet ist.
+
+  Unter PREFIX wird ausgewÑhlt, ob vor dem gequoteten Text die Initialen 
+  des Absenders (z.B. 'RJ>') eingetragen werden oder nicht ('>').
+
+  Unter TOPLINE wird die Kopfzeile ausgewÑhlt:
+
+    In a message...         Bei einem Quote wird die Kopfzeile in
+                            Englisch erzeugt.
+
+    In einer Nachricht...   Beim einem Quote eine Kopfzeile in Deutsch
+                            erzeugt.
+
+    *.GER/AUS/CH detection  Bei Areas mit der Endung: *.GER, *.AUS oder
+                            *.CH wird die deutsche, ansonsten die 
+                            englische Kopfzeile erzeugt.
+
+    None                    Es wird keine Kopfzeile erzeugt.
+
+  Es ist mîglich, die vorgegebenen Kopfzeilen durch eigene 
+  auszutauschen. Hierzu muû das Flag "FREE EDITABLE" gesetzt werden. In 
+  die beiden Zeilen 'Native' bzw 'English' wird der Text der eigenen 
+  Kopfzeilen eingegeben. Auf der rechten Seite der Dialogbox sind KÅrzel 
+  ('%' Parameter) angegeben, mit denen man die Adresse des Absenders, 
+  Datum etc in die Zeilen Åbernehmen kann. Beim Aufruf der 
+  Quote-Funktion wird dann die jeweilige vorgegebene Kopfzeile durch die 
+  eigene ersetzt. Zeilenende durch CTRL-M eingeben.
+
+  1.Line: Native / 2.Line: Native to area:
+
+    Hier wird die Topline fÅr die eigene Muttersprache eingesetzt (z.B. 
+    Deutsch), sowohl fÅr das Quoten innerhalb einer Area, alsauch fÅr 
+    das Quoten von einer Area in eine andere Area.
+
+   2.Line: English / 2.Line: English to area:
+
+    Wie die erste Zeile, aber in Englisch.
+
+  Mit SET CURSOR erreicht man, daû der Cursor immer automatisch in die 
+  erste Mailzeile gesetzt wird und nicht an den Textanfang.
+  NO TOPLINE IN NETMAIL unterdrÅckt die Topline in der Netmail.
+
+  NO COMPRESSION hat folgende Wirkung:
+
+  Aus
+
+    Das ist ein Beispiel
+                ^^^^^^^^ die zweite Zeile ist eingerÅckt
+
+  wird normalerweise
+
+    XY> Das ist ein Beispiel!
+    XY>         ^^^^^^^^ die zweite Zeile ist eingerÅckt
+
+  Der Vorteil: Ein Zeilenumbruch findet nicht so oft statt, da 
+  Leerzeichen fÅr die Quotezeichen Åberschrieben werden. Der Nachteil: 
+  Markierungen oder Tabellen werden u.U. verschoben. Mit "No 
+  compression" wird nun folgendes erzeugt:
+
+    XY> Das ist ein Beispiel!
+    XY>             ^^^^^^^^ die zweite Zeile ist eingerÅckt
+
+  Der Nachteil hier: Wird die Zeile zu lang, wird sie umgebrochen.
+@endnode
+
+@node "Comment..."
+  Mit "Show comment link in infoline" wird die Kommentarverkettung in 
+  der Infozeile des MsgWindows angezeigt.
+  
+  Mit "NumPad keys in comment tree mode" wird der Zehnerblock auf den 
+  Comment-Modus umgeschaltet. Die Benutzung des Zehnerblocks ist unter 
+  Tastaturkommandos beschrieben.
+
+  "Comment tree uses mailer[0..3]" benutzt die neuere Variante die 
+  Comment-Tree Information im MsgHeader unterzubringen. Dieses wird von 
+  JetMail, IOSmail und ECU/Llegada unterstÅtzt. Nur QBBS und andere 
+  Ñltere BBS-Software kommt damit nicht zurecht.
+
+  "Complete msgbase scan" baut auch Nachrichten korrekt in den 
+  Kommentarbaum ein, wenn ein Reply auf eine Nachricht VOR der 
+  Originalnachricht kommt (soll hin und wieder vorkommen). Ist diese 
+  Option eingeschaltet, dauert es ein wenig lÑnger den Kommentarbaum 
+  aufzubauen.
+
+  I.d.R. sollten die ersten drei KÑstchen angewÑhlt sein. Hat man einen 
+  schnellen Rechner oder nur wenige Nachrichten in der MsgBase oder 
+  einfach zu viel Zeit, kînnen alle vier angewÑhlt werden.
+@endnode
+
+@node "Userlist..."
+  Hier kînnen Filenamen eingegeben werden, in denen FidoNet-Teilnehmer 
+  im Format der vom Nodelist-Compiler ausgegebenen FIDOUSER.LST 
+  eingetragen sind. Die Dateien werden immer in der dort angegebenen 
+  Reihenfolge durchsucht. Die Userlisten kînnen sich in jedem beliebigen 
+  Ordner auf Festplatte oder Diskette befinden.
+
+  Mit einen Doppelklick auf eines der editierbaren Felder erscheint 
+  eine Fileselector-Box mit deren Hilfe man die Userliste aussucht.
+  Angezeigt wird im Optionen-Dialog anschliessend zwar nur der Filenamen 
+  der ausgewÑhlten Userliste, der LED behÑlt aber intern den kompletten 
+  Pfad und speichert diesen auch in LED.OPT mit ab.
+
+  Die erste kînnte z.B. FIDOUSER.LST sein, die nÑchste die deutsche 
+  Pointlist POINTUSE.LST und als drittes die eigene PRVTUSER.LST. 
+  Letztere kann mit Hilfe des LED erzeugt werden. NÑheres dazu unter 
+  "Add PRVTUSER.LST" und "Suchen in der Userliste".
+  
+  Werden mehrere Netmails verwendet (siehe: 5D Support), so sollten
+  die Userlisten im 5d-Format, also mit Domain, vorliegen.
+  Es ist jedoch mîglich fÅr ALLE Namen einer Userliste, die Åber KEINEN
+  Domain-Eintrag verfÅgen, ein Default-Domain anzugeben. Diese Domain
+  kann im im Dialog fÅr jede Userliste frei definiert werden.
+  Hat man also eine Userliste mit Personen aus dem NeST, so kann bei
+  ALLEN Adressen das Domain entfallen, wenn man als Default-Domain
+  "nest.ftn" angibt.
+  
+  Verweis: 5D Support
+@endnode
+
+@node "Fonts..."
+  Hier werden alle Einstellungen fÅr Fontart und -grîûe sowie die 
+  Darstellung der Quotes vorgenommen.
+
+  Wenn beim Booten kein GDOS bzw. NVDI geladen wurde, kann nur die 
+  Punktgrîûe ('POINT') des Systemfonts verÑndert werden.
+
+  Ist NVDI bzw GDOS vorhatten, kann einer der geladenen Fonts fÅr den 
+  LED angemeldet werden. Neben FONT wird in einer Box der Name des 
+  aktuellen Fonts angezeigt. Durch Anklicken des Kreissymbols neben der 
+  Box wird der nÑchste Font ausgewÑhlt, klickt man auf den Fontnamen, so 
+  wird der erste physikalische Font (i.d.R. der Systemfont) angezeigt. 
+  Mit POINT kann die Fontgrîûe ausgewÑhlt werden.
+
+  FÅr die beiden im LED gebrÑuchlichen Typen Msg- und Edit-Fenster 
+  kînnen die Fonts jeweils getrennt eingestellt werden. In einem 
+  Edit-Window kînnen allerdings nur Fonts mit konstanter Zeichenbreite 
+  verarbeitet werden. Angezeigt werden immer alle Fonts, es sei denn man 
+  wÑhlt "Only Monospaced Fonts" an.
+
+  Unter BLOCK kann man wÑhlen, ob ein markierter Blockbereich hell 
+  ('Highlighted') oder invers ('Reverse') dargestellt wird.
+
+  Unter QUOTES kann man durch die Wahl des fetten Zeichensatzes 
+  ('Thick') den gequoteten TextstÑrker hervorheben.
+@endnode
+
+@node "F-Keys..."
+  Die Funktionstasten lassen sich hier mit kurzen Floskeln belegen. Soll 
+  eine dieser Floskeln Åber mehr als eine Zeile gehen, muû im Dialog mit 
+  CTRL-M ein Carriage-Return erzeugt werden. Mit 'Save' wird die 
+  aktuelle Funktionstastenbelegung in LED.FKY gespeichert.
+
+  Der Inhalt einer Funktionstaste kann nur in den eigentlichen Msg-Text, 
+  nicht aber in den Msg-Kopf eingefÅgt werden.
+  
+  Verweis: '%' Parameter
+@endnode
+
+@node "Save"
+  Mit 'Save' werden die aktuellen Einstellungen in LED.OPT gesichert.
+@endnode
+
+@remark =================================================================
+
+@node "EXTRAS"
+ Hier finden sich einige zusÑtzliche Hilfsfunktionen, die keinen Platz 
+ in einen der anderen MenÅpunkten gefunden haben.
+@endnode
+
+@node "Msg-Header..."
+  Anzeigen des aktuellen Message-Headers
+
+  Ein mehr internes Kommando. Listet in einem Dialog alle Informationen 
+  der MsgHeader-Struktur der aktuellen Nachricht auf.
+
+  Diese Funktion sollte i.d.R. nicht verwendet werden, es sei denn, man 
+  weiû genau, was man tut!
+@endnode
+
+@node "...flags"
+  Anzeigen und Bearbeiten aller Flags der aktuellen Message.
+
+  Diese Funktion sollte i.d.R. nicht verwendet werden, es sei denn, man 
+  weiû genau, was man tut!
+  
+  Verweis: MsgFlags
+@endnode
+
+@node "...special flags"
+  Anzeigen und Bearbeiten einiger speziellen Flags der aktuellen 
+  Message.
+
+  Diese Funktion sollte i.d.R. nicht verwendet werden, es sei denn, man 
+  weiû genau, was man tut!
+@endnode
+
+@node "File Request..."
+  Es wird ein File-Request erzeugt.
+
+  In dem erscheinenden Dialog muû zuerst die Nodenummer des Systems 
+  eingegeben werden, bei dem requestet werden soll. Dann folgen die 
+  Namen der Files, die man requesten will (max 20). Hinter dem 
+  Ausrufezeichen, das dem Filenamen folgt, kann ein evtl. notweniges 
+  Passwort eingetragen werden (Kleinbuchstaben werden beim Speichern in 
+  Groûbuchstaben umgewandelt).
+
+  Mit 'Make File' wird im OUTBOUND-Ordner ein '*.ORT' File erzeugt. Ist 
+  die Option "Create dummy flowfile" eingeschaltet, wird auch ein 
+  entsprechendes Flowfile geschrieben, um den Request zu erzwingen, 
+  falls der Mailer ein einfaches Requestfile alleine nicht anerkennt.
+  
+  Mit "Select domain" wird festgelegt, daû, nachdem "Make File" 
+  angewÑhlt wurde, auch nach dem NetzDomain gefragt wird. Dieses ist 
+  dann notwendig, wenn man in mehreren Netzen vertreten ist, die 
+  entweder die selbe Zone benutzen oder man Dateien aus einer Zone holen 
+  mîchte, die nicht die eigene ist.
+@endnode
+
+@node "Add PRVTUSER.LST"
+  Der Absender der aktuellen Msg wird mit Namen und Adresse in das 
+  alphabetisch sortierte File PRVTUSER.LST geschrieben.
+@endnode
+
+@node "Find in USERLIST"
+  Hiermit wird in den unter OPTIONS/Userlist... angegebenen Adreûlisten 
+  nach Namen oder Adressen gesucht.
+
+  Die verfÅgbaren Suchvarianten sind unter "Suchen in der Userliste" 
+  beschrieben.
+
+  Wenn man einen Stern "*" in das Namensfeld eingibt werden alle 
+  EintrÑge aus den vorliegenden Userlisten aufgelistet.
+  
+  Wird im EditWindow dieser Dialog Åber "OK" verlassen, so wird der Name 
+  und die Adresse in folgender Form in die Message Åbernommen:
+
+    Stephan Slabihoud (90:400/410)
+@endnode
+
+@node "Find String..."
+  Suche im Msg-Kopf oder -Text nach einem String bzw 
+  String-Kombinationen.
+
+  In den drei Messagekopf-Zeilen 'From:', 'To:' und 'Subj.:' kann nach 
+  Strings gesucht werden. Dabei kînnen auch mehre Strings kombiniert 
+  werden: z.b. Suche nach allen Msgs, die ein gewisser 'Stephan' (in 
+  'From:') an 'Kevin' (in 'To:') geschrieben hat.
+
+  Normalerweise wird von der aktuellen Msg aufwÑrts gesucht. Wenn 
+  'Backwards' aktiv wird, von der aktuellen Msg abwÑrts.
+
+  Mit dem Flag "Inside Current Message" wird nur innerhalb der aktuellen 
+  Message gesucht. Ist das Flag ausgeschaltet, wird in ALLEN Messages 
+  der aktuellen Area gesucht.
+
+  Es wird empfohlen, vor der Suche in den Optionen den 'Header-Cache' zu 
+  aktivieren, also nur in Fenstern zu suchen, in denen das '(HC)' 
+  angezeigt wird. Sonst kann der Suchvorgang auf der Platte recht 
+  langwierig werden.
+
+  "Use Allquantor (*)" erlaubt es zusÑtzlich zu dem '?', welches ein 
+  beliebiges Zeichen ersetzt, den Allquantor '*' beliebig zu verwenden, 
+  z.B. "Ste*" findet "Stephen", "Steve", "Steven" und "Stephan", oder 
+  "St*en" findet "Stephen" und "Steven". Die Suche wird aber erheblich 
+  langsamer!
+@endnode
+
+@node "Find Same"
+  Wiederholen der letzten Suche. Ist die letzte Message erreicht, dreht 
+  sich die Suchrichtung um.
+@endnode
+
+@remark =================================================================
+
+@node "HELP"
+  EnthÑlt Hilfs-Dialoge und Hilfs-Funktionen.
+@endnode
+
+@node "Msg Window"
+  Zeigt die verfÅgbaren Tastaturkommandos im MsgWindow an.
+@endnode
+
+@node "Edit Window"
+  Zeigt die verfÅgbaren Tastaturkommandos im EditWindow an.
+@endnode
+
+@node "Dialogs"
+  Zeigt die verfÅgbaren Tastaturkommandos in Dialogboxen an.
+@endnode
+
+@node "Comment Tree"
+  Zeigt die verfÅgbaren Tastaturkommandos zur Navigation durch den 
+  Kommentarbaum an.
+@endnode
+
+@node "Shortcut"
+  Es wird ein Dialog geîffnet, indem der Inhalt der Datei "LED.SCT" 
+  angezeigt wird. Befindet man sich im Edit-Window, so kann eine Zeile 
+  aus diesem Dialog in den Text Åbernommen werden.
+
+  Man kann auch komplette Dateien aufnehmen:
+
+   - <Name>, <Filename>
+
+  Beispiel: "- Mein Footer, D:\FIDO\FOOTER.SIG"
+
+  Wird dieser Eintrag angewÑhlt, so wird die Datei FOOTER.SIG in den 
+  Text geladen. Ein Eintrag darf max. 1024 Zeichen umfassen. Der 
+  senkrechte Strich '|' und alle nachfolgenden Zeichen und Leerzeichen 
+  davor, werden nicht in den Text (EditWindow) Åbernommen.
+
+  Die '%' Parameter kînnen in der Shortcut-Datei selbst und in allen 
+  eingebundenen Dateien verwendet werden.
+
+  Wird im MsgWindow mit gedrÅckter CONTROL-Taste auf ein Wort geklickt, 
+  so sucht LED dieses Wort in der Shortcut-Datei (LED.SCT) und zeigt 
+  ggf. gefundene EintrÑge an.
+
+  Beispieldatei:
+
+  AFAIC      | As Far As I'm Concerned 
+  AFK        | Away From Keyboard
+  Antony ... the All At Sea Sysop
+  Merry Christmas and a Happy New Year
+  -My footer, F:\TEXT\FOOTER.TXT
+  -, F:\TEXT\FOOTER2.TXT
+@endnode
+
+@node "System Report"
+  Gibt eine öbersicht Åber alle Einstellungen in die Datei REPORT.LED 
+  aus.
+@endnode
+
+@remark =================================================================
+
+@node "AREAS.BBS"
+  Seit der 1.26 MUû die Netmail als ERSTE Area in der AREAS.BBS 
+  eingetragen sein. Die Angabe der Netmail im Konfig-File wird vom LED 
+  nicht mehr beachtet.
+
+  Eine KommandoÅbersicht befindet sich unter: AREAS.BBS Kommandos
+  ...und eine Demonstrationsdatei unter: Demonstration AREAS.BBS
+
+@include "areasbbs.i_g"
+@endnode
+
+@remark =================================================================
+
+@node "Demonstration AREAS.BBS"
+
+@include "areasbbs.i"
+@endnode
+
+@remark =================================================================
+
+@node "Funktionstastenmakros"
+  Achtung! Nur fÅr Experten!
+
+  Man kann nun Macros Åber die Funktionstasten definieren. Da dieses 
+  aber nicht(!) trivial ist, ist diese Mîglichkeit mit Vorsicht zu 
+  verwenden.
+
+  Ein Macro welches im EditWindow erlaubt sein soll, wird wie folgt 
+  definiert: %[keyliste]
+  und wenn es im MsgWindow erlaubt sein soll: &[keyliste]
+  Macros fÅr beide Windows sind definierbar mit: $[keyliste]
+
+  "Keyliste" ist eine Liste in folgendem Format: SSAAK
+
+    SS=Scancode der entsprechenden Taste
+    AA=ASCII-Code der entsprechenden Taste
+    K =Status der Umschalttasten (1=RShift,2=LShift,4=Ctrl,
+                                  8=Alt)
+
+   Die Codes (in Hex) mÅssen immer 5 stellig eingegeben und durch 
+   Kommata getrennt werden. Fehler fÅhren meist zu einem Absturz!
+
+   Ich behalte mit vor, dieses Feature wieder zu entfernen, da ich nicht 
+   weiû, ob es auch auf allen TOS-Versionen lÑuft. "ALT+Key" Aktionen in 
+   Dialogen kînnen nicht ausgelîst werden.
+
+   Hier zwei kleine Beispiele (wer noch andere nÅtzliche Macros 
+   definiert hat, bitte melden):
+
+    z.B. fÅr F1:   %[21064,30024,2d184,21064]
+     und fÅr F2:   &[1e014,47000,1c0d0]
+
+    F1 - Lîscht den Rest des Textes ab Cursorposition
+         Tastenfolge: Ctrl+F, Ctrl+B, Ctrl+X, Ctrl+F
+
+    F2 - Springe zur ersten Area (Netmail)
+         Tastenfolge: Ctrl+A, HOME, RETURN
+@endnode
+
+@remark =================================================================
+
+@node "Suchen in der Userliste"
+  LED kann auf verschiedene Arten in der Userliste suchen:
+
+  Eintrag in Feld...
+
+  ...TO (Name)  ...ON (Adresse)  Knopf:       Bemerkung:
+  ======================================================================
+  *  LEER          (egal)        [OK]         Anzeige PrivateUserList
+
+  +  LEER          ADRESSE       [Userlist]   Suche nach Nodenummer
+
+  *  Ein Zeichen   (egal)        [Userlist]   Alle Nachnamen, die mit
+                                              diesem Zeichen beginnen.
+
+  *  Zwei Zeichen  (egal)        [Userlist]   Suche nach Usern mit XX
+                                              als Initialien.
+
+  *  Ein Wort      (egal)        [Userlist]   Alle User, deren Nachname
+                                              mit "Wort" beginnt.
+
+  +  Zwei Worte    (egal)        [Userlist]   Der erste User, dessen
+                                              Vor- und Nachname mit den
+                                              beiden "Worten" beginnt.
+
+  *  *             (egal)        (Userlist)   Anzeige ALLER User.
+  ======================================================================
+  * = Zeigt Select-Dialog an.
+  + = Abbruch der Suche bei erstem gefundenen Pattern.
+
+
+Beispiele:
+
+(1) To:
+    On:
+      [OK] gedrÅckt: Anzeige von PRVTUSER.LST
+
+(2) To:
+    On: 90:400/410
+      [USERLIST] gedrÅckt: Sucht 90:400/410 in allen Userlisten und
+                           zeigt den ersten Treffer an!
+
+(3) To: S
+    On:
+      [USERLIST] gedrÅckt: Zeigt alle Nachnamen, die mit einem 'S'
+                           beginnen, in einem Auswahldialog an.
+
+(4) To: SS
+    On:
+      [USERLIST] gedrÅckt: Zeigt alle User mit den Initialen 'SS'
+                           in einem Auswahldialog an.
+
+(5) To: Sla
+    On:
+      [USERLIST] gedrÅckt: Zeigt alle Nachnamen, die mit "Sla"
+                           beginnen, in einem Auswahldialog an.
+    To: Slabihoud
+    On:
+      [USERLIST] gedrÅckt: Zeigt alle Nachnamen, die mit "Slabihoud"
+                           beginnen, in einem Auswahldialog an.
+
+
+(6) To: Ste Sla
+    On:
+      [USERLIST] gedrÅckt: Zeigt den ersten User, dessen Vorname mit
+                           "Ste" und dessen Nachname mit "Sla"
+                           beginnt, an.
+
+(7) To: *
+    On:
+      [USERLIST] gedrÅckt: Zeigt alle User in einem Auswahldialog an.
+@endnode
+
+@remark =================================================================
+
+@node "'%' Parameter"
+  Parameter sind in folgenden Texten erlaubt:
+
+   1. Shortcut-Dialog (LED.SCT)
+   2. Shortcut-Dialog (eingebundene Textdateien)
+   3. Quotes
+   4. FKeys
+   5. Footline-Texten
+
+  ParameterÅbersicht:
+
+   %f %F (= %o)   From: Stephan Slabihoud
+   %a               On: 90:400/410
+   %t %T (= %O)     To: Sandra Sprenkels
+   %d             Date: 12 Feb 96
+   %D             Time: 17:05:47
+   %z             Date: 12.02.96
+   %n             Area: N.SUP.LED
+   %s             Subj: Info about LED
+   %%                   %
+   %01 - %20      FKey: Text      (nicht erlaubt in FKey-Texten)
+   %v          Version: 1.41
+   %i (entspricht %f), wird durch Spitznamen ersetzt (falls vorhanden)
+   %I (entspricht %t), wird durch Spitznamen ersetzt (falls vorhanden)
+
+  Es gibt noch folgende spezielle Parameter, die aber richtig sinnvoll 
+  nur in den freien Quote-Texten verwendet werden kînnen:
+
+     KÅrzel: Bedeutung:
+     --------------------------------------------------------
+      %30    Wenn FROM=SYSOP, dann "Ich", ansonsten wie "%o"
+      %31      "       "       "   "ich",     "      "   "
+      %32      "    TO=SYSOP,  "   "Mich",    "      "  "%O"
+      %33      "       "       "   "mich",    "      "   "
+      %34      "       "       "   "Mir",     "      "   "
+      %35      "       "       "   "mir",     "      "   "
+      %40    Wenn FROM=SYSOP, dann "I",   ansonsten wie "%o"
+      %41      "       "       "   "I",       "      "   "
+      %42      "    TO=SYSOP,  "   "Me",      "      "  "%O"
+      %43      "       "       "   "me",      "      "   "
+@endnode
+
+@remark =================================================================
+
+@node "AbkÅrzungen"
+@include led_shor.i_g
+@endnode
+
+@remark =================================================================
+
+@node "Druckertreiber"
+@include ..\texte\make_prn.ger
+@endnode
+
+@remark =================================================================
+
+@node "Konfigurationsordner"
+
+  Konfigurations-Ordner:
+  ======================
+  LED erwartet die meisten seiner Dateien in einem Ordner mit Namen 
+  "LED". Dieser Ordner wird an verschiedenen Stellen gesucht (hîchste 
+  PrioritÑt zuerst):
+
+   1. Definiert durch die Environmentvariable "LED":
+      Hiermit wird der Pfad und Name(!) des Konfigurations-
+      ordners definiert, z.b. LED=D:\FIDOSOFT\CONFIGS\LED
+
+   2. Definiert durch die Environmentvariable "FIDOCONFDIR":
+      Hier wird in dem angegebenen Ordner der
+      Konfigurationsordner unter dem Namen "LED" erwartet,
+      z.B. FIDOCONFDIR=D:\FIDOSOFT\CONFIGS
+
+   3. Falls kein Environment $FIDOCONFDIR existiert, im
+      Verzeichnis .\CONFIG
+
+   4. Im Verzeichnis, in dem LED.PRG zu finden ist.
+
+  Folgende Dateien sucht LED nur im Ordner LED:
+    LED.FLN, LED.CFG, LED.PRN, LED.SCT, 
+    LED.FKY, LED.DLG, LED.OPT, LED.LNG
+
+
+  Konfigurationsdateien:
+  ======================
+  Folgende Verzeichnisse werden nach verschiedenen Konfigfiles 
+  durchsucht (hîchste PrioritÑt zuerst):
+
+   1. Angabe des Verzeichnisses in LED.CFG durch die Statements:
+      "AREASpath"  fÅr AREAS.BBS
+      "LEDNEWpath" fÅr LED.NEW
+
+   2. Definiert durch Environmentvariable "FIDOCONFDIR".
+
+   3. Falls kein Environment $FIDOCONFDIR existiert, im 
+      Verzeichnis .\CONFIG
+
+   4. Definiert durch Environmentvariable "BINKLEY".
+
+   5. Definiert durch Environmentvariable "MAILER".
+
+   6. Im Verzeichnis von LED.PRG.
+
+  Gesucht wird hier nach:
+    LED.NEW, BINKLEY.CFG, AREAS.BBS
+
+
+  Spezielle Dateien:
+  ==================
+  Folgende Dateien werden besonders behandelt:
+
+    LED.NEW : Befindet sich diese Datei im LED-Ordner, so wird diese nur
+              von dort geladen und auch dort gesichert.
+    LED.RSC : LED sucht diese Datei zunÑchst im LED-Systemordner, wenn
+              sie dort nicht existiert, dann im LED.PRG Verzeichnis.
+    LED.LOG : Diese (Fehler-)Datei wird im LED-Ordner angelegt, wenn mit
+              dem Statement "Logfile" kein anderes Logfile definiert 
+              wurde.
+
+  Hinweis:
+    Die Datei BINKLEY.CFG ist nur dann notwendig, wenn kein LED.CFG 
+    existiert.
+
+
+@symbol ia "Konfigurationsdatei"
+Beispiel:
+=========
+
+@include ..\texte\led_exam.cfg
+@endnode
+
+@remark =================================================================
+
+@node "Sprachanpassung"
+  Ab Version 1.41 besitzt LED eine Resource- UND eine Language-Datei. 
+  Die Resource-Datei (LED.RSC) gehîrt in den LED-Systemordner oder in 
+  das Verzeichnis, in dem sich auch LED.PRG befindet; das Languagefile 
+  (*.LNG) gehîrt immer in den LED-Systemordner.
+
+  Die momentan vorhandenen Sprachanpassungs- und Resource-Dateien fÅr 
+  den LED sind:
+
+  ENGLISH.RSC/LNG  - RSC/LNG in Englisch    (von Stephan Slabihoud)
+  DEUTSCH.RSC/LNG  - RSC/LNG in Deutsch     (von Stephan Slabihoud)
+  FRENCH.RSC/LNG   - RSC/LNG in Franzîsisch (von HervÇ Piedvache)
+  FRENCH3D.RSC     - RSC     in Franzîsisch (von Jacques Delavoix)
+  ITALIAN.RSC/LNG  - RSC/LNG in Italienisch (von Alex Guerrazzi,
+                                                 und Mike de Petris)
+
+  Wer eine neue Sprachanpassung erstellt hat, der mîge mir diese bitte 
+  zusenden.
+
+  Um die Sprache zu Ñndern:
+
+   1. Benenne beide Dateien (*.RSC und *.LNG) um in LED.RSC und LED.LNG
+   2. Kopiere LED.RSC in dasselbe Verzeichnis mit LED.PRG oder in das
+      Systemverzeichnis von LED (letzteres sei bevorzugt!)
+   3. Kopiere LED.LNG in das Systemverzeichnis von LED
+@endnode
+
+@node "Charset-Konvertierung"
+@alias "MIME-Konvertierung (Zeichen)"
+  Charset-Konvertierung
+
+  Ab Version 1.29 kann der LED nun auch andere ZeichensÑtze korrekt 
+  anzeigen, wenn eine CHRS oder CHARSET-Kludge vorhanden ist. Hierbei 
+  ist aber zu beachten, daû der LED die Latin-1 Codes in normale ST- 
+  Zeichensatzcodes Åbersetzt und nicht in PC-Zeichensatzcodes.
+  Die Latin-1->ST-Font Konvertierung arbeitet nach dem "best Match" 
+  verfahren, d.h. nicht vorhandenen Zeichen werden in Ñhnliche Zeichen 
+  konvertiert.
+
+  Beim Quoten solcher Mails ist somit Vorsicht geboten: Wird eine 
+  gequotete Mail mit Åbersetzten Zeichencode gesichert, so wird eine 
+  "^CHRS IBMPC 2"-Kludge erzeugt (richtiger wÑre anstelle von "IBMPC", 
+  "ATARIST" zu schreiben, das ist aber nirgends definiert). Einige 
+  Åbersetzte Latin-1 Codes, die im ST-Zeichensatz vorhanden sind, sind 
+  nicht im PC-Zeichensatz vorhanden, so daû der EmpfÑnger fÅr diese 
+  Åbersetzen Zeichen ggf. Blockgrafikzeichen angezeigt bekommt. Wer 
+  einen IBMPC Font (z.B. Myblue) installiert hat, kann damit am besten 
+  ÅberpÅfen, wie die Mail u.U. beim EmfÑnger angezeigt wird.
+
+
+  MIME-Konvertierung (Zeichen)
+
+  LED kann auch Msgs mit MIME kodierten Zeichen korrekt anzeigen. Da 
+  diese Mails aber nicht automatisch erkannt werden kînnen, ist dieses 
+  schaltbar Åber ALT+1 (OPTIONS->Switches...->Convert MIME style). 
+  Automatisch mit Einschalten dieser Option wird auch eine 
+  LATIN1->Atari-ST Konvertierung vorgenommen, es sei denn, eine gÅltige 
+  ^CHRS-Kludge besagt etwas anderes.
+  Die MIME-Kodierung erkennt man an einem "=" gefolgt von einer 
+  zweistelligen HEX-Zahl. Dabei stellt die HEX-Zahl den ASCII-Code des 
+  darzustellenden Zeichens dar.
+  Beispiele: "=20" -> " "
+             "=2A" -> "*"
+             "=9E" -> "û"
+
+
+  CHARSET/CHRS-Erkennung:
+
+  LED konvertiert folgende Charsets in den Atari-ST Zeichensatz, wenn 
+  der Switch "Recognize ^CHRS" angewÑhlt wurde:
+
+    Level-1:
+       FRENCH,GERMAN,ITALIAN,NORWEG,PORTU,SPANISH,SWEDISH,UK
+    Level-2:
+       LATIN-1,IBMPC,ASCII
+
+  Die CHRS/CHARSET-Kludge hat eine hîhere PrioritÑt als das Statement 
+  "-Latin1" oder "-Latin1small" im AREAS.BBS.
+
+  Die Konvertierung macht nur dann Sinn, wenn kein IBMPC Zeichensatz 
+  installiert wurde (also mit dem normalen Systemfont gearbeitet wird), 
+  sonst werden u.U. zu viele Zeichen verkehrt angezeigt.
+@endnode
+
+@node "'Address correction'"
+  Die "Address correction" (und das Flag "Fixed address") wird i.d.R. 
+  nicht gebraucht! Insbesondere Points bzw. Nodes mit nur einer Adresse 
+  pro Zone/Network werden dieses Feature NIE benîtigen!
+
+  Jeder mir bekannte Tosser (JetMail, IOSmail, Ecu/Llegada) ignoriert 
+  normalerweise die Angaben, die der LED eintrÑgt, und trÑgt seine 
+  eigene Absenderadresse ein.
+
+  Hat man allerdings mehrere Adressen innerhalb einer Zone/Network, so 
+  konnte man bisher nur immer unter EINER festen Adresse schreiben. 
+  Davon betroffen waren z.B. Z*Cs, R*Cs, N*Cs und andere mit 
+  administrativen Adressen. Diese kînnen nun mit Hilfe der "Address 
+  correction" ihre gewÅnschte Absenderadresse auswÑhlen und mit dem Flag 
+  "Fixed address" dem Tosser (momentan nur JetMail) mitteilen, daû er 
+  die Absenderadresse nicht mehr verÑndern soll.
+
+  FÅr EchoAreas kann man diese AdressCorrection mit dem Statement 
+  "-FixedAddress" einzeln schalten. Hierbei setzt LED nur die Origin-
+  Adresse (die Absenderadresse). FÅr das Routing (die EmpfÑngeradresse) 
+  ist weiterhin der Tosser zustÑndig. Wird aus einer derartigen Area in 
+  die Netmail gequotet, so wird (sofern "Address correction" fÅr die 
+  Netmail nicht angeschaltet ist), keine MSGID und keine Absenderadresse 
+  erzeugt. Dieses sollte dann der Tosser erledigen.
+
+  Fazit: Points und Nodes mit nur einer Adresse pro Zone kînnen auf 
+  dieses Feature verzichten. Den anderen bleibt es Åberlassen, ob sie es 
+  benîtigen.
+@endnode
+
+@node "Netmailarea"
+  Seit der 1.26 MUû die Netmail als ERSTE Area in der AREAS.BBS 
+  eingetragen sein. Die Angabe der Netmail im Konfig-File wird vom LED 
+  nicht mehr beachtet.
+
+  Verweis: NetzwerkabhÑngige Netmailareas
+@endnode
+
+@node "ACS-Paket"
+  Ab LED 1.28 MöSSEN die ExtraExportArea und Bad_Msgs in AREAS.BBS 
+  definiert werden, sonst zeigt LED diese nicht an. Die "EchoList" wird 
+  aber vom LED weiterhin erzeugt, wenn das Statement 'Echolist' im 
+  LED-Konfigfile angegeben wird.
+@endnode
+
+@node "NVDI 2.5x Bug"
+  Mit NVDI 2.5x (nicht NVDI 2.5x ET4000) wird der Scrollbalken im 
+  AreaListWindow nicht immer dargestellt.
+  
+  Abhilfe: Fenster um eine Rasterposition in der horizontalen 
+           verschieben.
+@endnode
+
+@node "ToDo-Liste"
+  VorschlÑge kann man mir gerne jederzeit einreichen (momentan ist die 
+  ToDo-Liste Åbrigens ca.40kb groû => ca.150 verschiedene VorschlÑge ;-)).
+@endnode
+
+@node "Dateien"
+  Folgende Dateien werden von LED benutzt:
+
+  Dateiname   Beschreibung             Optional   Editierbar
+
+    LED.CFG   Konfigurationsdatei          Ja        Ja
+    LED.DLG   Dialogpositionen             Ja       Nein
+    LED.FKY   Funktionstastenbelegung      Ja       Nein
+    LED.FLN   Fuûnotendatei                Ja        Ja
+    LED.LNG   Sprachanpassung             Nein       Ja
+    LED.LOG   Logdatei (bei Fehlern)       Ja        Ja (Wozu?)
+    LED.NEW   Lastread-Pointer            (Ja)       Ja
+    LED.OPT   Einstellungen (Optionen)     Ja       Nein
+    LED.PRG   Programmdatei               Nein      Nein
+    LED.PRN   Druckeranpassung (BinÑr)     Ja       Nein
+    LED.RSC   Resourcedatei               Nein       Ja (RSC-Editor)
+    LED.RSD   Definitionsdatei fÅr RSC     --        Ja (RSC-Editor)
+    LED.SCT   KÅrzeldatei                  Ja        Ja
+    LED.NIC   Spitznamen                   Ja        Ja
+      *.PN    Druckeranpassung (Source)    --        Ja
+@endnode
+
+@remark =================================================================
+
+@node "AREAS.BBS Kommandos"
+
+ Die folgenden AREAS.BBS Kommandos erkennt LED:
+
+
+@symbol ia "-Netmail"
+ -Netmail <domain>     Diese Area ist eine Netmailarea speziell fÅr
+                       Nachrichten aus/ins Netzwerk <domain>.
+                       Beipiel: -Netmail nest.ftn
+
+@symbol ia "-FollowUp"
+ -FollowUp <areaname>  Msg wird in <areaname> gequotet (nur Reply Msg
+                       und Quote Msg).
+
+@symbol ia "-UseCommentTree"
+@symbol ia "-NoCommentTree"
+ -UseCommentTree       Kommentarbaum ist immer aktiv fÅr diese Area.
+ -NoCommentTree        Kommentarbaum ist immer inaktiv fÅr diese Area.
+
+@symbol ia "-IgnoreNewMsgFlag"
+@symbol ia "-IgnoreUnreadFlag"
+ -IgnoreNewMsgFlag     LED ignoriert das "NeMsgFlag", zeigt fÅr diese
+                       Area also kein "*" an.
+ -IgnoreUnreadFlag     LED ignoriert das "UnreadFlag", zeigt fÅr diese
+                       Area also kein "/" an.
+
+@symbol ia "-RandomFootline"
+@symbol ia "-NoRandomFootline"
+@symbol ia "-FootlineFile"
+ -RandomFootline       LED setzt in dieser Area unter jede geschriebene
+                       Mail eine zufÑllige Fuûzeile (aus LED.FLN).
+ -NoRandomFootline     LED setzt in dieser Area KEINE zufÑllige
+                       Fuûzeile unter die Msg.
+ -FootlineFile <file>  LED setzt in dieser Area unter jede geschriebene
+                       Mail eine zufÑllige Fuûzeile aus <file> (Aufbau
+                       wie LED.FLN).
+
+@symbol ia "-Latin1"
+@symbol ia "-Latin1small"
+ -Latin1               Hierdurch versucht LED alle Zeichen als Latin-1
+                       Zeichen zu interpretieren.
+ -Latin1small          Wie -Latin1, aber nur fÅr die Umlaute:
+                       0xfc->'Å', 0xf6->'î', 0xe4->'Ñ', 0xdf->'û',
+                       0xdc->'ö', 0xd6->'ô', 0xc4->'é'
+
+@symbol ia "-ForcePVT"
+ -ForcePVT             Ist dieses Kommando gesetzt, so setzt LED nun
+                       automatisch das PRIVATE-Flag innerhalb einer
+                       EchoArea (BBS-Systeme).
+
+@symbol ia "-FixedAddress"
+ -FixedAddress         FÅr diese Area soll der LED die korrekte Adresse
+                       einsetzen bzw. die Adressen Auswahl anzeigen). 
+                       Weiterhin wird automatisch das "Fixed address"-
+                       Flag gesetzt. Dieses Statement gilt nur in 
+                       Echomails und nicht fÅr die Netmail!
+
+@symbol ia "-NoNewEcho"
+ -NoNewEcho            Nur fÅr ACS User: Diese Area wird nicht in die
+                       Datei NEWECHOS.LST geschrieben. NÅtzlich fÅr 
+                       Archiv-Echos.
+
+@symbol ia "-NoExport"
+ -NoExport             Nachrichten aus diesem Echo werden vom Tosser
+                       nicht exportiert. LED gibt bei diesen Echos eine 
+                       Warnung aus.
+
+@symbol ia "-Passthrough"
+@symbol ia "-Visible"
+@symbol ia "-Invisible"
+ -Passthrough          Diese Area wird nicht angezeigt.
+ -Visible              Zusammen mit "-Passthrough": Area wird doch
+                       angezeigt aber ohne New-Msg Flags.
+ -Invisible            Area wird nicht angezeigt.
+
+@symbol ia "-Umlaute"
+ -Umlaute              Keine Umlaut-Konvertierung in dieser Area.
+
+@symbol ia "-Quote_Non"
+@symbol ia "-Quote_Msg"
+@symbol ia "-Quote_Nachricht"
+@symbol ia "-Quote_Native"
+@symbol ia "-Quote_English"
+ -Quote_Non            Keine Topline beim quoten.
+ -Quote_Msg            Topline: "In a msg from...".
+ -Quote_Nachricht      Topline: "In einer Nachricht...".
+ -Quote_Native         Topline: frei editierbar, Heimatsprache
+ -Quote_English        Topline: frei editierbar, Englisch
+
+@symbol ia "-NoTopline"
+ -NoTopline            Keine Topline in dieser Area erzeugen
+@symbol ia "-Topline"
+ -Topline <text>       Anstelle der "normalen" Topline wird die mit 
+                       <text> angegebene verwendet. '|' steht fÅr <cr>.
+
+@symbol ia "-Maus"
+ -Maus                 Area ist eine Mausnet-Area.
+
+@symbol ia "-Pseudonym"
+@symbol ia "-Name"
+ -Pseudonym <name>     Diese Statements werden nur im Zusammenhang mit
+ -Name <name>          "Switches...->Recognize AkaSysop" verwendet.
+@endnode
+
+@remark =================================================================
+
+@node "Mauskommandos"
+  MsgWindow:
+  ==========
+  Klick in Infozeile auf MsgNummer (oder unterhalb bei GEM-Infoline):
+    Msg aktivieren
+
+  Klick in MsgWindow:
+    a) Text im Hypertext suchen
+    b) File frequesten (ALT+Q anschlieûend)
+
+  Klick in MsgWindow mit gedrÅckter CONTROL-Taste:
+    Text in der Shortcut-Datei (LED.SCT) suchen
+
+  Klick in MsgWindow mit gedrÅckter ALTERNATE-Taste auf eine Adresse:
+    Adresse in Nodeliste suchen und gefundene Informationen anzeigen 
+    (bei Pointadresse evtl. die des Bosses; in der Netmail auch Klick
+    auf From/To-Zeile mîglich)
+
+
+  EditWindow:
+  ===========
+  Blockselektierung:
+    1. Rechte Maustaste gedrÅckt halten,
+    2. Einfachklick auf die linke Taste: Blockanfang
+       Doppelklick   "   "    "     "  : Blockende
+@endnode
+
+@remark =================================================================
+
+@node "Spitznamen"
+
+  Man kann im LED max.100 Personen einen Spitznamen zuordnen. Hierzu 
+  dient die Datei LED.NIC, die im LED-Systemordner abgelegt werden muû.
+
+  Der Aufbau ist einfach:
+
+  In jeder Zeile steht zuerst der Spitzname, gefolgt von einem Komma und 
+  danach der komplette, ausgeschriebene Name. Optional kann noch die 
+  Area angegeben werden, in der der Spitzname benutzt werden soll.
+
+  Also: <Spitzname>,<Voller Name>[,<Area>]
+
+  Wenn eine Zeile mit einem ";" beginnt, handelt es sich um eine 
+  Kommentarzeile und wird ignoriert.
+
+  Angesprochen werden die Spitznamen durch einen '%' Parameter. Hierbei 
+  entspricht ein '%i' dem '%f', aber es wird der Spitzname anstelle des 
+  Vornamens verwendet (sofern vorhanden) und ein '%I' entspricht dem 
+  '%t'.
+
+  Eine Quotezeile kînnte somit z.B. wie folgt aussehen:
+
+  In einer Msgs vom %d schrieb %31 (%a) an %33 folgendes:^M^MHallo %i,^M
+
+  
+  Oder in einem Funktionstastentext:
+  
+  Hallo %I,
+  
+  
+  Mehr dazu unter: '%' Parameter, Quote...
+@endnode
+
+@remark =================================================================
+
+@node "ZufÑllige Fuûzeilen"
+@alias "RandomFootline"
+
+   LED kann zufÑllig Fuûzeilen unter eine Mail setzen. Hierzu muû sich 
+   die Datei "LED.FLN" im LED-Systemordner befinden.
+   
+   Der Aufbau einer RandomFootline-Datei ist sehr einfach:
+---------------------------------------------------------------------------
+-- 
+; ^
+; |
+; +--- Ein Leerzeichen (also "-- ")
+;
+; Die erste Zeile wird automatisch vor jede Fuûzeile gesetzt und kann leer 
+; sein.
+; z.B.: "--|" druckt zwei "-" und die Tagzeile in die darauffolgende Zeile
+;       "*** " druckt drei "*" und ein Leerzeichen und die Tagzeile hinter
+;       dem Leerzeichen
+; Beachte: '|' beschreibt ein <cr>
+;          ';' ist eine Bemerkungszeile
+;          Maximal 1024 Zeichen sind pro Eintrag erlaubt!
+
+; Hier nun die Fuûzeilen (bitte nur wenige Kommentarzeilen verwenden):
+UFP Starfleet Command: End Transmission|
+I know the depths I reach are limitless|
+"Dual Pentium-100 - Compiles in a flash, makes great coffee too!"|
+The new Pentium Overheat, CPU and water boiler in a single chip!|
+---------------------------------------------------------------------------
+
+   Mit "Switches...->Random footline" wird fÅr ALLE Areas diese Option 
+   angeschaltet, oder man benutzt das AREAS.BBS-Kommando 
+   "-RandomFootline" fÅr die entsprechende Area. Mit "-FootlineFile" ist 
+   fÅr eine Area ebenfalls ein beliebiges File definierbar.
+
+   Die Abarbeitung ist wie folgt:
+
+    1. "-FootlineFile <file>" gesetzt?
+       Ja: ZufÑllige Fuûzeile aus <file> nehmen.
+    2. "-RandomFootline" oder Schalter "Switches...->Random footline" 
+        gesetzt?
+       Ja: ZufÑllige Fuûzeile aus LED.FLN nehmen.
+ 
+   RandomFootlines werden bei "Change msg" automatisch entfernt. 
+   Folgende EinschrÑnkungen existieren hierbei:
+    - Es wird nur in den letzten acht Zeilen nach einer RandomFootline 
+      gesucht.
+    - Die RandomFootline muû exakt mit derselben Zeichenfolge anfangen, 
+      wie in der entsprechenden RandomFootline-Datei fÅr diese Area 
+      definiert wurde (erste Zeile in der Datei). Diese Zeichenfolge muû 
+      mindestens zwei Zeichen umfassen (bis zum ersten Zeilenumbruch mit
+      einem '|').
+    - Zwischen dem PrÑfix (der ersten Zeile) und der eigendlichen
+      Textzeile darf keine Leerzeile vorhanden sein. Also nicht mehrere 
+      '|'-UmbrÅche direkt hintereinander verwenden!
+    - Das LOCAL-Flag muû gesetzt sein.
+
+   Verweise: -RandomFootline, -NoRandomFootline, -FootlineFile
+@endnode
+
+@remark =================================================================
+
+@node "Unregistrierte Version"
+
+  Da es sich gezeigt hat, daû viele Anwedner des LED's immer noch nicht 
+  wissen, was unter dem Begriff Shareware verstanden wird, war ich 
+  gezwungen den LED mit einem Key zu versehen. Im Prinzip kann man mit 
+  dem LED immer noch weiterarbeiten, allerdings sind einige 
+  EinschrÑnkungen vorhanden:
+  
+  - Spitznamen kînnen nicht verwendet werden (LED.NIC)
+  - Aus der Shortcut-Datei kînnen Texte zwar in das EditWindow
+    Åbernommen werden, allerdings nur mit zusÑtzlichem Infotext.
+  - Druckt man eine Nachricht aus, so erscheint im normalen Ausdruck
+    alle 15 Zeilen ein Infotext, im GDOS-Ausdruck ein Infotext unter
+    jedem Ausdruck.
+  - Das Kommando "Outbound36", das das neue Ordnerformat auf base36
+    umstellt, kann nicht verwednet werden.
+  - Write Binary... und Read Binary... kînnen nicht benutzt werden.
+  - Folgende Schalter sind nicht verwendbar:
+      o MsgList Window->...use Comment-Tree
+      o Add 'Re:'->...'Re^n' style
+      o Text Effects (/*-#)->...also on printer
+      o Recognize ^CHRS
+      o Convert MIME-style
+  - Hin und wieder wird das MsgWindow 'dunkel geschaltet'.
+  
+  Shareware bedeutet, daû ein Programm kostenlos getestet werden kann. 
+  Danach ist die Shareware-GebÅhr an den Autor zu entrichten. Leider hat 
+  sich gezeigt, daû viele den LED schon seit einigen Jahren benutzen, 
+  ohne die Shareware-GebÅhr zu bezahlen. Das ist nicht Sinn und Zweck 
+  von Shareware.
+  Ich werde diese Klientel von den zukÅnftigen Features im LED 
+  ausschlieûen. Ein Anfang mach hier das neue Ordnerformat im base36 
+  Format. Ich hoffe, daû diese kleinen EinschrÑnkungen vorerst 
+  ausreichen; falls nicht, werde ich drastischere Maûnahmen in den LED 
+  einbauen, evtl. sogar neue Versionen nur noch registrierten Anwendern 
+  zugÑnglich machen.
+  Wer nicht bereit ist die Shareware-GebÅhr zu entrichten, aber mit dem 
+  LED weiter arbeiten mîchte, der kann auf die Version 1.22 (oder 
+  darunter) ausweichen.
+@endnode
+
+@remark =================================================================
+
+@node "Aufbau LED.NEW"
+
+  Hier wird eine Liste mit den zuletzt gelesenen und neuen bzw. noch 
+  ungelesenen Messages jeder Area abgelegt. Mailprozessoren/Tosser 
+  berÅcksichtigen diese Liste beim Import neuer bzw. beim Lîschen alter 
+  Nachrichten.
+
+  LED.NEW hat folgende Form:
+
+  <areaname> <lastread> <flags>
+
+  Beispiel:
+  
+  ST_POINTS         58  1
+  ATARI.GER        862  3
+  ST_FIDO.GER      534  2
+  ATARI_ST         134  0
+
+  Die erste Zahl gibt die Nummer der zuletzt gelesenen, die zweite dient 
+  folgenden Zusatzinformationen:
+
+  Bit 0 (0x01) : neue Nachrichten hereingekommen (*)
+  Bit 1 (0x02) : ungelesene Nachrichten in der Area (/)
+  Bit 2 (0x04) : Nachrichten an den Sysop (#)
+
+  Die Fidonetmail (erster Eintrag in AREAS.BBS) wird aus historischen 
+  GrÅnden immer unter den Namen "FidoNetmail" gespeichert.
+@endnode
+
+@remark =================================================================
+
+@node "Multiple Carbon Copy"
+@alias "Cross Postings"
+
+  Dieses Flag erlaubt es, daû nicht LED die Carbon-Copies erzeugt, 
+  sondern der Tosser. Der Vorteil liegt darin, daû man nicht mehr zig 
+  Nachrichten in der Netmail herumliegen hat, sondern der Tosser die 
+  entsprechenden Kopien erzeugt. Weiterhin kînnen alle Adressen Åber die 
+  Funktion "Search in Userlist" gesucht und in den Text aufgenommen 
+  werden, oder auch als reiner ASCII-Text geladen werden, oder auch Åber 
+  die Shortcut-Funktion eingefÅgt werden.
+
+  Auch wenn die Implementierung in einen bestehenden Tosser recht 
+  einfach ist, unterstÅtzt z.Zt. nur IOSmail dieses Feature. 
+  Abweichungen zu u.g. Bedienung ist der Tosser-Dokumentation zu 
+  entnehmen.
+  
+  Auch wÑre es mîglich, hiermit sogenannte "Cross Postings" zu erzeugen. 
+  Bisher wird das aber von KEINEM Tosser unterstÅtzt.
+
+  Arbeitsweise:
+  =============
+  
+  1. Schreibe eine Nachricht wie gewohnt. In die ersten Zeilen setze
+     alle gewÅnschten EmpfÑnger zusammen mit der email-Adresse. 
+     Anschlieûend eine Leerzeile, dann der normale Nachrichtentext.
+     
+     Beispiel:
+     =========
+     From: Stephan Slabihoud on 90:400/410          CC
+       To: Guenther Paczia on 90:400/404
+     Subj: Text
+     ---[MAIL]-------------------------------------------------
+     Joerg Spilker (90:400/100)
+     Daron Brewood (90:1/0)
+     
+     Hi,
+     [...]
+     ----------------------------------------------------------
+
+  2. Setze das "Multiple CC" Flag (ALT+V, Flag anwÑhlen). Dieses Flag
+     unterrichtet den Tosser darÅber, daû die Nachricht CC-Informationen 
+     enthÑllt. Das Flag ist nur in der Netmail erlaubt.
+
+  3. Wenn vor einem Namen kein "-" gesetzt wird, setzt der Tosser
+     diesen, zusammen mit einem "CC: <dieser Name>", in die erzeugte 
+     Nachricht. Wenn mindestens vor EINEM Namen kein "-" gesetzt wurde, 
+     so wird vor den Original-EmpfÑnger ein "Original to <Original Name>"
+     gesetzt (Wenn vor alle Namen ein "-" gesetzt wurde, wird keine 
+     zusÑtzliche Zeile erzeugt).
+
+  Cross Postings:
+  ===============
+  ==> Dieses wird bisher noch von keinem Tosser unterstÅtzt! <==
+
+  4. Soll die Nachricht ebenfalls in andere Areas gepostet werden, so
+     gibt man die gewÅnschten Areas einfach hinter dem Namen an. Da es 
+     sich um eine Echoarea handelt, ist eine Adresse ÅberflÅssig.
+     
+     Beispiel:
+     From: Stephan Slabihoud                        CC
+       To: All
+     Subj: Important Infomation
+     ---[N.SUP.LED]--------------------------------------------
+     All,N.SUP.IOS,N.SUP.JETMAIL
+     Alle,ATARI_EXPERT.GER,ST_FIDO.GER
+     Daron Brewood (90:1/0)
+     
+     Hi,
+     [...]
+     ----------------------------------------------------------
+     Die letzte Zeile generiert eine Netmail an "Daron Brewood".
+
+
+
+  Implementierung:
+  ================
+
+  Parse Msg
+     |
+  MultiCC set? --No--> Save msg as usual
+     |
+    Yes
+     |
+     v
+  1. Remove all CC lines from the msg (incl. the empty line) and store
+     the information for later use
+  2. Save the original msg
+  3. Replace the destination name and address of the original msg using the
+     stored information
+  4. Goto 3) until no more stored information is present
+
+@endnode
+
+@remark =================================================================
+
+@node "NetzwerkabhÑngige Netmailareas"
+@alias "5D Support"
+
+  Ab Version 1.50 ist es mîglich, mehr als eine Netmailarea im LED zu
+  definieren. Hierzu muû die gewÅnschte Area in der Datei AREAS.BBS
+  mit dem Statement "-Netmail <domain>" gekennzeichnet werden. Als
+  <domain> MUû der komplette Netzname angegeben werden, also z.B.
+  fidonet.org, nest.ftn, atarinet.ftn etc.
+  Die ERSTE Area in AREAS.BBS ist weiterhin die Haupt-Netmailarea, sie
+  kann zwar umdefiniert werden mit "-Netmail <domain>", wird aber
+  grundsÑtzlich IMMER als Netmailarea behandelt (ob mit oder ohne
+  Domain-Angabe).
+  
+  @{B}Dieses Feature wird z.Zt. nur von JetMail >=0.99beta23 unterstÅtzt.@{b}
+
+  Weiterhin sind folgende énderungen im LED vorgenommen worden:
+
+  o In den Userlisten sollten nun alle EintrÑge im 5d-Format (also mit
+    Domain) stehen. Sucht man nach einem Namen in der Userliste, so
+    werden grundsÑtzlich nur Mitglieder des momentanen Domain gesucht/
+    angezeigt.
+    Fehlt diese Angabe in der Userliste, so wird der Name ebenfalls
+    angezeigt (er kînnte ja zum Netzwerk gehîrten).
+
+    Es ist jedoch mîglich fÅr ALLE Namen einer Userliste, die Åber KEINEN
+    Domain-Eintrag verfÅgen, ein Default-Domain anzugeben. Diese Domain
+    kann im MenÅpunkt "Options->Userlist" fÅr jede Userliste frei
+    definiert werden.
+    Hat man also eine Userliste mit Personen aus dem NeST, so kann bei
+    ALLEN Adressen das Domain entfallen, wenn man als Default-Domain
+    "nest.ftn" angibt.
+
+  o "Add PRVTUSER.LST" versucht nun ebenfalls das Domain in der
+    Userliste abzulegen. Hierzu wird folgende Strategie verwendet:
+    a) Bei einer NetzwerkabhÑngigen Netmail wird das Domain, was durch
+       "-Netmail <domain>" definiert wird, verwendet.
+    b) Bei einer Echomail wird das Domain des ersten Links verwendet.
+    c) Bei der Haupt-Netmail wird z.Zt. KEIN Domain geschrieben
+       (muû noch von Hand editiert werden).
+
+  o Die Dialogboxen "Search in Userlist" und "Forward msg" kînnen mit
+    Domain-Angaben z.Zt. noch gar nichts anfangen.
+    Beispiel:
+    Klickt man, wÑhrend eine Mail editiert wird, in die "To:"-Zeile, so
+    erscheint eine Dialogbox. Sucht man von hier aus einen Namen,
+    so werden grundsÑtzlich ALLE Userlisten mit ALLEN Namen durchsucht,
+    da ja eine Domain-Angabe noch nicht mîglich ist.
+@endnode
+
+@remark =================================================================
+
+@node "Tastaturkommandos"
+@alias "TastaturÅbersicht"
+@include led_keys.i_g
+@endnode
+
+@remark =================================================================
+
+@node "Deadkeys"
+@include led_dead.i_g
+@endnode
+
+@remark =================================================================
+
+@node "Headerformat"
+@include led_head.i
+@endnode
+
+@remark =================================================================
+
+@node "MsgFlags"
+@include led_flag.i_g
+@endnode
+
+@remark =================================================================
+
+@include begriffe.i_g

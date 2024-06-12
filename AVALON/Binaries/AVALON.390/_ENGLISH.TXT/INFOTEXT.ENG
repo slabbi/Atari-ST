@@ -1,0 +1,85 @@
+AVALON - INFOTEXT
+
+Special features:
+==================
+AreafixManager:  No more long-winded mails to areafix. Just choose the areas
+                 you want by mouseclick. Avalon writes the mail for you.
+FileRequest:     Easy selection of the files you want to request from a
+                 filelist. Avalon allows to use several filelists and makes
+                 filerequests very easy. It is possible to request files
+                 from other zones (4D-) and filenets/domains (5D-request).
+MsgFileRequest:  It is possible to select files directly from a message!
+FileHatch:       Avalon allows to send files to other persons. Avalon can
+                 create TIC files (used for filenets) and file attach mails
+                 (private files).
+Batchinterpreter:The internal batchinterpreter allows to make a lot of
+                 things automatically. It is (for example) possible to
+                 send a textfile on a defined day in a mailarea, or you can
+                 make Avalon to create a requestfile on defined weekdays, or
+                 you can update you nodelist with existing diff-files, or...
+PollSessions:    A poll can be done automatically using PollSessions. Loops
+                 and conditional exits using errorlevels are implemented. It
+                 is also possible to define time-controlled PollSessions.
+Node-/Pointlist: A DIFF-compiler has been implemented in V3.70 (and higher).
+                 This compiler can be called in the batchinterpreter. Avalon
+                 can also generate a userlist from a node- or pointlist for
+                 the LED.
+NodelistExtract: Avalon V3.72 and higher can extract one or more regions
+                 of a nodelist. So it is possible to make a big nodelist
+                 smaller.
+Splitter:        The internal batchinterpreter can subdevide a very long
+                 text in small parts that can be send in an area
+                 automatically.
+
+Features:
+==========
+ - full replacement of TinyShell and BinkleyTermShell (BTS)
+ - GEM implemented (keys TinyShell compatible)
+ - works with all TOS versions (incl. MagiC, MultiTOS and KAOS-TOS)
+ - up to six pointsetups
+ - six different (auto-)poll-sessions
+ - all/some poll-sessions can be startet directly after start of avalon
+ - auto-start-poll time controlled
+ - loop-mode for all (auto-)poll-session.
+ - marked sessions can be started
+ - batch-cli implemented with many features (incl. autoexec.bat)
+ - batchfiles can be called in every poll-session
+ - twentyone utilities can be started directly
+ - good (D)AREAS.BBS editor with zone and domain (used for 5D)
+   (works with "IOSmail","JETmail","ECU/LLEGADA" and other)
+ - external AREAS.BBS editor can be defined
+ - convenient AreaFix-Manager
+ - MSG/HDR-files are created/deleted automatically
+ - convenient file-request with search-function for long filelists
+ - selection of files from a message
+ - unlimited length of filelists
+ - zone-file-request (4D) and network-file-request (5D) possible
+ - files can be hatched; TIC-files, netmails and or echomails are created
+ - files can be converted into msgbase format. This allows to send text-
+   files to other persons in a very convenient way (internal FILE2MSG)
+ - filemanager implemented (copy,move etc.)
+ - Screen output of TOS programs can be redirected to a window
+ - ICFS-Iconify support
+ - notebook and terminal implemented
+ - FILE2MSG converts textfiles in msg-files for the LED
+   ARC-IT archives msgs
+   BBS-INFO gives some statistics about the msg-areas
+   SPLIT-IT subdivides long textfiles in smaler ones
+   PN24CONV converts pointlists in userlists for the LED
+   CONVERT converts point- and nodelists in userlists for the LED
+   COMPDIFF appends diff files to a point-/nodelist
+   EXTRACT extracts regions from a nodelist
+   MYBLUE.FNT GDOS-Font (ANSI)
+ - The programs COMPDIFF,PN24CONV,CONVERT,SPLIT-IT,EXTRACT and FILE2MSG
+   has also been implemented in the batchinterpreter of Avalon
+ - easy installation
+ - works in every ST/STE/TT/Falcon
+ - works with all Binkley and Semper versions
+ - UpDate-Service
+ - "Beginners Guide" (by Florian Diete, available in german and english)
+ - manuals available in german end english language
+ - avalon is recommended by STeVeN Green in the BT 3.0 manual
+   and Gary Spiteri (Autralian JETmail Support Node)
+ - Keyware
+
+

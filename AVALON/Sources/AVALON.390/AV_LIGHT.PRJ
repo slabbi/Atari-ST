@@ -1,0 +1,28 @@
+AV_LIGHT.PRG
+.C [ -Y -K -G -P -D_LIGHT_ ]
+; .L [ -L -Y ]
+.S [ -Y ]
+=
+PCSTART.O
+
+AVALON.C
+DIVERSE.C
+AVALONIO.C
+BATCHING.C
+; MANAGER.C
+TRANSKEY.C
+FORM_RUN.C
+AVALXHDI.C
+; CONVERT.C
+CRC32.S
+RINGBELL.S
+AVAL_UK.C
+RESOURCL.C		(AV_LIGHT.RSH)   [ -M ]
+
+WINDMINI.PRJ
+
+PCLNALIB.LIB
+PCSTDLIB.LIB       ; standard library
+PCEXTLIB.LIB       ; extended library
+PCTOSLIB.LIB       ; TOS library
+PCGEMLIB.LIB       ; AES and VDI library

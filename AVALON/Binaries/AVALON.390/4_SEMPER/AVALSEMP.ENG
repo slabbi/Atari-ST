@@ -1,0 +1,15 @@
+Last change: 06.05.94
+=====================
+
+AVALON_4_SEMPER is a special version of AVALON.
+
+This version offers following features:
+
+  - Edit areas         AREAS.BBS editor
+  - F'Request          FileRequest
+  - F'Hatch            FileHatch
+  - AreaFix            AreaFix/FileFix
+
+Semper supports F'Request and F'Hatch using the FidoMessageProtocol.
+
+St.Slabihoud
