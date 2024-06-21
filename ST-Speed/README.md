@@ -1,8 +1,5 @@
-<html><head>
-	<title>ST-Computer 03/1991:ST-Speed: Flexibles Utility</title>
-</head>
+Veröffentlicht in ST-Computer 03/1991 "ST-Speed: Flexibles Utility"
 
-<body>
 <h1>ST-Speed: Flexibles Utility, Teil 1</h1>
 
 <p><strong>Utilities
@@ -217,5 +214,3 @@ Fopen (Lesen) und Pexec abgefangen.</td>
 </tr>
 </tbody>
 </table>
-
-</body></html>
